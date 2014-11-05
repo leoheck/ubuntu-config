@@ -9,5 +9,7 @@ List of configurations:
 - nfs client (remote mountpoints)
 - cronjobs
 - sun grid engin
+- salt-minion
+- local admin users/groups
 - new local user configurations
 - extra tools
