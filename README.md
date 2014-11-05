@@ -1,4 +1,4 @@
-gaph-os-scripts
-===============
+GAPH OS Config Scripts
+======================
 
 Configurations scripts for GAPH hosts
