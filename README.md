@@ -3,6 +3,7 @@ GAPH OS Config Scripts
 
 List of configurations: 
 
+- tools for configurations
 - base tools
 - ldap (network users)
 - nfs client (remote mountpoints)
