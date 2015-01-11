@@ -11,17 +11,31 @@ fi
 
 # install minimum but required software
 ./scripts/initial-software.sh
+read
 
 ./scripts/fstab-config.sh
+read
+
 ./scripts/nslcd-config.sh
+read
+
 ./scripts/nsswitch-config.sh
+read
 
 ./scripts/admin-config.sh
+read
 ./scripts/lightdm-config.sh
+read
 ./scripts/crontab-config.sh
+read
 ./scripts/saltstack-config.sh
+read
 
 ./scripts/users-config.sh
+read
 ./scripts/misc-hacks.sh
+read
 
 # install all other pakages
+
+reboot -f now
