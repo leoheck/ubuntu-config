@@ -10,4 +10,6 @@ unzip master.zip
 cd gaph-os-scripts-master
 sudo ./config-gaph-host.sh
 
-#> Para instalar o grid: 
+#> Para instalar o grid: (todo)
+
+->![alt text](doc/figs/partitions.svg)
