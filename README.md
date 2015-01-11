@@ -1,15 +1,18 @@
 
-Configuracao das maquinas do GAPH
+# Configuracao das maquinas do GAPH
 
-#> Optimizado para o UBUNTU 14.04
+> Optimizado para o UBUNTU 14.04
 
-Para configurar o host:
+## Para configurar o host:
 
+
+```bash
 wget https://github.com/leoheck/gaph-os-scripts/archive/master.zip
 unzip master.zip
 cd gaph-os-scripts-master
 sudo ./config-gaph-host.sh
+```
 
-#> Para instalar o grid: (todo)
+# Para instalar o grid: (todo)
 
-->![alt text](doc/figs/partitions.svg)
+![alt text](https://github.com/leoheck/gaph-os-scripts/blob/master/doc/figs/particoes.svg)
