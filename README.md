@@ -1,7 +1,7 @@
 
 # Configuracao das maquinas do GAPH
 
-> Optimizado para o UBUNTU 14.04
+> Estes scripts estão atualmente otimizados para o Ubuntu 14.04. Contudo, é bem provavel que ele funcione para as próximas versões do sistema operacional.
 
 ## Para configurar o host:
 
@@ -13,6 +13,6 @@ cd gaph-os-scripts-master
 sudo ./config-gaph-host.sh
 ```
 
-# Para instalar o grid: (todo)
+## Para instalar o grid: (todo)
 
 ![alt text](https://github.com/leoheck/gaph-os-scripts/blob/master/doc/figs/particoes.svg)
