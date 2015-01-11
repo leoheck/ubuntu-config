@@ -10,6 +10,7 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 # install minimum but required software
+./scripts/initial-software.sh
 
 ./scripts/fstab-config.sh
 ./scripts/nslcd-config.sh
