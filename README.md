@@ -1,16 +1,9 @@
-GAPH OS Config Scripts
-======================
 
-List of configurations: 
+Configuracao das maquinas do GAPH
 
-- tools for configurations
-- base tools
-- ldap (network users)
-- nfs client (remote mountpoints)
-- cronjobs
-- sun grid engin
-- salt-minion
-- local admin users/groups
-- new local user configurations
-- extra tools
+Para configurar o host:
 
+wget https://github.com/leoheck/gaph-os-scripts/archive/master.zip
+unzip master.zip
+cd gaph-os-scripts-master
+sudo ./config-gaph-host.sh
