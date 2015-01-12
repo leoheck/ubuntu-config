@@ -11,7 +11,7 @@ sed -i "s/#deb http/deb http/" /etc/apt/sources.list
 sed -i "s/#deb-src http/deb-src http/" /etc/apt/sources.list
 
 apt-get update
-apt-get full-upgrade -y
+apt-get full-upgrade
 
 sudo apt-get install -y aptitude                                  # Apt-get front end
 sudo apt-get install -y linux-headers-$(uname -r)                 # Linux Heders
