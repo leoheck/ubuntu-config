@@ -1,5 +1,5 @@
 
-# Configuracao das maquinas do GAPH
+# Configuração das máquinas do GAPH
 
 > Estes scripts estão atualmente otimizados para o Ubuntu 14.04. Contudo, é bem provavel que ele funcione para as próximas versões do sistema operacional.
 
