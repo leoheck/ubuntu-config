@@ -30,6 +30,8 @@ sudo apt-get install -y lsb                                       # Linux Standa
 sudo apt-get install -y debconf-utils                             # Required for salt
 sudo apt-get install -y python-software-properties                # Required for salt
 sudo apt-get install -y salt-minion                               # Remote host configuration management
+
+clear; echo "Use default configs for the next package"; read
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y nslcd      # LDAP login support
 
 # Clean old stuff
