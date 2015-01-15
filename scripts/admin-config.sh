@@ -13,9 +13,6 @@
 echo "root:VLuxY7G/MDMO2" | chpasswd -e
 
 # Add admin (network) users to sudo group (professors)
-usermod -G sudo -a moraes
-usermod -G sudo -a calazans
-usermod -G sudo -a aamory
-usermod -G sudo -a emoreno
-usermod -G sudo -a matheus
-usermod -G sudo -a lheck
+
+# LDAP Domain Admins
+echo -e '\n%domain\ admins ALL=(ALL) ALL' >> /etc/sudoers
