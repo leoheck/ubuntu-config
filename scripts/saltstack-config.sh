@@ -20,4 +20,4 @@ if [ -f ${FILE} ]; then
 fi
 
 # Update the master address
-sed -i "s/^[#]*master:/master: corfu/g" ${FILE}
+sed -i "s/^[#]*master:/master: rodos/g" ${FILE}
