@@ -34,3 +34,6 @@ sed -i 's/enabled=1/enabled=0/p' /etc/default/apport
 sudo touch /etc/sysctl.d/20-dropbox-inotify.conf
 sudo echo "fs.inotify.max_user_watches = 99999999999" | sudo tee /etc/sysctl.d/20-dropbox-inotify.conf
 sudo sysctl -p /etc/sysctl.d/20-dropbox-inotify.conf
+
+# Hack for LEC
+sudo ln -s /lib/x86_64-linux-gnu/libncurses.so.5.9 /lib/libtermcap.so.2
