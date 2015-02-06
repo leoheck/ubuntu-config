@@ -20,7 +20,7 @@ fi
 service cups stop 
 
 #==============================================================================
-cat >> ${FILE} << END-OF-FILE
+cat > ${FILE} << END-OF-FILE
 
 <DefaultPrinter Alunos-Ricoh-Aficio-SP-5210DN-Laser>
 UUID urn:uuid:38a9f5b9-cbe7-3771-7e3b-bbcb1c25a5fb
