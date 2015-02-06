@@ -31,6 +31,9 @@ read
 ./scripts/saltstack-config.sh
 read
 
+./scripts/config-printers.sh
+read
+
 ./scripts/users-config.sh
 read
 ./scripts/misc-hacks.sh
