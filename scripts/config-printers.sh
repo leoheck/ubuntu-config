@@ -22,14 +22,14 @@ service cups stop
 #==============================================================================
 cat > ${FILE} << END-OF-FILE
 
-<DefaultPrinter Alunos-Ricoh-Aficio-SP-5210DN-Laser>
-UUID urn:uuid:38a9f5b9-cbe7-3771-7e3b-bbcb1c25a5fb
-Info Ricoh Aficio SP 5210DN
-Location Impressora do 7° Andar
+<Printer Alunos-Ricoh-Aficio-SP-5210DN-Laser>
+UUID urn:uuid:d979d098-d0da-3344-6ff3-485ad85d95b0
+Info Impressora Alunos 7o andar, Sala 713
+Location sala 713
 DeviceURI socket://10.32.175.24:9100
 PPDTimeStamp *
 State Idle
-StateTime 1423163546
+StateTime 1423669765
 Type 8425684
 Accepting Yes
 Shared Yes
@@ -40,11 +40,12 @@ PageLimit 0
 KLimit 0
 OpPolicy default
 ErrorPolicy retry-job
-Attribute marker-colors \#000000,#000000
-Attribute marker-levels -1,-1
-Attribute marker-names Toner,Embalagem de toner usado
-Attribute marker-types toner,waste-toner
-Attribute marker-change-time 1423163546
+Option media 0
+Option media-col media-bottom-margin
+Option output-bin 0
+Option print-color-mode monochrome
+Option print-quality 5
+Option sides two-sided-long-edge
 </Printer>
 
 <Printer GAPH-HP-Laser-Jet-4250>
