@@ -48,17 +48,18 @@ Option print-quality 5
 Option sides two-sided-long-edge
 </Printer>
 
-<Printer GAPH-HP-Laser-Jet-4250>
-UUID urn:uuid:dc69c1d0-2601-3144-4c41-6aa786d5abb1
-Info Impressora do GAPH HP LaserJet 4250
-Location Sala 727
-DeviceURI ipp://10.32.162.55:631/printers/GAPH-HP-Laser-Jet-4250
+<DefaultPrinter HP-LaserJet-4250>
+UUID urn:uuid:2d75136e-14da-30cc-5f7d-ec6d4090e293
+Info HP LaserJet 4250
+Location 10.32.162.89
+DeviceURI socket://10.32.162.89:9100
 PPDTimeStamp *
 State Idle
-StateTime 1421869052
-Type 6
+StateTime 1423769357
+Reason opc-life-over-warning
+Type 8425684
 Accepting Yes
-Shared No
+Shared Yes
 ColorManaged Yes
 JobSheets none none
 QuotaPeriod 0
@@ -66,7 +67,11 @@ PageLimit 0
 KLimit 0
 OpPolicy default
 ErrorPolicy retry-job
-Option cups-browsed true
+Attribute marker-colors none,none
+Attribute marker-levels -1,0
+Attribute marker-names Black Cartridge HP Q5942A,Maintenance Kit HP 110V-Q5421A, 220V-Q5422A
+Attribute marker-types toner-cartridge,fuser
+Attribute marker-change-time 1423769357
 </Printer>
 
 <Printer Moraes-HP-Deskjet-5520>
