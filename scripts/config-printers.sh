@@ -22,36 +22,10 @@ service cups stop
 #==============================================================================
 cat > ${FILE} << END-OF-FILE
 
-<Printer Alunos-Ricoh-Aficio-SP-5210DN-Laser>
-UUID urn:uuid:d979d098-d0da-3344-6ff3-485ad85d95b0
-Info Impressora Alunos 7o andar, Sala 713
-Location sala 713
-DeviceURI socket://10.32.175.24:9100
-PPDTimeStamp *
-State Idle
-StateTime 1423669765
-Type 8425684
-Accepting Yes
-Shared Yes
-ColorManaged Yes
-JobSheets none none
-QuotaPeriod 0
-PageLimit 0
-KLimit 0
-OpPolicy default
-ErrorPolicy retry-job
-Option media 0
-Option media-col media-bottom-margin
-Option output-bin 0
-Option print-color-mode monochrome
-Option print-quality 5
-Option sides two-sided-long-edge
-</Printer>
-
-<DefaultPrinter HP-LaserJet-4250>
+<DefaultPrinter GAPH-HP-LaserJet-4250>
 UUID urn:uuid:2d75136e-14da-30cc-5f7d-ec6d4090e293
 Info HP LaserJet 4250
-Location 10.32.162.89
+Location GAPH, Sala 727
 DeviceURI socket://10.32.162.89:9100
 PPDTimeStamp *
 State Idle
