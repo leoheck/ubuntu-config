@@ -87,6 +87,33 @@ OpPolicy default
 ErrorPolicy retry-job
 </Printer>
 
+</Printer>
+<Printer Impressora-PUCRS-Alunos>
+UUID urn:uuid:063725f7-4ef4-3caa-5f41-81ca3b28eae6
+Info Generic PCL Laser - POA01PRN03 COPY3213
+Location Corredor 7º Andar
+DeviceURI smb://10.40.110.103/impressora
+PPDTimeStamp *
+State Idle
+StateTime 1424800403
+Type 12372
+Accepting Yes
+Shared Yes
+ColorManaged Yes
+JobSheets none none
+QuotaPeriod 0
+PageLimit 0
+KLimit 0
+OpPolicy default
+ErrorPolicy retry-job
+Option media 5
+Option media-col media-bottom-margin
+Option output-bin 0
+Option print-color-mode monochrome
+Option print-quality 5
+AuthInfoRequired username,password
+</Printer>
+
 END-OF-FILE
 #==============================================================================
 
