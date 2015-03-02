@@ -87,7 +87,6 @@ OpPolicy default
 ErrorPolicy retry-job
 </Printer>
 
-</Printer>
 <Printer Impressora-PUCRS-Alunos>
 UUID urn:uuid:063725f7-4ef4-3caa-5f41-81ca3b28eae6
 Info Generic PCL Laser - POA01PRN03 COPY3213
