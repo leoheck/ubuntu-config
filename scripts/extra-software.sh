@@ -3,6 +3,20 @@
 # Install extra software sources
 # Leandro Sehnem Heck (leoheck@gmail.com)
 
+# Ctrl+c function to halt execution
+control_c()
+{
+	echo -e "\n\n$0 ended by user\n"
+	exit $?
+}
+
+trap control_c SIGINT
+
+# Check for super power
+if [ "$(id -u)" != "0" ]; then
+	echo "Hey kid, you need to be root, call your father."
+	exit 1
+fi
 
 # Add google-chrome ppa
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -

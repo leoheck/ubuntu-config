@@ -11,6 +11,7 @@
 
 # Some informations
 # https://wiki.ubuntu.com/LightDM
+# http://askubuntu.com/questions/155611/no-unity-greeter-conf-file-in-etc-lightdm
 
 FILE=/etc/lightdm/lightdm.conf
 date=$(date +"%Y-%m-%d-%Hh%M")
@@ -34,3 +35,7 @@ allow-guest = true
 
 END-OF-CONFIG-FILE
 #==============================================================================
+
+# Adiciona o papel de parede do GAPH pra tela de login
+cp imagens/gaphwall.jpg /usr/share/backgrounds/
+sudo -u lightdm dbus-launch gsettings set com.canonical.unity-greeter background '/usr/share/backgrounds/gaphwall.jpg'
