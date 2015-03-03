@@ -36,5 +36,7 @@ touch gaphscripts.log
 
 ./scripts/extra-software.sh   | tee -a gaphscripts.log  
 
-# :)
+apt-get clean
 reboot -f now
+
+# :)

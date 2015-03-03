@@ -28,6 +28,7 @@ sed -i "s/#deb-src http/deb-src http/" /etc/apt/sources.list
 apt-get update
 apt-get full-upgrade
 
+apt-get install -y dconf-tools                               # Commandline configurations
 apt-get install -y aptitude                                  # Apt-get front end
 apt-get install -y linux-headers-generic                     # Generic Kernel Headers
 apt-get install -y linux-headers-$(uname -r)                 # Linux Heders

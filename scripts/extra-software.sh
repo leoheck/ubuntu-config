@@ -29,16 +29,14 @@ sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian $(lsb_release 
 # Add extra ppas
 
 ppas="\
-	ppa:blahota/texstudio \
 	ppa:freyja-dev/unity-tweak-tool-daily \
 	ppa:indicator-multiload/daily \
-	ppa:moka/stable \
-	ppa:saltstack/salt \
 	ppa:shutter/ppa \
 	ppa:tualatrix/ppa \
 	ppa:webupd8team/java \
 	ppa:webupd8team/sublime-text-3 \
-	ppa:webupd8team/y-ppa-manager"
+	ppa:webupd8team/y-ppa-manager \
+	ppa:blahota/texstudio"
 
 # Extra repositories
 for ppa in ${ppas}; do
@@ -52,7 +50,6 @@ apt-get update
 # EXTRA SOFTWARE - Separated in sections
 
 # Administrator tools
-apt-get install -y dconf-tools
 apt-get install -y bleachbit
 apt-get install -y y-ppa-manager
 apt-get install -y ppa-purge
