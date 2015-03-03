@@ -1,7 +1,7 @@
 
 # Configuração das máquinas do GAPH
 
-> Estes scripts foram feitos para o Ubuntu 14.04. Contudo, é bem provavel que ele funcione para as outras versões. Baixe o ubuntu [aqui](http://www.ubuntu.com/download/desktop/) e para criar uma pendrive botável siga as instruções [daqui](http://www.ubuntu.com/download/desktop/create-a-usb-stick-on-ubuntu)
+> Estes scripts foram feitos para o Ubuntu 14.04, contudo, é bem provavel que ele funcione para as outras versões. **No GAPH usar obrigatoriamente o Ubuntu 14.04.x** que pode ser baixado [aqui](http://www.ubuntu.com/download/desktop/). Instruções de como criar uma pendrive botável podem ser encontradas [aqui](http://www.ubuntu.com/download/desktop/create-a-usb-stick-on-ubuntu)
 
 ## Instalação do Ubuntu
 
