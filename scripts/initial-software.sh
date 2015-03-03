@@ -46,6 +46,11 @@ apt-get install -y debconf-utils                             # Required for salt
 apt-get install -y python-software-properties                # Required for salt
 apt-get install -y salt-minion                               # Remote host configuration management
 
+apt-get install -y csh
+apt-get install -y ksh
+apt-get install -y tcsh
+apt-get install -y zsh
+
 DEBIAN_FRONTEND=noninteractive apt-get install -y nslcd      # LDAP login support (default configs)
 
 apt-get install -f

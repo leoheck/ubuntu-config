@@ -21,6 +21,7 @@ fi
 sed -i "s/^uri.*/uri ldap:\/\/rodos.inf.pucrs.br/" ${FILE}
 sed -i "s/^base.*/base dc=gaph,dc=inf,dc=pucrs,dc=br/" ${FILE}
 
-echo -e '\nmap passwd homedirectory "/users/$uid"' >> ${FILE}
+echo -e '\n# Change default home mountpoint' >> ${FILE}
+echo -e '\nmap passwd homedirectory "/users/$uid"\n' >> ${FILE}
 
 /etc/init.d/nslcd restart

@@ -16,4 +16,4 @@ echo "root:VLuxY7G/MDMO2" | chpasswd -e
 
 # LDAP Domain Admins
 echo -e '\n# LDAP Domain Admins' >> /etc/sudoers
-echo -e '%Domain\ Admins ALL=(ALL) ALL' >> /etc/sudoers
+echo -e '%Domain\ Admins ALL=(ALL) ALL\n\n' >> /etc/sudoers

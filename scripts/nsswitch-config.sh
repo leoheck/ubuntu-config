@@ -15,6 +15,6 @@ if [ -f ${FILE} ]; then
 	cp ${FILE} ${FILE}-${date}
 fi
 
-sed -i "s/passwd:.*/passwd: compat ldap/" ${FILE}
-sed -i "s/group:.*/group:  compat ldap/"  ${FILE}
-sed -i "s/shadow:.*/shadow: compat ldap/" ${FILE}
+sed -i "s/^passwd:.*/passwd: compat ldap/" ${FILE}
+sed -i "s/^group:.*/group:  compat ldap/"  ${FILE}
+sed -i "s/^shadow:.*/shadow: compat ldap/" ${FILE}

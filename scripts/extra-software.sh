@@ -79,10 +79,6 @@ apt-get install -y strace
 apt-get install -y makedev
 
 # Shels and terminals
-apt-get install -y csh
-apt-get install -y ksh
-apt-get install -y tcsh
-apt-get install -y zsh
 apt-get install -y ipython
 apt-get install -y terminator
 apt-get install -y minicom

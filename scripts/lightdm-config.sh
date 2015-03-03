@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# LightDM Configuration
+# LightDM Configuration (PRECISA REINICIAR PARA FUNCIONAR)
 # Leandro Sehnem Heck (leoheck@gmail.com)
 
 # This script configures the main login screen (LightDM)

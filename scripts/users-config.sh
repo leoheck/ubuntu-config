@@ -8,17 +8,24 @@
 # - Update .bashrc
 # - Update .cshrc
 
+# skell
+mkdir -p /etc/skel/www
 rm -rf /etc/skel/examples.desktop*
 rm -rf /etc/skel/Templates
 rm -rf /etc/skel/Podcasts
 rm -rf /etc/skel/Audiobooks
 
-mkdir -p /etc/skel/www
+# current user
+mkdir -p ~/www
+rm -rf ~/examples.desktop*
+rm -rf ~/Templates
+rm -rf ~/Podcasts
+rm -rf ~/Audiobooks
 
 
 FILE=/etc/skel/.bashrc
 #==============================================================================
-cat > ${FILE} << END_OF_FILE
+cat >> ${FILE} << END_OF_FILE
 
 # Habilita 256 cores no terminal
 export TERM=xterm-256color
@@ -56,7 +63,7 @@ cp -f /etc/skel/.bashrc $HOME
 
 FILE=/etc/skel/.cshrc
 #==============================================================================
-cat > ${FILE} << END_OF_FILE
+cat >> ${FILE} << END_OF_FILE
 
 if ($?tcsh && $?prompt) then
 
@@ -76,7 +83,6 @@ endif
 # Configura os modulos para o (t)csh
 source /soft64/Modules/current/init/csh
 
-
 END_OF_FILE
 #==============================================================================
 cp -f /etc/skel/.cshrc $HOME
@@ -85,7 +91,7 @@ cp -f /etc/skel/.cshrc $HOME
 
 FILE=/etc/skel/.inputrc
 #==============================================================================
-cat > ${FILE} << END_OF_FILE
+cat >> ${FILE} << END_OF_FILE
 
 "\e[A": history-search-backward
 "\e[B": history-search-forward
@@ -95,4 +101,3 @@ cat > ${FILE} << END_OF_FILE
 END_OF_FILE
 #==============================================================================
 cp -f /etc/skel/.inputrc $HOME
-
