@@ -1,24 +1,28 @@
 
 # Configuração das máquinas do GAPH
 
-> Estes scripts estão atualmente otimizados para o Ubuntu 14.04. Contudo, é bem provavel que ele funcione para as próximas versões do sistema operacional.
+> Estes scripts foram feitos para o Ubuntu 14.04. Contudo, é bem provavel que ele funcione para as outras versões. Baixe o ubuntu [aqui](http://www.ubuntu.com/download/desktop/) e para criar uma pendrive botável siga as instruções [daqui](http://www.ubuntu.com/download/desktop/create-a-usb-stick-on-ubuntu)
 
-Instale o Ubuntu seguindo a instalação padrão.
+## Instalação do Ubuntu
 
-Configure o sistema em _Inglês_ para não ter problema com nome de diretórios.
+Siga as opções padrão de instalação.
+
+Selecione **Inglês** como idioma.
 
 Particione o primeiro disco conforme o esquema:
 ![Partition scheme](https://rawgit.com/leoheck/gaph-os-scripts/master/doc/figs/partitions.svg)
 
 *Obs.: Se tiverem mais discos, crie um ponto de montagem de 1TB para o /sim*
 
-Por fim, coloque suas credenciais de usuário.
+Por fim, coloque suas credenciais de usuário. Lembre-se de criar o usuário com um nome diferente do seu usuário de rede. 
 
-Pergunte o _hostname_ para algum dos administradores
+Pergunte o **hostname** para algum dos administradores (Amory, Matheus, LHeck)
 
-Não criptografe o disco!
+_Não criptografe o disco!_
 
-## Para configurar o host:
+## Configuração do GAPH
+
+Para configurar a máquina como um _host_ do GAPH é preciso executar os seguintes comandos no terminal:
 
 ```bash
 wget https://github.com/leoheck/gaph-os-scripts/archive/master.zip
@@ -27,8 +31,11 @@ cd gaph-os-scripts-master
 sudo ./config-gaph-host.sh
 ```
 
+## Para instalar o grid SGE 
 
+Para instalar a máquina no grid, primeiro tens que instalar ela na servidora KRITI.
+Depois seguir os seguintes passos:
 
-## Para instalar o grid: (todo)
-
-
+```bash
+TODO
+```
