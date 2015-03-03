@@ -93,10 +93,19 @@ FILE=/etc/skel/.inputrc
 #==============================================================================
 cat >> ${FILE} << END_OF_FILE
 
+# History search
 "\e[A": history-search-backward
 "\e[B": history-search-forward
 "\e[C": forward-char
 "\e[D": backward-char
+
+# Mappings for Ctrl-left-arrow and Ctrl-right-arrow for word moving
+"\e[1;5C": forward-word
+"\e[1;5D": backward-word
+"\e[5C": forward-word
+"\e[5D": backward-word
+"\e\e[C": forward-word
+"\e\e[D": backward-word
 
 END_OF_FILE
 #==============================================================================
