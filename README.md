@@ -9,7 +9,8 @@ Siga as opções padrão de instalação.
 
 Selecione **Inglês** como idioma.
 
-Particione o primeiro disco conforme o esquema:
+Particione os discos (se ouver mais de 1) conforme o esquema:
+
 ![Partition scheme](https://rawgit.com/leoheck/gaph-os-scripts/master/doc/figs/partitions.svg)
 
 *Obs.: Se tiverem mais discos, crie um ponto de montagem de 1TB para o /sim*
