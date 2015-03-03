@@ -14,7 +14,7 @@ trap control_c SIGINT
 
 # Check for super power
 if [ "$(id -u)" != "0" ]; then
-	echo "Hey kid, you need to be root, call your father."
+	echo "Hey kid, you need the root power, call your father."
 	exit 1
 fi
 

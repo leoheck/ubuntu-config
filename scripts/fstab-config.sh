@@ -18,10 +18,10 @@ if [ -f ${FILE} ]; then
 	cp ${FILE} ${FILE}-${date}
 fi
 
-mkdir -p users
-mkdir -p soft64
-mkdir -p grid
-mkdir -p sim
+mkdir -p /users
+mkdir -p /soft64
+mkdir -p /grid
+mkdir -p /sim
 
 # append the configuration
 #==============================================================================
@@ -35,8 +35,7 @@ kriti.inf.pucrs.br:/grid   /grid   nfs defaults     0 0
 # [GAPH] Local mountoints
 # sdx /sim    nfs defaults     0 0
 
- END-OF-FILE
+END-OF-FILE
 #==============================================================================
-
 
 mount -a

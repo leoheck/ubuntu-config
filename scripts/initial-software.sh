@@ -29,8 +29,8 @@ apt-get update
 apt-get full-upgrade
 
 apt-get install -y aptitude                                  # Apt-get front end
-apt-get install -y linux-headers-$(uname -r)                 # Linux Heders
 apt-get install -y linux-headers-generic                     # Generic Kernel Headers
+apt-get install -y linux-headers-$(uname -r)                 # Linux Heders
 apt-get install -y build-essential                           # C compiler and build tools
 apt-get install -y dkms                                      # Dynamic Kernel Module Support
 apt-get install -y openssh-server                            # SSH conctivity tools
@@ -48,6 +48,8 @@ apt-get install -y salt-minion                               # Remote host confi
 
 DEBIAN_FRONTEND=noninteractive apt-get install -y nslcd      # LDAP login support (default configs)
 
+apt-get install -f
+
 # Clean old stuff
-apt-get autoremove
-apt-get clean
+#apt-get autoremove
+#apt-get clean

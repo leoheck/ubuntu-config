@@ -22,7 +22,29 @@ service cups stop
 #==============================================================================
 cat > ${FILE} << END-OF-FILE
 
-<DefaultPrinter GAPH-HP-LaserJet-4250>
+<DefaultPrinter PUCRS-Printer>
+UUID urn:uuid:ddf454da-9a1c-39fa-670f-a63aeb99afd8
+AuthInfoRequired username,password
+Info Impressora da PUCRS
+Location Qualquer impressora da PUCRS pode ser usada
+DeviceURI smb://10.40.110.103/impressora
+PPDTimeStamp *
+State Idle
+StateTime 1425318918
+Type 4198404
+Accepting Yes
+Shared No
+ColorManaged Yes
+JobSheets none none
+QuotaPeriod 0
+PageLimit 0
+KLimit 0
+OpPolicy authenticated
+ErrorPolicy abort-job
+Option media-col media-bottom-margin
+</Printer>
+
+<Printer GAPH-HP-LaserJet-4250>
 UUID urn:uuid:2d75136e-14da-30cc-5f7d-ec6d4090e293
 Info HP LaserJet 4250
 Location GAPH, Sala 727
@@ -85,28 +107,6 @@ PageLimit 0
 KLimit 0
 OpPolicy default
 ErrorPolicy retry-job
-</Printer>
-
-<Printer Impressora-PUCRS>
-UUID urn:uuid:ddf454da-9a1c-39fa-670f-a63aeb99afd8
-AuthInfoRequired username,password
-Info Impressora-PUCRS
-Location Impressora Geral da PUCRS
-DeviceURI smb://10.40.110.103/impressora
-PPDTimeStamp *
-State Idle
-StateTime 1425318918
-Type 4198404
-Accepting Yes
-Shared No
-ColorManaged Yes
-JobSheets none none
-QuotaPeriod 0
-PageLimit 0
-KLimit 0
-OpPolicy authenticated
-ErrorPolicy abort-job
-Option media-col media-bottom-margin
 </Printer>
 
 END-OF-FILE

@@ -23,7 +23,7 @@ fi
 
 # update the content
 #==============================================================================
-cat > ${FILE} << \END-OF-CONFIG-FILE
+cat > ${FILE} << END-OF-FILE
 
 [GuestAccount]
 enabled = true
@@ -33,9 +33,9 @@ greeter-session = unity-greeter
 greeter-show-manual-login = true
 allow-guest = true
 
-END-OF-CONFIG-FILE
+END-OF-FILE
 #==============================================================================
 
 # Adiciona o papel de parede do GAPH pra tela de login
-cp imagens/gaphwall.jpg /usr/share/backgrounds/
-sudo -u lightdm dbus-launch gsettings set com.canonical.unity-greeter background '/usr/share/backgrounds/gaphwall.jpg'
+#cp imagens/gaphwall.jpg /usr/share/backgrounds/
+#sudo -u lightdm dbus-launch gsettings set com.canonical.unity-greeter background '/usr/share/backgrounds/gaphwall.jpg'
