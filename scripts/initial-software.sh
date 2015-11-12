@@ -46,6 +46,7 @@ apt-get install -y lsb                                       # Linux Standard Ba
 apt-get install -y debconf-utils                             # Required for salt
 apt-get install -y python-software-properties                # Required for salt
 apt-get install -y salt-minion                               # Remote host configuration management
+apt-get install -y libnss-myhostname
 
 apt-get install -y csh
 apt-get install -y ksh
