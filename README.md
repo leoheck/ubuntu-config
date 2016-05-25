@@ -1,7 +1,7 @@
 
 # Configuração das máquinas do GAPH
 
-> Estes scripts foram feitos para o Ubuntu 14.04, contudo, é bem provavel que ele funcione para as outras versões. **No GAPH usar obrigatoriamente o Ubuntu 14.04.x** que pode ser baixado [aqui](http://www.ubuntu.com/download/desktop/). Instruções de como criar uma pendrive botável podem ser encontradas [aqui](http://www.ubuntu.com/download/desktop/create-a-usb-stick-on-ubuntu)
+> Estes scripts foram feitos para o Ubuntu 14.04, contudo, é bem provavel que ele funcione para as outras versões. **No GAPH usar obrigatoriamente o Ubuntu 14.04.x** que pode ser baixado [aqui](http://www.ubuntu.com/download/desktop/). Instruções de como criar uma pendrive *bootável* podem ser encontradas [aqui](http://www.ubuntu.com/download/desktop/create-a-usb-stick-on-ubuntu)
 
 ## Instalação do Ubuntu
 
@@ -32,11 +32,11 @@ cd gaph-os-scripts-master
 sudo ./config-gaph-host.sh
 ```
 
-## Para instalar o grid SGE 
+<!--## Para instalar o grid SGE -->
 
-Para instalar a máquina no grid, primeiro tens que instalar ela na servidora KRITI.
-Depois seguir os seguintes passos:
+<!--Para instalar a máquina no grid, primeiro tens que instalar ela na servidora KRITI.-->
+<!--Depois seguir os seguintes passos:-->
 
-```bash
-TODO
-```
+<!--```bash-->
+<!--TODO-->
+<!--```-->
