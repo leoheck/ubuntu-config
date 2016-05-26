@@ -18,25 +18,35 @@ if [ "$(id -u)" != "0" ]; then
 	exit 1
 fi
 
-touch gaphscripts.log
+logfile=configure.log
+touch $logfile
 
-./scripts/initial-software.sh | tee -a gaphscripts.log
+export PATH=./scripts:$PATH
 
-./scripts/fstab-config.sh     | tee -a gaphscripts.log      
-./scripts/nslcd-config.sh     | tee -a gaphscripts.log      
-./scripts/nsswitch-config.sh  | tee -a gaphscripts.log         
-./scripts/admin-config.sh     | tee -a gaphscripts.log      
-./scripts/lightdm-config.sh   | tee -a gaphscripts.log        
-./scripts/crontab-config.sh   | tee -a gaphscripts.log        
-./scripts/saltstack-config.sh | tee -a gaphscripts.log          
-./scripts/config-printers.sh  | tee -a gaphscripts.log         
-./scripts/users-config.sh     | tee -a gaphscripts.log      
-./scripts/hosts-config.sh     | tee -a gaphscripts.log      
-./scripts/misc-hacks.sh       | tee -a gaphscripts.log    
+# TODO:
+# ADD A NICE (AND SIMPLE) COMMAND-LINE INTERFACE TO THIS SCRIPT
+# Melhorar os arquivos de skell
+# Adicionar indicator de impressora online
+# Adicionar impressora do andar...
+# Remover opção GNOME, GNOME-SHELL, (black list it!)
 
-./scripts/extra-software.sh   | tee -a gaphscripts.log  
+initial-software.sh | tee -a $logfile
+fstab-config.sh     | tee -a $logfile
+nslcd-config.sh     | tee -a $logfile
+nsswitch-config.sh  | tee -a $logfile
+admin-config.sh     | tee -a $logfile
+lightdm-config.sh   | tee -a $logfile
+crontab-config.sh   | tee -a $logfile
+saltstack-config.sh | tee -a $logfile
+config-printers.sh  | tee -a $logfile
+users-config.sh     | tee -a $logfile
+hosts-config.sh     | tee -a $logfile
+misc-hacks.sh       | tee -a $logfile
+extra-software.sh   | tee -a $logfile
 
-apt-get clean
+#apt-get clean
+
+# Reportar que o sitema vai reiniciar...
 reboot -f now
 
 # :)
