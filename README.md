@@ -15,7 +15,7 @@ Particione os discos (se ouver mais de 1) conforme o esquema:
 
 ![Partition scheme](https://rawgit.com/leoheck/gaph-os-scripts/master/doc/figs/partitions.svg)
 
-*Obs.: Se tiverem mais discos, crie um ponto de montagem de 1TB para o /sim*
+*Obs.: Se tiverem mais discos, crie um ponto de montagem de 1 TB para o /sim*
 
 Por fim, coloque suas credenciais de usuário. Lembre-se de criar o usuário com um nome diferente do seu usuário de rede.
 
@@ -26,13 +26,13 @@ _Não criptografe o disco! Isso só dificulta operações futuras._
 
 ## Configurações específicas do GAPH
 
-Para configurar a máquina GAPH execute os seguintes comandos no terminal:
+Para configurar a máquina execute os seguintes comandos no terminal:
 
 ```
 sh -c sudo "$(curl -fsSL https://github.com/leoheck/gaph-os-scripts/tools/configure.sh)"
 ```
 
-Selecione a opção conveniente:
+Selecione a opção mais conveniente:
 
 1. Configuração completa do host GAPH
 2. Somente ferramentas para uso pessoal
