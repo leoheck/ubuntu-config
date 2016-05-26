@@ -3,6 +3,17 @@
 # GAPH Hosts main configuration script
 # Leandro Sehnem Heck (leoheck@gmail.com)
 
+# TODO:
+# ADD A NICE (AND SIMPLE) COMMAND-LINE INTERFACE TO THIS SCRIPT
+# fixar o wallpaper padrao do lightdm e colocar um padrao
+# Melhorar os arquivos de skell
+# Adicionar indicator de impressora online, e a impressora do andar no sistema
+# Remover opção GNOME, GNOME-SHELL, (black list it!)
+# Ubuntu 16.04 tem o novo apt, usar somente ele
+# Criar arquivo /etc/gaph-host com a data da instalacao indicando que a maquina esta configurada
+# Verificar a seguranca da senha padrao de root
+
+
 # Ctrl+c function to halt execution
 control_c()
 {
@@ -61,15 +72,15 @@ main()
   umask g-w,o-w
 
 	rm -rf /tmp/master.zip
-	rm -rf /tmp/master
+	rm -rf /tmp/gaph-os-scripts-master
 
 	echo
 
   printf "${BLUE}  Donwloading package from github in /tmp/master.zip ...${NORMAL}\n"
   wget https://github.com/leoheck/gaph-os-scripts/archive/master.zip -O /tmp/master.zip 2> /dev/null
 
-  printf "${BLUE}  Unpacking configuration scripts into /tmp/master ...${NORMAL}\n"
-  unzip /tmp/master.zip -d /tmp/master > /dev/null
+  printf "${BLUE}  Unpacking configuration scripts into /tmp/gaph-os-scripts-master ...${NORMAL}\n"
+  unzip /tmp/master.zip -d /tmp/ > /dev/null
 
 
 
@@ -79,7 +90,7 @@ main()
   echo '  |  |  ||     ||   __||     |  |___|  |     ||  |  ||__   |  | |    '
   echo '  |_____||__|__||__|   |__|__|         |__|__||_____||_____|  |_|    '
   echo '                                                                     '
-  echo "  CONFIGURATION SCRIPT "
+  echo "  CONFIGURATION SCRIPT. MADE FOR UBUNTU 16.04"
   printf "${NORMAL}"
 
   echo
@@ -108,20 +119,63 @@ main()
 
 configure_gaph_host()
 {
-	echo "Configuring GAPH host"
+	echo "  Configuring GAPH host"
+	echo
+	echo "${YELLOW}  initial-software.sh ${NORMAL} | tee -a $logfile"
+	echo "${YELLOW}  fstab-config.sh     ${NORMAL} | tee -a $logfile"
+	echo "${YELLOW}  nslcd-config.sh     ${NORMAL} | tee -a $logfile"
+	echo "${YELLOW}  nsswitch-config.sh  ${NORMAL} | tee -a $logfile"
+	echo "${YELLOW}  admin-config.sh     ${NORMAL} | tee -a $logfile"
+	echo "${YELLOW}  lightdm-config.sh   ${NORMAL} | tee -a $logfile"
+	echo "${YELLOW}  crontab-config.sh   ${NORMAL} | tee -a $logfile"
+	echo "${YELLOW}  saltstack-config.sh ${NORMAL} | tee -a $logfile"
+	echo "${YELLOW}  config-printers.sh  ${NORMAL} | tee -a $logfile"
+	echo "${YELLOW}  users-config.sh     ${NORMAL} | tee -a $logfile"
+	echo "${YELLOW}  hosts-config.sh     ${NORMAL} | tee -a $logfile"
+	echo "${YELLOW}  misc-hacks.sh       ${NORMAL} | tee -a $logfile"
+	echo "${YELLOW}  extra-software.sh   ${NORMAL} | tee -a $logfile"
+	echo
+	echo "${YELLOW}  apt-get clean ${NORMAL}"
+	echo "${YELLOW}  reboot -f now ${NORMAL}"
+	echo
 }
 
 configure_gaph_compatible()
 {
-	echo "Configuring GAPH COMPATIBLE host"
+	echo "  Configuring GAPH COMPATIBLE host"
+	echo
+	echo "${YELLOW}  initial-software.sh ${NORMAL}| tee -a $logfile"
+	echo "${YELLOW}  extra-software.sh   ${NORMAL}| tee -a $logfile"
+	echo
+	echo "${YELLOW}  apt-get clean ${NORMAL}"
+	echo "${YELLOW}  reboot -f now ${NORMAL}"
+	echo
 }
 
 revert_configurations()
 {
-	echo "REMOVING configurations"
+	echo "  REMOVING configurations"
+	echo
+	echo "${YELLOW}  fstab-config.sh     -r ${NORMAL}| tee -a $logfile"
+	echo "${YELLOW}  nslcd-config.sh     -r ${NORMAL}| tee -a $logfile"
+	echo "${YELLOW}  nsswitch-config.sh  -r ${NORMAL}| tee -a $logfile"
+	echo "${YELLOW}  admin-config.sh     -r ${NORMAL}| tee -a $logfile"
+	echo "${YELLOW}  lightdm-config.sh   -r ${NORMAL}| tee -a $logfile"
+	echo "${YELLOW}  crontab-config.sh   -r ${NORMAL}| tee -a $logfile"
+	echo "${YELLOW}  saltstack-config.sh -r ${NORMAL}| tee -a $logfile"
+	echo "${YELLOW}  config-printers.sh  -r ${NORMAL}| tee -a $logfile"
+	echo "${YELLOW}  users-config.sh     -r ${NORMAL}| tee -a $logfile"
+	echo "${YELLOW}  hosts-config.sh     -r ${NORMAL}| tee -a $logfile"
+	echo "${YELLOW}  misc-hacks.sh       -r ${NORMAL}| tee -a $logfile"
+	echo
 }
 
 main
+
+logfile=configure.log
+touch $logfile
+
+export PATH=./scripts:$PATH
 
 case $choice in
 	1 ) configure_gaph_host ;;
@@ -129,51 +183,4 @@ case $choice in
 	3 ) revert_configurations ;;
 esac
 
-
 exit
-
-
-
-
-
-
-
-
-
-
-
-
-
-logfile=configure.log
-touch $logfile
-
-export PATH=./scripts:$PATH
-
-# TODO:
-# ADD A NICE (AND SIMPLE) COMMAND-LINE INTERFACE TO THIS SCRIPT
-# Melhorar os arquivos de skell
-# Adicionar indicator de impressora online
-# Adicionar impressora do andar...
-# Remover opção GNOME, GNOME-SHELL, (black list it!)
-# Ubuntu 16.04 tem o novo apt, usar somente ele
-
-initial-software.sh | tee -a $logfile
-fstab-config.sh     | tee -a $logfile
-nslcd-config.sh     | tee -a $logfile
-nsswitch-config.sh  | tee -a $logfile
-admin-config.sh     | tee -a $logfile
-lightdm-config.sh   | tee -a $logfile
-crontab-config.sh   | tee -a $logfile
-saltstack-config.sh | tee -a $logfile
-config-printers.sh  | tee -a $logfile
-users-config.sh     | tee -a $logfile
-hosts-config.sh     | tee -a $logfile
-misc-hacks.sh       | tee -a $logfile
-extra-software.sh   | tee -a $logfile
-
-#apt-get clean
-
-# Reportar que o sitema vai reiniciar...
-reboot -f now
-
-# :)
