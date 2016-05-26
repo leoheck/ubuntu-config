@@ -19,7 +19,7 @@ Particione os discos (se ouver mais de 1) conforme o esquema:
 
 Por fim, coloque suas credenciais de usuário. Lembre-se de criar o usuário com um nome diferente do seu usuário de rede.
 
-Pergunte o **hostname** para algum dos administradores (professores e doutorandos)
+Pergunte o **hostname** para algum dos administradores (professores e doutorandos) por um *hostname* disponível. Ele deve ter o formato ``gaphl<XX>``, onde ``XX`` representa um valor entre 00 e 99. Exemplo ``gaphl01``.
 
 _Não criptografe o disco! Isso só dificulta operações futuras._
 
@@ -39,3 +39,5 @@ Selecione a opção mais conveniente:
 
 
 Pronto, agora é só esperar instalar **reiniciar** :sparkles:
+
+**Para qualquer erro ou dúvida, crie uma issue aqui no github.**
