@@ -34,14 +34,8 @@ sh -c sudo "$(curl -fsSL https://github.com/leoheck/gaph-os-scripts/tools/config
 
 Selecione a opção mais conveniente:
 
-1. Configuração completa do host GAPH
-2. Somente ferramentas para uso pessoal
+1. Configuração completa de máquina GAPH
+2. Somente ferramentas (para uso pessoal)
 
 
-<!-- ```bash
-wget https://github.com/leoheck/gaph-os-scripts/archive/master.zip
-unzip master.zip
-cd gaph-os-scripts-master
-sudo ./config-gaph-host.sh
-```
- -->
+Pronto, agora é só esperar e reiniciar :)
