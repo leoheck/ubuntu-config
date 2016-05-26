@@ -15,7 +15,7 @@ Particione os discos (se ouver mais de 1) conforme o esquema:
 
 ![Partition scheme](https://rawgit.com/leoheck/gaph-os-scripts/master/doc/figs/partitions.svg)
 
-*Obs.: Se tiverem mais discos, crie um ponto de montagem de 1 TB para o /sim*
+*Obs.: Se tiverem mais discos, crie um ponto de montagem de 1 TB para o ``/sim``*
 
 Por fim, coloque suas credenciais de usuário. Lembre-se de criar o usuário com um nome diferente do seu usuário de rede.
 
@@ -38,4 +38,4 @@ Selecione a opção mais conveniente:
 2. Somente ferramentas (para uso pessoal)
 
 
-Pronto, agora é só esperar e reiniciar :)
+Pronto, agora é só esperar instalar **reiniciar** :sparkles:
