@@ -40,4 +40,4 @@ Selecione a opção mais conveniente:
 
 Pronto, agora é só esperar instalar **reiniciar** :sparkles:
 
-**Para qualquer erro ou dúvida, crie uma issue aqui no github.**
+**No caso de problemas ou dúvidas, crie uma issue aqui no github.**
