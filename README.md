@@ -5,7 +5,7 @@
 > Scripts atualizados para Ubuntu 16.04, contudo, é bem provavel que ele funcione em versões mais atuais. **Infraestrutura do GAPH deve migrar para o Ubuntu 16.04.x** que pode ser baixado [aqui](http://www.ubuntu.com/download/desktop). Instruções de como criar uma pendrive *bootável* podem ser encontradas [aqui](http://www.ubuntu.com/download/desktop/create-a-usb-stick-on-ubuntu)
 
 
-## Instalação do Ubuntu em máquina do laboratório GAPH
+## Instalação do Ubuntu em máquina do laboratório
 
 Siga as opções padrão de instalação do Ubuntu.
 
@@ -24,7 +24,7 @@ Pergunte o **hostname** para algum dos administradores (professores e doutorando
 _Não criptografe o disco! Isso só dificulta operações futuras._
 
 
-## Configurações específicas do GAPH
+## Configurações pós-instalação
 
 Para configurar a máquina execute os seguintes comandos no terminal:
 
