@@ -17,7 +17,7 @@ Particione os discos (se ouver mais de 1) conforme o esquema:
 
 *Obs.: Se tiverem mais discos, crie um ponto de montagem de 1 TB para o ``/sim``*
 
-Por fim, coloque suas credenciais de usuário. O **username** local deve ser diferente do seu usuário de rede.
+Por fim, coloque suas credenciais de usuário. O **username** deve ser diferente do seu usuário de rede.
 
 Pergunte para algum dos administradores (professores e doutorandos) um **hostname** disponível. Ele deve ter o formato ``gaphl<XX>``, onde ``XX`` representa um valor entre 00 e 99. Exemplo: ``gaphl01``.
 
