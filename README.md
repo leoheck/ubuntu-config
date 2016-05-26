@@ -1,11 +1,13 @@
 
+
 # Configuração das máquinas do GAPH
 
-> Estes scripts foram feitos para o Ubuntu 14.04, contudo, é bem provavel que ele funcione para as outras versões. **No GAPH usar obrigatoriamente o Ubuntu 14.04.x** que pode ser baixado [aqui](http://www.ubuntu.com/download/desktop/). Instruções de como criar uma pendrive *bootável* podem ser encontradas [aqui](http://www.ubuntu.com/download/desktop/create-a-usb-stick-on-ubuntu)
+> Scripts atualizados para Ubuntu 16.04, contudo, é bem provavel que ele funcione em versões mais atuais. **Infraestrutura do GAPH deve migrar para o Ubuntu 16.04.x** que pode ser baixado [aqui](http://www.ubuntu.com/download/desktop). Instruções de como criar uma pendrive *bootável* podem ser encontradas [aqui](http://www.ubuntu.com/download/desktop/create-a-usb-stick-on-ubuntu)
 
-## Instalação do Ubuntu
 
-Siga as opções padrão de instalação.
+## Instalação do Ubuntu em máquina do laboratório GAPH
+
+Siga as opções padrão de instalação do Ubuntu.
 
 Selecione **Inglês** como idioma.
 
@@ -15,28 +17,31 @@ Particione os discos (se ouver mais de 1) conforme o esquema:
 
 *Obs.: Se tiverem mais discos, crie um ponto de montagem de 1TB para o /sim*
 
-Por fim, coloque suas credenciais de usuário. Lembre-se de criar o usuário com um nome diferente do seu usuário de rede. 
+Por fim, coloque suas credenciais de usuário. Lembre-se de criar o usuário com um nome diferente do seu usuário de rede.
 
-Pergunte o **hostname** para algum dos administradores (Amory, Matheus, LHeck)
+Pergunte o **hostname** para algum dos administradores (professores e doutorandos)
 
-_Não criptografe o disco!_
+_Não criptografe o disco! Isso só dificulta operações futuras._
 
-## Configuração do GAPH
 
-Para configurar a máquina como um _host_ do GAPH é preciso executar os seguintes comandos no terminal:
+## Configurações específicas do GAPH
 
-```bash
+Para configurar a máquina GAPH execute os seguintes comandos no terminal:
+
+```
+sh -c sudo "$(curl -fsSL https://github.com/leoheck/gaph-os-scripts/tools/configure.sh)"
+```
+
+Selecione a opção conveniente:
+
+1. Configuração completa do host GAPH
+2. Somente ferramentas para uso pessoal
+
+
+<!-- ```bash
 wget https://github.com/leoheck/gaph-os-scripts/archive/master.zip
 unzip master.zip
 cd gaph-os-scripts-master
 sudo ./config-gaph-host.sh
 ```
-
-<!--## Para instalar o grid SGE -->
-
-<!--Para instalar a máquina no grid, primeiro tens que instalar ela na servidora KRITI.-->
-<!--Depois seguir os seguintes passos:-->
-
-<!--```bash-->
-<!--TODO-->
-<!--```-->
+ -->
