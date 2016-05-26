@@ -29,6 +29,7 @@ export PATH=./scripts:$PATH
 # Adicionar indicator de impressora online
 # Adicionar impressora do andar...
 # Remover opção GNOME, GNOME-SHELL, (black list it!)
+# Ubuntu 16.04 tem o novo apt, usar somente ele
 
 initial-software.sh | tee -a $logfile
 fstab-config.sh     | tee -a $logfile
