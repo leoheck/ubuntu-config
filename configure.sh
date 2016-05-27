@@ -82,23 +82,22 @@ main()
   printf "${BLUE}  Unpacking configuration scripts into /tmp/gaph-os-scripts-master ...${NORMAL}\n"
   unzip /tmp/master.zip -d /tmp/ > /dev/null
 
-
-
   printf "${GREEN}"
   echo '   _____  _____  _____  _____           _____  _____  _____  _____   '
   echo '  |   __||  _  ||  _  ||  |  |   ___   |  |  ||     ||   __||_   _|  '
   echo '  |  |  ||     ||   __||     |  |___|  |     ||  |  ||__   |  | |    '
   echo '  |_____||__|__||__|   |__|__|         |__|__||_____||_____|  |_|    '
   echo '                                                                     '
-  echo "  CONFIGURATION SCRIPT. MADE FOR UBUNTU 16.04"
+  echo "  CONFIGURATION SCRIPT (MADE FOR UBUNTU 16.04)"
   printf "${NORMAL}"
 
   echo
-  echo "  [1] Turn machine into a GAPH host"
+  echo "  [1] TURN MACHINE INTO A GAPH HOST"
   echo "  [2] Turn machine into a GAPH-compatible host (install programs only)"
-  echo "  [3] Remove configurations (revert configuration files only)"
+  echo "  [3] Apply/update configurations only"
+  echo "  [4] Remove configurations (revert configuration files only)"
   echo
-  echo "${BLUE}  Hit Hit CTRL+C to exit${NORMAL}"
+  echo "${BLUE}  Hit CTRL+C to exit${NORMAL}"
   echo
   while :;
   do
@@ -107,6 +106,7 @@ main()
 	  	1 ) break ;;
 	  	2 ) break ;;
 	  	3 ) break ;;
+		4 ) break ;;
 		* )
 		  	tput cuu1
 		  	tput el1
@@ -137,6 +137,12 @@ configure_gaph_host()
 	echo
 	echo "${YELLOW}  apt-get clean ${NORMAL}"
 	echo "${YELLOW}  reboot -f now ${NORMAL}"
+	echo
+}
+
+apply_configurations()
+{
+	echo "  Appling/updating configurations"
 	echo
 }
 
@@ -180,7 +186,8 @@ export PATH=./scripts:$PATH
 case $choice in
 	1 ) configure_gaph_host ;;
 	2 ) configure_gaph_compatible ;;
-	3 ) revert_configurations ;;
+	3 ) apply_configurations ;;
+	4 ) revert_configurations ;;
 esac
 
 exit
