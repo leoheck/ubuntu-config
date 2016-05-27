@@ -17,7 +17,7 @@ if [ -f ${FILE} ]; then
 fi
 
 # NECESSARIO parar o servico do cups
-service cups stop 
+service cups stop
 
 #==============================================================================
 cat > ${FILE} << END-OF-FILE
@@ -112,4 +112,4 @@ ErrorPolicy retry-job
 END-OF-FILE
 #==============================================================================
 
-service cups start 
+service cups start

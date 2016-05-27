@@ -21,42 +21,43 @@ if [ "$(id -u)" != "0" ]; then
 	exit 1
 fi
 
-# Enable partner repositories
+# Blacklist some applications
+# NEEDS tests
+sudo apt-mark hold gnome-shell
+sudo apt-mark hold gnome-session-flashback
+sudo apt-mark hold ubuntu-mate-core
+sudo apt-mark hold ubuntu-mate-desktop
+
+# Enable Ubuntu partners repositories
 sed -i "s/#deb http/deb http/" /etc/apt/sources.list
 sed -i "s/#deb-src http/deb-src http/" /etc/apt/sources.list
 
-apt-get update
-apt-get full-upgrade
+apt update
 
-apt-get install -y dconf-tools                               # Commandline configurations
-apt-get install -y aptitude                                  # Apt-get front end
-apt-get install -y linux-headers-generic                     # Generic Kernel Headers
-apt-get install -y linux-headers-$(uname -r)                 # Linux Heders
-apt-get install -y build-essential                           # C compiler and build tools
-apt-get install -y dkms                                      # Dynamic Kernel Module Support
-apt-get install -y openssh-server                            # SSH conctivity tools
-apt-get install -y sshfs                                     # Mount SSH filesystems
-apt-get install -y ntfs-3g                                   # Mount NTFS filesystems
-apt-get install -y cifs-utils                                # Mount CIFS/SMB filesystems
-apt-get install -y nfs-common                                # Mount NFS filesystems, (instalation problem?)
-apt-get install -y smbclient                                 # SMB conectivity tools
-apt-get install -y winbind                                   # Resolve user and group information from Windows NT servers
-apt-get install -y gcc-multilib                              # 32 bits libraries and multilib
-apt-get install -y lsb                                       # Linux Standard Base
-apt-get install -y debconf-utils                             # Required for salt
-apt-get install -y python-software-properties                # Required for salt
-apt-get install -y salt-minion                               # Remote host configuration management
-apt-get install -y libnss-myhostname
+apt install -y dconf-tools                               # Commandline configurations
+apt install -y aptitude                                  # Apt-get front end
+apt install -y linux-headers-generic                     # Generic Kernel Headers
+apt install -y linux-headers-$(uname -r)                 # Linux Heders
+apt install -y build-essential                           # C compiler and build tools
+apt install -y dkms                                      # Dynamic Kernel Module Support
+apt install -y openssh-server                            # SSH conctivity tools
+apt install -y sshfs                                     # Mount SSH filesystems
+apt install -y ntfs-3g                                   # Mount NTFS filesystems
+apt install -y cifs-utils                                # Mount CIFS/SMB filesystems
+apt install -y nfs-common                                # Mount NFS filesystems, (instalation problem?)
+apt install -y smbclient                                 # SMB conectivity tools
+apt install -y winbind                                   # Resolve user and group information from Windows NT servers
+apt install -y gcc-multilib                              # 32 bits libraries and multilib
+apt install -y lsb                                       # Linux Standard Base
+apt install -y debconf-utils                             # Required for salt
+apt install -y python-software-properties                # Required for salt
+apt install -y salt-minion                               # Remote host configuration management
+apt install -y libnss-myhostname                         # Required plugin for the GNU Name Service Switch (NSS)
 
-apt-get install -y csh
-apt-get install -y ksh
-apt-get install -y tcsh
-apt-get install -y zsh
+apt install -y zsh
+apt install -y tcsh
+apt install -y csh
+apt install -y ksh
 
-DEBIAN_FRONTEND=noninteractive apt-get install -y nslcd      # LDAP login support (default configs)
-
-apt-get install -f
-
-# Clean old stuff
-#apt-get autoremove
-#apt-get clean
+DEBIAN_FRONTEND=noninteractive apt install -y nslcd      # LDAP login support (default configs)
+apt install ldapscripts/trusty                           # LDAP acessory scripts

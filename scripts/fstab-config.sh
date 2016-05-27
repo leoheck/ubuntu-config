@@ -27,13 +27,13 @@ mkdir -p /sim
 #==============================================================================
 cat >> ${FILE} << END-OF-FILE
 
+# Local simulation drive
+#/dev/sdb1 /sim ext4 defaults 0 0
+
 # [GAPH] Network mountoints
 rodos.inf.pucrs.br:/home   /users  nfs acl,defaults 0 0
 kriti.inf.pucrs.br:/soft64 /soft64 nfs ro,soft,intr 0 0
 kriti.inf.pucrs.br:/grid   /grid   nfs defaults     0 0
-
-# [GAPH] Local mountoints
-# sdx /sim    nfs defaults     0 0
 
 END-OF-FILE
 #==============================================================================

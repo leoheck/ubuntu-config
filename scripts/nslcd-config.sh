@@ -3,7 +3,7 @@
 # Configure NSLCD
 # Leandro Sehnem Heck (leoheck@gmail.com)
 
-# This script configures LDAP 
+# This script configures LDAP
 # Features:
 # - Maps /home folders to /users folder
 
