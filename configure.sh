@@ -87,8 +87,8 @@ main()
 	printf "${BLUE}  Donwloading package $BRANCH from github in /tmp/ ...${NORMAL}\n"
 	wget $GITHUB/$BRANCH -O /tmp/$BRANCH 2> /dev/null
 
-	printf "${BLUE}  Unpacking /tmp/$BRANCH into /tmp/$REPO ...${NORMAL}\n"
-	unzip /tmp/$BRANCH -d /tmp 2> /dev/null
+	printf "${BLUE}  Unpacking /tmp/$BRANCH into /tmp/$REPO-$BRANCH ...${NORMAL}\n"
+	unzip /tmp/$REPO-$BRANCH -d /tmp 2> /dev/null
 
 
 	printf "${GREEN}"
@@ -154,6 +154,7 @@ apply_configurations()
 	echo
 	echo "${YELLOW}  Appling/updating configurations"
 	crontab-config.sh
+	install-scripts.sh /tmp/$REPO-$BRANCH
 }
 
 configure_gaph_compatible()
