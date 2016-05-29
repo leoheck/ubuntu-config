@@ -1,11 +1,14 @@
 
-# Scripts de configuração das máquinas do GAPH
 
-Para instalar:
+**Este repositório está sendo atualizado para Ubuntu 16.04**
 
-```
-sh -s ... (todo)
-```
+<!--# Scripts de configuração das máquinas do GAPH-->
+<!--Para instalar:-->
+<!--```-->
+<!--sh -s ... (todo)-->
+<!--```-->
 
-Para mais informações veja o wiki deste repositório [aqui](https://github.com/leoheck/gaph-host-config/wiki)
+Para configurar uma máquina Ubuntu 14.04 baixe a TAG da [versão inicial](https://github.com/leoheck/gaph-host-config/releases).
+
+As instruções foram movidas para o wiki do repositório [aqui](https://github.com/leoheck/gaph-host-config/wiki)
 
