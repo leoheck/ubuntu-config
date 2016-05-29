@@ -13,6 +13,10 @@
 # Criar arquivo /etc/gaph-host com a data da instalacao indicando que a maquina esta configurada
 # Verificar a seguranca da senha padrao de root
 
+REPO=gaph-host-config
+GITHUB="https://github.com/leoheck/$REPO/archive/"
+BRANCH="master.zip"
+BRANCH="ubuntu-16.04.zip"
 
 # Ctrl+c function to halt execution
 control_c()
@@ -73,18 +77,19 @@ main()
 
 	echo
 
-	if [ -d /tmp/gaph-host-config-master ];
+	if [ -d /tmp/$REPO-$BRANCH ];
 	then
-		printf "${BLUE}  Removing old files ...${NORMAL}\n"
-		rm -rf /tmp/master.zip
-		rm -rf /tmp/gaph-host-config-master
+		printf "${BLUE}  Removing previows files ...${NORMAL}\n"
+		rm -rf /tmp/$BRANCH
+		rm -rf /tmp/$REPO-$BRANCH
 	fi
 
-	printf "${BLUE}  Donwloading package from github in /tmp/master.zip ...${NORMAL}\n"
-	wget https://github.com/leoheck/gaph-os-scripts/archive/master.zip -O /tmp/master.zip 2> /dev/null
+	printf "${BLUE}  Donwloading package $BRANCH from github in /tmp/ ...${NORMAL}\n"
+	wget $GITHUB/$BRANCH -O /tmp/$BRANCH 2> /dev/null
 
-	printf "${BLUE}  Unpacking configuration scripts into /tmp/gaph-host-config-master ...${NORMAL}\n"
-	unzip /tmp/master.zip -d /tmp/ > /dev/null
+	printf "${BLUE}  Unpacking /tmp/$BRANCH into /tmp/$REPO ...${NORMAL}\n"
+	unzip /tmp/$BRANCH -d /tmp 2> /dev/null
+
 
 	printf "${GREEN}"
 	echo '   _____  _____  _____  _____           _____  _____  _____  _____   '
@@ -98,7 +103,7 @@ main()
 	echo
 	echo "  [1] TURN MACHINE INTO A GAPH HOST"
 	echo "  [2] Turn machine into a GAPH-compatible host (install programs only)"
-	echo "  [3] Apply/update configurations only"
+	echo "  [3] Apply/upgrade configurations only"
 	echo "  [4] Remove configurations (revert configuration files only)"
 	echo
 	echo "${BLUE}  Hit CTRL+C to exit${NORMAL}"
@@ -146,8 +151,9 @@ configure_gaph_host()
 
 apply_configurations()
 {
-	echo "  Appling/updating configurations"
 	echo
+	echo "${YELLOW}  Appling/updating configurations"
+	crontab-config.sh
 }
 
 configure_gaph_compatible()
