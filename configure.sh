@@ -94,7 +94,7 @@ main()
 	fi
 
 	printf "${BLUE}  Unpacking /tmp/$PKG into /tmp/$REPO-$BRANCH ...${NORMAL}\n"
-	unzip /tmp/$PKG -d /tmp 2> /dev/null
+	unzip /tmp/$PKG -d /tmp > /dev/null
 
 
 	printf "${GREEN}"
