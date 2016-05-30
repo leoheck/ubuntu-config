@@ -1,23 +1,20 @@
 #!/bin/bash
 
-# CRONTAB CONFIGURATIONS
 # Leandro Sehnem Heck (leoheck@gmail.com)
 
+# CRONTAB CONFIGURATION
 # This script creates periodic tasks to be executed by the cron
-
-# References
-# https://en.wikipedia.org/wiki/Cron
 
 #==============================================================================
 crontab << EOF
 
-# Test automatic upgrades (1x/min)
-* * * * * touch /tmp/gaph-upgrade-\$(date +\%Y-\%m-\%d:\%H:\%M)
+# Test (1x/min)
+# * * * * * touch /tmp/gaph-upgrade-\$(date +\%Y-\%m-\%d:\%H:\%M)
 
-# Upgrade host configs from github (awesome idea), usgin 1x/min for tests
-* * * * * /usr/bin/upgrade-gaph-host
+# Upgrade host from github (using 1x/min for tests only)
+* * * * * /usr/bin/upgrade-gaph-host && /tmp/upgrade-gaph-host-done
 
-# Update the /etc/hosts file (4x/day)
+# Update /etc/hosts file (4x/day)
 #30 7,12,18,23 * * * /soft64/admin/scripts/update-hosts.sh
 
 # Always keep SGE running (1x/hour)
