@@ -165,6 +165,7 @@ apply_configurations()
 	echo "${YELLOW}  Appling/updating configurations"
 	crontab-config.sh
 	install-scripts.sh $LOCALDIR
+	echo
 }
 
 configure_gaph_compatible()
