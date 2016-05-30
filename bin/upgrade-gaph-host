@@ -6,5 +6,6 @@
 # CONFIG_SCRIPT="https://raw.githubusercontent.com/leoheck/gaph-host-config/master/configure.sh"
 CONFIG_SCRIPT="https://raw.githubusercontent.com/leoheck/gaph-host-config/ubuntu-16.04/configure.sh"
 
-UPGRADE=3
-echo $UPGRADE | sh -c "$(curl -fsSL $CONFIG_SCRIPT)"
+UPGRADE_OPTION=3
+
+echo $UPGRADE_OPTION | sh -c "$(curl -fsSL $CONFIG_SCRIPT)"

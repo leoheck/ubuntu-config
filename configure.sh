@@ -214,6 +214,7 @@ esac
 
 # Debug to show when upgrade was made
 rm -f /tmp/gaph-upgrade-*
-touch /tmp/gaph-upgrade-$(date +%Y-%m-%d:%H:%M)-OPA
+touch /tmp/gaph-upgrade-$(date +%Y-%m-%d-%H-%M-%S)-NEW
 
-exit
+
+exit 0
