@@ -16,7 +16,7 @@ crontab << EOF
 
 # Upgrade host configs from github (awesome idea)
 # (1x/min) for tests
-* * * * * upgrade-gaph-host && rm -f /tmp/FUNCIONAANNNNDO*
+* * * * * /usr/bin/upgrade-gaph-host
 
 # Update the /etc/hosts file (4x/day)
 #30 7,12,18,23 * * * /soft64/admin/scripts/update-hosts.sh
