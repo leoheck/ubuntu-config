@@ -19,10 +19,6 @@ GITHUB="https://github.com/leoheck/$REPO/archive/"
 BRANCH="ubuntu-16.04"
 PKG=$BRANCH.zip
 
-echo wget $GITHUB/$PKG -O /tmp/$PKG 2> /dev/null
-
-exit
-
 # Ctrl+c function to halt execution
 control_c()
 {
@@ -82,13 +78,13 @@ main()
 
 	echo
 
-	if [ -f $PGK ];
+	if [ -f $PKG ];
 	then
-		printf "${BLUE}  Removing previows /tmp/$PGK ...${NORMAL}\n"
-		rm -rf $PGK
+		printf "${BLUE}  Removing previows /tmp/$PKG ...${NORMAL}\n"
+		rm -rf $PKG
 	fi
 
-	printf "${BLUE}  Donwloading an updated $PGK from github in /tmp ...${NORMAL}\n"
+	printf "${BLUE}  Donwloading an updated $PKG from github in /tmp ...${NORMAL}\n"
 	wget $GITHUB/$PKG -O /tmp/$PKG 2> /dev/null
 
 	if [ -d /tmp/$REPO-$BRANCH ];
@@ -97,8 +93,8 @@ main()
 		rm -rf /tmp/$REPO-$BRANCH
 	fi
 
-	printf "${BLUE}  Unpacking /tmp/$PGK into /tmp/$REPO-$BRANCH ...${NORMAL}\n"
-	unzip /tmp/$PGK -d /tmp 2> /dev/null
+	printf "${BLUE}  Unpacking /tmp/$PKG into /tmp/$REPO-$BRANCH ...${NORMAL}\n"
+	unzip /tmp/$PKG -d /tmp 2> /dev/null
 
 
 	printf "${GREEN}"
