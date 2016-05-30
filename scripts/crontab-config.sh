@@ -21,9 +21,7 @@ install_crontab()
 
 	# BACKUP
 	if [ ! -f /var/spool/cron/crontabs/root.bkp ]; then
-		if [ -f /var/spool/cron/crontabs/root ]; then
-			cp /var/spool/cron/crontabs/root /var/spool/cron/crontabs/root.bkp
-		fi
+		crontab -l > /var/spool/cron/crontabs/root.bkp
 	fi
 
 	#===========================

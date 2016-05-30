@@ -162,15 +162,15 @@ apply_configurations()
 {
 	echo
 	echo "${YELLOW}  Appling/updating configurations ...${NORMAL}"
-	crontab-config.sh -i
 	install-scripts.sh -i $LOCALDIR
+	crontab-config.sh -i
 	echo "${YELLOW}  DONE!${NORMAL}"
 	echo
 }
 
 revert_configurations()
 {
-	echo "${YELLOW}  REMOVING configurations ...${NORMAL}"
+	echo "${YELLOW}  Removing configurations ...${NORMAL}"
 	install-scripts.sh -r
 	crontab-config.sh -r
 	# fstab-config.sh -r
