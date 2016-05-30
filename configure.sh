@@ -19,6 +19,10 @@ GITHUB="https://github.com/leoheck/$REPO/archive/"
 BRANCH="ubuntu-16.04"
 PKG=$BRANCH.zip
 
+LOCALDIR=/tmp/$REPO-$BRANCH
+
+export PATH=$LOCALDIR:$PATH
+
 # Ctrl+c function to halt execution
 control_c()
 {
@@ -87,13 +91,13 @@ main()
 	printf "${BLUE}  Donwloading an updated $PKG from github in /tmp ...${NORMAL}\n"
 	wget $GITHUB/$PKG -O /tmp/$PKG 2> /dev/null
 
-	if [ -d /tmp/$REPO-$BRANCH ];
+	if [ -d $LOCALDIR ];
 	then
-		printf "${BLUE}  Removing /tmp/$REPO-$BRANCH ...${NORMAL}\n"
-		rm -rf /tmp/$REPO-$BRANCH
+		printf "${BLUE}  Removing $LOCALDIR ...${NORMAL}\n"
+		rm -rf $LOCALDIR
 	fi
 
-	printf "${BLUE}  Unpacking /tmp/$PKG into /tmp/$REPO-$BRANCH ...${NORMAL}\n"
+	printf "${BLUE}  Unpacking /tmp/$PKG into $LOCALDIR ...${NORMAL}\n"
 	unzip -q /tmp/$PKG -d /tmp > /dev/null
 
 
@@ -160,7 +164,7 @@ apply_configurations()
 	echo
 	echo "${YELLOW}  Appling/updating configurations"
 	crontab-config.sh
-	install-scripts.sh /tmp/$REPO-$BRANCH
+	install-scripts.sh $LOCALDIR
 }
 
 configure_gaph_compatible()
