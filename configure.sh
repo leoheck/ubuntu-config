@@ -161,7 +161,7 @@ configure_gaph_host()
 apply_configurations()
 {
 	echo
-	echo "${YELLOW}  Appling/updating configurations"
+	echo "${YELLOW}  Appling/updating configurations${NORMAL} ..."
 	crontab-config.sh
 	install-scripts.sh -i $LOCALDIR
 	echo "${YELLOW}  DONE!${NORMAL}"
