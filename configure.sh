@@ -80,11 +80,11 @@ main()
 
 	if [ -f $PGK ];
 	then
-		printf "${BLUE}  Removing /tmp/$PGK ...${NORMAL}\n"
+		printf "${BLUE}  Removing previows /tmp/$PGK ...${NORMAL}\n"
 		rm -rf $PGK
 	fi
 
-	printf "${BLUE}  Donwloading package $PGK from github in /tmp/ ...${NORMAL}\n"
+	printf "${BLUE}  Donwloading an updated $PGK from github in /tmp/ ...${NORMAL}\n"
 	wget $GITHUB/$BRANCH -O /tmp/$BRANCH.zip 2> /dev/null
 
 	if [ -d /tmp/$REPO-$BRANCH ];
