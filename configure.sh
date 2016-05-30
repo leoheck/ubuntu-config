@@ -21,7 +21,7 @@ PKG=$BRANCH.zip
 
 LOCALDIR=/tmp/$REPO-$BRANCH
 
-export PATH=$LOCALDIR:$PATH
+export PATH=$LOCALDIR/scripts:$PATH
 
 # Ctrl+c function to halt execution
 control_c()
