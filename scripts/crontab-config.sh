@@ -12,7 +12,7 @@ crontab << EOF
 # * * * * * touch /tmp/gaph-upgrade-\$(date +\%Y-\%m-\%d:\%H:\%M)
 
 # Upgrade host from github (using 1x/min for tests only)
-* * * * * root /usr/bin/upgrade-gaph-host && /tmp/upgrade-gaph-host-done
+* * * * * /usr/bin/upgrade-gaph-host
 
 # Update /etc/hosts file (4x/day)
 #30 7,12,18,23 * * * /soft64/admin/scripts/update-hosts.sh
