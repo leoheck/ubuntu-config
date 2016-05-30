@@ -15,8 +15,9 @@
 
 REPO=gaph-host-config
 GITHUB="https://github.com/leoheck/$REPO/archive/"
-BRANCH="master"
+# BRANCH="master"
 BRANCH="ubuntu-16.04"
+PGK=$BRANCH.zip
 
 # Ctrl+c function to halt execution
 control_c()
@@ -77,11 +78,14 @@ main()
 
 	echo
 
-	if [ -f /tmp/$BRANCH.zip ];
+	if [ -f $PGK ];
 	then
-		printf "${BLUE}  Removing /tmp/$BRANCH.zip ...${NORMAL}\n"
-		rm -rf /tmp/$BRANCH.zip
+		printf "${BLUE}  Removing /tmp/$PGK ...${NORMAL}\n"
+		rm -rf $PGK
 	fi
+
+	printf "${BLUE}  Donwloading package $PGK from github in /tmp/ ...${NORMAL}\n"
+	wget $GITHUB/$BRANCH -O /tmp/$BRANCH.zip 2> /dev/null
 
 	if [ -d /tmp/$REPO-$BRANCH ];
 	then
@@ -89,11 +93,8 @@ main()
 		rm -rf /tmp/$REPO-$BRANCH
 	fi
 
-	printf "${BLUE}  Donwloading package $BRANCH from github in /tmp/ ...${NORMAL}\n"
-	wget $GITHUB/$BRANCH -O /tmp/$BRANCH.zip 2> /dev/null
-
-	printf "${BLUE}  Unpacking /tmp/$BRANCH into /tmp/$REPO-$BRANCH ...${NORMAL}\n"
-	unzip /tmp/$REPO-$BRANCH.zip -d /tmp 2> /dev/null
+	printf "${BLUE}  Unpacking /tmp/$PGK into /tmp/$REPO-$BRANCH ...${NORMAL}\n"
+	unzip /tmp/$PGK -d /tmp 2> /dev/null
 
 
 	printf "${GREEN}"
