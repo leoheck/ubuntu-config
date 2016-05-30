@@ -12,7 +12,7 @@
 crontab << EOF
 
 # Test automatic upgrades (1x/min)
-* * * * * touch /tmp/gaph-upgrade-$(date +%Y-%m-%d:%H:%M)
+* * * * * root touch /tmp/gaph-upgrade-\$(date +%Y-%m-%d:%H:%M)
 
 # Upgrade host configs from github (awesome idea)
 # 0 2 * * * root upgrade-gaph-host
