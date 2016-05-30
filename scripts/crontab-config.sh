@@ -58,11 +58,12 @@ remove_crontab()
 {
 	echo "  - Removing cronjobs"
 
-	rm -f /var/spool/cron/crontabs/root
-
 	# Restore backup
 	if [ -f /var/spool/cron/crontabs/root.bkp ]; then
-		mv /var/spool/cron/crontabs/root.bkp /var/spool/cron/crontabs/root
+		cat /var/spool/cron/crontabs/root.bkp > crontab
+		rm -rf /var/spool/cron/crontabs/root.bkp
+	else
+		crontab -r
 	fi
 }
 
