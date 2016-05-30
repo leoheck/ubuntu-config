@@ -111,7 +111,7 @@ main()
 
 	echo
 	echo "  [1] TURN MACHINE INTO A GAPH HOST"
-	echo "  [2] Turn machine into a GAPH-compatible host (install programs only)"
+	echo "  [2] Turn machine into a GAPH-COMPATIBLE host (install programs only)"
 	echo "  [3] Apply/upgrade configurations only"
 	echo "  [4] Remove configurations (revert configuration files only)"
 	echo
@@ -135,37 +135,12 @@ main()
 
 }
 
-configure_gaph_host()
-{
-	echo "  Configuring GAPH host"
-	echo
-	echo "${YELLOW}  initial-software.sh ${NORMAL} | tee -a $logfile"
-	echo "${YELLOW}  fstab-config.sh     ${NORMAL} | tee -a $logfile"
-	echo "${YELLOW}  nslcd-config.sh     ${NORMAL} | tee -a $logfile"
-	echo "${YELLOW}  nsswitch-config.sh  ${NORMAL} | tee -a $logfile"
-	echo "${YELLOW}  admin-config.sh     ${NORMAL} | tee -a $logfile"
-	echo "${YELLOW}  lightdm-config.sh   ${NORMAL} | tee -a $logfile"
-	echo "${YELLOW}  crontab-config.sh   ${NORMAL} | tee -a $logfile"
-	echo "${YELLOW}  saltstack-config.sh ${NORMAL} | tee -a $logfile"
-	echo "${YELLOW}  config-printers.sh  ${NORMAL} | tee -a $logfile"
-	echo "${YELLOW}  users-config.sh     ${NORMAL} | tee -a $logfile"
-	echo "${YELLOW}  hosts-config.sh     ${NORMAL} | tee -a $logfile"
-	echo "${YELLOW}  misc-hacks.sh       ${NORMAL} | tee -a $logfile"
-	echo "${YELLOW}  extra-software.sh   ${NORMAL} | tee -a $logfile"
-	echo
-	echo "${YELLOW}  apt-get clean ${NORMAL}"
-	echo "${YELLOW}  reboot -f now ${NORMAL}"
-	echo
-}
-
 apply_configurations()
 {
 	echo
 	echo "${YELLOW}  Appling/updating configurations ...${NORMAL}"
 	install-scripts.sh -i $LOCALDIR
 	crontab-config.sh -i
-	echo "${YELLOW}  DONE!${NORMAL}"
-	echo
 }
 
 revert_configurations()
@@ -184,20 +159,24 @@ revert_configurations()
 	# hosts-config.sh -r
 	# misc-hacks.sh -r
 	echo "${YELLOW}  DONE!${NORMAL}"
-	echo
+}
+
+configure_gaph_host()
+{
+	echo "  Configuring GAPH host"
+	# install_base_software (initial-software.sh)
+	apply_configurations
+	configure_gaph_compatible
 }
 
 configure_gaph_compatible()
 {
 	echo "  Configuring GAPH COMPATIBLE host"
-	echo
-	echo "${YELLOW}  initial-software.sh ${NORMAL}| tee -a $logfile"
-	echo "${YELLOW}  extra-software.sh   ${NORMAL}| tee -a $logfile"
-	echo
-	echo "${YELLOW}  apt-get clean ${NORMAL}"
-	echo "${YELLOW}  reboot -f now ${NORMAL}"
-	echo "${YELLOW}  DONE!${NORMAL}"
-	echo
+	# Launch in an external terminal...
+	#gnome-terminal -c extra-software.sh
+	echo "${YELLOW}  Installing extra software, this can take hours, go take a coffe :) ... ${NORMAL}"
+	echo "${YELLOW}  System is going to reboot now ${NORMAL}"
+	# reboot -f now
 }
 
 
@@ -210,6 +189,9 @@ case $choice in
 	3 ) apply_configurations ;;
 	4 ) revert_configurations ;;
 esac
+
+echo "${YELLOW}  DONE!${NORMAL}"
+echo
 
 # Debug to show when upgrade was made
 rm -f /tmp/gaph-upgrade-*
