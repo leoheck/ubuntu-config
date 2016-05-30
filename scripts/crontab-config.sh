@@ -26,8 +26,8 @@ install_crontab()
 		fi
 	fi
 
-	#==================
-	crontab << -EOF
+	#===========================
+	read -r -d '' CRONCONF <<-EOM
 
 	# Test (1x/min)
 	# * * * * * touch /tmp/gaph-upgrade-\$(date +\%Y-\%m-\%d:\%H:\%M)
@@ -50,9 +50,10 @@ install_crontab()
 	# Backup main local user (UID=1000) files
 	# 0 2 * * * root rsync /home/.$USER-bkp (incremental..only diffs..)
 
-	EOF
-	#==================
+	EOM
+	#===========================
 
+	echo "$CRONCONF" >> crontab
 }
 
 remove_crontab()
