@@ -85,7 +85,7 @@ main()
 	fi
 
 	printf "${BLUE}  Donwloading an updated $PGK from github in /tmp/ ...${NORMAL}\n"
-	wget $GITHUB/$BRANCH -O /tmp/$BRANCH.zip 2> /dev/null
+	wget $GITHUB/$PKG -O /tmp/$PKG 2> /dev/null
 
 	if [ -d /tmp/$REPO-$BRANCH ];
 	then
