@@ -98,7 +98,7 @@ main()
 	fi
 
 	printf "${BLUE}  Unpacking /tmp/$PKG into $LOCALDIR ...${NORMAL}\n"
-	unzip -q /tmp/$PKG -d /tmp > /dev/null
+	unzip -qq /tmp/$PKG -d /tmp > /dev/null
 
 
 	printf "${GREEN}"
