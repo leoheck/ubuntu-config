@@ -5,9 +5,6 @@
 # CRONTAB CONFIGURATION
 # This script creates periodic tasks to be executed by the cron
 
-#==============================================================================
-crontab << EOF
-
 # .---------------- minute (0 - 59)
 # |  .------------- hour (0 - 23)
 # |  |  .---------- day of month (1 - 31)
@@ -16,22 +13,29 @@ crontab << EOF
 # |  |  |  |  |
 # *  *  *  *  * user-name  command to be executed
 
+# BACKUP
+if [ ! -f /var/spool/cron/crontabs/root.bkp ]; then
+	if [ ! -f /var/spool/cron/crontabs/root ]; then
+		cp /var/spool/cron/crontabs/root /var/spool/cron/crontabs/root.bkp
+	fi
+fi
+
+crontab << EOF
+
 # Test (1x/min)
 # * * * * * touch /tmp/gaph-upgrade-\$(date +\%Y-\%m-\%d:\%H:\%M)
 
-# Upgrade host from github (1x/dia)
+# Upgrade host from github (1x/day)
 0 2 * * * /usr/bin/upgrade-gaph-host
 
+# Keep /etc/salt/minion updated and running (1x/day)
+0 2 * * * echo "$(hostname)" > /etc/salt/minion_id; sed -i "s/^[#]*master:.*/master: rodos/g" /etc/salt/minion; service salt-minion restart
+
 # Update /etc/hosts file (4x/day)
-#30 7,12,18,23 * * * /soft64/admin/scripts/update-hosts.sh
+30 7,12,18,23 * * * /soft64/admin/scripts/update-hosts.sh
 
-# Always keep SGE running (1x/hour)
-#0 * * * * root /etc/init.d/sgeexecd-ubuntu start > /dev/null 2>&1
-
-# Keep /etc/salt/minion updated (1x/hour)
-#0 * * * * root sed -i "s/^[#]*master:.*/master: rodos/g" /etc/salt/minion
-#1 * * * * root echo "$hostname" > /etc/salt/minion_id
-#2 * * * * root
+# Keep SGE running (1x/hour)
+0 * * * * root /etc/init.d/sgeexecd-ubuntu start > /dev/null 2>&1
 
 # Remove files older than n-days in /sim folder (1x/day)
 #0 2 * * * root find /sim/ -mtime +25 -exec rm {} \;
@@ -40,4 +44,3 @@ crontab << EOF
 # 0 2 * * * root rsync /home/.$USER-bkp (incremental..only diffs..)
 
 EOF
-#==============================================================================
