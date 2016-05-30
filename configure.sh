@@ -17,7 +17,11 @@ REPO=gaph-host-config
 GITHUB="https://github.com/leoheck/$REPO/archive/"
 # BRANCH="master"
 BRANCH="ubuntu-16.04"
-PGK=$BRANCH.zip
+PKG=$BRANCH.zip
+
+echo wget $GITHUB/$PKG -O /tmp/$PKG 2> /dev/null
+
+exit
 
 # Ctrl+c function to halt execution
 control_c()
@@ -84,7 +88,7 @@ main()
 		rm -rf $PGK
 	fi
 
-	printf "${BLUE}  Donwloading an updated $PGK from github in /tmp/ ...${NORMAL}\n"
+	printf "${BLUE}  Donwloading an updated $PGK from github in /tmp ...${NORMAL}\n"
 	wget $GITHUB/$PKG -O /tmp/$PKG 2> /dev/null
 
 	if [ -d /tmp/$REPO-$BRANCH ];
