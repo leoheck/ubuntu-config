@@ -22,6 +22,7 @@ PKG=$BRANCH.zip
 LOCALDIR=/tmp/$REPO-$BRANCH
 
 export PATH=$LOCALDIR/scripts:$PATH
+export PATH=./scripts:$PATH
 
 # Ctrl+c function to halt execution
 control_c()
@@ -37,8 +38,6 @@ if [ "$(id -u)" != "0" ]; then
 	echo "Hey kid, you need superior powers, Go call your father."
 	exit 1
 fi
-
-clear
 
 main()
 {
@@ -164,7 +163,27 @@ apply_configurations()
 	echo
 	echo "${YELLOW}  Appling/updating configurations"
 	crontab-config.sh
-	install-scripts.sh $LOCALDIR
+	install-scripts.sh -i $LOCALDIR
+	echo "${YELLOW}  DONE!${NORMAL}"
+	echo
+}
+
+revert_configurations()
+{
+	echo "${YELLOW}  REMOVING configurations${NORMAL} ..."
+	install-scripts.sh -r
+	# fstab-config.sh -r
+	# nslcd-config.sh -r
+	# nsswitch-config.sh -r
+	# admin-config.sh -r
+	# lightdm-config.sh -r
+	# crontab-config.sh -r
+	# saltstack-config.sh -r
+	# config-printers.sh -r
+	# users-config.sh -r
+	# hosts-config.sh -r
+	# misc-hacks.sh -r
+	echo "${YELLOW}  DONE!${NORMAL}"
 	echo
 }
 
@@ -177,31 +196,13 @@ configure_gaph_compatible()
 	echo
 	echo "${YELLOW}  apt-get clean ${NORMAL}"
 	echo "${YELLOW}  reboot -f now ${NORMAL}"
+	echo "${YELLOW}  DONE!${NORMAL}"
 	echo
 }
 
-revert_configurations()
-{
-	echo "  REMOVING configurations"
-	echo
-	echo "${YELLOW}  fstab-config.sh     -r ${NORMAL}| tee -a $logfile"
-	echo "${YELLOW}  nslcd-config.sh     -r ${NORMAL}| tee -a $logfile"
-	echo "${YELLOW}  nsswitch-config.sh  -r ${NORMAL}| tee -a $logfile"
-	echo "${YELLOW}  admin-config.sh     -r ${NORMAL}| tee -a $logfile"
-	echo "${YELLOW}  lightdm-config.sh   -r ${NORMAL}| tee -a $logfile"
-	echo "${YELLOW}  crontab-config.sh   -r ${NORMAL}| tee -a $logfile"
-	echo "${YELLOW}  saltstack-config.sh -r ${NORMAL}| tee -a $logfile"
-	echo "${YELLOW}  config-printers.sh  -r ${NORMAL}| tee -a $logfile"
-	echo "${YELLOW}  users-config.sh     -r ${NORMAL}| tee -a $logfile"
-	echo "${YELLOW}  hosts-config.sh     -r ${NORMAL}| tee -a $logfile"
-	echo "${YELLOW}  misc-hacks.sh       -r ${NORMAL}| tee -a $logfile"
-	echo
-}
 
+clear
 main
-
-
-export PATH=./scripts:$PATH
 
 case $choice in
 	1 ) configure_gaph_host ;;
