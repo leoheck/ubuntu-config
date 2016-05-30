@@ -14,13 +14,13 @@ key="$1"
 install_scripts()
 {
 	SCRIPTDIR=$1
-	echo "  Installing user scripts"
+	echo "  - Installing user scripts"
 	cp -f $SCRIPTDIR/bin/upgrade-gaph-host /usr/bin
 }
 
 remove_scripts()
 {
-	echo "  Removing user scripts"
+	echo "  - Removing user scripts"
 	rm -rf /usr/bin/upgrade-gaph-host
 }
 
