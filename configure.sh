@@ -200,8 +200,6 @@ revert_configurations()
 
 main
 
-logfile=configure.log
-touch $logfile
 
 export PATH=./scripts:$PATH
 
@@ -214,7 +212,6 @@ esac
 
 # Debug to show when upgrade was made
 rm -f /tmp/gaph-upgrade-*
-touch /tmp/gaph-upgrade-$(date +%Y-%m-%d-%H-%M-%S)-NEW
-
+touch /tmp/gaph-upgrade-$(date +%Y-%m-%d-%H-%M-%S)
 
 exit 0
