@@ -190,6 +190,7 @@ configure_gaph_host()
 	gnome-terminal --hide-menubar -x bash -c "extra-software.sh | tee configure.log"
 	misc-hacks.sh
 	echo "${RED}  The system is going down for reboot in 5 minutes! ${NORMAL}"
+	customization.sh
 	shutdown -r +5 > /dev/null
 }
 
