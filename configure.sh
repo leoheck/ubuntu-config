@@ -144,7 +144,7 @@ apply_configurations_only()
 	fi
 
 	install-scripts.sh -i $LOCALDIR
-	crontab-config.sh -i $LOCALDIR
+	crontab-config.sh -i
 	admin-config.sh -i
 	config-printers.sh -i
 	fstab-config.sh -i
@@ -175,6 +175,7 @@ revert_configurations()
 	saltstack-config.sh -r
 	# misc-hacks.sh
 	# users-config.sh
+	customization.sh -r
 
 	rm -f /etc/gaph
 }
@@ -190,7 +191,7 @@ configure_gaph_host()
 	gnome-terminal --hide-menubar -x bash -c "extra-software.sh | tee configure.log"
 	misc-hacks.sh
 	echo "${RED}  The system is going down for reboot in 5 minutes! ${NORMAL}"
-	customization.sh
+	customization.sh -i $LOCALDIR
 	shutdown -r +5 > /dev/null
 }
 

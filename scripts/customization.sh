@@ -22,12 +22,12 @@ install_cmd()
 	SCRIPTDIR=$1
 
 	# PLYMOUNTH BACKUP
-	if [ ! -f /lib/plymouth/themes/ubuntu-logo/ubuntu_logo.png.bkp ]; then
-		cp /lib/plymouth/themes/ubuntu-logo/ubuntu_logo.png /lib/plymouth/themes/ubuntu-logo/ubuntu_logo.png.bkp
+	if [ ! -f /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png.bkp ]; then
+		cp /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png.bkp
 	fi
 
-	sed -i /lib/plymouth/themes/ubuntu-logo/ubuntu_logo.svg
-	convert $SCRIPTDIR/images/plymouth/ubuntu_logo.svg /lib/plymouth/themes/ubuntu-logo/ubuntu_logo.png
+	sed -i /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.svg
+	convert $SCRIPTDIR/images/plymouth/ubuntu-logo.svg /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png
 
 	# UNITY-GREETER BACKUP
 	if [ ! -f /usr/share/unity-greeter/logo.png.bkp ]; then
@@ -65,8 +65,8 @@ remove_cmd()
 {
 	echo "  - Reverting GAPH host customization"
 
-	if [ -f /lib/plymouth/themes/ubuntu-logo/ubuntu_logo.png.bkp ]; then
-		mv /lib/plymouth/themes/ubuntu-logo/ubuntu_logo.png.bkp /lib/plymouth/themes/ubuntu-logo/ubuntu_logo.png
+	if [ -f /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png.bkp ]; then
+		mv /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png.bkp /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png
 	fi
 
 	if [ -f /usr/share/unity-greeter/logo.png.bkp ]; then
