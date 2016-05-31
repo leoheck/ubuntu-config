@@ -137,8 +137,12 @@ apply_configurations_only()
 	echo
 	echo "${YELLOW}  Appling/updating configurations ...${NORMAL}"
 
-	if [ -f ! /etc/gaph ]; then
-		gnome-terminal --hide-menubar -x bash -c "initial-software.sh | tee configure.log"
+	if [ ! -f /etc/gaph/gaph.conf ]; then
+		if [ $DISPLAY = "" ]; then
+			gnome-terminal --hide-menubar -x bash -c "initial-software.sh | tee configure.log"
+		else
+			initial-software.sh | tee configure.log
+		fi
 	fi
 
 	install-scripts.sh -i $LOCALDIR
@@ -154,7 +158,7 @@ apply_configurations_only()
 	misc-hacks.sh
 	users-config.sh
 
-	echo "GAPH host installed on: $(date +%Y-%m-%d-%H-%M-%S)" > /etc/gaph
+	echo "GAPH host installed on: $(date +%Y-%m-%d-%H-%M-%S)" > /etc/gaph/gaph.conf
 }
 
 revert_configurations()
@@ -175,7 +179,7 @@ revert_configurations()
 	# users-config.sh
 	customization.sh -r
 
-	rm -f /etc/gaph
+	rm -f /etc/gaph/gaph.conf
 }
 
 configure_gaph_host()
