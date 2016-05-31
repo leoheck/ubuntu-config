@@ -15,7 +15,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r"
-   sodipodi:docname="ubuntu_logo.svg">
+   sodipodi:docname="ubuntu-logo.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -26,15 +26,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="198.48491"
+     inkscape:cx="90.270624"
      inkscape:cy="-133.75366"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      showguides="false"
-     inkscape:window-width="1252"
+     inkscape:window-width="2166"
      inkscape:window-height="1387"
-     inkscape:window-x="1305"
+     inkscape:window-x="391"
      inkscape:window-y="24"
      inkscape:window-maximized="0"
      units="px"
@@ -50,7 +50,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -71,15 +71,15 @@
            y="563.79077" /></flowRegion><flowPara
          id="flowPara4285" /></flowRoot>    <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:60.27970505px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       x="30.10358"
-       y="887.16467"
-       id="text4136"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="35.041702"
+       y="888.90979"
+       id="text4141"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         id="tspan4138"
-         x="30.10358"
-         y="887.16467"
-         style="fill:#ffffff">gaph</tspan></text>
+         id="tspan4143"
+         x="35.041702"
+         y="888.90979"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:62.5px;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;fill:#ffffff">gaph</tspan></text>
   </g>
 </svg>

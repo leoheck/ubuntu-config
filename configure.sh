@@ -138,7 +138,7 @@ apply_configurations_only()
 	echo "${YELLOW}  Appling/updating configurations ...${NORMAL}"
 
 	if [ ! -f /etc/gaph/gaph.conf ]; then
-		if [ $DISPLAY = "" ]; then
+		if [ ! $DISPLAY = "" ]; then
 			gnome-terminal --hide-menubar -x bash -c "initial-software.sh | tee configure.log"
 		else
 			initial-software.sh | tee configure.log
@@ -187,7 +187,7 @@ configure_gaph_host()
 	echo
 	echo "${YELLOW}  Configuring GAPH host ...${NORMAL}"
 	echo "  - Instaling base apps"
-	if [ $DISPLAY = "" ]; then
+	if [ ! $DISPLAY = "" ]; then
 		gnome-terminal --hide-menubar -x bash -c "initial-software.sh | tee configure.log"
 	else
 		initial-software.sh | tee configure.log
@@ -210,7 +210,7 @@ configure_gaph_compatible()
 	echo
 	echo "${YELLOW}  Configuring GAPH COMPATIBLE host ...${NORMAL}"
 	echo "  - Instaling all apps, this can take hours, go take a coffe :) ... "
-	if [ $DISPLAY = "" ]; then
+	if [ ! $DISPLAY = "" ]; then
 		gnome-terminal --hide-menubar -x bash -c "initial-software.sh | tee configure.log"
 		gnome-terminal --hide-menubar -x bash -c "extra-software.sh | tee -a configure.log"
 	else
