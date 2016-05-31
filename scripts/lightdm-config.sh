@@ -39,10 +39,6 @@ install_cmd()
 	#===========================
 
 	echo "$LIGHTDM" > /etc/lightdm/lightdm.conf
-
-	# Adiciona o papel de parede do GAPH pra tela de login
-	#cp imagens/gaphwall.jpg /usr/share/backgrounds/
-	#sudo -u lightdm dbus-launch gsettings set com.canonical.unity-greeter background '/usr/share/backgrounds/gaphwall.jpg'
 }
 
 remove_cmd()

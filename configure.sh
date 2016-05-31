@@ -134,12 +134,17 @@ main()
 	done
 }
 
-apply_configurations_only_only()
+apply_configurations_only()
 {
 	echo
 	echo "${YELLOW}  Appling/updating configurations ...${NORMAL}"
+
+	if [ -f ! /etc/gaph ]; then
+		gnome-terminal --hide-menubar -x bash -c "initial-software.sh | tee configure.log"
+	fi
+
 	install-scripts.sh -i $LOCALDIR
-	crontab-config.sh -i
+	crontab-config.sh -i $LOCALDIR
 	admin-config.sh -i
 	config-printers.sh -i
 	fstab-config.sh -i
@@ -151,7 +156,7 @@ apply_configurations_only_only()
 	misc-hacks.sh
 	users-config.sh
 
-	echo $(date +%Y-%m-%d-%H-%M-%S) > touch /etc/gaph
+	echo "GAPH host installed on: $(date +%Y-%m-%d-%H-%M-%S)" > /etc/gaph
 }
 
 revert_configurations()

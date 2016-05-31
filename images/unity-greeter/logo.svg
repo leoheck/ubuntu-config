@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="306.25"
+   height="53.75"
+   viewBox="0 0 306.25001 53.749997"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r"
+   sodipodi:docname="logo.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.8"
+     inkscape:cx="124.68968"
+     inkscape:cy="8.4964481"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     showguides="true"
+     inkscape:window-width="1663"
+     inkscape:window-height="1004"
+     inkscape:window-x="323"
+     inkscape:window-y="217"
+     inkscape:window-maximized="0"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     units="px"
+     inkscape:guide-bbox="true">
+    <sodipodi:guide
+       position="52.142859,50.35714"
+       orientation="1,0"
+       id="guide4197" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-50.600253,-777.24619)">
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4279"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"><flowRegion
+         id="flowRegion4281"><rect
+           id="rect4283"
+           width="590"
+           height="170"
+           x="-60"
+           y="563.79077" /></flowRegion><flowPara
+         id="flowPara4285" /></flowRoot>    <g
+       id="g4206"
+       transform="translate(0,2)">
+      <text
+         sodipodi:linespacing="125%"
+         id="text4136-1-6"
+         y="812.97357"
+         x="100.46609"
+         style="font-style:normal;font-weight:normal;font-size:30.11019135px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:ubuntu;-inkscape-font-specification:ubuntu;fill:#ffffff;fill-opacity:1;"
+           id="tspan4213-2"
+           y="812.97357"
+           x="100.46609"
+           sodipodi:role="line">gaphl00</tspan><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:ubuntu;-inkscape-font-specification:ubuntu;fill:#ffffff;fill-opacity:1;"
+           id="tspan4211-0"
+           y="850.61133"
+           x="100.46609"
+           sodipodi:role="line" /></text>
+      <path
+         inkscape:connector-curvature="0"
+         id="path4215-6"
+         d="m 217.80489,791.48566 0,25.27105"
+         style="fill:#ffffff;fill-rule:evenodd;stroke:none;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text4217-6"
+         y="800.17914"
+         x="225.84299"
+         style="font-style:normal;font-weight:normal;font-size:11.44213772px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#f8f8f8;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+         xml:space="preserve"><tspan
+           y="800.17914"
+           x="225.84299"
+           id="tspan4219-3"
+           sodipodi:role="line"
+           style="font-size:11.29132175px;fill:#f8f8f8;fill-opacity:1;">Grupo de Apoio ao</tspan><tspan
+           id="tspan4221-8"
+           y="814.29327"
+           x="225.84299"
+           sodipodi:role="line"
+           style="font-size:11.29132175px;fill:#f8f8f8;fill-opacity:1;">Projeto de Hardware</tspan></text>
+    </g>
+  </g>
+</svg>
