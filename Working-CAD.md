@@ -12,8 +12,7 @@
 # Cadence
 - [ ] conformal/141
 - [ ] conformal/152
-- [ ] edi/101
-- [ ] edi/110
+- [x] edi/110
 - [ ] et/141
 - [ ] et/151
 - [ ] ets/131
@@ -37,7 +36,7 @@
 - [ ] adms/15.3
 - [ ] calibre/2011.3
 - [ ] calibre/2015.1
-- [ ] modelsim/10.3c
+- [x] modelsim/10.3c
 - [ ] questa/10.4a
 - [ ] tessent/2012.2
 

@@ -13,6 +13,10 @@ ln -s -f /usr/lib/x86_64-linux-gnu/libc.so  /lib/libc.so
 ln -s -f /usr/lib/x86_64-linux-gnu/libdl.so /lib/libdl.so
 ln -s -f /usr/lib/x86_64-linux-gnu/libdl.a  /lib/libdl.a
 
+ln -s -f /usr/lib/x86_64-linux-gnu/libjpeg.so.8  /lib/libjpeg.so.62
+
+# missing libxp6 library, how to install this?
+
 # Library for LEC
 ln -s -f /lib/x86_64-linux-gnu/libncurses.so.5.9 /lib/libtermcap.so.2
 

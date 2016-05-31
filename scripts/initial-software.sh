@@ -23,6 +23,7 @@ fi
 
 # Blacklist applications to avoid
 # NEEDS tests
+apt-mark hold gdm > /dev/null
 apt-mark hold gnome-shell > /dev/null
 apt-mark hold gnome-session-flashback > /dev/null
 apt-mark hold ubuntu-mate-core > /dev/null

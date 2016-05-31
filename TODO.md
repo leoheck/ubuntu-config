@@ -1,16 +1,10 @@
 
-# TODOs
+# TODO
+- Hide grub menu and reduce its time
+- Skell improvements
 
-Customization:
-- [ ] LightDM fixed gaph background
-
-Packages:
-- [ ] Hide grub menu nd reduce its time
-- [ ] Balcklist gdm
-
-User:
-- [ ] Improve the skell
-
-Cronjobs:
-- [ ] Autoupdate from github
+# DONE
+- Autoupdate host from github
+- LightDM fixed gaph background
+- Balcklist gdm and gnome-shell
 
