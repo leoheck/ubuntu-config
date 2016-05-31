@@ -5,13 +5,15 @@
 # CRONTAB CONFIGURATION
 # This script creates periodic tasks to be executed by the cron
 
-# .---------------- minute (0 - 59)
-# |  .------------- hour (0 - 23)
-# |  |  .---------- day of month (1 - 31)
-# |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
-# |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
-# |  |  |  |  |
-# *  *  *  *  * user-name  command to be executed
+# http://www.cyberciti.biz/faq/how-do-i-add-jobs-to-cron-under-linux-or-unix-oses/
+# * * * * * command to be executed
+# - - - - -
+# | | | | |
+# | | | | ----- Day of week (0 - 7) (Sunday=0 or 7)
+# | | | ------- Month (1 - 12)
+# | | --------- Day of month (1 - 31)
+# | ----------- Hour (0 - 23)
+# ------------- Minute (0 - 59)
 
 key="$1"
 
@@ -19,13 +21,17 @@ install_crontab()
 {
 	echo "  - Installing cronjobs"
 
+	mkdir -p /etc/gaph/cron/
+
 	# BACKUP
-	if [ ! -f /var/spool/cron/crontabs/root.bkp ]; then
-		crontab -l > /var/spool/cron/crontabs/root.bkp
+	if [ ! -f /etc/gaph/cron/cron.bkp ]; then
+		crontab -l > /etc/gaph/cron/cron.bkp
 	fi
 
 	#===========================
 	read -r -d '' CRONCONF <<-EOM
+
+	MAILTO="leoheck+gaphcron@gmail.com"
 
 	# Test (1x/min)
 	# * * * * * touch /tmp/gaph-upgrade-\$(date +\%Y-\%m-\%d:\%H:\%M)
@@ -51,7 +57,7 @@ install_crontab()
 	EOM
 	#===========================
 
-	echo "$CRONCONF" >> crontab
+	echo "$CRONCONF" | crontab -
 }
 
 remove_crontab()
@@ -59,12 +65,13 @@ remove_crontab()
 	echo "  - Removing cronjobs"
 
 	# Restore backup
-	if [ -f /var/spool/cron/crontabs/root.bkp ]; then
-		cat /var/spool/cron/crontabs/root.bkp > crontab
-		rm -rf /var/spool/cron/crontabs/root.bkp
+	if [ -f /etc/gaph/cron/cron.bkp ]; then
+		cat /etc/gaph/cron/cron.bkp > crontab
 	else
 		crontab -r
 	fi
+
+	rm -rf /etc/gaph/cron/
 }
 
 case $key in
