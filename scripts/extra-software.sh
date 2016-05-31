@@ -76,6 +76,7 @@ apt install -y makedev
 # Shels and terminals
 apt install -y ipython
 apt install -y terminator
+apt install -y screen
 apt install -y minicom
 apt install -y cutecom
 apt install -y gtkterm

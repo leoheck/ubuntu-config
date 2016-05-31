@@ -33,10 +33,11 @@ sudo apt-mark hold ubuntu-mate-desktop
 sed -i "s/#deb http/deb http/" /etc/apt/sources.list
 sed -i "s/#deb-src http/deb-src http/" /etc/apt/sources.list
 
+sudo dpkg --add-architecture i386
+
 apt update
 
 apt install -y linux-headers-generic                     # Generic Kernel Headers
-apt install -y linux-headers-$(uname -r)                 # Linux Heders
 apt install -y build-essential                           # C compiler and build tools
 apt install -y dkms                                      # Dynamic Kernel Module Support
 apt install -y openssh-server                            # SSH conctivity tools
@@ -62,4 +63,5 @@ apt install ldapscripts                                  # LDAP acessory scripts
 apt install -y dconf-tools                               # Commandline configurations
 apt install -y gcc-multilib                              # 32 bits libraries and multilib
 apt install -y python-software-properties                # Required for salt
-apt install -y aptitude                                  # Apt-get front end
+
+#apt install -y linux-headers-$(uname -r)                 # Linux Heders
