@@ -23,8 +23,8 @@ wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add
 sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" | tee /etc/apt/sources.list.d/google.list'
 
 # Add virtualbox ppa
-wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
-wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
+wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | apt-key add -
+wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | apt-key add -
 
 ppas="\
 	ppa:indicator-multiload/daily \
@@ -51,7 +51,7 @@ apt update
 
 # Workaround for a bug related to ttf-mscorefonts
 # https://bugs.launchpad.net/ubuntu/+source/aptitude/+bug/1543280
-sudo chmod 777 /var/lib/update-notifier/package-data-downloads/partial
+chmod 777 /var/lib/update-notifier/package-data-downloads/partial
 echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | debconf-set-selections
 apt install -y ttf-mscorefonts-installer
 
@@ -164,8 +164,8 @@ apt install -y scilab
 apt install -y lp-solve
 
 # MISC
-echo "debconf shared/accepted-oracle-license-v1-1 select true" | sudo debconf-set-selections
-echo "debconf shared/accepted-oracle-license-v1-1 seen true" | sudo debconf-set-selections
+echo "debconf shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections
+echo "debconf shared/accepted-oracle-license-v1-1 seen true" | debconf-set-selections
 
 apt install -y oracle-java7-installer
 apt install -y oracle-java7-set-default

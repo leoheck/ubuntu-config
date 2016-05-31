@@ -23,16 +23,16 @@ fi
 
 # Blacklist applications to avoid
 # NEEDS tests
-sudo apt-mark hold gnome-shell > /dev/null
-sudo apt-mark hold gnome-session-flashback > /dev/null
-sudo apt-mark hold ubuntu-mate-core > /dev/null
-sudo apt-mark hold ubuntu-mate-desktop > /dev/null
+apt-mark hold gnome-shell > /dev/null
+apt-mark hold gnome-session-flashback > /dev/null
+apt-mark hold ubuntu-mate-core > /dev/null
+apt-mark hold ubuntu-mate-desktop > /dev/null
 
 # Enable extra repositories
 sed -i "s/#deb http/deb http/" /etc/apt/sources.list
 sed -i "s/#deb-src http/deb-src http/" /etc/apt/sources.list
 
-sudo dpkg --add-architecture i386
+dpkg --add-architecture i386
 
 apt update
 apt-get -f install -y
