@@ -36,6 +36,7 @@ sed -i "s/#deb-src http/deb-src http/" /etc/apt/sources.list
 sudo dpkg --add-architecture i386
 
 apt update
+apt-get -f install
 
 apt install -y linux-headers-generic                     # Generic Kernel Headers
 apt install -y build-essential                           # C compiler and build tools
