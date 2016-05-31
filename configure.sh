@@ -138,7 +138,7 @@ apply_configurations_only()
 
 	if [ ! -f /etc/gaph/gaph.conf ]; then
 		if [ ! $DISPLAY = "" ]; then
-			xterm --hide-menubar -x bash -c "initial-software.sh | tee configure.log"
+			xterm -e bash -c "initial-software.sh | tee configure.log"
 		else
 			initial-software.sh | tee configure.log
 		fi
@@ -187,14 +187,14 @@ configure_gaph_host()
 	echo "${YELLOW}  Configuring GAPH host ...${NORMAL}"
 	echo "  - Instaling base apps"
 	if [ ! $DISPLAY = "" ]; then
-		xterm --hide-menubar -x bash -c "initial-software.sh | tee configure.log"
+		xterm -e bash -c "initial-software.sh | tee configure.log"
 	else
 		initial-software.sh | tee configure.log
 	fi
 	apply_configurations_only
 	echo "  - Instaling extra apps, this can take hours, go take a coffe :) ... "
 	if [ $DISPLAY = "" ]; then
-		xterm --hide-menubar -x bash -c "extra-software.sh | tee -a configure.log"
+		xterm -e bash -c "extra-software.sh | tee -a configure.log"
 	else
 		extra-software.sh | tee -a configure.log
 	fi
@@ -210,8 +210,8 @@ configure_gaph_compatible()
 	echo "${YELLOW}  Configuring GAPH COMPATIBLE host ...${NORMAL}"
 	echo "  - Instaling all apps, this can take hours, go take a coffe :) ... "
 	if [ ! $DISPLAY = "" ]; then
-		xterm --hide-menubar -x bash -c "initial-software.sh | tee configure.log"
-		xterm --hide-menubar -x bash -c "extra-software.sh | tee -a configure.log"
+		xterm -e bash -c "initial-software.sh | tee configure.log"
+		xterm -e bash -c "extra-software.sh | tee -a configure.log"
 	else
 		initial-software.sh | tee configure.log
 		extra-software.sh | tee -a configure.log
