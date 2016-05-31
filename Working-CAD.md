@@ -12,7 +12,7 @@
 # Cadence
 - [ ] conformal/141
 - [ ] conformal/152
-- [x] edi/110
+- [x] edi/110 ------- missing libraries for encounter
 - [ ] et/141
 - [ ] et/151
 - [ ] ets/131
@@ -20,7 +20,7 @@
 - [ ] ext/91
 - [ ] ic/5.1.41-151
 - [ ] ic/6.1.6
-- [ ] incisive/14.10
+- [x] incisive/14.10
 - [ ] iscape/04.23-s010
 - [ ] mmsim/141
 - [ ] mmsim/151
