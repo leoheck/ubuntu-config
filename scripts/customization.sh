@@ -26,7 +26,7 @@ install_cmd()
 		cp /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png.bkp
 	fi
 
-	convert $SCRIPTDIR/images/plymouth/ubuntu-logo.svg /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png
+	convert -background none $SCRIPTDIR/images/plymouth/ubuntu-logo.svg /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png
 
 	# UNITY-GREETER BACKUP
 	if [ ! -f /usr/share/unity-greeter/logo.png.bkp ]; then
@@ -34,7 +34,7 @@ install_cmd()
 	fi
 
 	sed -i "s|gaphl00|$(hostname)|g" $SCRIPTDIR/images/unity-greeter/logo.svg
-	convert $SCRIPTDIR/images/unity-greeter/logo.svg /usr/share/unity-greeter/logo.png
+	convert -background none $SCRIPTDIR/images/unity-greeter/logo.svg /usr/share/unity-greeter/logo.png
 
 	# BACKUP
 	if [ ! -f /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override ]; then
