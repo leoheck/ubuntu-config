@@ -23,10 +23,10 @@ fi
 
 # Blacklist applications to avoid
 # NEEDS tests
-sudo apt-mark hold gnome-shell
-sudo apt-mark hold gnome-session-flashback
-sudo apt-mark hold ubuntu-mate-core
-sudo apt-mark hold ubuntu-mate-desktop
+sudo apt-mark hold gnome-shell > /dev/null
+sudo apt-mark hold gnome-session-flashback > /dev/null
+sudo apt-mark hold ubuntu-mate-core > /dev/null
+sudo apt-mark hold ubuntu-mate-desktop > /dev/null
 
 # Enable extra repositories
 sed -i "s/#deb http/deb http/" /etc/apt/sources.list
