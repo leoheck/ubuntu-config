@@ -134,7 +134,7 @@ main()
 	done
 }
 
-apply_configurations()
+apply_configurations_only_only()
 {
 	echo
 	echo "${YELLOW}  Appling/updating configurations ...${NORMAL}"
@@ -180,7 +180,7 @@ configure_gaph_host()
 	echo "${YELLOW}  Configuring GAPH host ...${NORMAL}"
 	echo "  - Instaling base apps"
 	gnome-terminal --hide-menubar -x bash -c "initial-software.sh | tee configure.log"
-	apply_configurations
+	apply_configurations_only
 	echo "  - Instaling extra apps, this can take hours, go take a coffe :) ... "
 	gnome-terminal --hide-menubar -x bash -c "extra-software.sh | tee configure.log"
 	misc-hacks.sh
@@ -207,7 +207,7 @@ main
 case $choice in
 	1 ) configure_gaph_host ;;
 	2 ) configure_gaph_compatible ;;
-	3 ) apply_configurations ;;
+	3 ) apply_configurations_only ;;
 	4 ) revert_configurations ;;
 esac
 
