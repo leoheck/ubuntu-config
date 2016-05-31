@@ -39,7 +39,7 @@ install_cmd()
 	EOM
 	#============================
 
-	echo $FSTAB >> /etc/fstab
+	echo "$FSTAB" >> /etc/fstab
 
 	mount -a
 }
