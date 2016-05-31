@@ -15,27 +15,46 @@ control_c()
 
 trap control_c SIGINT
 
+  if which tput >/dev/null 2>&1; then
+	  ncolors=$(tput colors)
+  fi
+  if [ -t 1 ] && [ -n "$ncolors" ] && [ "$ncolors" -ge 8 ]; then
+	RED="$(tput setaf 1)"
+	GREEN="$(tput setaf 2)"
+	YELLOW="$(tput setaf 3)"
+	BLUE="$(tput setaf 4)"
+	BOLD="$(tput bold)"
+	NORMAL="$(tput sgr0)"
+  else
+	RED=""
+	GREEN=""
+	YELLOW=""
+	BLUE=""
+	BOLD=""
+	NORMAL=""
+  fi
+
+
 # Check for super power
 if [ "$(id -u)" != "0" ]; then
 	echo "Hey kid, you need to be root, call your father."
 	exit 1
 fi
 
-# Blacklist some applications
+# Blacklist applications to avoid
 # NEEDS tests
 sudo apt-mark hold gnome-shell
 sudo apt-mark hold gnome-session-flashback
+sudo apt-mark hold gnome-desktop
 sudo apt-mark hold ubuntu-mate-core
 sudo apt-mark hold ubuntu-mate-desktop
 
-# Enable Ubuntu partners repositories
+# Enable extra repositories
 sed -i "s/#deb http/deb http/" /etc/apt/sources.list
 sed -i "s/#deb-src http/deb-src http/" /etc/apt/sources.list
 
 apt update
 
-apt install -y dconf-tools                               # Commandline configurations
-apt install -y aptitude                                  # Apt-get front end
 apt install -y linux-headers-generic                     # Generic Kernel Headers
 apt install -y linux-headers-$(uname -r)                 # Linux Heders
 apt install -y build-essential                           # C compiler and build tools
@@ -47,10 +66,8 @@ apt install -y cifs-utils                                # Mount CIFS/SMB filesy
 apt install -y nfs-common                                # Mount NFS filesystems, (instalation problem?)
 apt install -y smbclient                                 # SMB conectivity tools
 apt install -y winbind                                   # Resolve user and group information from Windows NT servers
-apt install -y gcc-multilib                              # 32 bits libraries and multilib
-apt install -y lsb                                       # Linux Standard Base
+apt install -y lsb                                       # Linux standard base
 apt install -y debconf-utils                             # Required for salt
-apt install -y python-software-properties                # Required for salt
 apt install -y salt-minion                               # Remote host configuration management
 apt install -y libnss-myhostname                         # Required plugin for the GNU Name Service Switch (NSS)
 
@@ -60,4 +77,17 @@ apt install -y csh
 apt install -y ksh
 
 DEBIAN_FRONTEND=noninteractive apt install -y nslcd      # LDAP login support (default configs)
-apt install ldapscripts/trusty                           # LDAP acessory scripts
+apt install ldapscripts                                  # LDAP acessory scripts
+
+apt install -y dconf-tools                               # Commandline configurations
+apt install -y gcc-multilib                              # 32 bits libraries and multilib
+apt install -y python-software-properties                # Required for salt
+apt install -y aptitude                                  # Apt-get front end
+
+
+echo
+echo "${RED} DONE.${NORMAL}"
+echo
+echo "${BLUE}Hit ENTER to close this window${NORMAL}"
+read -p '' choice
+exit 0

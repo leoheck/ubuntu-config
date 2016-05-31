@@ -150,10 +150,13 @@ apply_configurations()
 	saltstack-config.sh -i
 	misc-hacks.sh
 	users-config.sh
+
+	echo $(date +%Y-%m-%d-%H-%M-%S) > touch /etc/gaph
 }
 
 revert_configurations()
 {
+	echo
 	echo "${YELLOW}  Removing configurations ...${NORMAL}"
 	install-scripts.sh -r
 	crontab-config.sh -r
@@ -167,23 +170,33 @@ revert_configurations()
 	saltstack-config.sh -r
 	# misc-hacks.sh
 	# users-config.sh
+
+	rm -f /etc/gaph
 }
 
 configure_gaph_host()
 {
-	echo "  Configuring GAPH host"
-	initial-software.sh
+	echo
+	echo "${YELLOW}  Configuring GAPH host ...${NORMAL}"
+	echo "  - Instaling base apps"
+	gnome-terminal --hide-menubar -x initial-software.sh
 	apply_configurations
-	configure_gaph_compatible
+	echo "  - Instaling extra apps, this can take hours, go take a coffe :) ... "
+	gnome-terminal --hide-menubar -x extra-software.sh
+	misc-hacks.sh
+	echo "${RED}  The system is going down for reboot in 5 minutes! ${NORMAL}"
+	shutdown -r +5 > /dev/null
 }
 
 configure_gaph_compatible()
 {
-	echo "  Configuring GAPH COMPATIBLE host"
-	gnome-terminal -c extra-software.sh
-	echo "${YELLOW}  Installing extra software, this can take hours, go take a coffe :) ... ${NORMAL}"
-	echo "${YELLOW}  System is going to reboot now ${NORMAL}"
-	# reboot -f now
+	echo
+	echo "${YELLOW}  Configuring GAPH COMPATIBLE host ...${NORMAL}"
+	echo "  - Instaling all apps, this can take hours, go take a coffe :) ... "
+	gnome-terminal --hide-menubar -x initial-software.sh extra-software.sh
+	misc-hacks.sh
+	echo "${RED}  The system is going down for reboot in 5 minutes! ${NORMAL}"
+	shutdown -r +5 > /dev/null
 }
 
 
@@ -199,9 +212,5 @@ esac
 
 echo "${YELLOW}  DONE!${NORMAL}"
 echo
-
-# Debug to show when upgrade was made
-rm -f /tmp/gaph-upgrade-*
-touch /tmp/gaph-upgrade-$(date +%Y-%m-%d-%H-%M-%S)
 
 exit 0
