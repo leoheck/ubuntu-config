@@ -44,7 +44,7 @@ install_cmd()
 	fi
 
 	# Adiciona o papel de parede do GAPH pra tela de login
-	cp $SCRIPTDIR/images/unity-greeter/nigh.png /usr/share/backgrounds/
+	cp $SCRIPTDIR/images/unity-greeter/night.png /usr/share/backgrounds/
 
 	#===========================
 	read -r -d '' GAPHCONF <<-EOM
