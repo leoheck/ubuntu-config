@@ -15,7 +15,7 @@ install_cmd()
 		cp /etc/cups/printers.conf /etc/cups/printers.conf.bkp
 	fi
 
-	service cups stop
+	service cups stop 2> /dev/null
 
 	#===========================
 	read -r -d '' PRINTERS <<-EOM
@@ -87,7 +87,7 @@ remove_cmd()
 {
 	echo "  - Reverting printers config"
 
-	service cups stop
+	service cups stop 2> /dev/null
 
 	if [ -f /etc/cups/printers.conf.bkp ]; then
 		mv /etc/cups/printers.conf.bkp /etc/cups/printers.conf

@@ -26,19 +26,19 @@ install_cmd()
 		cp /etc/salt/minion_id /etc/salt/minion_id.bkp
 	fi
 
-	service salt-master stop
+	service salt-master stop 2> /dev/null
 
 	# Update the master address
 	sed -i "s/^[#]*master:.*/master: rodos/g" /etc/salt/minion
 
-	service salt-master start
+	service salt-master start 2> /dev/null
 }
 
 remove_cmd()
 {
 	echo "  - Reverting salt minion configs"
 
-	service salt-master stop
+	service salt-master stop 2> /dev/null
 
 	if [ -f /etc/salt/minion.bkp ]; then
 		mv /etc/salt/minion.bkp /etc/salt/minion
@@ -48,7 +48,7 @@ remove_cmd()
 		mv /etc/salt/minion_id.bkp /etc/salt/minion_id
 	fi
 
-	service salt-master start
+	service salt-master start 2> /dev/null
 }
 
 case $key in

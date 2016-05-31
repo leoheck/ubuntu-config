@@ -48,10 +48,10 @@ remove_cmd()
 {
 	echo "  - Reverting /etc/fstab"
 
-	umount -f /users > /dev/null
-	umount -f /soft64 > /dev/null
-	umount -f /grid > /dev/null
-	umount -f /sim > /dev/null
+	umount -f /users 2> /dev/null
+	umount -f /soft64 2> /dev/null
+	umount -f /grid 2> /dev/null
+	umount -f /sim 2> /dev/null
 
 	rm -rf /users
 	rm -rf /soft64
