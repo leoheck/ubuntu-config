@@ -59,7 +59,7 @@ apt install -y csh
 apt install -y ksh
 
 DEBIAN_FRONTEND=noninteractive apt install -y nslcd      # LDAP login support (default configs)
-apt install -y ldapscripts                               # LDAP acessory scripts
+#apt install -y ldapscripts                               # LDAP acessory scripts
 
 apt install -y dconf-tools                               # Commandline configurations
 apt install -y gcc-multilib                              # 32 bits libraries and multilib
