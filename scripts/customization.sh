@@ -81,7 +81,8 @@ remove_cmd()
 case $key in
 
 	-i|--install)
-	install_cmd
+	SCRIPTDIR=$1
+	install_cmd $SCRIPTDIR
 	exit 0
 	;;
 
