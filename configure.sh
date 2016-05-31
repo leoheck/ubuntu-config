@@ -179,10 +179,10 @@ configure_gaph_host()
 	echo
 	echo "${YELLOW}  Configuring GAPH host ...${NORMAL}"
 	echo "  - Instaling base apps"
-	gnome-terminal --hide-menubar -x initial-software.sh
+	gnome-terminal --hide-menubar -x bash -c "initial-software.sh | tee configure.log"
 	apply_configurations
 	echo "  - Instaling extra apps, this can take hours, go take a coffe :) ... "
-	gnome-terminal --hide-menubar -x extra-software.sh
+	gnome-terminal --hide-menubar -x bash -c "extra-software.sh | tee configure.log"
 	misc-hacks.sh
 	echo "${RED}  The system is going down for reboot in 5 minutes! ${NORMAL}"
 	shutdown -r +5 > /dev/null
@@ -193,7 +193,8 @@ configure_gaph_compatible()
 	echo
 	echo "${YELLOW}  Configuring GAPH COMPATIBLE host ...${NORMAL}"
 	echo "  - Instaling all apps, this can take hours, go take a coffe :) ... "
-	gnome-terminal --hide-menubar -x initial-software.sh extra-software.sh
+	gnome-terminal --hide-menubar -x bash -c "initial-software.sh | tee configure.log"
+	gnome-terminal --hide-menubar -x bash -c "extra-software.sh | tee -a configure.log"
 	misc-hacks.sh
 	echo "${RED}  The system is going down for reboot in 5 minutes! ${NORMAL}"
 	shutdown -r +5 > /dev/null

@@ -15,26 +15,6 @@ control_c()
 
 trap control_c SIGINT
 
-  if which tput >/dev/null 2>&1; then
-	  ncolors=$(tput colors)
-  fi
-  if [ -t 1 ] && [ -n "$ncolors" ] && [ "$ncolors" -ge 8 ]; then
-	RED="$(tput setaf 1)"
-	GREEN="$(tput setaf 2)"
-	YELLOW="$(tput setaf 3)"
-	BLUE="$(tput setaf 4)"
-	BOLD="$(tput bold)"
-	NORMAL="$(tput sgr0)"
-  else
-	RED=""
-	GREEN=""
-	YELLOW=""
-	BLUE=""
-	BOLD=""
-	NORMAL=""
-  fi
-
-
 # Check for super power
 if [ "$(id -u)" != "0" ]; then
 	echo "Hey kid, you need to be root, call your father."
@@ -83,11 +63,3 @@ apt install -y dconf-tools                               # Commandline configura
 apt install -y gcc-multilib                              # 32 bits libraries and multilib
 apt install -y python-software-properties                # Required for salt
 apt install -y aptitude                                  # Apt-get front end
-
-
-echo
-echo "${RED} DONE.${NORMAL}"
-echo
-echo "${BLUE}Hit ENTER to close this window${NORMAL}"
-read -p '' choice
-exit 0
