@@ -81,8 +81,7 @@ main()
 
 	echo
 
-	if [ -f $PKG ];
-	then
+	if [ -f $PKG ]; then
 		printf "${BLUE}  Removing previows /tmp/$PKG ...${NORMAL}\n"
 		rm -rf $PKG
 	fi
@@ -90,8 +89,7 @@ main()
 	printf "${BLUE}  Donwloading an updated $PKG from github in /tmp ...${NORMAL}\n"
 	wget $GITHUB/$PKG -O /tmp/$PKG 2> /dev/null
 
-	if [ -d $LOCALDIR ];
-	then
+	if [ -d $LOCALDIR ]; then
 		printf "${BLUE}  Removing $LOCALDIR ...${NORMAL}\n"
 		rm -rf $LOCALDIR
 	fi
@@ -185,14 +183,14 @@ configure_gaph_host()
 	echo
 	echo "${YELLOW}  Configuring GAPH host ...${NORMAL}"
 	echo "  - Instaling base apps"
-	if [ $DISPLAY = "" ];
+	if [ $DISPLAY = "" ]; then
 		gnome-terminal --hide-menubar -x bash -c "initial-software.sh | tee configure.log"
 	else
 		initial-software.sh | tee configure.log
 	fi
 	apply_configurations_only
 	echo "  - Instaling extra apps, this can take hours, go take a coffe :) ... "
-	if [ $DISPLAY = "" ];
+	if [ $DISPLAY = "" ]; then
 		gnome-terminal --hide-menubar -x bash -c "extra-software.sh | tee -a configure.log"
 	else
 		extra-software.sh | tee -a configure.log
@@ -208,7 +206,7 @@ configure_gaph_compatible()
 	echo
 	echo "${YELLOW}  Configuring GAPH COMPATIBLE host ...${NORMAL}"
 	echo "  - Instaling all apps, this can take hours, go take a coffe :) ... "
-	if [ $DISPLAY = "" ];
+	if [ $DISPLAY = "" ]; then
 		gnome-terminal --hide-menubar -x bash -c "initial-software.sh | tee configure.log"
 		gnome-terminal --hide-menubar -x bash -c "extra-software.sh | tee -a configure.log"
 	else
