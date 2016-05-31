@@ -47,6 +47,9 @@ apt update
 
 # EXTRA SOFTWARE - Separated in sections
 
+# Workaround for a bug related to ttf-mscorefonts
+# https://bugs.launchpad.net/ubuntu/+source/aptitude/+bug/1543280
+sudo chmod 777 /var/lib/update-notifier/package-data-downloads/partial
 echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | debconf-set-selections
 apt install -y ttf-mscorefonts-installer
 
@@ -159,6 +162,9 @@ apt install -y scilab
 apt install -y lp-solve
 
 # MISC
+echo "debconf shared/accepted-oracle-license-v1-1 select true" | sudo debconf-set-selections
+echo "debconf shared/accepted-oracle-license-v1-1 seen true" | sudo debconf-set-selections
+
 apt install -y oracle-java7-installer
 apt install -y oracle-java7-set-default
 apt install -y nautilus-dropbox
