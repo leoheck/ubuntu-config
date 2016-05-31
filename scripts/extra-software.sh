@@ -27,14 +27,16 @@ wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-
 wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
 
 ppas="\
-	ppa:freyja-dev/unity-tweak-tool-daily \
 	ppa:indicator-multiload/daily \
 	ppa:shutter/ppa \
-	ppa:tualatrix/ppa \
 	ppa:webupd8team/java \
 	ppa:webupd8team/sublime-text-3 \
-	ppa:webupd8team/y-ppa-manager \
-	ppa:blahota/texstudio"
+	ppa:webupd8team/y-ppa-manager"
+
+# Removed
+# ppa:blahota/texstudio
+# ppa:freyja-dev/unity-tweak-tool-daily
+# ppa:tualatrix/ppa
 
 # Add extra repositories
 for ppa in ${ppas}; do

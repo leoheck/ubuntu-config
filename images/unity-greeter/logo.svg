@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8"
-     inkscape:cx="124.68968"
-     inkscape:cy="8.4964481"
+     inkscape:cx="130.1129"
+     inkscape:cy="11.293062"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -56,7 +56,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -65,6 +65,41 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(-50.600253,-777.24619)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:30.11019135px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       x="227.2518"
+       y="813.67621"
+       id="text4136-1-6"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="227.2518"
+         y="813.67621"
+         id="tspan4211-0"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32.5px;font-family:ubuntu;-inkscape-font-specification:ubuntu;fill:#ffffff;fill-opacity:1">gaphl00</tspan></text>
+    <path
+       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 223.98331,790.28969 0,27.663"
+       id="path4215-6"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:11.44213772px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#f8f8f8;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="219.81674"
+       y="799.98273"
+       id="text4217-6"
+       sodipodi:linespacing="125%"
+       transform="scale(0.999991,1.000009)"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;font-family:ubuntu;-inkscape-font-specification:ubuntu;text-align:end;text-anchor:end;fill:#f8f8f8;fill-opacity:1"
+         sodipodi:role="line"
+         id="tspan4219-3"
+         x="219.81674"
+         y="799.98273">Grupo de Apoio ao</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.5px;font-family:ubuntu;-inkscape-font-specification:ubuntu;text-align:end;text-anchor:end;fill:#f8f8f8;fill-opacity:1"
+         sodipodi:role="line"
+         x="219.81674"
+         y="815.60773"
+         id="tspan4221-8">Projeto de Hardware</tspan></text>
     <flowRoot
        xml:space="preserve"
        id="flowRoot4279"
@@ -75,48 +110,5 @@
            height="170"
            x="-60"
            y="563.79077" /></flowRegion><flowPara
-         id="flowPara4285" /></flowRoot>    <g
-       id="g4206"
-       transform="translate(0,2)">
-      <text
-         sodipodi:linespacing="125%"
-         id="text4136-1-6"
-         y="812.97357"
-         x="100.46609"
-         style="font-style:normal;font-weight:normal;font-size:30.11019135px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;"
-         xml:space="preserve"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:ubuntu;-inkscape-font-specification:ubuntu;fill:#ffffff;fill-opacity:1;"
-           id="tspan4213-2"
-           y="812.97357"
-           x="100.46609"
-           sodipodi:role="line">gaphl00</tspan><tspan
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:ubuntu;-inkscape-font-specification:ubuntu;fill:#ffffff;fill-opacity:1;"
-           id="tspan4211-0"
-           y="850.61133"
-           x="100.46609"
-           sodipodi:role="line" /></text>
-      <path
-         inkscape:connector-curvature="0"
-         id="path4215-6"
-         d="m 217.80489,791.48566 0,25.27105"
-         style="fill:#ffffff;fill-rule:evenodd;stroke:none;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text4217-6"
-         y="800.17914"
-         x="225.84299"
-         style="font-style:normal;font-weight:normal;font-size:11.44213772px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#f8f8f8;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
-         xml:space="preserve"><tspan
-           y="800.17914"
-           x="225.84299"
-           id="tspan4219-3"
-           sodipodi:role="line"
-           style="font-size:11.29132175px;fill:#f8f8f8;fill-opacity:1;">Grupo de Apoio ao</tspan><tspan
-           id="tspan4221-8"
-           y="814.29327"
-           x="225.84299"
-           sodipodi:role="line"
-           style="font-size:11.29132175px;fill:#f8f8f8;fill-opacity:1;">Projeto de Hardware</tspan></text>
-    </g>
-  </g>
+         id="flowPara4285" /></flowRoot>  </g>
 </svg>
