@@ -37,4 +37,4 @@ sed -i 's/enabled=1/enabled=0/p' /etc/default/apport
 
 # Hack for dropbox inodes
 echo "fs.inotify.max_user_watches = 99999999999" >> /etc/sysctl.d/20-dropbox-inotify.conf
-sysctl -p /etc/sysctl.d/20-dropbox-inotify.conf 2> /dev/null
+sysctl -p /etc/sysctl.d/20-dropbox-inotify.conf > /dev/null
