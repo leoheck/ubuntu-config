@@ -132,7 +132,6 @@ main()
 			;;
 	  esac
 	done
-
 }
 
 apply_configurations()
@@ -141,6 +140,16 @@ apply_configurations()
 	echo "${YELLOW}  Appling/updating configurations ...${NORMAL}"
 	install-scripts.sh -i $LOCALDIR
 	crontab-config.sh -i
+	admin-config.sh -i
+	config-printers.sh -i
+	fstab-config.sh -i
+	hosts-config.sh -i
+	lightdm-config.sh -i
+	nslcd-config.sh -i
+	nsswitch-config.sh -i
+	saltstack-config.sh -i
+	misc-hacks.sh
+	users-config.sh
 }
 
 revert_configurations()
@@ -148,23 +157,22 @@ revert_configurations()
 	echo "${YELLOW}  Removing configurations ...${NORMAL}"
 	install-scripts.sh -r
 	crontab-config.sh -r
-	# fstab-config.sh -r
-	# nslcd-config.sh -r
-	# nsswitch-config.sh -r
-	# admin-config.sh -r
-	# lightdm-config.sh -r
-	# saltstack-config.sh -r
-	# config-printers.sh -r
-	# users-config.sh -r
-	# hosts-config.sh -r
-	# misc-hacks.sh -r
-	echo "${YELLOW}  DONE!${NORMAL}"
+	admin-config.sh -r
+	config-printers.sh -r
+	fstab-config.sh -r
+	hosts-config.sh -r
+	lightdm-config.sh -r
+	nslcd-config.sh -r
+	nsswitch-config.sh -r
+	saltstack-config.sh -r
+	# misc-hacks.sh
+	# users-config.sh
 }
 
 configure_gaph_host()
 {
 	echo "  Configuring GAPH host"
-	# install_base_software (initial-software.sh)
+	initial-software.sh
 	apply_configurations
 	configure_gaph_compatible
 }
@@ -172,8 +180,7 @@ configure_gaph_host()
 configure_gaph_compatible()
 {
 	echo "  Configuring GAPH COMPATIBLE host"
-	# Launch in an external terminal...
-	#gnome-terminal -c extra-software.sh
+	gnome-terminal -c extra-software.sh
 	echo "${YELLOW}  Installing extra software, this can take hours, go take a coffe :) ... ${NORMAL}"
 	echo "${YELLOW}  System is going to reboot now ${NORMAL}"
 	# reboot -f now

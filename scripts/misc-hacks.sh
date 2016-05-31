@@ -3,6 +3,8 @@
 # Some hacks to support our CAD and misc customizations
 # Leandro Sehnem Heck (leoheck@gmail.com)
 
+echo "  - Applying MISC hacks"
+
 # Update some lib paths (IMPORTANT)
 sudo ln -s -f /usr/lib/x86_64-linux-gnu/crt?.o   /lib/
 sudo ln -s -f /usr/lib/x86_64-linux-gnu/libm.so  /lib/libm.so

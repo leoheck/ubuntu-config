@@ -11,13 +11,60 @@
 # Needs:
 # sudo aptitude install salt-minion -y
 
-FILE=/etc/salt/minion
-date=$(date +"%Y-%m-%d-%Hh%M")
+key="$1"
 
-# backup the original file
-if [ -f ${FILE} ]; then
-	cp ${FILE} ${FILE}-${date}
-fi
+install_cmd()
+{
+	echo "  - Configuring salt minion"
 
-# Update the master address
-sed -i "s/^[#]*master:.*/master: rodos/g" ${FILE}
+	# BACKUP
+	if [ ! -f /etc/salt/minion.bkp ]; then
+		cp /etc/salt/minion /etc/salt/minion.bkp
+	fi
+
+	if [ ! -f /etc/salt/minion_id.bkp ]; then
+		cp /etc/salt/minion_id /etc/salt/minion_id.bkp
+	fi
+
+	service salt-master stop
+
+	# Update the master address
+	sed -i "s/^[#]*master:.*/master: rodos/g" /etc/salt/minion
+
+	service salt-master start
+}
+
+remove_cmd()
+{
+	echo "  - Reverting salt minion configs"
+
+	service salt-master stop
+
+	if [ -f /etc/salt/minion.bkp ]; then
+		mv /etc/salt/minion.bkp /etc/salt/minion
+	fi
+
+	if [ -f /etc/salt/minion_id.bkp ]; then
+		mv /etc/salt/minion_id.bkp /etc/salt/minion_id
+	fi
+
+	service salt-master start
+}
+
+case $key in
+
+	-i|--install)
+	install_cmd
+	exit 0
+	;;
+
+	-r|--remove)
+	remove_cmd
+	exit 0
+	;;
+
+	*)
+	echo "Unknonw option"
+	exit 1
+
+esac

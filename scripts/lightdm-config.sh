@@ -13,29 +13,61 @@
 # https://wiki.ubuntu.com/LightDM
 # http://askubuntu.com/questions/155611/no-unity-greeter-conf-file-in-etc-lightdm
 
-FILE=/etc/lightdm/lightdm.conf
-date=$(date +"%Y-%m-%d-%Hh%M")
+key="$1"
 
-# backup the original file
-if [ -f ${FILE} ]; then
-	cp ${FILE} ${FILE}-${date}
-fi
+install_cmd()
+{
+	echo "  - Configuring lightdm"
 
-# update the content
-#==============================================================================
-cat > ${FILE} << END-OF-FILE
+	# BACKUP
+	if [ ! -f /etc/lightdm/lightdm.conf.bkp ]; then
+		cp /etc/lightdm/lightdm.conf /etc/lightdm/lightdm.conf.bkp
+	fi
 
-[GuestAccount]
-enabled = true
+	#===========================
+	read -r -d '' LIGHTDM <<-EOM
 
-[SeatDefaults]
-greeter-session = unity-greeter
-greeter-show-manual-login = true
-allow-guest = true
+	[GuestAccount]
+	enabled = true
 
-END-OF-FILE
-#==============================================================================
+	[SeatDefaults]
+	greeter-session = unity-greeter
+	greeter-show-manual-login = true
+	allow-guest = true
 
-# Adiciona o papel de parede do GAPH pra tela de login
-#cp imagens/gaphwall.jpg /usr/share/backgrounds/
-#sudo -u lightdm dbus-launch gsettings set com.canonical.unity-greeter background '/usr/share/backgrounds/gaphwall.jpg'
+	EOM
+	#===========================
+
+	echo "$LIGHTDM" > /etc/lightdm/lightdm.conf
+
+	# Adiciona o papel de parede do GAPH pra tela de login
+	#cp imagens/gaphwall.jpg /usr/share/backgrounds/
+	#sudo -u lightdm dbus-launch gsettings set com.canonical.unity-greeter background '/usr/share/backgrounds/gaphwall.jpg'
+}
+
+remove_cmd()
+{
+	echo "  - Reverting lightdm configs"
+
+	if [ -f /etc/lightdm/lightdm.conf.bkp ]; then
+		mv /etc/lightdm/lightdm.conf.bkp /etc/lightdm/lightdm.conf
+	fi
+}
+
+case $key in
+
+	-i|--install)
+	install_cmd
+	exit 0
+	;;
+
+	-r|--remove)
+	remove_cmd
+	exit 0
+	;;
+
+	*)
+	echo "Unknonw option"
+	exit 1
+
+esac

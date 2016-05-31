@@ -1,12 +1,15 @@
 #!/bin/bash
 
-# Configure skell for new users and for the current
 # Leandro Sehnem Heck (leoheck@gmail.com)
+
+# CONFIGURE USER STUFF
 
 # Features:
 # - Remove unecessary folders and files
 # - Update .bashrc
 # - Update .cshrc
+
+echo "  - Configuring user dots"
 
 # remove unecessary stuff for new users
 mkdir -p /etc/skel/www
