@@ -1,49 +1,30 @@
 
 # Altera
-- [ ] quartus/11.1
-- [ ] quartus/12.0
 - [ ] quartus/12.0-SP2
 
 # Async Tools
 - [ ] 3d/3.13
-- [ ] balsa/3.5.1-x32
-- [ ] balsa/4.0
-- [ ] balsa/4.0-rhel-x64
 - [ ] balsa/4.0-ubuntu-x64
 - [ ] minimalist/2.0
-- [ ] petrify/4.0
 - [ ] petrify/4.2
 - [ ] sagaas/1.0
 
 # Cadence
-- [ ] conformal/101
 - [ ] conformal/141
 - [ ] conformal/152
 - [ ] edi/101
 - [ ] edi/110
-- [ ] et/101
-- [ ] et/111
 - [ ] et/141
 - [ ] et/151
-- [ ] ets/101
 - [ ] ets/131
 - [ ] ets/131hf
 - [ ] ext/91
-- [ ] ic/5.1.41
 - [ ] ic/5.1.41-151
-- [ ] ic/6.1.5
 - [ ] ic/6.1.6
-- [ ] incisive/10.2
-- [ ] incisive/11.10
-- [ ] incisive/13.20
 - [ ] incisive/14.10
-- [ ] iscape/04.23-s008
 - [ ] iscape/04.23-s010
-- [ ] mmsim/101
-- [ ] mmsim/131
 - [ ] mmsim/141
 - [ ] mmsim/151
-- [ ] mmsim/71
 - [ ] spb/16.5
 
 # Impleras
@@ -52,13 +33,10 @@
 - [ ] ovp/free-20130315
 
 # Mentor
-- [ ] adms/09.2
 - [ ] adms/11.1
 - [ ] adms/15.3
 - [ ] calibre/2011.3
 - [ ] calibre/2015.1
-- [ ] modelsim/10.0c
-- [ ] modelsim/10.3a
 - [ ] modelsim/10.3c
 - [ ] questa/10.4a
 - [ ] tessent/2012.2
@@ -69,23 +47,13 @@
 - [ ] archc/mips
 - [ ] archc/v2.1
 - [ ] astran/3.10
-- [ ] astran/3.9.1
-- [ ] astran/3.9.5
-- [ ] astran/3.9.6
-- [ ] astran/3.9.8
 - [ ] boost/1.55
 - [ ] cheddar/2.1
 - [ ] gcc/4.9.3
-- [ ] gurobi/5.6
-- [ ] gurobi/6.0
-- [ ] gurobi/6.0.4
-- [ ] gurobi/6.0.5
 - [ ] gurobi/6.5
 - [ ] jdk/1.7.0
-- [ ] mars/4.1
-- [ ] master-pdf-editor/1.9.12
+- [ ] mars/4.1 ------- isso nao tinha que estar em SESD?
 - [ ] matlab/R2014a
-- [ ] metaace/2.11
 - [ ] metaace/2.13
 - [ ] mips-elf/4.1.1-hemps
 - [ ] mips-elf/4.6.1
@@ -104,15 +72,8 @@
 - [ ] ut/4.2
 
 # SESD Tools
-- [ ] atlas/v1.0.1
 - [ ] atlas/v1.0.2
 - [ ] cafes/v3.9.9
-- [ ] hemps/4.0
-- [ ] hemps/4.1
-- [ ] hemps/4.2
-- [ ] hemps/5.0
-- [ ] hemps/5.2
-- [ ] hemps/7.0
 - [ ] hemps/7.2
 - [ ] hemps-glp/4.1
 - [ ] nocaddress/1.1
@@ -142,8 +103,5 @@
 
 # Xilinx
 - [ ] digilent/adept-2.1
-- [ ] ise/13.2
-- [ ] ise/14.1
 - [ ] ise/14.6
-- [ ] vivado/2013.4
 - [ ] vivado/2014.2
