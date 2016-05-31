@@ -47,6 +47,9 @@ apt update
 
 # EXTRA SOFTWARE - Separated in sections
 
+echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | debconf-set-selections
+apt install -y ttf-mscorefonts-installer
+
 # Administrator tools
 apt install -y bleachbit
 apt install -y y-ppa-manager
