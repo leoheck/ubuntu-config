@@ -185,10 +185,18 @@ configure_gaph_host()
 	echo
 	echo "${YELLOW}  Configuring GAPH host ...${NORMAL}"
 	echo "  - Instaling base apps"
-	gnome-terminal --hide-menubar -x bash -c "initial-software.sh | tee configure.log"
+	if [ $DISPLAY = "" ];
+		gnome-terminal --hide-menubar -x bash -c "initial-software.sh | tee configure.log"
+	else
+		initial-software.sh | tee configure.log
+	fi
 	apply_configurations_only
 	echo "  - Instaling extra apps, this can take hours, go take a coffe :) ... "
-	gnome-terminal --hide-menubar -x bash -c "extra-software.sh | tee -a configure.log"
+	if [ $DISPLAY = "" ];
+		gnome-terminal --hide-menubar -x bash -c "extra-software.sh | tee -a configure.log"
+	else
+		extra-software.sh | tee -a configure.log
+	fi
 	misc-hacks.sh
 	customization.sh -i $LOCALDIR
 	echo "${RED}  The system is going down for reboot in 5 minutes! ${NORMAL}"
@@ -200,8 +208,13 @@ configure_gaph_compatible()
 	echo
 	echo "${YELLOW}  Configuring GAPH COMPATIBLE host ...${NORMAL}"
 	echo "  - Instaling all apps, this can take hours, go take a coffe :) ... "
-	gnome-terminal --hide-menubar -x bash -c "initial-software.sh | tee configure.log"
-	gnome-terminal --hide-menubar -x bash -c "extra-software.sh | tee -a configure.log"
+	if [ $DISPLAY = "" ];
+		gnome-terminal --hide-menubar -x bash -c "initial-software.sh | tee configure.log"
+		gnome-terminal --hide-menubar -x bash -c "extra-software.sh | tee -a configure.log"
+	else
+		initial-software.sh | tee configure.log
+		extra-software.sh | tee -a configure.log
+	fi
 	misc-hacks.sh
 	echo "${RED}  The system is going down for reboot in 5 minutes! ${NORMAL}"
 	shutdown -r +5 > /dev/null
