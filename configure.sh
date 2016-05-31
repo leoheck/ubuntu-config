@@ -188,10 +188,10 @@ configure_gaph_host()
 	gnome-terminal --hide-menubar -x bash -c "initial-software.sh | tee configure.log"
 	apply_configurations_only
 	echo "  - Instaling extra apps, this can take hours, go take a coffe :) ... "
-	gnome-terminal --hide-menubar -x bash -c "extra-software.sh | tee configure.log"
+	gnome-terminal --hide-menubar -x bash -c "extra-software.sh | tee -a configure.log"
 	misc-hacks.sh
-	echo "${RED}  The system is going down for reboot in 5 minutes! ${NORMAL}"
 	customization.sh -i $LOCALDIR
+	echo "${RED}  The system is going down for reboot in 5 minutes! ${NORMAL}"
 	shutdown -r +5 > /dev/null
 }
 
