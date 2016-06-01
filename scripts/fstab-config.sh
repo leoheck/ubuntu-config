@@ -45,7 +45,7 @@ install_cmd()
 	ping -c 1 kriti.inf.pucrs.br > /dev/null
 	if [ "$?" -eq 0 ] ; then
 		mount -a
-	if
+	fi
 }
 
 remove_cmd()
