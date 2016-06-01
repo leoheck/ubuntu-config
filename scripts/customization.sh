@@ -41,7 +41,7 @@ install_cmd()
 	read -r -d '' GAPHCONF <<-EOM
 
 	[com.canonical.unity-greeter]
-	draw-user-backgrounds=false
+	#draw-user-backgrounds=false
 	background='/usr/share/backgrounds/night.png'
 
 	EOM
