@@ -128,7 +128,7 @@ install_base_software()
 		fi
 	fi
 	echo "$(date)" > /var/log/gaph/install-base.done
-	echo "    - See installation logs at /var/log/gaph/"
+	echo "    - See installation logs at /var/log/gaph"
 }
 
 install_extra_software()
@@ -143,7 +143,7 @@ install_extra_software()
 		fi
 	fi
 	echo "$(date)" > /var/log/gaph/install-extra.done
-	echo "    - See installation logs at /var/log/gaph/"
+	echo "    - See installation logs at /var/log/gaph"
 }
 
 reboot_host()
