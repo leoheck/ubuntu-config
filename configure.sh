@@ -193,7 +193,7 @@ configure_gaph_host()
 	fi
 	apply_configurations_only
 	echo "  - Instaling extra apps, this can take hours, go take a coffe :) ... "
-	if [ $DISPLAY = "" ]; then
+	if [ ! $DISPLAY = "" ]; then
 		xterm -e bash -c "extra-software.sh | tee -a configure.log"
 	else
 		extra-software.sh | tee -a configure.log
