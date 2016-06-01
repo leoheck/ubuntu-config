@@ -41,7 +41,11 @@ install_cmd()
 
 	echo "$FSTAB" >> /etc/fstab
 
-	mount -a
+	# Mounta se der.. (espero que sempre de, coloquei isso pra testar o processo)
+	ping -c 1 kriti.inf.pucrs.br > /dev/null
+	if [ "$?" -eq 0 ] ; then
+		mount -a
+	if
 }
 
 remove_cmd()
