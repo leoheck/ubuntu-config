@@ -203,8 +203,6 @@ configure_gaph_host()
 	install_base_software
 	apply_and_upgrade_configs
 	install_extra_software
-	misc-hacks.sh
-	customization.sh -i $PROJECTDIR
 	reboot_host
 }
 

@@ -31,7 +31,7 @@ install_cmd()
 	mv -f /tmp/logo.png /usr/share/unity-greeter/logo.png
 
 	# BACKUP
-	if [ ! -f /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override ]; then
+	if [ ! -f /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override.bkp ]; then
 		if [ -f /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override ]; then
 			cp /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override.bkp
 		fi
@@ -76,7 +76,7 @@ case $key in
 
 	-i|--install)
 	SCRIPTDIR="$2"
-	install_cmd "$SCRIPTDIR"
+	install_cmd $SCRIPTDIR
 	exit 0
 	;;
 
