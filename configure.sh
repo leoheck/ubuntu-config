@@ -228,5 +228,5 @@ case $choice in
 	4 ) revert_configurations ;;
 esac
 
-echo "${YELLOW}  DONE!${NORMAL}"
+echo "${YELLOW}  DONE! Bye :) ${NORMAL}"
 echo
