@@ -150,8 +150,9 @@ reboot_host()
 {
 	echo
 	echo "${RED}  HEY YO, SYSTEM WILL REBOOT IN 3 MINUTES! ${NORMAL}"
+	echo " Cancel this with: shutdown -c "
 	echo
-	shutdown -r +3 > /dev/null
+	shutdown -r +3 2> /dev/null
 }
 
 apply_and_upgrade_configs()
