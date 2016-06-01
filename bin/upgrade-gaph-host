@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Leandro Sehnem Heck (leoheck@gmail.com)
+
+# Script to upgrade configs
+
+# GITHUB REPOSITORY CONFIG
+REPO="gaph-host-config"
+BRANCH="ubuntu-16.04"
+
+OPT=3
+URL="https://raw.githubusercontent.com/leoheck/${REPO}/${BRANCH}/configure.sh"
+
+echo $OPT | sh -c "$(curl -fsSL $URL)"

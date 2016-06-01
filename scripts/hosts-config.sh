@@ -5,20 +5,52 @@
 
 # This script configures the /etc/hosts
 # Features:
-# - Set initial hosts file
+# - Set initial hosts file since it will be updated periodicaly
 
-# /soft64/admin/scripts/update-hosts.sh
-# /soft64/admin/etc/hosts_template
+key="$1"
 
-HOSTNAME=$(hostname)
-IP=$(ifconfig | grep 10.32. | tr -s '[:space:]' | cut -d' ' -f3 | cut -d: -f2)
+install_cmd()
+{
+	echo "  - Configuring /etc/hosts"
 
+	# BACKUP
+	if [ ! -f /etc/hosts.bkp ]; then
+		cp /etc/hosts /etc/hosts.bkp
+	fi
 
-if [ -f /soft64/admin/etc/hosts_current ]; then
+	HOSTNAME=$(hostname)
+	IP=$(ifconfig | grep 10.32. | tr -s '[:space:]' | cut -d' ' -f3 | cut -d: -f2)
 
-	# incialmente clona o arquivo pronto do soft64
-	# depois o cron job vai atualizar periodicamene
-	cp -f /soft64/admin/etc/hosts_current /etc/hosts
-	echo "$IP   $HOSTNAME" >> /etc/hosts
+	# Inicialmente clona o arquivo pronto do soft64
+	if [ -f /soft64/admin/etc/hosts_current ]; then
+		cp -f /soft64/admin/etc/hosts_current /etc/hosts
+		echo "$IP   $HOSTNAME" >> /etc/hosts
+	fi
+}
 
-fi
+remove_cmd()
+{
+	echo "  - Reverting /etc/hosts"
+
+	if [ -f /etc/hosts.bkp ]; then
+		cp /etc/hosts.bkp /etc/hosts
+	fi
+}
+
+case $key in
+
+	-i|--install)
+	install_cmd
+	exit 0
+	;;
+
+	-r|--remove)
+	remove_cmd
+	exit 0
+	;;
+
+	*)
+	echo "Unknonw option"
+	exit 1
+
+esac

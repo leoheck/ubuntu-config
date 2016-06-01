@@ -1,19 +1,49 @@
 #!/bin/bash
 
-# Configure administration access
 # Leandro Sehnem Heck (leoheck@gmail.com)
 
-# This script configures the main login screen (LightDM)
-# Features:
-# - Set de root password
-# - Enable sudo for professors
+# CONFIG SUPERIOR ACCESS
 
-# DEFAULT ROOT PASSWORD
-# To generate the cripto password: openssl passwd
-echo "root:VLuxY7G/MDMO2" | chpasswd -e
+key="$1"
 
-# Add admin (network) users to sudo group (professors)
+install_cmd()
+{
+	echo "  - Configuring admins accesss"
 
-# LDAP Domain Admins
-echo -e '\n# LDAP Domain Admins' >> /etc/sudoers
-echo -e '%Domain\ Admins ALL=(ALL) ALL\n\n' >> /etc/sudoers
+	# To generate the cripto password: openssl passwd
+	echo "root:VLuxY7G/MDMO2" | chpasswd -e
+
+	# Increase the LDAP domain admins powers
+	echo -e '\n# LDAP Domain Admins' >> /etc/sudoers
+	echo -e '%Domain\ Admins ALL=(ALL) ALL\n\n' >> /etc/sudoers
+}
+
+remove_cmd()
+{
+	echo "  - Reverting admins access"
+
+	# /etc/shadow
+	# root:!:16927:0:99999:7:::
+
+	# Increase the LDAP domain admins powers
+	sed -i '/# LDAP Domain Admins/d' /etc/sudoers
+	sed -i '/%Domain\ Admins ALL=(ALL) ALL\n\n/d' /etc/sudoers
+}
+
+case $key in
+
+	-i|--install)
+	install_cmd
+	exit 0
+	;;
+
+	-r|--remove)
+	remove_cmd
+	exit 0
+	;;
+
+	*)
+	echo "Unknonw option"
+	exit 1
+
+esac

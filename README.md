@@ -1,5 +1,4 @@
 
-
 **Este repositório está sendo atualizado para Ubuntu 16.04**
 
 <!--# Scripts de configuração das máquinas do GAPH-->
@@ -12,3 +11,8 @@ Para configurar uma máquina Ubuntu 14.04 baixe a TAG da [versão inicial](https
 
 As instruções foram movidas para o wiki do repositório [aqui](https://github.com/leoheck/gaph-host-config/wiki)
 
+Instalacao (temporária)
+
+```
+sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/leoheck/gaph-host-config/ubuntu-16.04/configure.sh)"
+```

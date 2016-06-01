@@ -1,21 +1,24 @@
 #!/bin/bash
 
-# Configure skell for new users and for the current
 # Leandro Sehnem Heck (leoheck@gmail.com)
+
+# CONFIGURE USER STUFF
 
 # Features:
 # - Remove unecessary folders and files
 # - Update .bashrc
 # - Update .cshrc
 
-# skell
+echo "  - Configuring user dots"
+
+# remove unecessary stuff for new users
 mkdir -p /etc/skel/www
 rm -rf /etc/skel/examples.desktop*
 rm -rf /etc/skel/Templates
 rm -rf /etc/skel/Podcasts
 rm -rf /etc/skel/Audiobooks
 
-# current user
+# remove unecessary stuff for the main (current) user
 mkdir -p ~/www
 rm -rf ~/examples.desktop*
 rm -rf ~/Templates
@@ -46,14 +49,14 @@ alias cp='cp -i'
 alias diff='colordiff'
 
 # MODULES ENVIRONMENT
-if [ -f /soft64/Modules/current/init/bash ]; then
-	source /soft64/Modules/current/init/bash
-fi 
+if [ -f /soft64/Modules/default/init/bash ]; then
+	source /soft64/Modules/default/init/bash
+fi
 
-# CREATE CUSTOM MODULES
+# USER CUSTOM MODULES CAN BE ADDED TO MODULEPATH
 #export MODULEPATH=${MODULEPATH}:$HOME/modulefiles
 
-# Exemplo para carregar um modulo automaticamente
+# How to load module automatically
 #module load hemps &> /dev/null
 
 END_OF_FILE
@@ -81,7 +84,10 @@ if ($?tcsh && $?prompt) then
 endif
 
 # Configura os modulos para o (t)csh
-source /soft64/Modules/current/init/csh
+source /soft64/Modules/default/init/csh
+
+# How to load module automatically
+#module load hemps &> /dev/null
 
 END_OF_FILE
 #==============================================================================

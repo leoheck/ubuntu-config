@@ -1,251 +1,259 @@
 #!/bin/bash
 
-# Install extra software sources
 # Leandro Sehnem Heck (leoheck@gmail.com)
 
-# Ctrl+c function to halt execution
-control_c()
-{
-	echo -e "\n\n$0 ended by user\n"
-	exit $?
-}
-
-trap control_c SIGINT
-
-# Check for super power
-if [ "$(id -u)" != "0" ]; then
-	echo "Hey kid, you need to be root, call your father."
-	exit 1
-fi
+# Install EXTRA APPLICATIONS
 
 # Add google-chrome ppa
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
 sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" | tee /etc/apt/sources.list.d/google.list'
 
 # Add virtualbox ppa
-wget -q -O - http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc | apt-key add -
-sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian $(lsb_release -sc) contrib" | tee /etc/apt/sources.list.d/virtualbox.list'
-
-# Add extra ppas
+wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | apt-key add -
+wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | apt-key add -
 
 ppas="\
-	ppa:freyja-dev/unity-tweak-tool-daily \
 	ppa:indicator-multiload/daily \
 	ppa:shutter/ppa \
-	ppa:tualatrix/ppa \
 	ppa:webupd8team/java \
 	ppa:webupd8team/sublime-text-3 \
-	ppa:webupd8team/y-ppa-manager \
-	ppa:blahota/texstudio"
+	ppa:webupd8team/y-ppa-manager"
 
-# Extra repositories
+# Removed
+# ppa:blahota/texstudio
+# ppa:freyja-dev/unity-tweak-tool-daily
+# ppa:tualatrix/ppa
+
+# Add extra repositories
 for ppa in ${ppas}; do
 	apt-add-repository -y ${ppa}
 done
 
-apt-get update
+# EXTRA SOFTWARE (organized in groups)
 
-#==============================================================================
-
-# EXTRA SOFTWARE - Separated in sections
+#===========================
+read -r -d '' APPSCSV <<-EOM
 
 # Administrator tools
-apt-get install -y bleachbit
-apt-get install -y y-ppa-manager
-apt-get install -y ppa-purge
-apt-get install -y gufw
-apt-get install -y x11vnc
-apt-get install -y vncviewer
-apt-get install -y vnc4server
-apt-get install -y remmina
-apt-get install -y remmina-plugin-nx
-apt-get install -y remmina-plugin-rdp
-apt-get install -y remmina-plugin-vnc
-apt-get install -y remmina-plugin-gnome
-apt-get install -y nmap
-apt-get install -y nxserver
-apt-get install -y nxclient
-apt-get install -y nxnode
-apt-get install -y tree
-apt-get install -y dos2unix
-apt-get install -y curl
-apt-get install -y tcpdump
-apt-get install -y gparted
-apt-get install -y preload
-apt-get install -y strace
-apt-get install -y makedev
+bleachbit,
+y-ppa-manager,
+ppa-purge,
+gufw,
+x11vnc,
+vncviewer,
+vnc4server,
+remmina,
+remmina-plugin-nx,
+remmina-plugin-rdp,
+remmina-plugin-vnc,
+remmina-plugin-gnome,
+nmap,
+nxserver,
+nxclient,
+nxnode,
+tree,
+dos2unix,
+curl,
+tcpdump,
+gparted,
+preload,
+strace,
+makedev,
 
-# Shels and terminals
-apt-get install -y ipython
-apt-get install -y terminator
-apt-get install -y minicom
-apt-get install -y cutecom
-apt-get install -y gtkterm
+# Shells and terminals
+ipython,
+terminator,
+screen,
+minicom,
+cutecom,
+gtkterm,
+shellcheck,
 
 # Window managers and tweak tools
-apt-get install -y compizconfig-settings-manager
-apt-get install -y unity-tweak-tool
-apt-get install -y sushi
-apt-get install -y gnome-session-flashback
+compizconfig-settings-manager,
+unity-tweak-tool,
+sushi,
 
 # Develop tools
-apt-get install -y valgrind
-apt-get install -y flex
-apt-get install -y bison
-apt-get install -y autoconf
-apt-get install -y automake
-apt-get install -y cmake
-apt-get install -y libboost-all-dev
-apt-get install -y subversion
-apt-get install -y rapidsvn
-apt-get install -y mercurial
-apt-get install -y git
-apt-get install -y doxygen
-apt-get install -y doxygen-latex
-apt-get install -y glade
-
+valgrind,
+flex,
+bison,
+autoconf,
+zautomake,
+cmake,
+libboost-all-dev,
+subversion,
+rapidsvn,
+mercurial,
+git,
+doxygen,
+doxygen-latex,
+glade,
 
 # Editors, IDEs and Edition tools
-apt-get install -y sublime-text-installer
-apt-get install -y geany
-apt-get install -y geany-common
-apt-get install -y geany-plugins
-apt-get install -y geany-plugin-addons
-apt-get install -y gedit-plugins
-apt-get install -y vim
-apt-get install -y texmaker
-apt-get install -y texlive-full
-apt-get install -y texstudio
-apt-get install -y meld
-apt-get install -y colordiff
-apt-get install -y arduino
-apt-get install -y codeblocks
-apt-get install -y eric
+sublime-text-installer,
+geany,
+geany-common,
+geany-plugins,
+geany-plugin-addons,
+gedit-plugins,
+vim,
+texmaker,
+texlive-full,
+texstudio,
+meld,
+colordiff,
+arduino,
+codeblocks,
+eric,
 
 # Internet and communication
-apt-get install -y google-chrome-stable
-apt-get install -y skype
+google-chrome-stable,
+skype,
 
 # Image edition
-apt-get install -y gimp
-apt-get install -y inkscape
-apt-get install -y imagemagick
-apt-get install -y shutter
+gimp,
+inkscape,
+shutter,
 
 # Audio and Video
-apt-get install -y adobe-flashplugin
-apt-get install -y ubuntu-restricted-extras
-apt-get install -y vlc
-apt-get install -y cheese
+adobe-flashplugin,
+ubuntu-restricted-extras,
+vlc,
+cheese,
 
 # Android
-apt-get install -y android-rules
-apt-get install -y android-tools-adb
-apt-get install -y android-tools-fastboot
-apt-get install -y android-tools-fsutils
-apt-get install -y go-mtpfs
-apt-get install -y go-mtpfs-unity
+android-rules,
+android-tools-adb,
+android-tools-fastboot,
+android-tools-fsutils,
+go-mtpfs,
+go-mtpfs-unity,
 
 # Required for others
-apt-get install -y libelf-dev
-apt-get install -y libelf1
-apt-get install -y libxss1
-apt-get install -y ureadahead
+libelf-dev,
+libelf1,
+libxss1,
+ureadahead,
 
-# Math
-apt-get install -y gnuplot
-apt-get install -y octave
-apt-get install -y scilab
-apt-get install -y lp-solve
+# Math tools
+gnuplot,
+octave,
+scilab,
+lp-solve,
 
-# MISC
-apt-get install -y oracle-java7-installer
-apt-get install -y nautilus-dropbox
-apt-get install -y virtualbox-4.3
-apt-get install -y gtkwave
-apt-get install -y eagle:i386
-apt-get install -y graphviz
-apt-get install -y p7zip-full
-apt-get install -y p7zip-rar
-apt-get install -y pdftk
-apt-get install -y cups-pdf
-apt-get install -y xpdf
-apt-get install -y gv
-apt-get install -y ghostscript
-apt-get install -y opencv
+# Misc
+oracle-java7-installer,
+oracle-java8-installer,
+oracle-java7-set-default,
+nautilus-dropbox,
+virtualbox,
+gtkwave,
+eagle,
+graphviz,
+p7zip-full,
+p7zip-rar,
+pdftk,
+cups-pdf,
+xpdf,
+gv,
+ghostscript,
+opencv,
 
 # Indicators
-apt-get install -y indicator-multiload
-apt-get install -y radiotray
+indicator-multiload,
 
 # Python related
-apt-get install -y python-all
-apt-get install -y python-dev
-apt-get install -y python-all-dev
-apt-get install -y python-setuptools
-apt-get install -y python-pip
-apt-get install -y python-matplotlib
-apt-get install -y python-numpy
-apt-get install -y python-scipy
-apt-get install -y python-scitools
-apt-get install -y python-mysqldb
-apt-get install -y python-opencv
-apt-get install -y python-qt4
-apt-get install -y python-serial
-apt-get install -y python-simplejson
-apt-get install -y python-sip
-apt-get install -y python-subversion
-apt-get install -y python-webkit
-apt-get install -y python-pandas
-apt-get install -y python-networkx
-apt-get install -y python-scikits-learn
-apt-get install -y python-scikits.statsmodels
-apt-get install -y python-sphinx
-apt-get install -y python-spyderlib
-apt-get install -y python-tables
-apt-get install -y python-pydot
-apt-get install -y python-pygraphviz
-apt-get install -y python-drmaa
-apt-get install -y python-glade2
-apt-get install -y pyro
-apt-get install -y pyro-gui
-apt-get install -y tcl
-apt-get install -y tcl-dev
-apt-get install -y tk
-apt-get install -y tk-dev
-apt-get install -y ruby
-apt-get install -y lua
-apt-get install -y perl
-apt-get install -y guile-1.8
-
+python-all,
+python-dev,
+python-all-dev,
+python-setuptools,
+python-pip,
+python-matplotlib,
+python-numpy,
+python-scipy,
+python-scitools,
+python-mysqldb,
+python-opencv,
+python-qt4,
+python-serial,
+python-simplejson,
+python-sip,
+python-subversion,
+python-webkit,
+python-pandas,
+python-networkx,
+python-scikits-learn,
+python-scikits.statsmodels,
+python-sphinx,
+python-spyderlib,
+python-tables,
+python-pydot,
+python-pygraphviz,
+python-drmaa,
+python-glade2,
+pyro,
+pyro-gui,
+tcl,
+tcl-dev,
+tk,
+tk-dev,
+ruby,
+lua,
+perl,
+guile-1.8,
 
 # Extra fonts
-apt-get install -y xfonts-base
-apt-get install -y xfonts-scalable
-apt-get install -y xfonts-100dpi
-apt-get install -y xfonts-75dpi
-apt-get install -y gsfonts-x11
-apt-get install -y xfonts-100dpi-transcoded
-apt-get install -y xfonts-75dpi-transcoded
-apt-get install -y texlive-fonts-extra
-
+xfonts-base,
+xfonts-scalable,
+xfonts-100dpi,
+xfonts-75dpi,
+gsfonts-x11,
+xfonts-100dpi-transcoded,
+xfonts-75dpi-transcoded,
+texlive-fonts-extra,
+ttf-mscorefonts-installer,
 
 # Language packs, dictionaries, helps and related tools
-apt-get install -y hyphen-en-us
-apt-get install -y hunspell
-apt-get install -y hunspell-tools
-apt-get install -y hunspell-en-us
-apt-get install -y myspell-pt-br
-apt-get install -y myspell-pt-br
-apt-get install -y ispell
-apt-get install -y iamerican-insane
-apt-get install -y ibrazilian
-apt-get install -y wamerican-huge
-apt-get install -y wbrazilian
-apt-get install -y wbritish
-apt-get install -y libreoffice-templates
-apt-get install -y libreoffice-grammarcheck
-apt-get install -y libreoffice-grammarcheck-en-us
-apt-get install -y libreoffice-l10n-en-us
-apt-get install -y libreoffice-help-pt-br
-apt-get install -y libreoffice-l10n-pt-br
+hyphen-en-us,
+hunspell,
+hunspell-tools,
+hunspell-en-us,
+myspell-pt-br,
+ispell,
+iamerican-insane,
+ibrazilian,
+wamerican-huge,
+wbrazilian,
+wbritish,
+libreoffice-templates,
+libreoffice-grammarcheck,
+libreoffice-grammarcheck-en-us,
+libreoffice-l10n-en-us,
+libreoffice-help-pt-br,
+libreoffice-l10n-pt-br,
+
+EOM
+#===========================
+
+# Workaround for a bug related ttf-mscorefonts-installer
+# https://bugs.launchpad.net/ubuntu/+source/aptitude/+bug/1543280
+chmod 777 /var/lib/update-notifier/package-data-downloads/partial
+
+# TO LEARN THE REQUIRED QUESTIONS
+# 1. Install package
+# 2. Run: sudo debconf-show [pkg-name]
+
+# Configure required answares when it is needed
+# FORMAT: <owner> <question name> <question type> <value>
+debconf-set-selections <<< "d-i msttcorefonts/accepted-mscorefonts-eula select true"
+debconf-set-selections <<< "d-i shared/accepted-oracle-license-v1-1 select true"
+debconf-set-selections <<< "d-i shared/accepted-oracle-license-v1-1 seen true"
+
+# Installation process
+export DEBIAN_FRONTEND=noninteractive
+dpkg --add-architecture i386
+apt update
+dpkg-reconfigure --force
+apt install -f -y
+apt install -y $APPS
