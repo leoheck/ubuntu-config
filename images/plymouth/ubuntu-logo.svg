@@ -14,29 +14,67 @@
    viewBox="0 0 271.25 72.5"
    id="svg2"
    version="1.1"
-   inkscape:version="0.91 r"
-   sodipodi:docname="ubuntu-logo.svg">
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="ubuntu-logo.svg"
+   inkscape:export-filename="/home/lheck/Desktop/gaph-host-config/images/plymouth/ubuntu-logo.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <defs
-     id="defs4" />
+     id="defs4">
+    <filter
+       y="-0.25"
+       height="1.5"
+       inkscape:menu-tooltip="Darkens the edge with an inner blur and adds a flexible glow"
+       inkscape:menu="Shadows and Glows"
+       inkscape:label="Dark And Glow"
+       style="color-interpolation-filters:sRGB;"
+       id="filter4374">
+      <feGaussianBlur
+         stdDeviation="5"
+         result="result6"
+         id="feGaussianBlur4376" />
+      <feComposite
+         result="result8"
+         in="SourceGraphic"
+         operator="atop"
+         in2="result6"
+         id="feComposite4378" />
+      <feComposite
+         result="result9"
+         operator="over"
+         in2="SourceAlpha"
+         in="result8"
+         id="feComposite4380" />
+      <feColorMatrix
+         values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 "
+         result="result10"
+         id="feColorMatrix4382" />
+      <feBlend
+         in="result10"
+         mode="normal"
+         in2="result6"
+         id="feBlend4384" />
+    </filter>
+  </defs>
   <sodipodi:namedview
      id="base"
-     pagecolor="#ffffff"
+     pagecolor="#858585"
      bordercolor="#666666"
      borderopacity="1.0"
-     inkscape:pageopacity="0.0"
+     inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="90.270624"
-     inkscape:cy="-133.75366"
+     inkscape:zoom="2.8"
+     inkscape:cx="78.157791"
+     inkscape:cy="-1.417724"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      showguides="false"
-     inkscape:window-width="2166"
-     inkscape:window-height="1387"
-     inkscape:window-x="391"
+     inkscape:window-width="1553"
+     inkscape:window-height="876"
+     inkscape:window-x="47"
      inkscape:window-y="24"
-     inkscape:window-maximized="0"
+     inkscape:window-maximized="1"
      units="px"
      fit-margin-top="0"
      fit-margin-left="0"
@@ -62,24 +100,41 @@
     <flowRoot
        xml:space="preserve"
        id="flowRoot4279"
-       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"><flowRegion
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="matrix(0.88520055,0,0,0.88520055,3.543155,105.12441)"><flowRegion
          id="flowRegion4281"><rect
            id="rect4283"
            width="590"
            height="170"
            x="-60"
            y="563.79077" /></flowRegion><flowPara
-         id="flowPara4285" /></flowRoot>    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="35.041702"
-       y="888.90979"
-       id="text4141"
-       sodipodi:linespacing="125%"><tspan
-         sodipodi:role="line"
-         id="tspan4143"
-         x="35.041702"
+         id="flowPara4285" /></flowRoot>    <g
+       id="g4386"
+       transform="matrix(0.88520055,0,0,0.88520055,16.060354,99.936915)">
+      <text
+         sodipodi:linespacing="125%"
+         id="text4141-0"
          y="888.90979"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:62.5px;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;fill:#ffffff">gaph</tspan></text>
+         x="35.041702"
+         style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#e6e6e6;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;filter:url(#filter4374)"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:62.5px;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;fill:#e6e6e6"
+           y="888.90979"
+           x="35.041702"
+           id="tspan4143-5"
+           sodipodi:role="line">gaph</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text4141"
+         y="888.90979"
+         x="35.041702"
+         style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:62.5px;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;fill:#ffffff"
+           y="888.90979"
+           x="35.041702"
+           id="tspan4143"
+           sodipodi:role="line">gaph</tspan></text>
+    </g>
   </g>
 </svg>
