@@ -19,7 +19,7 @@ sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/leoheck/gaph-host-con
 
 ## Histórico
 
-> Script da versão anterior pode ser encontrado em tags.
+Script da versão anterior pode ser encontrado em [releases](https://github.com/leoheck/gaph-host-config/releases).
 
 
 
