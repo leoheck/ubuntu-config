@@ -11,7 +11,7 @@ Movidas para a Wiki [aqui](https://github.com/leoheck/gaph-host-config/wiki).
 
 ## Para instalar:
 
-Em um terminal e cole o comando:
+Cole em um terminal o comando:
 
 ```
 sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/leoheck/gaph-host-config/master/configure.sh)"
