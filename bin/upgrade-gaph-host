@@ -1,11 +1,14 @@
 #!/bin/bash
 
-# Script to install gaph configurations
 # Leandro Sehnem Heck (leoheck@gmail.com)
 
-# CONFIG_SCRIPT="https://raw.githubusercontent.com/leoheck/gaph-host-config/master/configure.sh"
-CONFIG_SCRIPT="https://raw.githubusercontent.com/leoheck/gaph-host-config/ubuntu-16.04/configure.sh"
+# Script to upgrade configs
 
-UPGRADE_OPTION=3
+# GITHUB REPOSITORY CONFIG
+REPO="gaph-host-config"
+BRANCH="ubuntu-16.04"
 
-echo $UPGRADE_OPTION | sh -c "$(curl -fsSL $CONFIG_SCRIPT)"
+OPT=3
+URL="https://raw.githubusercontent.com/leoheck/${REPO}/${BRANCH}/configure.sh"
+
+echo $OPT | sh -c "$(curl -fsSL $URL)"
