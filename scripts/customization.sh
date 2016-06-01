@@ -19,10 +19,6 @@ install_cmd()
 
 	cp -f $SCRIPTDIR/images/plymouth/ubuntu-logo.png /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png
 
-echo DEBUG
-ls -lsa $SCRIPTDIR/images/plymouth/ubuntu-logo.png
-ls -lsa /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png
-
 	# UNITY-GREETER BACKUP
 	if [ ! -f /usr/share/unity-greeter/logo.png.bkp ]; then
 		cp /usr/share/unity-greeter/logo.png /usr/share/unity-greeter/logo.png.bkp
@@ -30,8 +26,8 @@ ls -lsa /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png
 
 	sed -i "s|gaphlxx|$(hostname)|g" $SCRIPTDIR/images/unity-greeter/logo.svg
 	rm -rf /tmp/logo.png
-	convert -background none $SCRIPTDIR/images/unity-greeter/logo.svg /tmp/logo.png
-	# inkscape --without-gui --export-png=/tmp/logo.png  $SCRIPTDIR/images/unity-greeter/logo.svg
+	# convert -background none $SCRIPTDIR/images/unity-greeter/logo.svg /tmp/logo.png
+	inkscape --without-gui --export-png=/tmp/logo.png  $SCRIPTDIR/images/unity-greeter/logo.svg > /dev/null
 	mv -f /tmp/logo.png /usr/share/unity-greeter/logo.png
 
 	# BACKUP

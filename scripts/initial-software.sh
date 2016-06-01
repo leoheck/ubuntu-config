@@ -38,7 +38,7 @@ python-software-properties, # Required for salt
 nslcd,                      # LDAP login support (default configs)
 ldapscripts,                # LDAP acessory scripts
 
-imagemagick,                # SVG habilities
+inkscape,                   # SVG habilities
 
 EOM
 #===========================

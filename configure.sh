@@ -219,6 +219,7 @@ configure_gaph_compatible()
 clear
 echo
 main
+clear
 
 case $choice in
 	1 ) configure_gaph_host ;;
