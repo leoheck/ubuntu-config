@@ -172,6 +172,7 @@ apply_and_upgrade_configs()
 	saltstack-config.sh -i
 	misc-hacks.sh
 	users-config.sh
+	customization.sh -i $PROJECTDIR
 	echo "$(date)" > /var/log/gaph/install-configs.done
 }
 
