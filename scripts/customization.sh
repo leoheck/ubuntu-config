@@ -24,7 +24,7 @@ install_cmd()
 		cp /usr/share/unity-greeter/logo.png /usr/share/unity-greeter/logo.png.bkp
 	fi
 
-	sed -i "s|gaphl00|$(hostname)|g" "$SCRIPTDIR"/images/unity-greeter/logo.svg
+	sed -i "s|gaphlxx|$(hostname)|g" "$SCRIPTDIR"/images/unity-greeter/logo.svg
 	convert -background none "$SCRIPTDIR"/images/unity-greeter/logo.svg /usr/share/unity-greeter/logo.png
 
 	# BACKUP
