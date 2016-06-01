@@ -16,7 +16,7 @@ PROJECTDIR=/tmp/$REPO-$BRANCH
 export PATH=./scripts:$PATH
 export PATH=$PROJECTDIR/scripts:$PATH
 
-mkdir /var/log/gaph/
+mkdir -p /var/log/gaph/
 
 # Ctrl+c function to halt execution
 control_c()
