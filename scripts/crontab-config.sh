@@ -21,11 +21,9 @@ install_crontab()
 {
 	echo "  - Installing cronjobs"
 
-	mkdir -p /etc/gaph/cron/
-
 	# BACKUP
-	if [ ! -f /etc/gaph/cron/cron.bkp ]; then
-		crontab -l > /etc/gaph/cron/cron.bkp
+	if [ ! -f /var/log/gaph/cron.bkp ]; then
+		crontab -l > /var/log/gaph/cron.bkp 2> /dev/null
 	fi
 
 	#===========================
@@ -67,13 +65,11 @@ remove_crontab()
 	echo "  - Removing cronjobs"
 
 	# Restore backup
-	if [ -f /etc/gaph/cron/cron.bkp ]; then
-		cat /etc/gaph/cron/cron.bkp > crontab
+	if [ -f /var/log/gaph/cron.bkp ]; then
+		cat /var/log/gaph/cron.bkp > crontab
 	else
 		crontab -r
 	fi
-
-	rm -rf /etc/gaph/cron/
 }
 
 case $key in
