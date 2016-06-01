@@ -5,6 +5,7 @@
 - Mudar configuração do tipo/modelo da impressora
 - Testar impressora
 - Criar um sistema que tem as configuracoes feitas
+- Improve images and logos
 
 # DONE
 - Added a nice and simple command line interface
