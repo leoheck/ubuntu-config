@@ -114,7 +114,6 @@ skype,
 # Image edition
 gimp,
 inkscape,
-imagemagick,
 shutter,
 
 # Audio and Video
