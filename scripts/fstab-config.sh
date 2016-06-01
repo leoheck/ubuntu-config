@@ -18,6 +18,8 @@ install_cmd()
 	# BACKUP
 	if [ ! -f /etc/fstab.bkp ]; then
 		cp /etc/fstab /etc/fstab.bkp
+	else
+		cp /etc/fstab.bkp /etc/fstab
 	fi
 
 	mkdir -p /users
