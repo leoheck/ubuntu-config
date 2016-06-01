@@ -122,7 +122,7 @@ install_base_software()
 	echo "  - Instaling base apps"
 	if [ ! -f /var/log/gaph/install-base.done ]; then
 		if [ ! "$DISPLAY" = "" ]; then
-			xterm -e bash -c "initial-software.sh | tee /var/log/gaph/install-base.log"
+			xterm -fa 'Monospace' -fs 10 -e bash -c "initial-software.sh | tee /var/log/gaph/install-base.log"
 		else
 			bash -c "initial-software.sh | tee /var/log/gaph/install-extra.log"
 		fi
@@ -137,7 +137,7 @@ install_extra_software()
 	# Recover from a possible bronken installation
 	if [ ! -f /var/log/gaph/install-extra.done ]; then
 		if [ ! "$DISPLAY" = "" ]; then
-			xterm -e bash -c "extra-software.sh | tee -a /var/log/gaph/install-base.log"
+			xterm -fa 'Monospace' -fs 10 -e bash -c "extra-software.sh | tee -a /var/log/gaph/install-base.log"
 		else
 			bash -c "extra-software.sh | tee -a /var/log/gaph/install-extra.log"
 		fi
