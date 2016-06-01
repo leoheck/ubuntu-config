@@ -255,5 +255,6 @@ debconf-set-selections <<< "d-i shared/accepted-oracle-license-v1-1 seen true"
 export DEBIAN_FRONTEND=noninteractive
 dpkg --add-architecture i386
 apt update
+dpkg-reconfigure --force
 apt install -f -y
 apt install -y $APPS

@@ -70,5 +70,6 @@ debconf-set-selections <<< "d-i nslcd/ldap-base: dc=gaph,dc=inf,dc=pucrs,dc=br"
 # Installation
 dpkg --add-architecture i386
 apt update
+dpkg-reconfigure --force
 apt install -f -y
 apt install -y $APPS
