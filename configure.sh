@@ -16,11 +16,14 @@ PROJECTDIR=/tmp/$REPO-$BRANCH
 export PATH=./scripts:$PATH
 export PATH=$PROJECTDIR/scripts:$PATH
 
+mkdir /var/log/gaph/
+
 # Ctrl+c function to halt execution
 control_c()
 {
-	echo -e "\n\n$0 ended by user\n"
-	exit $?
+	clear
+	echo -e "\n$0 interrupted by user :(\n"
+	kill -KILL $$
 }
 
 trap control_c SIGINT
@@ -117,29 +120,42 @@ main()
 install_base_software()
 {
 	echo "  - Instaling base apps"
-	# Recover from a possible bronken installation
-	# dpkg-reconfigure --all
-	if [ ! -f /etc/gaph/gaph.conf ]; then
+	if [ ! -f /var/log/gaph/install-base.done ]; then
 		if [ ! "$DISPLAY" = "" ]; then
-			xterm -e bash -c "initial-software.sh | tee configure.log"
+			dpkg-reconfigure --all
+			xterm -e bash -c "initial-software.sh | tee /var/log/gaph/install-base.log"
 		else
-			bash -c "initial-software.sh | tee configure.log"
+			dpkg-reconfigure --all
+			bash -c "initial-software.sh | tee /var/log/gaph/install-extra.log"
 		fi
 	fi
-	echo "    - See installation logs at configure.log"
+	echo "$(date)" > /var/log/gaph/install-base.done
+	echo "    - See installation logs at /var/log/gaph/"
 }
 
 install_extra_software()
 {
 	echo "  - Instaling extra apps, this can take hours, go take a coffe :) ... "
 	# Recover from a possible bronken installation
-	# dpkg-reconfigure --all
-	if [ ! "$DISPLAY" = "" ]; then
-		xterm -e bash -c "extra-software.sh | tee -a configure.log"
-	else
-		bash -c "extra-software.sh | tee -a configure.log"
+	if [ ! -f /var/log/gaph/install-extra.done ]; then
+		if [ ! "$DISPLAY" = "" ]; then
+			dpkg-reconfigure --all
+			xterm -e bash -c "extra-software.sh | tee -a /var/log/gaph/install-base.log"
+		else
+			dpkg-reconfigure --all
+			bash -c "extra-software.sh | tee -a /var/log/gaph/install-extra.log"
+		fi
 	fi
-	echo "    - See installation logs at configure.log"
+	echo "$(date)" > /var/log/gaph/install-extra.done
+	echo "    - See installation logs at /var/log/gaph/"
+}
+
+reboot_host()
+{
+	echo
+	echo "${RED}  HEY YO, SYSTEM WILL REBOOT IN 3 MINUTES! ${NORMAL}"
+	echo
+	shutdown -r +3 > /dev/null
 }
 
 apply_and_upgrade_configs()
@@ -159,7 +175,7 @@ apply_and_upgrade_configs()
 	saltstack-config.sh -i
 	misc-hacks.sh
 	users-config.sh
-	echo "GAPH host installed on: $(date +%Y-%m-%d-%H-%M-%S)" > /etc/gaph/gaph.conf
+	echo "$(date)" > /var/log/gaph/install-configs.done
 }
 
 revert_configurations()
@@ -179,7 +195,7 @@ revert_configurations()
 	# misc-hacks.sh
 	# users-config.sh
 	customization.sh -r
-	rm -f /etc/gaph/gaph.conf
+	rm -f /var/log/gaph/install-configs.done
 }
 
 configure_gaph_host()
@@ -191,8 +207,7 @@ configure_gaph_host()
 	install_extra_software
 	misc-hacks.sh
 	customization.sh -i $PROJECTDIR
-	echo "${RED}  The system is going to reboot in 3 minutes! ${NORMAL}"
-	shutdown -r +3 > /dev/null
+	reboot_host
 }
 
 configure_gaph_compatible()
@@ -202,10 +217,7 @@ configure_gaph_compatible()
 	install_base_software
 	install_extra_software
 	misc-hacks.sh
-	echo
-	echo "${RED}  == SYSTEM WILL REBOOT in 5 MINUTES! ${NORMAL}"
-	echo
-	shutdown -r +5 > /dev/null
+	reboot_host
 }
 
 clear

@@ -1,14 +1,14 @@
 
 # TODO
-- Hide grub menu and reduce its time
+- Hide GRUP menu and reduce its time
 - Skell improvements
-- Mudar configuração do tipo/modelo da impressora
 - Testar impressora
-- Criar um sistema que tem as configuracoes feitas
-- Improve images and logos
+- Improve logos and images
+- Mudar configuração do tipo/modelo da impressora
 - Improve Wiki
 - Improve readme.md
 - Validate working CAD
+- Drop LightDM fixed background
 
 # DONE
 - Added a nice and simple command line interface
@@ -16,4 +16,4 @@
 - LightDM fixed gaph background
 - Balcklist gdm
 - Blacklist gnome-shell
-
+- Criar um sistema que gerencia configuracoes/atualizacoes

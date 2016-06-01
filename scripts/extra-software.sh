@@ -1,22 +1,8 @@
 #!/bin/bash
 
-# Install extra software sources
 # Leandro Sehnem Heck (leoheck@gmail.com)
 
-# Ctrl+c function to halt execution
-control_c()
-{
-	echo -e "\n\n$0 ended by user\n"
-	exit $?
-}
-
-trap control_c SIGINT
-
-# Check for super power
-if [ "$(id -u)" != "0" ]; then
-	echo "Hey kid, you need to be root, call your father."
-	exit 1
-fi
+# Install EXTRA APPLICATIONS
 
 # Add google-chrome ppa
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
@@ -43,215 +29,231 @@ for ppa in ${ppas}; do
 	apt-add-repository -y ${ppa}
 done
 
-apt update
+# EXTRA SOFTWARE (organized in groups)
 
-#==============================================================================
-
-# EXTRA SOFTWARE - Separated in sections
-
-# Workaround for a bug related to ttf-mscorefonts
-# https://bugs.launchpad.net/ubuntu/+source/aptitude/+bug/1543280
-chmod 777 /var/lib/update-notifier/package-data-downloads/partial
-echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | debconf-set-selections
-apt install -y ttf-mscorefonts-installer
+#===========================
+read -r -d '' APPSCSV <<-EOM
 
 # Administrator tools
-apt install -y bleachbit
-apt install -y y-ppa-manager
-apt install -y ppa-purge
-apt install -y gufw
-apt install -y x11vnc
-apt install -y vncviewer
-apt install -y vnc4server
-apt install -y remmina
-apt install -y remmina-plugin-nx
-apt install -y remmina-plugin-rdp
-apt install -y remmina-plugin-vnc
-apt install -y remmina-plugin-gnome
-apt install -y nmap
-apt install -y nxserver
-apt install -y nxclient
-apt install -y nxnode
-apt install -y tree
-apt install -y dos2unix
-apt install -y curl
-apt install -y tcpdump
-apt install -y gparted
-apt install -y preload
-apt install -y strace
-apt install -y makedev
+bleachbit,
+y-ppa-manager,
+ppa-purge,
+gufw,
+x11vnc,
+vncviewer,
+vnc4server,
+remmina,
+remmina-plugin-nx,
+remmina-plugin-rdp,
+remmina-plugin-vnc,
+remmina-plugin-gnome,
+nmap,
+nxserver,
+nxclient,
+nxnode,
+tree,
+dos2unix,
+curl,
+tcpdump,
+gparted,
+preload,
+strace,
+makedev,
 
-# Shels and terminals
-apt install -y ipython
-apt install -y terminator
-apt install -y screen
-apt install -y minicom
-apt install -y cutecom
-apt install -y gtkterm
-apt install -y shellcheck
+# Shells and terminals
+ipython,
+terminator,
+screen,
+minicom,
+cutecom,
+gtkterm,
+shellcheck,
 
 # Window managers and tweak tools
-apt install -y compizconfig-settings-manager
-apt install -y unity-tweak-tool
-apt install -y sushi
+compizconfig-settings-manager,
+unity-tweak-tool,
+sushi,
 
 # Develop tools
-apt install -y valgrind
-apt install -y flex
-apt install -y bison
-apt install -y autoconf
-apt install -y automake
-apt install -y cmake
-apt install -y libboost-all-dev
-apt install -y subversion
-apt install -y rapidsvn
-apt install -y mercurial
-apt install -y git
-apt install -y doxygen
-apt install -y doxygen-latex
-apt install -y glade
+valgrind,
+flex,
+bison,
+autoconf,
+zautomake,
+cmake,
+libboost-all-dev,
+subversion,
+rapidsvn,
+mercurial,
+git,
+doxygen,
+doxygen-latex,
+glade,
 
 # Editors, IDEs and Edition tools
-apt install -y sublime-text-installer
-apt install -y geany
-apt install -y geany-common
-apt install -y geany-plugins
-apt install -y geany-plugin-addons
-apt install -y gedit-plugins
-apt install -y vim
-apt install -y texmaker
-apt install -y texlive-full
-apt install -y texstudio
-apt install -y meld
-apt install -y colordiff
-apt install -y arduino
-apt install -y codeblocks
-apt install -y eric
+sublime-text-installer,
+geany,
+geany-common,
+geany-plugins,
+geany-plugin-addons,
+gedit-plugins,
+vim,
+texmaker,
+texlive-full,
+texstudio,
+meld,
+colordiff,
+arduino,
+codeblocks,
+eric,
 
 # Internet and communication
-apt install -y google-chrome-stable
-apt install -y skype
+google-chrome-stable,
+skype,
 
 # Image edition
-apt install -y gimp
-apt install -y inkscape
-apt install -y imagemagick
-apt install -y shutter
+gimp,
+inkscape,
+imagemagick,
+shutter,
 
 # Audio and Video
-apt install -y adobe-flashplugin
-apt install -y ubuntu-restricted-extras
-apt install -y vlc
-apt install -y cheese
+adobe-flashplugin,
+ubuntu-restricted-extras,
+vlc,
+cheese,
 
 # Android
-apt install -y android-rules
-apt install -y android-tools-adb
-apt install -y android-tools-fastboot
-apt install -y android-tools-fsutils
-apt install -y go-mtpfs
-apt install -y go-mtpfs-unity
+android-rules,
+android-tools-adb,
+android-tools-fastboot,
+android-tools-fsutils,
+go-mtpfs,
+go-mtpfs-unity,
 
 # Required for others
-apt install -y libelf-dev
-apt install -y libelf1
-apt install -y libxss1
-apt install -y ureadahead
+libelf-dev,
+libelf1,
+libxss1,
+ureadahead,
 
-# Math
-apt install -y gnuplot
-apt install -y octave
-apt install -y scilab
-apt install -y lp-solve
+# Math tools
+gnuplot,
+octave,
+scilab,
+lp-solve,
 
-# MISC
-echo "debconf shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections
-echo "debconf shared/accepted-oracle-license-v1-1 seen true" | debconf-set-selections
-
-apt install -y oracle-java7-installer
-apt install -y oracle-java7-set-default
-apt install -y nautilus-dropbox
-apt install -y virtualbox
-apt install -y gtkwave
-apt install -y eagle
-apt install -y graphviz
-apt install -y p7zip-full
-apt install -y p7zip-rar
-apt install -y pdftk
-apt install -y cups-pdf
-apt install -y xpdf
-apt install -y gv
-apt install -y ghostscript
-apt install -y opencv
+# Misc
+oracle-java7-installer,
+oracle-java8-installer,
+oracle-java7-set-default,
+nautilus-dropbox,
+virtualbox,
+gtkwave,
+eagle,
+graphviz,
+p7zip-full,
+p7zip-rar,
+pdftk,
+cups-pdf,
+xpdf,
+gv,
+ghostscript,
+opencv,
 
 # Indicators
-apt install -y indicator-multiload
+indicator-multiload,
 
 # Python related
-apt install -y python-all
-apt install -y python-dev
-apt install -y python-all-dev
-apt install -y python-setuptools
-apt install -y python-pip
-apt install -y python-matplotlib
-apt install -y python-numpy
-apt install -y python-scipy
-apt install -y python-scitools
-apt install -y python-mysqldb
-apt install -y python-opencv
-apt install -y python-qt4
-apt install -y python-serial
-apt install -y python-simplejson
-apt install -y python-sip
-apt install -y python-subversion
-apt install -y python-webkit
-apt install -y python-pandas
-apt install -y python-networkx
-apt install -y python-scikits-learn
-apt install -y python-scikits.statsmodels
-apt install -y python-sphinx
-apt install -y python-spyderlib
-apt install -y python-tables
-apt install -y python-pydot
-apt install -y python-pygraphviz
-apt install -y python-drmaa
-apt install -y python-glade2
-apt install -y pyro
-apt install -y pyro-gui
-apt install -y tcl
-apt install -y tcl-dev
-apt install -y tk
-apt install -y tk-dev
-apt install -y ruby
-apt install -y lua
-apt install -y perl
-apt install -y guile-1.8
+python-all,
+python-dev,
+python-all-dev,
+python-setuptools,
+python-pip,
+python-matplotlib,
+python-numpy,
+python-scipy,
+python-scitools,
+python-mysqldb,
+python-opencv,
+python-qt4,
+python-serial,
+python-simplejson,
+python-sip,
+python-subversion,
+python-webkit,
+python-pandas,
+python-networkx,
+python-scikits-learn,
+python-scikits.statsmodels,
+python-sphinx,
+python-spyderlib,
+python-tables,
+python-pydot,
+python-pygraphviz,
+python-drmaa,
+python-glade2,
+pyro,
+pyro-gui,
+tcl,
+tcl-dev,
+tk,
+tk-dev,
+ruby,
+lua,
+perl,
+guile-1.8,
 
 # Extra fonts
-apt install -y xfonts-base
-apt install -y xfonts-scalable
-apt install -y xfonts-100dpi
-apt install -y xfonts-75dpi
-apt install -y gsfonts-x11
-apt install -y xfonts-100dpi-transcoded
-apt install -y xfonts-75dpi-transcoded
-apt install -y texlive-fonts-extra
+xfonts-base,
+xfonts-scalable,
+xfonts-100dpi,
+xfonts-75dpi,
+gsfonts-x11,
+xfonts-100dpi-transcoded,
+xfonts-75dpi-transcoded,
+texlive-fonts-extra,
+ttf-mscorefonts-installer,
 
 # Language packs, dictionaries, helps and related tools
-apt install -y hyphen-en-us
-apt install -y hunspell
-apt install -y hunspell-tools
-apt install -y hunspell-en-us
-apt install -y myspell-pt-br
-apt install -y ispell
-apt install -y iamerican-insane
-apt install -y ibrazilian
-apt install -y wamerican-huge
-apt install -y wbrazilian
-apt install -y wbritish
-apt install -y libreoffice-templates
-apt install -y libreoffice-grammarcheck
-apt install -y libreoffice-grammarcheck-en-us
-apt install -y libreoffice-l10n-en-us
-apt install -y libreoffice-help-pt-br
-apt install -y libreoffice-l10n-pt-br
+hyphen-en-us,
+hunspell,
+hunspell-tools,
+hunspell-en-us,
+myspell-pt-br,
+ispell,
+iamerican-insane,
+ibrazilian,
+wamerican-huge,
+wbrazilian,
+wbritish,
+libreoffice-templates,
+libreoffice-grammarcheck,
+libreoffice-grammarcheck-en-us,
+libreoffice-l10n-en-us,
+libreoffice-help-pt-br,
+libreoffice-l10n-pt-br,
+
+EOM
+#===========================
+
+# Workaround for a bug related ttf-mscorefonts-installer
+# https://bugs.launchpad.net/ubuntu/+source/aptitude/+bug/1543280
+chmod 777 /var/lib/update-notifier/package-data-downloads/partial
+
+# TO LEARN THE REQUIRED QUESTIONS
+# 1. Install package
+# 2. Run: sudo debconf-show [pkg-name]
+
+# Configure required answares when it is needed
+# FORMAT: <owner> <question name> <question type> <value>
+debconf-set-selections <<< "d-i msttcorefonts/accepted-mscorefonts-eula select true"
+debconf-set-selections <<< "d-i shared/accepted-oracle-license-v1-1 select true"
+debconf-set-selections <<< "d-i shared/accepted-oracle-license-v1-1 seen true"
+
+# Installation process
+export DEBIAN_FRONTEND=noninteractive
+dpkg --add-architecture i386
+apt update
+apt install -f -y
+apt install -y $APPS
