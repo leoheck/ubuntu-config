@@ -29,8 +29,6 @@ install_crontab()
 	#===========================
 	read -r -d '' CRONCONF <<-EOM
 
-	MAILTO="leoheck+gaphcron@gmail.com"
-
 	# Test (1x/min)
 	# * * * * * touch /tmp/gaph-upgrade-\$(date +\%Y-\%m-\%d:\%H:\%M)
 
