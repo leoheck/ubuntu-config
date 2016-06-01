@@ -29,7 +29,9 @@ install_cmd()
 
 	# BACKUP
 	if [ ! -f /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override ]; then
-		cp /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override.bkp
+		if [ -f /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override ]; then
+			cp /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override.bkp
+		fi
 	fi
 
 	# Adiciona o papel de parede do GAPH pra tela de login
