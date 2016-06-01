@@ -12,7 +12,9 @@ install_cmd()
 
 	# BACKUP
 	if [ ! -f /etc/cups/printers.conf.bkp ]; then
-		cp /etc/cups/printers.conf /etc/cups/printers.conf.bkp
+		if [ -f /etc/cups/printers.conf ]; then
+			cp /etc/cups/printers.conf /etc/cups/printers.conf.bkp
+		fi
 	fi
 
 	service cups stop 2> /dev/null
@@ -80,7 +82,6 @@ install_cmd()
 	echo "$PRINTERS" > /etc/cups/printers.conf
 
 	service cups start
-
 }
 
 remove_cmd()
