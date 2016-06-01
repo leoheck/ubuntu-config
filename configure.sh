@@ -69,8 +69,8 @@ fi
 main()
 {
 	if [ -f $PKG ]; then
-		printf "%s  Removing previows /tmp/$PKG ...%s\n" "${BLUE}" "${NORMAL}"
-		rm -rf $PKG
+		printf "%s  Removing previews /tmp/$PKG ...%s\n" "${BLUE}" "${NORMAL}"
+		rm -rf /tmp/$PKG
 	fi
 
 	printf "%s  Donwloading an updated $PKG from github in /tmp ...%s\n" "${BLUE}" "${NORMAL}"
