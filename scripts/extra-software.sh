@@ -88,6 +88,7 @@ apt install -y screen
 apt install -y minicom
 apt install -y cutecom
 apt install -y gtkterm
+apt install -y shellcheck
 
 # Window managers and tweak tools
 apt install -y compizconfig-settings-manager

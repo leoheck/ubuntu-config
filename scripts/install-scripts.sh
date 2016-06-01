@@ -15,7 +15,7 @@ install_scripts()
 {
 	SCRIPTDIR=$1
 	echo "  - Installing user scripts"
-	cp -f $SCRIPTDIR/bin/upgrade-gaph-host /usr/bin
+	cp -f "$SCRIPTDIR"/bin/upgrade-gaph-host /usr/bin
 }
 
 remove_scripts()
@@ -28,7 +28,7 @@ case $key in
 
 	-i|--install)
 	SCRIPTDIR="$2"
-	install_scripts $SCRIPTDIR
+	install_scripts "$SCRIPTDIR"
 	exit 0
 	;;
 

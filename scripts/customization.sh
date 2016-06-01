@@ -1,17 +1,8 @@
 #!/bin/bash
 
-# LightDM Configuration (PRECISA REINICIAR PARA FUNCIONAR)
 # Leandro Sehnem Heck (leoheck@gmail.com)
 
-# This script configures the main login screen (LightDM)
-# Features:
-# - Enable manual login (for network users)
-# - Enable the guest login
-# - Hide logged users
-
-# Some informations
-# https://wiki.ubuntu.com/LightDM
-# http://askubuntu.com/questions/155611/no-unity-greeter-conf-file-in-etc-lightdm
+# Add some style
 
 key="$1"
 
@@ -26,15 +17,15 @@ install_cmd()
 		cp /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png.bkp
 	fi
 
-	convert -background none $SCRIPTDIR/images/plymouth/ubuntu-logo.svg /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png
+	convert -background none "$SCRIPTDIR"/images/plymouth/ubuntu-logo.svg /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png
 
 	# UNITY-GREETER BACKUP
 	if [ ! -f /usr/share/unity-greeter/logo.png.bkp ]; then
 		cp /usr/share/unity-greeter/logo.png /usr/share/unity-greeter/logo.png.bkp
 	fi
 
-	sed -i "s|gaphl00|$(hostname)|g" $SCRIPTDIR/images/unity-greeter/logo.svg
-	convert -background none $SCRIPTDIR/images/unity-greeter/logo.svg /usr/share/unity-greeter/logo.png
+	sed -i "s|gaphl00|$(hostname)|g" "$SCRIPTDIR"/images/unity-greeter/logo.svg
+	convert -background none "$SCRIPTDIR"/images/unity-greeter/logo.svg /usr/share/unity-greeter/logo.png
 
 	# BACKUP
 	if [ ! -f /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override ]; then
@@ -42,7 +33,7 @@ install_cmd()
 	fi
 
 	# Adiciona o papel de parede do GAPH pra tela de login
-	cp $SCRIPTDIR/images/unity-greeter/night.png /usr/share/backgrounds/
+	cp "$SCRIPTDIR"/images/unity-greeter/night.png /usr/share/backgrounds/
 
 	#===========================
 	read -r -d '' GAPHCONF <<-EOM
@@ -80,7 +71,7 @@ case $key in
 
 	-i|--install)
 	SCRIPTDIR="$2"
-	install_cmd $SCRIPTDIR
+	install_cmd "$SCRIPTDIR"
 	exit 0
 	;;
 

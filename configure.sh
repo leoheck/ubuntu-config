@@ -1,28 +1,20 @@
 #!/bin/bash
 
-# GAPH Hosts main configuration script
 # Leandro Sehnem Heck (leoheck@gmail.com)
 
-# TODO:
-# ADD A NICE (AND SIMPLE) COMMAND-LINE INTERFACE TO THIS SCRIPT
-# fixar o wallpaper padrao do lightdm e colocar um padrao
-# Melhorar os arquivos de skell
-# Adicionar indicator de impressora online, e a impressora do andar no sistema
-# Remover opção GNOME, GNOME-SHELL, (black list it!)
-# Ubuntu 16.04 tem o novo apt, usar somente ele
-# Criar arquivo /etc/gaph-host com a data da instalacao indicando que a maquina esta configurada
-# Verificar a seguranca da senha padrao de root
+# MAIN SCRIPT TO CONFIGURE INSTALL GAPH CONFIGS
 
-REPO=gaph-host-config
-GITHUB="https://github.com/leoheck/$REPO/archive/"
-# BRANCH="master"
+# GITHUB REPOSITORY CONFIG
+REPO="gaph-host-config"
 BRANCH="ubuntu-16.04"
+
+GITHUB="https://github.com/leoheck/$REPO/archive/"
 PKG=$BRANCH.zip
 
-LOCALDIR=/tmp/$REPO-$BRANCH
+PROJECTDIR=/tmp/$REPO-$BRANCH
 
-export PATH=$LOCALDIR/scripts:$PATH
 export PATH=./scripts:$PATH
+export PATH=$PROJECTDIR/scripts:$PATH
 
 # Ctrl+c function to halt execution
 control_c()
@@ -33,87 +25,78 @@ control_c()
 
 trap control_c SIGINT
 
-# Check for super power
-if [ "$(id -u)" != "0" ]; then
-	echo "Hey kid, you need superior powers, Go call your father."
-	exit 1
+# Use colors only if connected to a terminal which supports them
+if which tput >/dev/null 2>&1; then
+	ncolors=$(tput colors)
 fi
 
-main()
-{
-  # Use colors, but only if connected to a terminal, and that terminal
-  # supports them.
-  if which tput >/dev/null 2>&1; then
-	  ncolors=$(tput colors)
-  fi
-  if [ -t 1 ] && [ -n "$ncolors" ] && [ "$ncolors" -ge 8 ]; then
+if [ -t 1 ] && [ -n "$ncolors" ] && [ "$ncolors" -ge 8 ]; then
 	RED="$(tput setaf 1)"
 	GREEN="$(tput setaf 2)"
 	YELLOW="$(tput setaf 3)"
 	BLUE="$(tput setaf 4)"
 	BOLD="$(tput bold)"
 	NORMAL="$(tput sgr0)"
-  else
+else
 	RED=""
 	GREEN=""
 	YELLOW=""
 	BLUE=""
 	BOLD=""
 	NORMAL=""
-  fi
+fi
 
-  # Only enable exit-on-error after the non-critical colorization stuff,
-  # which may fail on systems lacking tput or terminfo
-	set -e
+# Only enable exit-on-error after the non-critical colorization stuff,
+# which may fail on systems lacking tput or terminfo
+set -e
 
-	if [ -f /etc/gaph/gaph.conf ]; then
-		printf "${YELLOW}  GAPH configuration already appyled!${NORMAL}\n"
-		exit 0
-	fi
+# Prevent the cloned repository from having insecure permissions. Failing to do
+# so causes compinit() calls to fail with "command not found: compdef" errors
+# for users with insecure umasks (e.g., "002", allowing group writability). Note
+# that this will be ignored under Cygwin by default, as Windows ACLs take
+# precedence over umasks except for filesystems mounted with option "noacl".
+umask g-w,o-w
 
-	# Prevent the cloned repository from having insecure permissions. Failing to do
-	# so causes compinit() calls to fail with "command not found: compdef" errors
-	# for users with insecure umasks (e.g., "002", allowing group writability). Note
-	# that this will be ignored under Cygwin by default, as Windows ACLs take
-	# precedence over umasks except for filesystems mounted with option "noacl".
-	umask g-w,o-w
+# Check for super power
+if [ "$(id -u)" != "0" ]; then
+	echo -e "\n${YELLOW}Hey kid, you need superior powers, Go call your father.${NORMAL}\n"
+	exit 1
+fi
 
-	echo
-
+main()
+{
 	if [ -f $PKG ]; then
-		printf "${BLUE}  Removing previows /tmp/$PKG ...${NORMAL}\n"
+		printf "%s  Removing previows /tmp/$PKG ...%s\n" "${BLUE}" "${NORMAL}"
 		rm -rf $PKG
 	fi
 
-	printf "${BLUE}  Donwloading an updated $PKG from github in /tmp ...${NORMAL}\n"
+	printf "%s  Donwloading an updated $PKG from github in /tmp ...%s\n" "${BLUE}" "${NORMAL}"
 	wget $GITHUB/$PKG -O /tmp/$PKG 2> /dev/null
 
-	if [ -d $LOCALDIR ]; then
-		printf "${BLUE}  Removing $LOCALDIR ...${NORMAL}\n"
-		rm -rf $LOCALDIR
+	if [ -d $PROJECTDIR ]; then
+		printf "%s  Removing $PROJECTDIR ...%s\n" "${BLUE}" "${NORMAL}"
+		rm -rf $PROJECTDIR
 	fi
 
-	printf "${BLUE}  Unpacking /tmp/$PKG into $LOCALDIR ...${NORMAL}\n"
+	printf "%s  Unpacking /tmp/$PKG into $PROJECTDIR ...%s\n" "${BLUE}" "${NORMAL}"
 	unzip -qq /tmp/$PKG -d /tmp > /dev/null
 
-
-	printf "${GREEN}"
-	echo '   _____  _____  _____  _____           _____  _____  _____  _____   '
-	echo '  |   __||  _  ||  _  ||  |  |   ___   |  |  ||     ||   __||_   _|  '
-	echo '  |  |  ||     ||   __||     |  |___|  |     ||  |  ||__   |  | |    '
-	echo '  |_____||__|__||__|   |__|__|         |__|__||_____||_____|  |_|    '
-	echo '                                                                     '
-	echo "  CONFIGURATION SCRIPT (MADE FOR UBUNTU 16.04)"
-	printf "${NORMAL}"
-
+	echo "${GREEN}"
+	echo "   _____  _____  _____  _____           _____  _____  _____  _____   "
+	echo "  |   __||  _  ||  _  ||  |  |   ___   |  |  ||     ||   __||_   _|  "
+	echo "  |  |  ||     ||   __||     |  |___|  |     ||  |  ||__   |  | |    "
+	echo "  |_____||__|__||__|   |__|__|         |__|__||_____||_____|  |_|    "
+	echo "                                                                     "
+	echo "  CONFIGURATION SCRIPT (MADE FOR UBUNTU 16.04)${NORMAL}"
 	echo
-	echo "  [1] TURN MACHINE INTO A GAPH HOST"
+	echo "  [1] ${BOLD}TURN MACHINE INTO A GAPH HOST${NORMAL}"
 	echo "  [2] Turn machine into a GAPH-COMPATIBLE host (install programs only)"
 	echo "  [3] Apply/upgrade configurations only"
 	echo "  [4] Remove configurations (revert configuration files only)"
 	echo
 	echo "${BLUE}  Hit CTRL+C to exit${NORMAL}"
 	echo
+
 	while :;
 	do
 	  read -p '  #> ' choice
@@ -131,20 +114,40 @@ main()
 	done
 }
 
-apply_configurations_only()
+install_base_software()
+{
+	echo "  - Instaling base apps"
+	# Recover from a possible bronken installation
+	# dpkg-reconfigure --all
+	if [ ! -f /etc/gaph/gaph.conf ]; then
+		if [ ! "$DISPLAY" = "" ]; then
+			xterm -e bash -c "initial-software.sh | tee configure.log"
+		else
+			bash -c "initial-software.sh | tee configure.log"
+		fi
+	fi
+	echo "    - See installation logs at configure.log"
+}
+
+install_extra_software()
+{
+	echo "  - Instaling extra apps, this can take hours, go take a coffe :) ... "
+	# Recover from a possible bronken installation
+	# dpkg-reconfigure --all
+	if [ ! "$DISPLAY" = "" ]; then
+		xterm -e bash -c "extra-software.sh | tee -a configure.log"
+	else
+		bash -c "extra-software.sh | tee -a configure.log"
+	fi
+	echo "    - See installation logs at configure.log"
+}
+
+apply_and_upgrade_configs()
 {
 	echo
 	echo "${YELLOW}  Appling/updating configurations ...${NORMAL}"
-
-	if [ ! -f /etc/gaph/gaph.conf ]; then
-		if [ ! $DISPLAY = "" ]; then
-			xterm -e bash -c "initial-software.sh | tee configure.log"
-		else
-			initial-software.sh | tee configure.log
-		fi
-	fi
-
-	install-scripts.sh -i $LOCALDIR
+	install_base_software
+	install-scripts.sh -i $PROJECTDIR
 	crontab-config.sh -i
 	admin-config.sh -i
 	config-printers.sh -i
@@ -156,7 +159,6 @@ apply_configurations_only()
 	saltstack-config.sh -i
 	misc-hacks.sh
 	users-config.sh
-
 	echo "GAPH host installed on: $(date +%Y-%m-%d-%H-%M-%S)" > /etc/gaph/gaph.conf
 }
 
@@ -177,7 +179,6 @@ revert_configurations()
 	# misc-hacks.sh
 	# users-config.sh
 	customization.sh -r
-
 	rm -f /etc/gaph/gaph.conf
 }
 
@@ -185,54 +186,38 @@ configure_gaph_host()
 {
 	echo
 	echo "${YELLOW}  Configuring GAPH host ...${NORMAL}"
-	echo "  - Instaling base apps"
-	if [ ! $DISPLAY = "" ]; then
-		xterm -e bash -c "initial-software.sh | tee configure.log"
-	else
-		initial-software.sh | tee configure.log
-	fi
-	apply_configurations_only
-	echo "  - Instaling extra apps, this can take hours, go take a coffe :) ... "
-	if [ ! $DISPLAY = "" ]; then
-		xterm -e bash -c "extra-software.sh | tee -a configure.log"
-	else
-		extra-software.sh | tee -a configure.log
-	fi
+	install_base_software
+	apply_and_upgrade_configs
+	install_extra_software
 	misc-hacks.sh
-	customization.sh -i $LOCALDIR
-	echo "${RED}  The system is going down for reboot in 5 minutes! ${NORMAL}"
-	shutdown -r +5 > /dev/null
+	customization.sh -i $PROJECTDIR
+	echo "${RED}  The system is going to reboot in 3 minutes! ${NORMAL}"
+	shutdown -r +3 > /dev/null
 }
 
 configure_gaph_compatible()
 {
 	echo
 	echo "${YELLOW}  Configuring GAPH COMPATIBLE host ...${NORMAL}"
-	echo "  - Instaling all apps, this can take hours, go take a coffe :) ... "
-	if [ ! $DISPLAY = "" ]; then
-		xterm -e bash -c "initial-software.sh | tee configure.log"
-		xterm -e bash -c "extra-software.sh | tee -a configure.log"
-	else
-		initial-software.sh | tee configure.log
-		extra-software.sh | tee -a configure.log
-	fi
+	install_base_software
+	install_extra_software
 	misc-hacks.sh
-	echo "${RED}  The system is going down for reboot in 5 minutes! ${NORMAL}"
+	echo
+	echo "${RED}  == SYSTEM WILL REBOOT in 5 MINUTES! ${NORMAL}"
+	echo
 	shutdown -r +5 > /dev/null
 }
 
-
 clear
+echo
 main
 
 case $choice in
 	1 ) configure_gaph_host ;;
 	2 ) configure_gaph_compatible ;;
-	3 ) apply_configurations_only ;;
+	3 ) apply_and_upgrade_configs ;;
 	4 ) revert_configurations ;;
 esac
 
 echo "${YELLOW}  DONE!${NORMAL}"
 echo
-
-exit 0
