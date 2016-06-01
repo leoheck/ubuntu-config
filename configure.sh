@@ -133,7 +133,7 @@ install_base_software()
 
 install_extra_software()
 {
-	echo "  - Instaling extra apps, this can take hours, go take a coffe :) ... "
+	echo "  - Instaling extra apps, ${GREEN}this can take hours, go take a coffe :)${NORMAL} ... "
 	# Recover from a possible bronken installation
 	if [ ! -f /var/log/gaph/install-extra.done ]; then
 		if [ ! "$DISPLAY" = "" ]; then
