@@ -6,6 +6,9 @@
 - Testar impressora
 - Criar um sistema que tem as configuracoes feitas
 - Improve images and logos
+- Improve Wiki
+- Improve readme.md
+- Validate working CAD
 
 # DONE
 - Added a nice and simple command line interface
