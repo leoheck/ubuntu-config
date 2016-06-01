@@ -6,7 +6,7 @@
 
 # GITHUB REPOSITORY CONFIG
 REPO="gaph-host-config"
-BRANCH="ubuntu-16.04"
+BRANCH="master"
 
 GITHUB="https://github.com/leoheck/$REPO/archive/"
 PKG=$BRANCH.zip
