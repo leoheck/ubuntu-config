@@ -21,7 +21,9 @@ install_cmd()
 
 	# BACKUP
 	if [ ! -f /etc/lightdm/lightdm.conf.bkp ]; then
-		cp /etc/lightdm/lightdm.conf /etc/lightdm/lightdm.conf.bkp
+		if [ -f /etc/lightdm/lightdm.conf ]; then
+			cp /etc/lightdm/lightdm.conf /etc/lightdm/lightdm.conf.bkp
+		fi
 	fi
 
 	#===========================
