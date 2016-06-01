@@ -163,7 +163,7 @@ apply_and_upgrade_configs()
 	install-scripts.sh -i $PROJECTDIR
 	crontab-config.sh -i
 	admin-config.sh -i
-	config-printers.sh -i
+	config-printers.sh -i $PROJECTDIR
 	fstab-config.sh -i
 	hosts-config.sh -i
 	lightdm-config.sh -i
