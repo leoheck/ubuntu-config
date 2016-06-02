@@ -236,6 +236,8 @@ libreoffice-l10n-pt-br,
 EOM
 #===========================
 
+APPS=$(echo "$APPSCSV" | sed '/^\s*\#.*$/d' | cut -d, -f1 | sed '/^\s*$/d')
+
 # Workaround for a bug related ttf-mscorefonts-installer
 # https://bugs.launchpad.net/ubuntu/+source/aptitude/+bug/1543280
 chmod 777 /var/lib/update-notifier/package-data-downloads/partial
