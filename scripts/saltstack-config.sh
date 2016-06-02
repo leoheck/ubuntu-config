@@ -37,7 +37,9 @@ install_cmd()
 	service salt-master stop 2> /dev/null
 
 	# Update the master address
-	sed -i "s/^[#]*master:.*/master: rodos/g" /etc/salt/minion
+	if [ -f /etc/salt/minion ]; then
+		sed -i "s/^[#]*master:.*/master: rodos/g" /etc/salt/minion
+	fi
 
 	service salt-master start 2> /dev/null
 }
