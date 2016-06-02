@@ -12,7 +12,7 @@
 # Cadence
 - [ ] conformal/141
 - [ ] conformal/152
-- [x] edi/110 ------- missing libraries for encounter
+- [x] edi/110
 - [ ] et/141
 - [ ] et/151
 - [ ] ets/131
@@ -51,7 +51,7 @@
 - [ ] gcc/4.9.3
 - [ ] gurobi/6.5
 - [ ] jdk/1.7.0
-- [ ] mars/4.1 ------- isso nao tinha que estar em SESD?
+- [ ] mars/4.1
 - [ ] matlab/R2014a
 - [ ] metaace/2.13
 - [ ] mips-elf/4.1.1-hemps
