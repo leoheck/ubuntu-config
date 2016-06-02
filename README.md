@@ -9,7 +9,7 @@ Modificado para homogeneizar as máquinas do laboratório com **Ubuntu 16.04**.
 
 ![menus example](https://raw.githubusercontent.com/leoheck/gaph-host-config/master/images/menus.png)
 
-## Instalação:
+## Instalação
 
 Instale o Ubuntu 16.04.
 > Para máquinas do GAPH, siga instruções da [Wiki](https://github.com/leoheck/gaph-host-config/wiki).
