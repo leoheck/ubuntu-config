@@ -19,11 +19,19 @@ install_cmd()
 
 	# BACKUP
 	if [ ! -f /etc/salt/minion.bkp ]; then
-		cp /etc/salt/minion /etc/salt/minion.bkp
+		if [ -f /etc/salt/minion ]; then
+			cp /etc/salt/minion /etc/salt/minion.bkp
+		fi
+	else
+		cp /etc/salt/minion.bkp /etc/salt/minion
 	fi
 
 	if [ ! -f /etc/salt/minion_id.bkp ]; then
-		cp /etc/salt/minion_id /etc/salt/minion_id.bkp
+		if [ -f /etc/salt/minion_id ]; then
+			cp /etc/salt/minion_id /etc/salt/minion_id.bkp
+		fi
+	else
+		cp /etc/salt/minion_id.bkp /etc/salt/minion_id
 	fi
 
 	service salt-master stop 2> /dev/null
