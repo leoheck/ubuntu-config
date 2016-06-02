@@ -5,20 +5,21 @@
 
 echo "  - Applying MISC hacks"
 
-# Update some lib paths (IMPORTANT)
-ln -s -f /usr/lib/x86_64-linux-gnu/crt?.o   /lib/
-ln -s -f /usr/lib/x86_64-linux-gnu/libm.so  /lib/libm.so
-ln -s -f /usr/lib/x86_64-linux-gnu/librt.so /lib/librt.so
-ln -s -f /usr/lib/x86_64-linux-gnu/libc.so  /lib/libc.so
-ln -s -f /usr/lib/x86_64-linux-gnu/libdl.so /lib/libdl.so
-ln -s -f /usr/lib/x86_64-linux-gnu/libdl.a  /lib/libdl.a
-
+# Update some lib paths (IMPORTANT many CAD require this)
+ln -s -f /usr/lib/x86_64-linux-gnu/crt?.o        /lib/
+ln -s -f /usr/lib/x86_64-linux-gnu/libm.so       /lib/libm.so
+ln -s -f /usr/lib/x86_64-linux-gnu/librt.so      /lib/librt.so
+ln -s -f /usr/lib/x86_64-linux-gnu/libc.so       /lib/libc.so
+ln -s -f /usr/lib/x86_64-linux-gnu/libdl.so      /lib/libdl.so
+ln -s -f /usr/lib/x86_64-linux-gnu/libdl.a       /lib/libdl.a
 ln -s -f /usr/lib/x86_64-linux-gnu/libjpeg.so.8  /lib/libjpeg.so.62
-
-# missing libxp6 library, how to install this?
-
-# Library for LEC
 ln -s -f /lib/x86_64-linux-gnu/libncurses.so.5.9 /lib/libtermcap.so.2
+
+# WORKAROUND for missing libxp6 library in Ubuntu 16.04
+# Use libxp6 from Ubuntu 14.04 repositories
+wget "http://mirrors.kernel.org/ubuntu/pool/main/libx/libxp/libxp6_1.0.2-1ubuntu1_amd64.deb"
+dpkg -i libxp6_1.0.2-1ubuntu1_amd64.deb
+rm libxp6_1.0.2-1ubuntu1_amd64.deb
 
 # Hack some shells
 rm -rf /bin/sh
