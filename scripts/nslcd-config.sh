@@ -26,7 +26,7 @@ install_cmd()
 		cp /etc/nslcd.conf.bkp /etc/nslcd.conf
 	fi
 
-	service nslcd stop
+	service nslcd stop 2> /dev/null
 
 	sed -i "s/^uri.*/uri ldap:\/\/rodos.inf.pucrs.br/" /etc/nslcd.conf
 	sed -i "s/^base.*/base dc=gaph,dc=inf,dc=pucrs,dc=br/" /etc/nslcd.conf
@@ -34,20 +34,20 @@ install_cmd()
 	echo -e '\n# Change default home mountpoint' >> /etc/nslcd.conf
 	echo -e '\nmap passwd homedirectory "/users/$uid"\n' >> /etc/nslcd.conf
 
-	service nslcd start
+	service nslcd start 2> /dev/null
 }
 
 remove_cmd()
 {
 	echo "  - Reverting /etc/nslcd.conf"
 
-	service nslcd stop
+	service nslcd stop 2> /dev/null
 
 	if [ -f /etc/nslcd.conf.bkp ]; then
 		mv /etc/nslcd.conf.bkp /etc/nslcd.conf
 	fi
 
-	service nslcd start
+	service nslcd start 2> /dev/null
 }
 
 case $key in
