@@ -69,10 +69,12 @@ apt-mark hold ubuntu-mate-desktop > /dev/null
 debconf-set-selections <<< "d-i nslcd/ldap-uris: ldap://rodos.inf.pucrs.br/"
 debconf-set-selections <<< "d-i nslcd/ldap-base: dc=gaph,dc=inf,dc=pucrs,dc=br"
 
+# This guy is reseting settings above
+#dpkg-reconfigure --force
+
 # Installation
 dpkg --add-architecture i386
 apt update
-dpkg-reconfigure --force
 apt install -f -y
 
 # Install apps individually
