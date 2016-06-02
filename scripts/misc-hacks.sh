@@ -1,7 +1,8 @@
 #!/bin/bash
 
-# Some hacks to support our CAD and misc customizations
 # Leandro Sehnem Heck (leoheck@gmail.com)
+
+# HACKS to support our CAD and some misc customizations
 
 echo "  - Applying MISC hacks"
 
