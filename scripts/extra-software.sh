@@ -256,4 +256,9 @@ dpkg --add-architecture i386
 apt update
 dpkg-reconfigure --force
 apt install -f -y
-apt install -y $APPS
+
+#apt install -y $APPS
+# Install apps individually
+for APP in $APPS; do
+	apt install -y $APP
+done
