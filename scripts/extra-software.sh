@@ -250,11 +250,13 @@ debconf-set-selections <<< "d-i msttcorefonts/accepted-mscorefonts-eula select t
 debconf-set-selections <<< "d-i shared/accepted-oracle-license-v1-1 select true"
 debconf-set-selections <<< "d-i shared/accepted-oracle-license-v1-1 seen true"
 
+# This guy resets configs above (ISSUE)
+#dpkg-reconfigure --force
+
 # Installation process
 export DEBIAN_FRONTEND=noninteractive
 dpkg --add-architecture i386
 apt update
-dpkg-reconfigure --force
 apt install -f -y
 
 #apt install -y $APPS
