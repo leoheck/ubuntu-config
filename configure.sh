@@ -102,8 +102,7 @@ main()
 
 	while :;
 	do
-	  choice=1
-	  read -p '  #> [1]: ' choice
+	  read -p '  #> : ' choice
 	  case $choice in
 		1 ) break ;;
 		2 ) break ;;
