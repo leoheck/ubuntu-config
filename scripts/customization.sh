@@ -27,8 +27,7 @@ install_cmd()
 	sed -i "s|gaphlxx|$(hostname)|g" $SCRIPTDIR/images/unity-greeter/logo.svg
 	rm -rf /tmp/logo.png
 	# convert -background none $SCRIPTDIR/images/unity-greeter/logo.svg /tmp/logo.png
-	inkscape --without-gui --export-png=/tmp/logo.png  $SCRIPTDIR/images/unity-greeter/logo.svg > /dev/null
-	mv -f /tmp/logo.png /usr/share/unity-greeter/logo.png
+	/usr/bin/inkscape --without-gui --export-png=/usr/share/unity-greeter/logo.png $SCRIPTDIR/images/unity-greeter/logo.svg > /dev/null
 
 	# BACKUP
 	if [ ! -f /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override.bkp ]; then
