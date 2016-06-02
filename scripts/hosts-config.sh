@@ -19,7 +19,8 @@ install_cmd()
 	fi
 
 	HOSTNAME=$(hostname)
-	IP=$(ifconfig | grep 10.32. | tr -s '[:space:]' | cut -d' ' -f3 | cut -d: -f2)
+	#IP=$(ifconfig | grep 10.32. | tr -s '[:space:]' | cut -d' ' -f3 | cut -d: -f2)
+	IP=$(ifconfig | grep 10.32 | cut -d: -f2 | cut -d' ' -f1)
 
 	# Inicialmente clona o arquivo pronto do soft64
 	if [ -f /soft64/admin/etc/hosts_current ]; then
