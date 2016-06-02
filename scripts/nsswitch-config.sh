@@ -16,7 +16,11 @@ install_cmd()
 
 	# BACKUP
 	if [ ! -f /etc/nsswitch.conf.bkp ]; then
-		cp /etc/nsswitch.conf /etc/nsswitch.conf.bkp
+		if [ -f /etc/nsswitch.conf ]; then
+			cp /etc/nsswitch.conf /etc/nsswitch.conf.bkp
+		fi
+	else
+		cp /etc/nsswitch.conf.bkp /etc/nsswitch.conf
 	fi
 
 	sed -i "s/^passwd:.*/passwd: compat ldap/" /etc/nsswitch.conf
