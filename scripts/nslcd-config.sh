@@ -19,7 +19,11 @@ install_cmd()
 
 	# BACKUP
 	if [ ! -f /etc/nslcd.conf.bkp ]; then
-		cp /etc/nslcd.conf /etc/nslcd.conf.bkp
+		if [ -f /etc/nslcd.conf ]; then
+			cp /etc/nslcd.conf /etc/nslcd.conf.bkp
+		fi
+	else
+		cp /etc/nslcd.conf.bkp /etc/nslcd.conf
 	fi
 
 	service nslcd stop
