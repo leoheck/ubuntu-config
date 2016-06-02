@@ -133,9 +133,9 @@ install_extra_software()
 {
 	echo "  - Instaling extra apps, ${GREEN}this can take hours, go take a coffe :)${NORMAL} ... "
 	if [ ! "$DISPLAY" = "" ]; then
-		xterm -fa 'Monospace' -fs 10 -e bash -c "extra-software.sh | tee -a /var/log/gaph/install-base.log"
+		xterm -fa 'Monospace' -fs 10 -e bash -c "extra-software.sh | tee /var/log/gaph/install-base.log"
 	else
-		bash -c "extra-software.sh | tee -a /var/log/gaph/install-extra.log"
+		bash -c "extra-software.sh | tee /var/log/gaph/install-extra.log"
 	fi
 	echo "$(date)" > /var/log/gaph/install-extra.done
 	echo "    - See installation logs at /var/log/gaph"
@@ -155,19 +155,19 @@ apply_and_upgrade_configs()
 	echo
 	echo "${YELLOW}  Appling/updating configurations ...${NORMAL}"
 	install_base_software
-	install-scripts.sh -i $PROJECTDIR
-	crontab-config.sh -i
-	admin-config.sh -i
-	config-printers.sh -i $PROJECTDIR
-	fstab-config.sh -i
-	hosts-config.sh -i
-	lightdm-config.sh -i
-	nslcd-config.sh -i
-	nsswitch-config.sh -i
-	saltstack-config.sh -i
-	misc-hacks.sh
-	users-config.sh
-	customization.sh -i $PROJECTDIR
+	install-scripts.sh -i $PROJECTDIR | tee /var/log/gaph/install-scripts.log
+	crontab-config.sh -i | tee /var/log/gaph/crontab-config.log
+	admin-config.sh -i | tee /var/log/gaph/admin-config.log
+	config-printers.sh -i $PROJECTDIR | tee /var/log/gaph/config-printers.log
+	fstab-config.sh -i | tee /var/log/gaph/fstab-config.log
+	hosts-config.sh -i | tee /var/log/gaph/hosts-config.log
+	lightdm-config.sh -i | tee /var/log/gaph/lightdm-config.log
+	nslcd-config.sh -i | tee /var/log/gaph/nslcd-config.log
+	nsswitch-config.sh -i | tee /var/log/gaph/nsswitch-config.log
+	saltstack-config.sh -i | tee /var/log/gaph/saltstack-config.log
+	misc-hacks.sh | tee /var/log/gaph/misc-hacks.log
+	users-config.sh | tee /var/log/gaph/users-config.log
+	customization.sh -i $PROJECTDIR | tee /var/log/gaph/customization.log
 	echo "$(date)" > /var/log/gaph/install-configs.done
 }
 
