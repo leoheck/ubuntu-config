@@ -120,12 +120,10 @@ main()
 install_base_software()
 {
 	echo "  - Instaling base apps"
-	if [ ! -f /var/log/gaph/install-base.done ]; then
-		if [ ! "$DISPLAY" = "" ]; then
-			xterm -fa 'Monospace' -fs 10 -e bash -c "initial-software.sh | tee /var/log/gaph/install-base.log"
-		else
-			bash -c "initial-software.sh | tee /var/log/gaph/install-extra.log"
-		fi
+	if [ ! "$DISPLAY" = "" ]; then
+		xterm -fa 'Monospace' -fs 10 -e bash -c "initial-software.sh | tee /var/log/gaph/install-base.log"
+	else
+		bash -c "initial-software.sh | tee /var/log/gaph/install-extra.log"
 	fi
 	echo "$(date)" > /var/log/gaph/install-base.done
 	echo "    - See installation logs at /var/log/gaph"
@@ -134,13 +132,10 @@ install_base_software()
 install_extra_software()
 {
 	echo "  - Instaling extra apps, ${GREEN}this can take hours, go take a coffe :)${NORMAL} ... "
-	# Recover from a possible bronken installation
-	if [ ! -f /var/log/gaph/install-extra.done ]; then
-		if [ ! "$DISPLAY" = "" ]; then
-			xterm -fa 'Monospace' -fs 10 -e bash -c "extra-software.sh | tee -a /var/log/gaph/install-base.log"
-		else
-			bash -c "extra-software.sh | tee -a /var/log/gaph/install-extra.log"
-		fi
+	if [ ! "$DISPLAY" = "" ]; then
+		xterm -fa 'Monospace' -fs 10 -e bash -c "extra-software.sh | tee -a /var/log/gaph/install-base.log"
+	else
+		bash -c "extra-software.sh | tee -a /var/log/gaph/install-extra.log"
 	fi
 	echo "$(date)" > /var/log/gaph/install-extra.done
 	echo "    - See installation logs at /var/log/gaph"
