@@ -68,7 +68,7 @@ fi
 
 main()
 {
-	if [ -f $PKG ]; then
+	if [ -f /tmp/$PKG ]; then
 		printf "%s  Removing previews /tmp/$PKG ...%s\n" "${BLUE}" "${NORMAL}"
 		rm -rf /tmp/$PKG
 	fi
