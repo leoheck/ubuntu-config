@@ -18,7 +18,7 @@ ln -s -f /lib/x86_64-linux-gnu/libncurses.so.5.9 /lib/libtermcap.so.2
 
 # WORKAROUND for missing libxp6 library in Ubuntu 16.04
 # Use libxp6 from Ubuntu 14.04 repositories
-wget "http://mirrors.kernel.org/ubuntu/pool/main/libx/libxp/libxp6_1.0.2-1ubuntu1_amd64.deb" > /dev/null
+wget "http://mirrors.kernel.org/ubuntu/pool/main/libx/libxp/libxp6_1.0.2-1ubuntu1_amd64.deb" > /dev/null 2>&1
 dpkg -i libxp6_1.0.2-1ubuntu1_amd64.deb > /dev/null
 rm -f libxp6_1.0.2-1ubuntu1_amd64.deb 
 
