@@ -22,7 +22,7 @@ install_cmd()
 	fi
 
 	# Acho que esse arquivo tem que ter o mesmo nome da impressora
-	cp $SCRIPTDIR/cups/cups/COPY3212.ppd /etc/cups/ppd/COPY3212.ppd
+	cp $SCRIPTDIR/cups/COPY3212.ppd /etc/cups/ppd/COPY3212.ppd
 
 	service cups stop 2> /dev/null
 
