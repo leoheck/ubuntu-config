@@ -43,7 +43,7 @@ inkscape,                   # SVG habilities
 EOM
 #===========================
 
-APPS=$(echo $APPSCSV | sed '/^\s*\#.*$/d' | cut -d, -f1 | sed '/^\s*$/d')
+APPS=$(echo "$APPSCSV" | sed '/^\s*\#.*$/d' | cut -d, -f1 | sed '/^\s*$/d')
 
 if [ ! -f /etc/apt/sources.list.bkp ]; then
 	cp /etc/apt/sources.list /etc/apt/sources.list.bkp
