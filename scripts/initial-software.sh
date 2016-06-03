@@ -66,6 +66,7 @@ apt-mark hold ubuntu-mate-desktop > /dev/null
 
 # Configure required answares when it is needed
 # FORMAT: <owner> <question name> <question type> <value>
+# https://bugs.launchpad.net/ubuntu/+source/nss-pam-ldapd/+bug/1063923
 debconf-set-selections <<< "nslcd nslcd/ldap-uris: ldap://rodos.inf.pucrs.br/"
 debconf-set-selections <<< "nslcd nslcd/ldap-base: dc=gaph,dc=inf,dc=pucrs,dc=br"
 
