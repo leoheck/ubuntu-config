@@ -80,5 +80,5 @@ apt install -f -y
 
 # Install apps individually
 for APP in $APPS; do
-	apt install -y $APP
+	apt-get install -y $APP
 done
