@@ -264,5 +264,5 @@ apt install -f -y
 #apt install -y $APPS
 # Install apps individually
 for APP in $APPS; do
-	apt install -y $APP
+	apt-get install -y $APP
 done
