@@ -121,7 +121,7 @@ install_base_software()
 {
 	echo "  - Instaling base apps"
 	if [ ! "$DISPLAY" = "" ]; then
-		xterm -fa 'Monospace' -fs 10 -e "bash -c 'initial-software.sh | tee /var/log/gaph/install-base.log'"
+		xterm -title 'Base APPs Instalation' -fa 'Monospace' -fs 10 -e "bash -c 'initial-software.sh | tee /var/log/gaph/install-base.log'"
 	else
 		bash -c "initial-software.sh | tee /var/log/gaph/install-extra.log"
 	fi
@@ -133,7 +133,7 @@ install_extra_software()
 {
 	echo "  - Instaling extra apps, ${GREEN}this can take hours, go take a coffe :)${NORMAL} ... "
 	if [ ! "$DISPLAY" = "" ]; then
-		xterm -fa 'Monospace' -fs 10 -e "bash -c 'extra-software.sh | tee /var/log/gaph/install-base.log'"
+		xterm -title 'Extra APPs Instalation' -fa 'Monospace' -fs 10 -e "bash -c 'extra-software.sh | tee /var/log/gaph/install-base.log'"
 	else
 		bash -c "extra-software.sh | tee /var/log/gaph/install-extra.log"
 	fi
