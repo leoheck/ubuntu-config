@@ -65,13 +65,10 @@ apt-mark hold ubuntu-mate-desktop > /dev/null
 # 2. Run: sudo debconf-show [pkg-name]
 
 # Configure required answares when it is needed
-# FORMAT: <owner> <question name> <question type> <value>
-# https://bugs.launchpad.net/ubuntu/+source/nss-pam-ldapd/+bug/1063923
-debconf-set-selections <<< "nslcd nslcd/ldap-uris: ldap://rodos.inf.pucrs.br/"
-debconf-set-selections <<< "nslcd nslcd/ldap-base: dc=gaph,dc=inf,dc=pucrs,dc=br"
-
-# This guy is reseting settings above
-#dpkg-reconfigure --force
+# Configure PAM for LDAP user logins
+# https://github.com/SunilMohanAdapa/freedombox-setup/blob/master/setup.d/30_ldap-server
+echo nslcd nslcd/ldap-uris string "ldap://rodos.inf.pucrs.br/" | debconf-set-selections
+echo nslcd nslcd/ldap-base string "dc=gaph,dc=inf,dc=pucrs,dc=br" | debconf-set-selections
 
 # Installation
 dpkg --add-architecture i386
@@ -80,5 +77,5 @@ apt install -f -y
 
 # Install apps individually
 for APP in $APPS; do
-	apt-get install -y $APP
+	DEBIAN_FRONTEND=noninteractive apt-get install -y $APP
 done
