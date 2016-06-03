@@ -54,11 +54,24 @@ sed -i "s/#deb http/deb http/" /etc/apt/sources.list
 sed -i "s/#deb-src http/deb-src http/" /etc/apt/sources.list
 
 # Blacklist some applications
-apt-mark hold gdm > /dev/null
-apt-mark hold gnome-shell > /dev/null
-apt-mark hold gnome-session-flashback > /dev/null
-apt-mark hold ubuntu-mate-core > /dev/null
-apt-mark hold ubuntu-mate-desktop > /dev/null
+#===========================
+read -r -d '' BLACKLISTS <<-EOM
+gdm3
+gnome-shell
+gnome-session-flashback
+ubuntu-mate-core
+ubuntu-mate-desktop
+EOM
+#===========================
+
+for APP in $BLACKLISTS; 
+do
+	cat > /etc/apt/preferences.d/$APP <<-EOF
+	Package: $APP
+	Pin: release *
+	Pin-Priority: -1
+	EOF
+done
 
 # TO LEARN THE REQUIRED QUESTIONS
 # 1. Install package
