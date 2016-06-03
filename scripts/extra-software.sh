@@ -261,8 +261,7 @@ dpkg --add-architecture i386
 apt update
 apt install -f -y
 
-#apt install -y $APPS
 # Install apps individually
 for APP in $APPS; do
-	apt-get install -y $APP
+	DEBIAN_FRONTEND=noninteractive apt-get install -y $APP
 done
