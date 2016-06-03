@@ -66,8 +66,8 @@ apt-mark hold ubuntu-mate-desktop > /dev/null
 
 # Configure required answares when it is needed
 # FORMAT: <owner> <question name> <question type> <value>
-debconf-set-selections <<< "d-i nslcd/ldap-uris: ldap://rodos.inf.pucrs.br/"
-debconf-set-selections <<< "d-i nslcd/ldap-base: dc=gaph,dc=inf,dc=pucrs,dc=br"
+debconf-set-selections <<< "nslcd nslcd/ldap-uris: ldap://rodos.inf.pucrs.br/"
+debconf-set-selections <<< "nslcd nslcd/ldap-base: dc=gaph,dc=inf,dc=pucrs,dc=br"
 
 # This guy is reseting settings above
 #dpkg-reconfigure --force
