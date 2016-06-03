@@ -126,20 +126,20 @@ install_base_software()
 		bash -c "initial-software.sh | tee /var/log/gaph/install-base.log"
 	fi
 	echo "$(date)" > /var/log/gaph/install-base.done
-	echo "    - See installation logs at /var/log/gaph/install-base.log"
+	echo "    - See logs in /var/log/gaph/install-base.log"
 }
 
 install_extra_software()
 {
 	echo "  - Instaling extra apps ..."
-	echo "${GREEN}  - THIS CAN TAKE HOURS, go take a coffe :)${NORMAL}"
+	echo "${GREEN}    - THIS CAN TAKE HOURS, go take a coffe :)${NORMAL}"
 	if [ ! "$DISPLAY" = "" ]; then
 		xterm -title 'Extra APPs Installation' -fa 'Monospace' -fs 10 -e "bash -c 'extra-software.sh | tee /var/log/gaph/install-extra.log'"
 	else
 		bash -c "extra-software.sh | tee /var/log/gaph/install-extra.log"
 	fi
 	echo "$(date)" > /var/log/gaph/install-extra.done
-	echo "    - See installation logs at /var/log/gaph/install-extra.log"
+	echo "    - See logs in /var/log/gaph/install-extra.log"
 }
 
 reboot_host()
