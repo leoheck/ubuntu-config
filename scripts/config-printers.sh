@@ -24,7 +24,7 @@ install_cmd()
 	# Acho que esse arquivo tem que ter o mesmo nome da impressora
 	cp $SCRIPTDIR/cups/COPY3212.ppd /etc/cups/ppd/COPY3212.ppd
 
-	service cups stop 2> /dev/null
+	service cups stop &> /dev/null
 
 	#===========================
 	read -r -d '' PRINTERS <<-EOM
@@ -85,7 +85,7 @@ install_cmd()
 
 	echo "$PRINTERS" > /etc/cups/printers.conf
 
-	service cups start
+	service cups start &> /dev/null
 }
 
 remove_cmd()
@@ -94,13 +94,13 @@ remove_cmd()
 
 	rm -rf /etc/cups/ppd/COPY3212.ppd
 
-	service cups stop 2> /dev/null
+	service cups stop &> /dev/null
 
 	if [ -f /etc/cups/printers.conf.bkp ]; then
 		mv /etc/cups/printers.conf.bkp /etc/cups/printers.conf
 	fi
 
-	service cups start
+	service cups start &> /dev/null
 }
 
 case $key in
