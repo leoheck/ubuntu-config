@@ -1,6 +1,3 @@
-
-**EM TESTES, Quase lá...**
-
 # Configuração das Máquinas do GAPH
 
 Modificado para homogeneizar as máquinas do laboratório com **Ubuntu 16.04**.
