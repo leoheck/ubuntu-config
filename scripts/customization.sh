@@ -14,10 +14,14 @@ install_cmd()
 
 	# PLYMOUNTH BACKUP
 	if [ ! -f /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png.bkp ]; then
-		cp /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png.bkp
+		if [ -f /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png ]; then
+			cp /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png.bkp
+		fi
 	fi
 
-	cp -f $SCRIPTDIR/images/plymouth/ubuntu-logo.png /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png
+	if [ -d /usr/share/plymouth/themes/ubuntu-logo/ ]; then
+		cp -f $SCRIPTDIR/images/plymouth/ubuntu-logo.png /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png
+	fi
 
 	# UNITY-GREETER BACKUP
 	if [ ! -f /usr/share/unity-greeter/logo.png.bkp ]; then
