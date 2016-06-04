@@ -34,8 +34,8 @@ install_crontab()
 
 	# Upgrade gaph config from github (1x/week)
 	# 0 0 * * 0 /usr/bin/upgrade-gaph-host
-	# TESTING 1x/min
-	* * * * * /usr/bin/upgrade-gaph-host
+	# TESTING (1x/day)
+	0 0 * * * /usr/bin/upgrade-gaph-host
 
 	# Keep /etc/salt/minion updated and running (1x/day)
 	0 2 * * * echo "$(hostname)" > /etc/salt/minion_id; sed -i "s/^[#]*master:.*/master: rodos/g" /etc/salt/minion; service salt-minion restart
