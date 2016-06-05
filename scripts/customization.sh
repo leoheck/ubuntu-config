@@ -2,7 +2,7 @@
 
 # Leandro Sehnem Heck (leoheck@gmail.com)
 
-# Add some style
+# Add some style to the GAPH host
 
 key="$1"
 
@@ -15,28 +15,36 @@ install_cmd()
 	# PLYMOUNTH BACKUP
 	if [ ! -f /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png.bkp ]; then
 		if [ -f /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png ]; then
-			cp /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png.bkp
+			cp -f /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png.bkp
 		fi
 	fi
 
+	# Plymouth on Ubuntu 16.04
 	if [ -d /usr/share/plymouth/themes/ubuntu-logo/ ]; then
-		cp -f $SCRIPTDIR/images/plymouth/ubuntu-logo.png /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png
+		cp -f $SCRIPTDIR/images/plymouth/ubuntu-logo.png /usr/share/plymouth/themes/ubuntu-logo/
+	fi
+
+	# Plymouth on Ubuntu 14.04
+	if [ -d /lib/plymouth/themes/ubuntu-logo/ ]; then
+		cp -f $SCRIPTDIR/images/plymouth/ubuntu-logo.png /lib/plymouth/themes/ubuntu-logo/
 	fi
 
 	# UNITY-GREETER BACKUP
 	if [ ! -f /usr/share/unity-greeter/logo.png.bkp ]; then
-		cp /usr/share/unity-greeter/logo.png /usr/share/unity-greeter/logo.png.bkp
+		cp -f /usr/share/unity-greeter/logo.png /usr/share/unity-greeter/logo.png.bkp
 	fi
 
 	#sed -i "s|gaphlxx|$(hostname)|g" $SCRIPTDIR/images/unity-greeter/logo.svg
 	# convert -background none $SCRIPTDIR/images/unity-greeter/logo.svg $SCRIPTDIR/images/unity-greeter/logo.svg
 	#/usr/bin/inkscape --without-gui --export-png=/usr/share/unity-greeter/logo.png $SCRIPTDIR/images/unity-greeter/logo.svg > /dev/null
-	cp -f $SCRIPTDIR/images/unity-greeter/logo.png /usr/share/unity-greeter/
+	if [ -d /usr/share/unity-greeter/ ]; then
+		cp -f $SCRIPTDIR/images/unity-greeter/logo.png /usr/share/unity-greeter/
+	fi
 
 	# BACKUP
 	if [ ! -f /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override.bkp ]; then
 		if [ -f /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override ]; then
-			cp /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override.bkp
+			cp -f /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override.bkp
 		fi
 	fi
 
@@ -63,15 +71,15 @@ remove_cmd()
 	echo "  - Reverting GAPH host customization"
 
 	if [ -f /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png.bkp ]; then
-		mv /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png.bkp /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png
+		mv -f /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png.bkp /usr/share/plymouth/themes/ubuntu-logo/ubuntu-logo.png
 	fi
 
 	if [ -f /usr/share/unity-greeter/logo.png.bkp ]; then
-		mv /usr/share/unity-greeter/logo.png.bkp /usr/share/unity-greeter/logo.png
+		mv -f /usr/share/unity-greeter/logo.png.bkp /usr/share/unity-greeter/logo.png
 	fi
 
 	if [ -f /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override.bkp ]; then
-		mv /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override.bkp /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override
+		mv -f /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override.bkp /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override
 	fi
 }
 
