@@ -56,7 +56,7 @@ install_cmd()
 
 	[com.canonical.unity-greeter]
 	#draw-user-backgrounds=false
-	background='/usr/share/backgrounds/night.png'
+	#background='/usr/share/backgrounds/night.png'
 
 	EOM
 	#===========================
