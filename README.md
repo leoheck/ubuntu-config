@@ -4,8 +4,6 @@ Modificado para homogeneizar as máquinas do laboratório com **Ubuntu 16.04**.
 
 **Pode ser usado pelos alunos em seus computadores pessoais**.
 
-<!--> Script da versão anterior pode ser encontrado em [releases](https://github.com/leoheck/gaph-host-config/releases).-->
-
 ![menus example](https://raw.githubusercontent.com/leoheck/gaph-host-config/master/images/menus.png)
 
 ## Instalação
