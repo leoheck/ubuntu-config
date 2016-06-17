@@ -196,7 +196,7 @@ configure_gaph_host()
 {
 	echo
 	echo "${YELLOW}  Configuring GAPH host ...${NORMAL}"
-	install_base_software
+	#install_base_software
 	apply_and_upgrade_configs
 	install_extra_software
 	reboot_host
