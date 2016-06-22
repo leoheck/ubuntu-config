@@ -142,6 +142,10 @@ octave,
 scilab,
 lp-solve,
 
+# Hardware tools
+iverilog
+#ghdl (precisa de repositorio)
+
 # Misc
 oracle-java7-installer,
 oracle-java8-installer,
