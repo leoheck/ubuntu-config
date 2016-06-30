@@ -6,6 +6,13 @@
 
 echo "  - Applying MISC hacks"
 
+# Faking a RedHat/Centos
+read -d '' os_release <<-EOF
+# Faking a RedHat/Centos
+CentOS release 5.11 (Final)
+EOF
+echo "$os_release" > /etc/redhat-release
+
 # Update some lib paths (IMPORTANT many CAD require this)
 ln -s -f /usr/lib/x86_64-linux-gnu/crt?.o        /lib/
 ln -s -f /usr/lib/x86_64-linux-gnu/libm.so       /lib/libm.so
