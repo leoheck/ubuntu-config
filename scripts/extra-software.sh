@@ -17,10 +17,12 @@ ppas="\
 	ppa:shutter/ppa \
 	ppa:webupd8team/java \
 	ppa:webupd8team/sublime-text-3 \
-	ppa:pgavin/ghdl \
 	ppa:webupd8team/y-ppa-manager"
 
+
+
 # Removed
+# ppa:pgavin/ghdl \
 # ppa:blahota/texstudio
 # ppa:freyja-dev/unity-tweak-tool-daily
 # ppa:tualatrix/ppa
@@ -145,7 +147,7 @@ lp-solve,
 
 # Hardware tools
 iverilog
-ghdl
+#ghdl
 
 # Misc
 oracle-java7-installer,
