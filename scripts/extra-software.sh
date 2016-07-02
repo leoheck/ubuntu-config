@@ -17,6 +17,7 @@ ppas="\
 	ppa:shutter/ppa \
 	ppa:webupd8team/java \
 	ppa:webupd8team/sublime-text-3 \
+	ppa:pgavin/ghdl \
 	ppa:webupd8team/y-ppa-manager"
 
 # Removed
@@ -144,7 +145,7 @@ lp-solve,
 
 # Hardware tools
 iverilog
-#ghdl (precisa de repositorio)
+ghdl
 
 # Misc
 oracle-java7-installer,
