@@ -66,8 +66,15 @@ install_cmd()
 	echo "$CRONCONF" | crontab -
 
 
-	echo "  - Installing init script"
-	cp -f "$SCRIPTDIR/init/gaph.conf" > /etc/init/gaph.conf
+	# Cria um ponto de restauracao do crontab
+	mkdir -p /etc/gaph/
+	echo "$CRONCONF" > /etc/gaph/crontab
+
+	echo "  - Installing upstart script"
+	cp -f "$SCRIPTDIR/init/gaph.conf" > /etc/init/
+
+	echo "  - Installing systemd script"
+	cp -f "$SCRIPTDIR/systemd/gaph.service" > /lib/systemd/system/
 }
 
 remove_crontab()
@@ -83,6 +90,7 @@ remove_crontab()
 
 	# Remove init script
 	rm -rf /etc/init/gaph.conf
+	rm -rf /lib/systemd/system/gaph.service
 }
 
 case $key in
