@@ -243,6 +243,15 @@ libreoffice-l10n-en-us,
 libreoffice-help-pt-br,
 libreoffice-l10n-pt-br,
 
+# Some required 32 bit libs 
+sudo apt install libncurses5:i386,
+sudo apt install libxss1:i386,
+sudo apt install libsm6:i386,
+sudo apt install libxft2:i386,
+sudo apt install libjpeg62:i386,
+sudo apt install libtiff5:i386,
+sudo apt install libmng2:i386,
+
 EOM
 #===========================
 
