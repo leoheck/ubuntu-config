@@ -34,10 +34,10 @@ key="$1"
 # Verifying if init script works
 # init-checkconf /etc/init/gaph.conf
 
-
-
-install_crontab()
+install_cmd()
 {
+	SCRIPTDIR=$1
+
 	echo "  - Installing cronjobs"
 
 	# BACKUP
@@ -66,45 +66,8 @@ install_crontab()
 	echo "$CRONCONF" | crontab -
 
 
-	#===========================
-
-	read -r -d '' INITSCRIPT <<-EOM
-
-	description "This script restores the default GAPH cronjob to keep the host updated with the user mess with things"
-	author "Leandro Heck"
-
-	start on runlevel [2345]
-	stop on runlevel [06]
-
-	post-start script
-		echo "GAPH crontab was restored"
-	end script
-
-	script
-
-		CRONCONF="
-			# Upgrade HOST (1x/day)
-			0 0 * * * root /usr/bin/upgrade-gaph-host
-
-			# Keep /etc/salt/minion updated and running (1x/day)
-			0 2 * * * echo \$(hostname) > /etc/salt/minion_id; sed -i 's/^[#]*master:.*/master: rodos/g' /etc/salt/minion; service salt-minion restart
-
-			# Update /etc/hosts file (4x/day)
-			30 7,12,18,23 * * * /soft64/admin/scripts/update-hosts.sh
-
-			# Keep SGE running (1x/hour)
-			0 * * * * root /etc/init.d/sgeexecd-ubuntu start > /dev/null 2>&1
-		"
-
-		echo "\$CRONCONF" | crontab -
-
-	end script
-
-	EOM
-	#===========================
-
-	echo -e "$INITSCRIPT" > /etc/init/gaph.conf
-
+	echo "  - Installing init script"
+	cp -f "$SCRIPTDIR/init/gaph.conf" > /etc/init/gaph.conf
 }
 
 remove_crontab()
@@ -125,7 +88,8 @@ remove_crontab()
 case $key in
 
 	-i|--install)
-	install_crontab
+	SCRIPTDIR="$2"
+	install_cmd $SCRIPTDIR
 	exit 0
 	;;
 
