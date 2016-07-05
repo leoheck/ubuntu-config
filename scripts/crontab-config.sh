@@ -24,7 +24,17 @@ key="$1"
 # Upgrade gaph config from github (1x/week)
 # 0 0 * * 0 /usr/bin/upgrade-gaph-host
 
-### Create a service to recober root contab for each restart
+# Remove files older than n-days in /sim folder (1x/day)
+#0 2 * * * root find /sim/ -mtime +25 -exec rm {} \;
+
+# Backup main local user (UID=1000) files
+# 0 2 * * * root rsync /home/.$USER-bkp (incremental..only diffs..)
+
+
+# Verifying if init script works
+# init-checkconf /etc/init/gaph.conf
+
+
 
 install_crontab()
 {
@@ -50,71 +60,50 @@ install_crontab()
 	# Keep SGE running (1x/hour)
 	0 * * * * root /etc/init.d/sgeexecd-ubuntu start > /dev/null 2>&1
 
-	# Remove files older than n-days in /sim folder (1x/day)
-	#0 2 * * * root find /sim/ -mtime +25 -exec rm {} \;
-
-	# Backup main local user (UID=1000) files
-	# 0 2 * * * root rsync /home/.$USER-bkp (incremental..only diffs..)
-
 	EOM
 	#===========================
 
 	echo "$CRONCONF" | crontab -
 
-	
+
 	#===========================
+
 	read -r -d '' INITSCRIPT <<-EOM
-	
-	# Ubuntu upstart file at /etc/init/gaph.conf
-	# Created by Leandro Heck
-	
-	# Verifying if this script works
-	# init-checkconf /etc/init/gaph.conf
-	
-	# Some basics to use the upstart (not required by my script)
-	# sudo service <servicename> <control>
-	
+
 	description "This script restores the default GAPH cronjob to keep the host updated with the user mess with things"
 	author "Leandro Heck"
-	
-	# pre-start script
-	# end script
-	
+
 	start on runlevel [2345]
 	stop on runlevel [06]
-	
-	script
-	
-	## RESTORE (ROOT) ORIGINAL CRONTAB
-	
-	CRONCONF="
-	# Upgrade HOST (1x/day)
-	0 0 * * * root /usr/bin/upgrade-gaph-host
-	
-	# Keep /etc/salt/minion updated and running (1x/day)
-	0 2 * * * echo "$(hostname)" > /etc/salt/minion_id; sed -i \"s/^[#]*master:.*/master: rodos/g\" /etc/salt/minion; service salt-minion restart
-	
-	# Update /etc/hosts file (4x/day)
-	30 7,12,18,23 * * * /soft64/admin/scripts/update-hosts.sh
-	
-	# Keep SGE running (1x/hour)
-	0 * * * * root /etc/init.d/sgeexecd-ubuntu start > /dev/null 2>&1
-	"
-	echo "$CRONCONF" > /var/log/gaph/crontab
-	
-	echo "$CRONCONF" | crontab -
-	
-	exit 0
-	
+
+	post-start script
+		echo "GAPH crontab was restored"
 	end script
-	
-	# pre-stop script
-	# end script
+
+	script
+
+		CRONCONF="
+			# Upgrade HOST (1x/day)
+			0 0 * * * root /usr/bin/upgrade-gaph-host
+
+			# Keep /etc/salt/minion updated and running (1x/day)
+			0 2 * * * echo \$(hostname) > /etc/salt/minion_id; sed -i 's/^[#]*master:.*/master: rodos/g' /etc/salt/minion; service salt-minion restart
+
+			# Update /etc/hosts file (4x/day)
+			30 7,12,18,23 * * * /soft64/admin/scripts/update-hosts.sh
+
+			# Keep SGE running (1x/hour)
+			0 * * * * root /etc/init.d/sgeexecd-ubuntu start > /dev/null 2>&1
+		"
+
+		echo "\$CRONCONF" | crontab -
+
+	end script
 
 	EOM
 	#===========================
 
-	echo "$INITSCRIPT" > /etc/init/gaph.conf
+	echo -e "$INITSCRIPT" > /etc/init/gaph.conf
 
 }
 
@@ -128,7 +117,7 @@ remove_crontab()
 	else
 		crontab -r
 	fi
-	
+
 	# Remove init script
 	rm -rf /etc/init/gaph.conf
 }
