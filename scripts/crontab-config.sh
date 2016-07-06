@@ -71,10 +71,10 @@ install_cmd()
 	echo "$CRONCONF" > /etc/gaph/crontab
 
 	echo "  - Installing upstart script"
-	cp -f "$SCRIPTDIR/init/gaph.conf" > /etc/init/gaph.conf
+	cp -f "$SCRIPTDIR/init/gaph.conf" /etc/init/gaph.conf
 
 	echo "  - Installing systemd script"
-	cp -f "$SCRIPTDIR/systemd/gaph.service" > /lib/systemd/system/gaph.service
+	cp -f "$SCRIPTDIR/systemd/gaph.service" /lib/systemd/system/gaph.service
 }
 
 remove_crontab()
