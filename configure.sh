@@ -157,7 +157,7 @@ apply_and_upgrade_configs()
 	echo "${YELLOW}  Appling/updating configurations ...${NORMAL}"
 	install_base_software
 	install-scripts.sh -i $PROJECTDIR | tee /var/log/gaph/install-scripts.log
-	crontab-config.sh $PROJECTDIR | tee /var/log/gaph/crontab-config.log
+	crontab-config.sh -i $PROJECTDIR | tee /var/log/gaph/crontab-config.log
 	admin-config.sh -i | tee /var/log/gaph/admin-config.log
 	config-printers.sh -i $PROJECTDIR | tee /var/log/gaph/config-printers.log
 	fstab-config.sh -i | tee /var/log/gaph/fstab-config.log
