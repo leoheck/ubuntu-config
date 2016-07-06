@@ -166,10 +166,10 @@ apply_and_upgrade_configs()
 	nslcd-config.sh -i | tee /var/log/gaph/nslcd-config.log
 	nsswitch-config.sh -i | tee /var/log/gaph/nsswitch-config.log
 	saltstack-config.sh -i | tee /var/log/gaph/saltstack-config.log
-	misc-hacks.sh | tee /var/log/gaph/misc-hacks.log
 	users-config.sh | tee /var/log/gaph/users-config.log
 	customization.sh -i $PROJECTDIR | tee /var/log/gaph/customization.log
 	install_extra_software
+	misc-hacks.sh | tee /var/log/gaph/misc-hacks.log
 	echo "$(date)" > /var/log/gaph/install-configs.done
 }
 
