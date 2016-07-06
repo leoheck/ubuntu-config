@@ -169,6 +169,7 @@ apply_and_upgrade_configs()
 	misc-hacks.sh | tee /var/log/gaph/misc-hacks.log
 	users-config.sh | tee /var/log/gaph/users-config.log
 	customization.sh -i $PROJECTDIR | tee /var/log/gaph/customization.log
+	install_extra_software
 	echo "$(date)" > /var/log/gaph/install-configs.done
 }
 
@@ -196,7 +197,7 @@ configure_gaph_host()
 {
 	echo
 	echo "${YELLOW}  Configuring GAPH host ...${NORMAL}"
-	#install_base_software
+	install_base_software
 	apply_and_upgrade_configs
 	install_extra_software
 	reboot_host
