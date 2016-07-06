@@ -6,6 +6,10 @@
 
 key="$1"
 
+# TO ENABLE SSH With ROOT:
+# http://askubuntu.com/questions/469143/how-to-enable-ssh-root-access-on-ubuntu-14-04
+# BY NOW THIS IS DISABLED!
+
 install_cmd()
 {
 	echo "  - Configuring admins accesss"
