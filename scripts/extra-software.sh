@@ -37,6 +37,9 @@ done
 #===========================
 read -r -d '' APPSCSV <<-EOM
 
+# Texttools
+wdiff,
+
 # Administrator tools
 bleachbit,
 y-ppa-manager,
