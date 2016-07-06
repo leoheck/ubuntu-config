@@ -11,4 +11,4 @@ BRANCH="master"
 OPT=3
 URL="https://raw.githubusercontent.com/leoheck/${REPO}/${BRANCH}/configure.sh"
 
-echo $OPT | sh -c "$(curl -fsSL $URL)"
+echo "$OPT" | sh -c "$(curl -fsSL $URL)"
