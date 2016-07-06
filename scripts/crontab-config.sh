@@ -48,6 +48,9 @@ install_cmd()
 	#===========================
 	read -r -d '' CRONCONF <<-EOM
 
+	# [WARNING] THE ROOT Crontab is updated automatically. 
+	# Put your cronjobs in the **user** crontab.
+
 	# TESTING (1x/day)
 	0 0 * * * root /usr/bin/upgrade-gaph-host
 
