@@ -14,14 +14,14 @@ EOF
 echo "$os_release" > /etc/redhat-release
 
 # Update some lib paths (IMPORTANT many CAD require this)
-ln -s -f /usr/lib/x86_64-linux-gnu/crt?.o        /lib/
-ln -s -f /usr/lib/x86_64-linux-gnu/libm.so       /lib/libm.so
-ln -s -f /usr/lib/x86_64-linux-gnu/librt.so      /lib/librt.so
-ln -s -f /usr/lib/x86_64-linux-gnu/libc.so       /lib/libc.so
-ln -s -f /usr/lib/x86_64-linux-gnu/libdl.so      /lib/libdl.so
-ln -s -f /usr/lib/x86_64-linux-gnu/libdl.a       /lib/libdl.a
-ln -s -f /usr/lib/x86_64-linux-gnu/libjpeg.so.8  /lib/libjpeg.so.62
-ln -s -f /lib/x86_64-linux-gnu/libncurses.so.5.9 /lib/libtermcap.so.2
+ln -sf /usr/lib/x86_64-linux-gnu/crt?.o        /lib/
+ln -sf /usr/lib/x86_64-linux-gnu/libm.so       /lib/libm.so
+ln -sf /usr/lib/x86_64-linux-gnu/librt.so      /lib/librt.so
+ln -sf /usr/lib/x86_64-linux-gnu/libc.so       /lib/libc.so
+ln -sf /usr/lib/x86_64-linux-gnu/libdl.so      /lib/libdl.so
+ln -sf /usr/lib/x86_64-linux-gnu/libdl.a       /lib/libdl.a
+ln -sf /usr/lib/x86_64-linux-gnu/libjpeg.so.8  /lib/libjpeg.so.62
+ln -sf /lib/x86_64-linux-gnu/libncurses.so.5.9 /lib/libtermcap.so.2
 
 # WORKAROUND for missing libxp6 library in Ubuntu 16.04
 # Use libxp6 from Ubuntu 14.04 repositories
@@ -30,21 +30,21 @@ ln -s -f /lib/x86_64-linux-gnu/libncurses.so.5.9 /lib/libtermcap.so.2
 #rm -f libxp6_1.0.2-1ubuntu1_amd64.deb 
 
 # Another 32-bit libs for Synopsys tools
-ln -s /usr/lib/i386-linux-gnu/libtiff.so.5 /usr/lib/i386-linux-gnu/libtiff.so.3
-ln -s /usr/lib/i386-linux-gnu/libmng.so.2.0.2 /usr/lib/i386-linux-gnu/libmng.so.1
+ln -sf /usr/lib/i386-linux-gnu/libtiff.so.5 /usr/lib/i386-linux-gnu/libtiff.so.3
+ln -sf /usr/lib/i386-linux-gnu/libmng.so.2.0.2 /usr/lib/i386-linux-gnu/libmng.so.1
 
 # Hack some shells
 rm -rf /bin/sh
-ln -s -f /bin/bash /bin/sh
+ln -sf /bin/bash /bin/sh
 rm -rf /bin/csh
-ln -s -f /bin/tcsh /bin/csh
+ln -sf /bin/tcsh /bin/csh
 
-# Some symbolic links
-ln -s -f /usr/bin/basename /bin/basename
-ln -s -f /usr/bin/sort /bin/sort
-ln -s -f /usr/bin/make /usr/bin/gmake
-ln -s -f /usr/bin/awk /bin/awk
-ln -s -f /usr/bin/firefox /usr/bin/netscape
+# Some symbolic links for binaries
+ln -sf /usr/bin/basename /bin/basename
+ln -sf /usr/bin/sort /bin/sort
+ln -sf /usr/bin/make /usr/bin/gmake
+ln -sf /usr/bin/awk /bin/awk
+ln -sf /usr/bin/firefox /usr/bin/netscape
 
 # Default paper size
 echo "a4" > /etc/papersize
