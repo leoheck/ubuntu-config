@@ -16,6 +16,7 @@ install_scripts()
 	SCRIPTDIR=$1
 	echo "  - Installing user scripts"
 	cp -f "$SCRIPTDIR"/bin/upgrade-gaph-host /usr/bin
+	ln -sf /usr/bin/upgrade-gaph-host /usr/bin/gaph-host-upgrade
 }
 
 remove_scripts()
