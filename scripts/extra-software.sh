@@ -253,7 +253,7 @@ libjpeg62:i386,
 libtiff5:i386,
 libmng2:i386,
 
-libxp6
+libxp6,
 
 EOM
 #===========================
