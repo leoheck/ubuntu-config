@@ -126,7 +126,7 @@ install_base_software()
 	xhost +si:localuser:$(whoami) >&/dev/null && {
 		echo "${BLUE}    - Loading the GUI, please wait...${NORMAL}"
 		xterm \
-			-title 'Running the GUI' \
+			-title 'Installing BASE Software' \
 			-fa 'Ubuntu Mono' -fs 12 \
 			-bg 'black' -fg 'white' \
 			-e "bash -c 'initial-software.sh | tee /var/log/gaph/install-base.log'"
@@ -151,7 +151,7 @@ install_extra_software()
 	xhost +si:localuser:$(whoami) >&/dev/null && {
 		echo "  - Loading the GUI, please wait..."
 		xterm \
-			-title 'Running the GUI' \
+			-title 'Installing EXTRA Software' \
 			-fa 'Ubuntu Mono' -fs 12 \
 			-bg 'black' -fg 'white' \
 			-e "bash -c 'extra-software.sh | tee /var/log/gaph/install-extra.log'"
