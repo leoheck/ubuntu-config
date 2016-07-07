@@ -145,11 +145,11 @@ install_base_software()
 install_extra_software()
 {
 	echo "  - Instaling extra apps ..."
-	echo "${BLUE}    - THIS CAN TAKE HOURS. Go take a coffe :)${NORMAL}"
+	echo "${GREEN}    - THIS CAN TAKE HOURS. Go take a coffe :)${NORMAL}"
 
 	# TESTA SE TEM DISPLAY
 	xhost +si:localuser:$(whoami) >&/dev/null && {
-		echo "  - Loading the GUI, please wait..."
+		echo "${BLUE}    - Loading the GUI, please wait...${NORMAL}"
 		xterm \
 			-title 'Installing EXTRA Software' \
 			-fa 'Ubuntu Mono' -fs 12 \
