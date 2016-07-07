@@ -78,7 +78,7 @@ install_cmd()
 
 	echo "  - Installing systemd script"
 	cp -f "$SCRIPTDIR/systemd/gaph.service" /lib/systemd/system/gaph.service
-	systemctl daemon-reload
+	/bin/systemctl daemon-reload
 }
 
 remove_crontab()
