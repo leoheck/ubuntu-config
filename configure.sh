@@ -124,7 +124,7 @@ install_base_software()
 
 	# TESTA SE TEM DISPLAY
 	xhost +si:localuser:$(whoami) >&/dev/null && {
-		echo "  - Loading the GUI, please wait..."
+		echo "${GREEN}    - Loading the GUI, please wait..."
 		xterm \
 			-title 'Running the GUI' \
 			-fa 'Ubuntu Mono' -fs 12 \
