@@ -76,9 +76,11 @@ install_cmd()
 	echo "  - Installing upstart script"
 	cp -f "$SCRIPTDIR/init/gaph.conf" /etc/init/gaph.conf
 
-	echo "  - Installing systemd script"
-	cp -f "$SCRIPTDIR/systemd/gaph.service" /lib/systemd/system/gaph.service
-	/bin/systemctl daemon-reload
+	if [ -f /bin/systemctl ]; then
+		echo "  - Installing systemd script"
+		cp -f "$SCRIPTDIR/systemd/gaph.service" /lib/systemd/system/gaph.service
+		/bin/systemctl daemon-reload
+	fi
 }
 
 remove_crontab()
