@@ -120,24 +120,49 @@ main()
 install_base_software()
 {
 	echo "  - Instaling base apps"
-	if [ ! "$DISPLAY" = "" ]; then
-		xterm -title 'Base APPs Installation' -fa 'Monospace' -fs 10 -e "bash -c 'initial-software.sh | tee /var/log/gaph/install-base.log'"
-	else
+	echo "${GREEN}    - THIS CAN TAKE SOME MINUTES.${NORMAL}"
+
+	# TESTA SE TEM DISPLAY
+	xhost +si:localuser:$(whoami) >&/dev/null && {
+		echo "  - Loading the GUI, please wait..."
+		xterm \
+			-title 'Running the GUI' \
+			-fa 'Ubuntu Mono' -fs 12 \
+			-bg 'black' -fg 'white' \
+			-e "bash -c 'initial-software.sh | tee /var/log/gaph/install-base.log'"
+			tput cuu1;
+			tput el;
+	} || {
 		bash -c "initial-software.sh | tee /var/log/gaph/install-base.log"
-	fi
-	echo "$(date)" > /var/log/gaph/install-base.done
+	}
+
+	tput cuu1;
+	tput el;
+
 	echo "    - See logs in /var/log/gaph/install-base.log"
 }
 
 install_extra_software()
 {
 	echo "  - Instaling extra apps ..."
-	echo "${GREEN}    - THIS CAN TAKE HOURS, go take a coffe :)${NORMAL}"
-	if [ ! "$DISPLAY" = "" ]; then
-		xterm -title 'Extra APPs Installation' -fa 'Monospace' -fs 10 -e "bash -c 'extra-software.sh | tee /var/log/gaph/install-extra.log'"
-	else
+	echo "${GREEN}    - THIS CAN TAKE HOURS. Go take a coffe :)${NORMAL}"
+
+	# TESTA SE TEM DISPLAY
+	xhost +si:localuser:$(whoami) >&/dev/null && {
+		echo "  - Loading the GUI, please wait..."
+		xterm \
+			-title 'Running the GUI' \
+			-fa 'Ubuntu Mono' -fs 12 \
+			-bg 'black' -fg 'white' \
+			-e "bash -c 'extra-software.sh | tee /var/log/gaph/install-extra.log'"
+			tput cuu1;
+			tput el;
+	} || {
 		bash -c "extra-software.sh | tee /var/log/gaph/install-extra.log"
-	fi
+	}
+
+	tput cuu1;
+	tput el;
 	echo "$(date)" > /var/log/gaph/install-extra.done
 	echo "    - See logs in /var/log/gaph/install-extra.log"
 }
