@@ -134,7 +134,7 @@ install_base_software()
 			tput cuu1;
 			tput el;
 	} || {
-		#bash -c "initial-software.sh | tee /var/log/gaph/install-base.log"
+		bash -c "initial-software.sh | tee /var/log/gaph/install-base.log"
 	}
 
 	tput cuu1;
