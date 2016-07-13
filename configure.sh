@@ -72,22 +72,28 @@ main()
 	# Isso facilita o debug/teste sem ter que submeter o codigo pro github
 	# MELHOR, adicionar uma flag de linhas de commando pra ativar o reuso... 
 
-	if [ -f /tmp/$PKG ]; then
-		printf "%s  Removing preview /tmp/$PKG ...%s\n" "${BLUE}" "${NORMAL}"
-		rm -rf /tmp/$PKG
+	skip_donwload=1
+
+	if [ "$skip_donwload" = "1" ]; then
+	
+		if [ -f /tmp/$PKG ]; then
+			printf "%s  Removing preview /tmp/$PKG ...%s\n" "${BLUE}" "${NORMAL}"
+			rm -rf /tmp/$PKG
+		fi
+
+		# Mudar o nome do pacote baixado... usar o nome do repositorio que é melhor.
+		printf "%s  Donwloading an updated $PKG from github in /tmp ...%s\n" "${BLUE}" "${NORMAL}"
+		wget $GITHUB/$PKG -O /tmp/$PKG 2> /dev/null
+	
+		if [ -d $PROJECTDIR ]; then
+			printf "%s  Removing $PROJECTDIR ...%s\n" "${BLUE}" "${NORMAL}"
+			rm -rf $PROJECTDIR
+		fi
+	
+		printf "%s  Unpacking /tmp/$PKG into $PROJECTDIR ...%s\n" "${BLUE}" "${NORMAL}"
+		unzip -qq /tmp/$PKG -d /tmp > /dev/null
 	fi
 
-	# Mudar o nome do pacote baixado... usar o nome do repositorio que é melhor.
-	printf "%s  Donwloading an updated $PKG from github in /tmp ...%s\n" "${BLUE}" "${NORMAL}"
-	wget $GITHUB/$PKG -O /tmp/$PKG 2> /dev/null
-
-	if [ -d $PROJECTDIR ]; then
-		printf "%s  Removing $PROJECTDIR ...%s\n" "${BLUE}" "${NORMAL}"
-		rm -rf $PROJECTDIR
-	fi
-
-	printf "%s  Unpacking /tmp/$PKG into $PROJECTDIR ...%s\n" "${BLUE}" "${NORMAL}"
-	unzip -qq /tmp/$PKG -d /tmp > /dev/null
 
 	echo "${GREEN}"
 	echo "   _____  _____  _____  _____           _____  _____  _____  _____   "
