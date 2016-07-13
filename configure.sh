@@ -68,11 +68,16 @@ fi
 
 main()
 {
+	# Perguntar se o user quer usar a pasta existente ou se quer baixar ela denovo.
+	# Isso facilita o debug/teste sem ter que submeter o codigo pro github
+	# MELHOR, adicionar uma flag de linhas de commando pra ativar o reuso... 
+
 	if [ -f /tmp/$PKG ]; then
 		printf "%s  Removing preview /tmp/$PKG ...%s\n" "${BLUE}" "${NORMAL}"
 		rm -rf /tmp/$PKG
 	fi
 
+	# Mudar o nome do pacote baixado... usar o nome do repositorio que é melhor.
 	printf "%s  Donwloading an updated $PKG from github in /tmp ...%s\n" "${BLUE}" "${NORMAL}"
 	wget $GITHUB/$PKG -O /tmp/$PKG 2> /dev/null
 
