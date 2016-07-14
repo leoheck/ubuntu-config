@@ -27,6 +27,7 @@ control_c()
 {
 	clear
 	echo -e "\n$0 interrupted by user :(\n"
+	shutdown -r +3 2> /dev/null	
 	kill -KILL $$
 }
 
