@@ -144,13 +144,11 @@ install_base_software()
 	echo "  - Instaling base apps"
 	echo "${GREEN}    - THIS CAN TAKE SOME MINUTES.${NORMAL}"
 
-	# TODO: TESTA SE TEM screen, SE nao instala...
-	
-	dpkg -s tmux &> /dev/null
-	if [ ! $? -eq 0 ]; then sudo apt install tmux; fi
-	
-	dpkg -s screen &> /dev/null
-	if [ ! $? -eq 0 ]; then sudo apt install screen; fi
+	# TODO: TESTA SE TEM screen, SE nao instala... (nao ta funcionando!!)
+	#dpkg -s tmux &> /dev/null
+	#if [ ! $? -eq 0 ]; then sudo apt install tmux; fi
+	#dpkg -s screen &> /dev/null
+	#if [ ! $? -eq 0 ]; then sudo apt install screen; fi
 
 	# TODO: Rodar tudo no tmux|screen ou outro, quando tiver que instalar, divide a tela... instala e desliga o terminal...
 	# Dessa forma nao precisa usar a gui nunca
