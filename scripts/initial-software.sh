@@ -88,6 +88,11 @@ dpkg --add-architecture i386
 apt-get update
 apt-get install -f -y
 
+# TESTE PARA VER SE INSTALA TUDO DE PRIMEIRA COM O COMANDO BONITO DO APT
+sudo apt install $APPS
+
+exit 0
+
 # Install apps individually
 for APP in $APPS; do
 	dpkg -s $APP &> /dev/null
