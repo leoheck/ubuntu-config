@@ -8,6 +8,7 @@
 REPO="gaph-host-config"
 BRANCH="master"
 
+# TODO: MUDAR O NOME DO ZIP BAIXADO PRA $REPO-$BRANCH.zip
 GITHUB="https://github.com/leoheck/$REPO/archive/"
 PKG=$BRANCH.zip
 
@@ -17,6 +18,9 @@ export PATH=./scripts:$PATH
 export PATH=$PROJECTDIR/scripts:$PATH
 
 mkdir -p /var/log/gaph/
+
+# TODO: ISSO TEM QUE SER MELGORADO (usar uma flag tipo -s)
+skip_donwload=$1
 
 # Ctrl+c function to halt execution
 control_c()
@@ -71,8 +75,6 @@ main()
 	# Perguntar se o user quer usar a pasta existente ou se quer baixar ela denovo.
 	# Isso facilita o debug/teste sem ter que submeter o codigo pro github
 	# MELHOR, adicionar uma flag de linhas de commando pra ativar o reuso... 
-
-	skip_donwload=1
 
 	if [ "$skip_donwload" = "1" ]; then
 	
