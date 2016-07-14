@@ -100,6 +100,7 @@ main()
 		unzip -qq /tmp/$PKG -d /tmp > /dev/null
 	fi
 
+	# TODO: Como ver isso automatico? find na pasta baixada?
 	echo
 	echo "  Last update: xx/xx/xxxx xx:xx"
 
