@@ -138,22 +138,29 @@ install_base_software()
 	echo "${GREEN}    - THIS CAN TAKE SOME MINUTES.${NORMAL}"
 
 	# TODO: TESTA SE TEM screen, SE nao instala...
-	screen bash -c "initial-software.sh | tee /var/log/gaph/install-base.log"
+	if [ "$(dpkg -s tmux &> /dev/null)" = "1" ]; then apt install tmux &> /dev/null ; else fi
+	if [ "$(dpkg -s screen &> /dev/null)" = "1" ]; then apt install screen &> /dev/null ; else fi
+
+	# TODO: Rodar tudo no tmux|screen ou outro, quando tiver que instalar, divide a tela... instala e desliga o terminal...
+	# Dessa forma nao precisa usar a gui nunca
+	#screen bash -c "initial-software.sh | tee /var/log/gaph/install-base.log"
+	#tmux new top \; split-window -d sudo apt update
+
 
 	# TESTA SE TEM DISPLAY 
 	# Acho que que esse teste da problema para executar com root.
-	#xhost +si:localuser:$(whoami) &> /dev/null && {
-	#	echo "${BLUE}    - Loading the GUI, please wait...${NORMAL}"
-	#	xterm \
-	#		-title 'Installing BASE Software' \
-	#		-fa 'Ubuntu Mono' -fs 12 \
-	#		-bg 'black' -fg 'white' \
-	#		-e "bash -c 'initial-software.sh | tee /var/log/gaph/install-base.log'"
-	#		tput cuu1;
-	#		tput el;
-	#} || {
-	#	bash -c "initial-software.sh | tee /var/log/gaph/install-base.log"
-	#}
+	xhost +si:localuser:$(whoami) &> /dev/null && {
+		echo "${BLUE}    - Loading the GUI, please wait...${NORMAL}"
+		xterm \
+			-title 'Installing BASE Software' \
+			-fa 'Ubuntu Mono' -fs 12 \
+			-bg 'black' -fg 'white' \
+			-e "bash -c 'initial-software.sh | tee /var/log/gaph/install-base.log'"
+			tput cuu1;
+			tput el;
+	} || {
+		bash -c "initial-software.sh | tee /var/log/gaph/install-base.log"
+	}
 
 	tput cuu1;
 	tput el;
