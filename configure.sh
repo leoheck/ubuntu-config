@@ -137,20 +137,23 @@ install_base_software()
 	echo "  - Instaling base apps"
 	echo "${GREEN}    - THIS CAN TAKE SOME MINUTES.${NORMAL}"
 
+	# TODO: TESTA SE TEM screen, SE nao instala...
+	screen bash -c "initial-software.sh | tee /var/log/gaph/install-base.log"
+
 	# TESTA SE TEM DISPLAY 
 	# Acho que que esse teste da problema para executar com root.
-	xhost +si:localuser:$(whoami) &> /dev/null && {
-		echo "${BLUE}    - Loading the GUI, please wait...${NORMAL}"
-		xterm \
-			-title 'Installing BASE Software' \
-			-fa 'Ubuntu Mono' -fs 12 \
-			-bg 'black' -fg 'white' \
-			-e "bash -c 'initial-software.sh | tee /var/log/gaph/install-base.log'"
-			tput cuu1;
-			tput el;
-	} || {
-		bash -c "initial-software.sh | tee /var/log/gaph/install-base.log"
-	}
+	#xhost +si:localuser:$(whoami) &> /dev/null && {
+	#	echo "${BLUE}    - Loading the GUI, please wait...${NORMAL}"
+	#	xterm \
+	#		-title 'Installing BASE Software' \
+	#		-fa 'Ubuntu Mono' -fs 12 \
+	#		-bg 'black' -fg 'white' \
+	#		-e "bash -c 'initial-software.sh | tee /var/log/gaph/install-base.log'"
+	#		tput cuu1;
+	#		tput el;
+	#} || {
+	#	bash -c "initial-software.sh | tee /var/log/gaph/install-base.log"
+	#}
 
 	tput cuu1;
 	tput el;
