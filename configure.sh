@@ -98,6 +98,8 @@ main()
 	
 		printf "%s  Unpacking /tmp/$PKG into $PROJECTDIR ...%s\n" "${BLUE}" "${NORMAL}"
 		unzip -qq /tmp/$PKG -d /tmp > /dev/null
+	else
+		printf "%s  Using local files\n" "${YELLOW}" "${NORMAL}"
 	fi
 
 	# TODO: Como ver isso automatico? find na pasta baixada?
