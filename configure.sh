@@ -97,7 +97,7 @@ main()
 		unzip -qq /tmp/$PKG -d /tmp > /dev/null
 	#fi
 
-	echo "VERSION=1.0"
+	echo "Last update: xx/xx/xxxx"
 
 	echo "${GREEN}"
 	echo "   _____  _____  _____  _____           _____  _____  _____  _____   "
@@ -141,6 +141,7 @@ install_base_software()
 	dpkg -s tmux &> /dev/null
 	STATUS=$?
 	if [ "$STATUS" = "1" ]; then apt install tmux; fi
+	dpkg -s screen &> /dev/null
 	STATUS=$?
 	if [ "$STATUS" = "1" ]; then apt install screen; fi
 
