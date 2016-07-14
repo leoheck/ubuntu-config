@@ -96,7 +96,7 @@ exit 0
 # Install apps individually
 for APP in $APPS; do
 	dpkg -s $APP &> /dev/null
-	STATUS=$?
+	STATUS=$?	
 	if [ "$STATUS" = "1" ]; then 
 		DEBIAN_FRONTEND=noninteractive apt-get install -y $APP
 	fi
