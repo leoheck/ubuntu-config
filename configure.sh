@@ -97,7 +97,8 @@ main()
 		unzip -qq /tmp/$PKG -d /tmp > /dev/null
 	#fi
 
-	echo "Last update: xx/xx/xxxx"
+	echo
+	echo "  Last update: xx/xx/xxxx xx:xx"
 
 	echo "${GREEN}"
 	echo "   _____  _____  _____  _____           _____  _____  _____  _____   "
