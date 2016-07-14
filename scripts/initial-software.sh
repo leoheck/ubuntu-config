@@ -89,15 +89,13 @@ apt-get update
 apt-get install -f -y
 
 # TESTE PARA VER SE INSTALA TUDO DE PRIMEIRA COM O COMANDO BONITO DO APT
-sudo apt install $APPS
-
-exit 0
+#sudo apt install $APPS
+#exit 0
 
 # Install apps individually
 for APP in $APPS; do
 	dpkg -s $APP &> /dev/null
-	STATUS=$?	
-	if [ "$STATUS" = "1" ]; then 
+	if [ "$?" = "1" ]; then 
 		DEBIAN_FRONTEND=noninteractive apt-get install -y $APP
 	fi
 done
