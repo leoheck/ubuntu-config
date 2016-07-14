@@ -19,8 +19,11 @@ export PATH=$PROJECTDIR/scripts:$PATH
 
 mkdir -p /var/log/gaph/
 
-# TODO: ISSO TEM QUE SER MELGORADO (usar uma flag tipo -s)
-skip_donwload=$1
+if [ "$1" == "-l" ]; then
+	skip_donwload=1
+else
+	skip_donwload=0
+fi
 
 # Ctrl+c function to halt execution
 control_c()
@@ -77,7 +80,7 @@ main()
 	# Isso facilita o debug/teste sem ter que submeter o codigo pro github
 	# MELHOR, adicionar uma flag de linhas de commando pra ativar o reuso... 
 
-	#if [ "$skip_donwload" = "1" ]; then
+	if [ ! "$skip_donwload" = "1" ]; then
 	
 		if [ -f /tmp/$PKG ]; then
 			printf "%s  Removing preview /tmp/$PKG ...%s\n" "${BLUE}" "${NORMAL}"
@@ -95,7 +98,7 @@ main()
 	
 		printf "%s  Unpacking /tmp/$PKG into $PROJECTDIR ...%s\n" "${BLUE}" "${NORMAL}"
 		unzip -qq /tmp/$PKG -d /tmp > /dev/null
-	#fi
+	fi
 
 	echo
 	echo "  Last update: xx/xx/xxxx xx:xx"
