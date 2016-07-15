@@ -64,6 +64,19 @@ install_cmd()
 	echo "$GAPHCONF" >> /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override
 	glib-compile-schemas /usr/share/glib-2.0/schemas/
 
+
+
+	#===========================
+	read -r -d '' SSHBANNER <<-EOM
+	 _____  _____  _____  _____           _____  _____  _____  _____
+	|   __||  _  ||  _  ||  |  |   ___   |  |  ||     ||   __||_   _|
+	|  |  ||     ||   __||     |  |___|  |     ||  |  ||__   |  | |
+	|_____||__|__||__|   |__|__|         |__|__||_____||_____|  |_|
+	EOM
+	#===========================
+
+	echo -e "\n\n$GAPHCONF\n\n" >> /etc/ssh/sshd-banner
+
 }
 
 remove_cmd()
@@ -81,6 +94,8 @@ remove_cmd()
 	if [ -f /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override.bkp ]; then
 		mv -f /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override.bkp /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override
 	fi
+
+	rm -rf /etc/ssh/sshd-banner
 }
 
 case $key in
