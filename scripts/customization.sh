@@ -66,6 +66,7 @@ install_cmd()
 
 
 
+	# Pra melhor customização, colocar isso num arquivo separado.
 	#===========================
 	read -r -d '' SSHBANNER <<-EOM
 	 _____  _____  _____  _____           _____  _____  _____  _____

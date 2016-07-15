@@ -4,6 +4,12 @@
 
 # MAIN SCRIPT TO CONFIGURE INSTALL GAPH CONFIGS
 
+# TODO: APPLICAR ESSAS DEFINICOES GLOBALMENTE
+# DEFINICOES:
+# - LOGS: /var/logs/gaph/
+# - DONWLAOD: /tmp
+# - BKP Suffix: filename.bkp
+
 # GITHUB REPOSITORY CONFIG
 REPO="gaph-host-config"
 BRANCH="master"
@@ -14,24 +20,24 @@ PKG=$BRANCH.zip
 
 PROJECTDIR=/tmp/$REPO-$BRANCH
 
-export PATH=./scripts:$PATH
-export PATH=$PROJECTDIR/scripts:$PATH
-
+# LOGs
 mkdir -p /var/log/gaph/
 
 if [ "$1" == "-l" ]; then
 	skip_donwload=1
+	export PATH=./scripts:$PATH
 else
 	skip_donwload=0
+	export PATH=$PROJECTDIR/scripts:$PATH
 fi
 
 # Ctrl+c function to halt execution
 control_c()
 {
-	clear
-	echo -e "\n$0 interrupted by user :(\n"
-	shutdown -r +3 2> /dev/null	
-	kill -KILL $$
+	# clear
+	# echo -e "\n\t$0 interrupted by user :(\n"
+	shutdown -c
+	kill -KILL $$ &> /dev/null
 }
 
 trap control_c SIGINT
@@ -78,10 +84,10 @@ main()
 {
 	# Perguntar se o user quer usar a pasta existente ou se quer baixar ela denovo.
 	# Isso facilita o debug/teste sem ter que submeter o codigo pro github
-	# MELHOR, adicionar uma flag de linhas de commando pra ativar o reuso... 
+	# MELHOR, adicionar uma flag de linhas de commando pra ativar o reuso...
 
 	if [ ! "$skip_donwload" = "1" ]; then
-	
+
 		if [ -f /tmp/$PKG ]; then
 			printf "%s  Removing preview /tmp/$PKG ...%s\n" "${BLUE}" "${NORMAL}"
 			rm -rf /tmp/$PKG
@@ -90,21 +96,21 @@ main()
 		# Mudar o nome do pacote baixado... usar o nome do repositorio que é melhor.
 		printf "%s  Donwloading an updated $PKG from github in /tmp ...%s\n" "${BLUE}" "${NORMAL}"
 		wget $GITHUB/$PKG -O /tmp/$PKG 2> /dev/null
-	
+
 		if [ -d $PROJECTDIR ]; then
 			printf "%s  Removing $PROJECTDIR ...%s\n" "${BLUE}" "${NORMAL}"
 			rm -rf $PROJECTDIR
 		fi
-	
+
 		printf "%s  Unpacking /tmp/$PKG into $PROJECTDIR ...%s\n" "${BLUE}" "${NORMAL}"
 		unzip -qq /tmp/$PKG -d /tmp > /dev/null
 	else
-		printf "%s  Using local files\n" "${YELLOW}" "${NORMAL}"
+		printf "%s  Using local files%s\n" "${YELLOW}" "${NORMAL}"
 	fi
 
-	# TODO: Como ver isso automatico? find na pasta baixada?
+	# TODO: Indicar a versao pelo arquivo mais recente
 	echo
-	echo "  Last update: xx/xx/xxxx xx:xx"
+	echo "  Last update: $(git log | tail | grep -m 1 Date | sed 's/Date:[ ]\+//g')"
 
 	echo "${GREEN}"
 	echo "   _____  _____  _____  _____           _____  _____  _____  _____   "
@@ -156,7 +162,7 @@ install_base_software()
 	#tmux new top \; split-window -d sudo apt update
 
 
-	# TESTA SE TEM DISPLAY 
+	# TESTA SE TEM DISPLAY
 	# Acho que que esse teste da problema para executar com root.
 	xhost +si:localuser:$(whoami) &> /dev/null && {
 		echo "${BLUE}    - Loading the GUI, please wait...${NORMAL}"
