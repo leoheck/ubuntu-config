@@ -111,7 +111,7 @@ main()
 
 	# TODO: Indicar a versao pelo arquivo mais recente
 	echo
-	echo "  Last update: $(git log | tail | grep -m 1 Date | sed 's/Date:[ ]\+//g')"
+	echo "  Last update: $(git log | grep -m 1 'Date' | sed 's/Date:[ ]\+//g')"
 
 	echo "${GREEN}"
 	echo "   _____  _____  _____  _____           _____  _____  _____  _____   "
