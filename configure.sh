@@ -17,7 +17,7 @@ BRANCH="master"
 # TODO: MUDAR O NOME DO ZIP BAIXADO PRA $REPO-$BRANCH.zip
 GITHUB="https://github.com/leoheck/$REPO/archive/"
 PKG=$BRANCH.zip
-LOCAL_PKG=$REPO_$BRANCH.zip
+LOCAL_PKG=$REPO-$BRANCH.zip
 
 PROJECTDIR=/tmp/$REPO-$BRANCH
 
@@ -97,6 +97,7 @@ main()
 		# Mudar o nome do pacote baixado... usar o nome do repositorio que é melhor.
 		printf "%s  Donwloading an updated $LOCAL_PKG from github in /tmp ...%s\n" "${BLUE}" "${NORMAL}"
 		wget $GITHUB/$PKG -O /tmp/$LOCAL_PKG 2> /dev/null
+		chmod 777 /tmp/$LOCAL_PKG
 
 		if [ -d $PROJECTDIR ]; then
 			printf "%s  Removing $PROJECTDIR ...%s\n" "${BLUE}" "${NORMAL}"
@@ -104,7 +105,8 @@ main()
 		fi
 
 		printf "%s  Unpacking /tmp/$LOCAL_PKG into $PROJECTDIR ...%s\n" "${BLUE}" "${NORMAL}"
-		unzip -qq /tmp/$PKG -d /tmp > /dev/null
+		unzip -qq /tmp/$LOCAL_PKG -d /tmp > /dev/null
+		chmod 777 /tmp/$REPO -R
 	else
 		printf "%s  Using local files%s\n" "${YELLOW}" "${NORMAL}"
 	fi
