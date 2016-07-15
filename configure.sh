@@ -106,7 +106,7 @@ main()
 
 		printf "%s  Unpacking /tmp/$LOCAL_PKG into $PROJECTDIR ...%s\n" "${BLUE}" "${NORMAL}"
 		unzip -qq /tmp/$LOCAL_PKG -d /tmp > /dev/null
-		chmod 777 /tmp/$REPO-$BRANCH -R
+		# chmod 777 /tmp/$REPO-$BRANCH -R
 	else
 		printf "%s  Using local files%s\n" "${YELLOW}" "${NORMAL}"
 	fi
