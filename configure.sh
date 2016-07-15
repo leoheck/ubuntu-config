@@ -19,16 +19,17 @@ GITHUB="https://github.com/leoheck/$REPO/archive/"
 PKG=$BRANCH.zip
 LOCAL_PKG=$REPO-$BRANCH.zip
 
-PROJECTDIR=/tmp/$REPO-$BRANCH
 
 # LOGs
 mkdir -p /var/log/gaph/
 
 if [ "$1" == "-l" ]; then
 	skip_donwload=1
+	PROJECTDIR=./
 	export PATH=./scripts:$PATH
 else
 	skip_donwload=0
+	PROJECTDIR=/tmp/$REPO-$BRANCH
 	export PATH=$PROJECTDIR/scripts:$PATH
 fi
 
@@ -113,7 +114,7 @@ main()
 
 	# TODO: Indicar a versao pelo arquivo mais recente
 	echo
-	echo "  Last update: $(git log | grep -m 1 'Date' | sed 's/Date:[ ]\+//g')"
+	echo "  Last update: $(git -C $PROJECTDIR log | grep -m 1 'Date' | sed 's/Date:[ ]\+//g')"
 
 	echo "${GREEN}"
 	echo "   _____  _____  _____  _____           _____  _____  _____  _____   "
