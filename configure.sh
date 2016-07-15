@@ -6,9 +6,9 @@
 
 # TODO: APPLICAR ESSAS DEFINICOES GLOBALMENTE
 # DEFINICOES:
+# - DONWLOAD: /tmp
 # - LOGS: /var/logs/gaph/
-# - DONWLAOD: /tmp
-# - BKP Suffix: filename.bkp
+# - BKPs Suffix: TODO
 
 # GITHUB REPOSITORY CONFIG
 REPO="gaph-host-config"
@@ -19,18 +19,16 @@ GITHUB="https://github.com/leoheck/$REPO/archive/"
 PKG=$BRANCH.zip
 LOCAL_PKG=$REPO-$BRANCH.zip
 
+skip_donwload=0
+PROJECTDIR=/tmp/$REPO-$BRANCH
+export PATH=$PROJECTDIR/scripts:$PATH
 
-# LOGs
 mkdir -p /var/log/gaph/
 
 if [ "$1" == "-l" ]; then
 	skip_donwload=1
 	PROJECTDIR=./
 	export PATH=./scripts:$PATH
-else
-	skip_donwload=0
-	PROJECTDIR=/tmp/$REPO-$BRANCH
-	export PATH=$PROJECTDIR/scripts:$PATH
 fi
 
 # Ctrl+c function to halt execution
@@ -113,8 +111,9 @@ main()
 	fi
 
 	# TODO: Indicar a versao pelo arquivo mais recente
-	echo
-	echo "  Last update: $(git -C $PROJECTDIR log | grep -m 1 'Date' | sed 's/Date:[ ]\+//g')"
+	# TODO: AINDA nao ta funcionando pq o zip nao tem versionamento.
+	# echo
+	# echo "  Last update: $(git -C $PROJECTDIR log | grep -m 1 'Date' | sed 's/Date:[ ]\+//g')"
 
 	echo "${GREEN}"
 	echo "   _____  _____  _____  _____           _____  _____  _____  _____   "
@@ -155,10 +154,10 @@ install_base_software()
 	echo "${GREEN}    - THIS CAN TAKE SOME MINUTES.${NORMAL}"
 
 	# TODO: TESTA SE TEM screen, SE nao instala... (nao ta funcionando!!)
-	#dpkg -s tmux &> /dev/null
-	#if [ ! $? -eq 0 ]; then sudo apt install tmux; fi
-	#dpkg -s screen &> /dev/null
-	#if [ ! $? -eq 0 ]; then sudo apt install screen; fi
+	dpkg -s tmux &> /dev/null
+	if [ ! $? -eq 0 ]; then
+		sudo apt install tmux &> /dev/null
+	fi
 
 	# TODO: Rodar tudo no tmux|screen ou outro, quando tiver que instalar, divide a tela... instala e desliga o terminal...
 	# Dessa forma nao precisa usar a gui nunca
