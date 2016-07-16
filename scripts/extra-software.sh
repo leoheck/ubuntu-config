@@ -247,7 +247,7 @@ libreoffice-l10n-en-us,
 libreoffice-help-pt-br,
 libreoffice-l10n-pt-br,
 
-# [SYNOPSYS TOOLS] Some required 32 bit libs 
+# [SYNOPSYS TOOLS] Some required 32 bit libs
 libncurses5:i386,
 libxss1:i386,
 libsm6:i386,
@@ -287,9 +287,10 @@ apt-get update
 apt-get install -f -y
 
 # Install apps individually
-for APP in $APPS; do
+for APP in $APPS;
+do
 	dpkg -s $APP &> /dev/null
-	if [ "$?" = "1" ]; then 
+	if [ ! $? -eq 0 ]; then
 		DEBIAN_FRONTEND=noninteractive apt-get install -y $APP
 	fi
 done

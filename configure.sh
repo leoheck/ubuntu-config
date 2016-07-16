@@ -10,6 +10,7 @@
 # - LOGS: /var/logs/gaph/
 # - BKPs Suffix: TODO
 
+
 # GITHUB REPOSITORY CONFIG
 REPO="gaph-host-config"
 BRANCH="master"
@@ -30,17 +31,6 @@ if [ "$1" == "-l" ]; then
 	PROJECTDIR=./
 	export PATH=./scripts:$PATH
 fi
-
-# Ctrl+c function to halt execution
-control_c()
-{
-	# clear
-	# echo -e "\n\t$0 interrupted by user :(\n"
-	shutdown -c
-	kill -KILL $$ &> /dev/null
-}
-
-trap control_c SIGINT
 
 # Use colors only if connected to a terminal which supports them
 if which tput >/dev/null 2>&1; then
@@ -63,6 +53,17 @@ else
 	NORMAL=""
 fi
 
+# Ctrl+c function to halt execution
+control_c()
+{
+	echo "${YELLOW}  KILLING! :( ${NORMAL}"
+	echo
+	shutdown -c
+	echo "kill -KILL $!" | at now &> /dev/null
+}
+
+trap control_c SIGINT
+
 # Only enable exit-on-error after the non-critical colorization stuff,
 # which may fail on systems lacking tput or terminfo
 set -e
@@ -76,24 +77,19 @@ umask g-w,o-w
 
 # Check for super power
 if [ "$(id -u)" != "0" ]; then
-	echo -e "\n${YELLOW}Hey kid, you need superior powers, Go call your father.${NORMAL}\n"
+	echo -e "\nHey kid, you ${BOLD}need superior power${NORMAL}. Go call your father.${NORMAL}\n"
 	exit 1
 fi
 
 main()
 {
-	# Perguntar se o user quer usar a pasta existente ou se quer baixar ela denovo.
-	# Isso facilita o debug/teste sem ter que submeter o codigo pro github
-	# MELHOR, adicionar uma flag de linhas de commando pra ativar o reuso...
-
-	if [ ! "$skip_donwload" = "1" ]; then
-
+	if [ ! "$skip_donwload" = "1" ];
+	then
 		if [ -f /tmp/$LOCAL_PKG ]; then
 			printf "%s  Removing preview /tmp/$LOCAL_PKG ...%s\n" "${BLUE}" "${NORMAL}"
 			rm -rf /tmp/$LOCAL_PKG
 		fi
 
-		# Mudar o nome do pacote baixado... usar o nome do repositorio que é melhor.
 		printf "%s  Donwloading an updated $LOCAL_PKG from github in /tmp ...%s\n" "${BLUE}" "${NORMAL}"
 		wget $GITHUB/$PKG -O /tmp/$LOCAL_PKG 2> /dev/null
 		chmod 777 /tmp/$LOCAL_PKG
@@ -105,28 +101,23 @@ main()
 
 		printf "%s  Unpacking /tmp/$LOCAL_PKG into $PROJECTDIR ...%s\n" "${BLUE}" "${NORMAL}"
 		unzip -qq /tmp/$LOCAL_PKG -d /tmp > /dev/null
-		# chmod 777 /tmp/$REPO-$BRANCH -R
+		chmod 777 /tmp/$REPO-$BRANCH -R
 	else
 		printf "%s  Using local files%s\n" "${YELLOW}" "${NORMAL}"
 	fi
 
-	# TODO: Indicar a versao pelo arquivo mais recente
-	# TODO: AINDA nao ta funcionando pq o zip nao tem versionamento.
-	# echo
-	# echo "  Last update: $(git -C $PROJECTDIR log | grep -m 1 'Date' | sed 's/Date:[ ]\+//g')"
-
-	echo "${GREEN}"
+	echo "${BLUE}${BOLD}"
 	echo "   _____  _____  _____  _____           _____  _____  _____  _____   "
 	echo "  |   __||  _  ||  _  ||  |  |   ___   |  |  ||     ||   __||_   _|  "
 	echo "  |  |  ||     ||   __||     |  |___|  |     ||  |  ||__   |  | |    "
 	echo "  |_____||__|__||__|   |__|__|         |__|__||_____||_____|  |_|    "
-	echo "                                                                     "
-	echo "  CONFIGURATION SCRIPT (MADE FOR UBUNTU 16.04)${NORMAL}"
+	echo "                                                                     ${NORMAL}${GREEN}"
+	echo "  ~ HOST CONFIGURATION SCRIPT MADE FOR UBUNTU 16.04 ~${NORMAL}"
 	echo
-	echo "  [1] ${BOLD}TURN MACHINE INTO A GAPH HOST${NORMAL}"
-	echo "  [2] Turn machine into a GAPH-COMPATIBLE host (install programs only)"
+	echo "  ${BOLD}[1] INSTALL IN A GAPH HOST${NORMAL}"
+	echo "  ${BOLD}[2] Turn machine into a GAPH-COMPATIBLE host (install programs only)${NORMAL}"
 	echo "  [3] Apply/upgrade configurations only"
-	echo "  [4] Remove configurations (revert configuration files only)"
+	echo "  [4] Remove configurations"
 	echo
 	echo "${BLUE}  Hit CTRL+C to exit${NORMAL}"
 	echo
@@ -135,10 +126,7 @@ main()
 	do
 	  read -p '  #> ' choice
 	  case $choice in
-		1 ) break ;;
-		2 ) break ;;
-		3 ) break ;;
-		4 ) break ;;
+		[1-4] ) break ;;
 		* )
 			tput cuu1
 			tput el1
@@ -148,27 +136,30 @@ main()
 	done
 }
 
+
+# install_software()
+# {
+# 	xhost +si:localuser:$(whoami) &> /dev/null && {
+# 		echo "${BLUE}    - Running GUI, please wait...${NORMAL}"
+# 		xterm \
+# 			-title 'Installing BASE Software' \
+# 			-fa 'Ubuntu Mono' -fs 12 \
+# 			-bg 'black' -fg 'white' \
+# 			-e "bash -c 'initial-software.sh | tee /var/log/gaph/install-base.log'"
+# 			tput cuu1;
+# 			tput el;
+# 	} || {
+# 		bash -c "initial-software.sh | tee /var/log/gaph/install-base.log"
+# 	}
+# }
+
 install_base_software()
 {
 	echo "  - Instaling base apps"
 	echo "${GREEN}    - THIS CAN TAKE SOME MINUTES.${NORMAL}"
 
-	# TODO: TESTA SE TEM screen, SE nao instala... (nao ta funcionando!!)
-	dpkg -s tmux &> /dev/null
-	if [ ! $? -eq 0 ]; then
-		sudo apt install tmux &> /dev/null
-	fi
-
-	# TODO: Rodar tudo no tmux|screen ou outro, quando tiver que instalar, divide a tela... instala e desliga o terminal...
-	# Dessa forma nao precisa usar a gui nunca
-	#screen bash -c "initial-software.sh | tee /var/log/gaph/install-base.log"
-	#tmux new top \; split-window -d sudo apt update
-
-
-	# TESTA SE TEM DISPLAY
-	# Acho que que esse teste da problema para executar com root.
 	xhost +si:localuser:$(whoami) &> /dev/null && {
-		echo "${BLUE}    - Loading the GUI, please wait...${NORMAL}"
+		echo "${BLUE}    - Running GUI, please wait...${NORMAL}"
 		xterm \
 			-title 'Installing BASE Software' \
 			-fa 'Ubuntu Mono' -fs 12 \
@@ -191,8 +182,7 @@ install_extra_software()
 	echo "  - Instaling extra apps ..."
 	echo "${GREEN}    - THIS CAN TAKE HOURS. Go take a coffe :)${NORMAL}"
 
-	# TESTA SE TEM DISPLAY
-	#xhost +si:localuser:$(whoami) >&/dev/null && {
+	xhost +si:localuser:$(whoami) &> /dev/null && {
 		echo "${BLUE}    - Loading the GUI, please wait...${NORMAL}"
 		xterm \
 			-title 'Installing EXTRA Software' \
@@ -201,9 +191,9 @@ install_extra_software()
 			-e "bash -c 'extra-software.sh | tee /var/log/gaph/install-extra.log'"
 			tput cuu1;
 			tput el;
-	#} || {
-	#	bash -c "extra-software.sh | tee /var/log/gaph/install-extra.log"
-	#}
+	} || {
+		bash -c "extra-software.sh | tee /var/log/gaph/install-extra.log"
+	}
 
 	tput cuu1;
 	tput el;
@@ -220,10 +210,18 @@ reboot_host()
 	shutdown -r +3 2> /dev/null
 }
 
+quit()
+{
+	echo "${YELLOW}  DONE! Bye :) ${NORMAL}"
+	echo
+}
+
+
+# OPTION 3
 apply_and_upgrade_configs()
 {
 	echo
-	echo "${YELLOW}  Appling/updating configurations ...${NORMAL}"
+	echo "${YELLOW}  Appling/updating configurations... ${NORMAL}"
 	install_base_software
 	install-scripts.sh -i $PROJECTDIR | tee /var/log/gaph/install-scripts.log
 	crontab-config.sh -i $PROJECTDIR | tee /var/log/gaph/crontab-config.log
@@ -242,10 +240,11 @@ apply_and_upgrade_configs()
 	echo "$(date)" > /var/log/gaph/install-configs.done
 }
 
+# OPTION 4
 revert_configurations()
 {
 	echo
-	echo "${YELLOW}  Removing configurations ...${NORMAL}"
+	echo "${YELLOW}  Removing configurations... ${NORMAL}"
 	install-scripts.sh -r
 	crontab-config.sh -r
 	admin-config.sh -r
@@ -262,20 +261,22 @@ revert_configurations()
 	rm -f /var/log/gaph/install-configs.done
 }
 
+# OPTION 1
 configure_gaph_host()
 {
 	echo
-	echo "${YELLOW}  Configuring GAPH host ...${NORMAL}"
+	echo "${YELLOW}  Configuring GAPH host... ${NORMAL}"
 	install_base_software
 	apply_and_upgrade_configs
 	install_extra_software
 	reboot_host
 }
 
+# OPTION 2
 configure_gaph_compatible()
 {
 	echo
-	echo "${YELLOW}  Configuring GAPH COMPATIBLE host ...${NORMAL}"
+	echo "${YELLOW}  Configuring GAPH COMPATIBLE host... ${NORMAL}"
 	install_base_software
 	install_extra_software
 	misc-hacks.sh
@@ -293,6 +294,3 @@ case $choice in
 	3 ) apply_and_upgrade_configs ;;
 	4 ) revert_configurations ;;
 esac
-
-echo "${YELLOW}  DONE! Bye :) ${NORMAL}"
-echo
