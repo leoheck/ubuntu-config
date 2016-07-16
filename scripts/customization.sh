@@ -65,8 +65,8 @@ install_cmd()
 	glib-compile-schemas /usr/share/glib-2.0/schemas/
 
 
-
-	# Pra melhor customização, colocar isso num arquivo separado.
+	# TODO: Pra melhor customização, colocar isso num arquivo separado.
+	# Ver: /etc/update-motd.d/ para executar scripts. Muito melhor.
 	#===========================
 	read -r -d '' SSHBANNER <<-EOM
 	 _____  _____  _____  _____           _____  _____  _____  _____

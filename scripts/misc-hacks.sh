@@ -27,7 +27,7 @@ ln -sf /lib/x86_64-linux-gnu/libncurses.so.5.9 /lib/libtermcap.so.2
 # Use libxp6 from Ubuntu 14.04 repositories
 #wget "http://mirrors.kernel.org/ubuntu/pool/main/libx/libxp/libxp6_1.0.2-1ubuntu1_amd64.deb" > /dev/null 2>&1
 #dpkg -i libxp6_1.0.2-1ubuntu1_amd64.deb > /dev/null
-#rm -f libxp6_1.0.2-1ubuntu1_amd64.deb 
+#rm -f libxp6_1.0.2-1ubuntu1_amd64.deb
 
 # Another 32-bit libs for Synopsys tools
 ln -sf /usr/lib/i386-linux-gnu/libtiff.so.5 /usr/lib/i386-linux-gnu/libtiff.so.3
