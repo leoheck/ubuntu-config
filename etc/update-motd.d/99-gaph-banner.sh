@@ -43,8 +43,8 @@ Uptime=$(uptime -p)
 Users=$(users | tr ' ' '\n' | sort | uniq)
 OS=$(lsb_release -s -d)
 Kernel=$(uname -r)
-CPU=$(lscpu | grep 'Model name:' | cut -d: -f2 |awk '{print $0}' | sed -e 's/^[ \t]*//')
-Memory="$(echo "scale=4; $(cat /proc/meminfo | grep MemTotal |  sed 's/[\t ]\+/ /' | cut -d' ' -f 2) / (1024*1024)" | bc) GB"
+CPU=$(lscpu | grep 'Model name:' | cut -d: -f2 |awk '{print $0}' | sed -e 's/^[ \t]*//' | sed 's/[ \t]\+/ /g')
+Memory="$(echo "scale=1; $(cat /proc/meminfo | grep MemTotal |  sed 's/[\t ]\+/ /' | cut -d' ' -f 2) / (1024*1024)" | bc) GB"
 
 echo -e "
 ${BLUE}${BOLD}   Host: ${NORMAL}${Host}
@@ -61,4 +61,5 @@ ${BLUE}${BOLD} Memory: ${NORMAL}${Memory}"
 echo -e "
 ${YELLOW}${BOLD} Problems can be reported at:
 ${RED}${BOLD}    https://github.com/leoheck/gaph-host-config/issues
+${NORMAL}
 "
