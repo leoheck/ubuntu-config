@@ -34,9 +34,9 @@ install_cmd()
 	#/dev/sdb1 /sim ext4 defaults 0 0
 
 	# [GAPH] Network mountoints
-	rodos.inf.pucrs.br:/home   /users  nfs acl,defaults 0 0
-	kriti.inf.pucrs.br:/soft64 /soft64 nfs ro,soft,intr 0 0
-	kriti.inf.pucrs.br:/grid   /grid   nfs defaults     0 0
+	rodos.inf.pucrs.br:/home   /users  nfs defaults,intr,vers=3,rsize=8192,wsize=8192 0 0
+	kriti.inf.pucrs.br:/soft64 /soft64 nfs ro,vers=3,timeo=14,intr,rsize=8192,wsize=8192 0 0
+	kriti.inf.pucrs.br:/grid   /grid   nfs defaults,intr,rsize=8192,wsize=8192 0 0
 
 	EOM
 	#============================
