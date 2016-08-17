@@ -34,6 +34,7 @@ ksh,                        # Shell
 
 dconf-tools,                # Commandline configurations
 gcc-multilib,               # 32 bits libraries and multilib
+g++-multilib,
 python-software-properties, # Required for salt
 nslcd,                      # LDAP login support (default configs)
 ldapscripts,                # LDAP acessory scripts
