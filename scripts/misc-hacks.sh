@@ -25,9 +25,9 @@ ln -sf /lib/x86_64-linux-gnu/libncurses.so.5.9 /lib/libtermcap.so.2
 
 # WORKAROUND for missing libxp6 library in Ubuntu 16.04
 # Use libxp6 from Ubuntu 14.04 repositories
-#wget "http://mirrors.kernel.org/ubuntu/pool/main/libx/libxp/libxp6_1.0.2-1ubuntu1_amd64.deb" > /dev/null 2>&1
-#dpkg -i libxp6_1.0.2-1ubuntu1_amd64.deb > /dev/null
-#rm -f libxp6_1.0.2-1ubuntu1_amd64.deb
+wget "http://mirrors.kernel.org/ubuntu/pool/main/libx/libxp/libxp6_1.0.2-1ubuntu1_amd64.deb" > /dev/null 2>&1
+dpkg -i libxp6_1.0.2-1ubuntu1_amd64.deb > /dev/null
+rm -f libxp6_1.0.2-1ubuntu1_amd64.deb
 
 # Fix some version of 64 bit libs for Synopsys tools
 sudo ln -s /usr/lib/x86_64-linux-gnu/libtiff.so.5 /usr/lib/x86_64-linux-gnu/libtiff.so.3
