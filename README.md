@@ -4,7 +4,7 @@ Modificado para homogeneizar as máquinas do laboratório com **Ubuntu 16.04**.
 
 **Pode ser usado pelos alunos em seus computadores pessoais**.
 
-![menus example](https://raw.githubusercontent.com/leoheck/gaph-host-config/master/images/menus.png)
+<img src="https://rawgit.com/leoheck/gaph-os-scripts/master/images/menus.png" width="600px">
 
 ## Instalação
 
