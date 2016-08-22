@@ -6,6 +6,11 @@ Modificado para homogeneizar as máquinas do laboratório com **Ubuntu 16.04**.
 
 <img src="https://rawgit.com/leoheck/gaph-os-scripts/master/images/menus.png" width="600px">
 
+## Pendrive Bootabel
+
+http://www.ubuntu.com/download/desktop/create-a-usb-stick-on-windows
+http://www.ubuntu.com/download/desktop/create-a-usb-stick-on-mac-osxhttp://www.ubuntu.com/download/desktop/create-a-usb-stick-on-ubuntu
+
 ## Instalação
 
 Instale o Ubuntu 16.04.
