@@ -1,0 +1,93 @@
+#!/bin/bash
+
+function header
+{
+	label="$1"
+	echo >> $logfile
+	echo >> $logfile  
+	echo "+========================================================================" >> $logfile 
+	echo "| $label" >> $logfile 
+	echo "+========================================================================" >> $logfile 
+	echo >> $logfile 
+}
+
+filename="env-$(hostname)-$USER"
+logfile="$filename.log"
+tarfile="$filename.tgz"
+
+rm -rf $logfile
+rm -rf $logfile
+
+touch $logfile
+
+#
+# GENERATE LOGS
+#
+
+header "DATE"
+date >> $logfile 
+
+header "UPTIME"
+uptime >> $logfile 
+
+header "UNAME"
+uname -a >> $logfile 
+
+header "RELEASE"
+lsb_release -a 2> /dev/null >> $logfile 
+
+header "LOADED MODULES"
+if [ -f /soft64/Modules/current/init/zsh ]; then
+	source /soft64/Modules/current/init/zsh
+	export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/soft64/tcltk/lib
+fi
+module list &>> $logfile 
+
+header "ENVIRONMENT"
+env >> $logfile 
+
+header "DMESG"
+dmesg | tail -n 50 >> $logfile 
+
+header "MOUNTPOINTS AND SPACE"
+df -h >> $logfile 
+
+header "LOGS: AUTH"
+tail -n 50 /var/log/auth.log >> $logfile 
+
+header "LOGS: XORG 0 ERRORS"
+grep EE /var/log/Xorg.0.log >> $logfile 
+
+header "LOGS: XORG 1 ERRORS"
+grep EE /var/log/Xorg.1.log >> $logfile 
+
+header "LOGS: XORG 0"
+tail -n 50 /var/log/Xorg.0.log >> $logfile 
+
+header "LOGS: XORG 1"
+tail -n 50 /var/log/Xorg.1.log >> $logfile 
+
+
+header "GAPH STATUS"
+ls -ltr /var/log/gaph >> $logfile 
+
+
+header "APT REPOSITORIES"
+ls /etc/apt/sources.list.d -ltr >> $logfile 
+
+
+#
+# FINAL OPERATIONS
+#
+
+rm -rf $tarfile
+tar -cvzf $tarfile $logfile 1> /dev/null
+rm -rf $logfile
+
+#
+# USER INFORMATION
+#
+
+echo -e "\nEnvie o arquivo '$tarfile' para os administradores"
+
+
