@@ -8,8 +8,10 @@ Modificado para homogeneizar as máquinas do laboratório com **Ubuntu 16.04**.
 
 ## Pendrive Bootabel
 
-http://www.ubuntu.com/download/desktop/create-a-usb-stick-on-windows
-http://www.ubuntu.com/download/desktop/create-a-usb-stick-on-mac-osxhttp://www.ubuntu.com/download/desktop/create-a-usb-stick-on-ubuntu
+Instruções para criar uma pendrive botavel com Ubuntu: no 
+[Ubuntu](http://www.ubuntu.com/download/desktop/create-a-usb-stick-on-ubuntu), 
+[Windows](http://www.ubuntu.com/download/desktop/create-a-usb-stick-on-windows) e
+[Mac OSX](http://www.ubuntu.com/download/desktop/create-a-usb-stick-on-mac-osx)
 
 ## Instalação
 
