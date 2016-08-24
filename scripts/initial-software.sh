@@ -40,6 +40,7 @@ nslcd,                      # LDAP login support (default configs)
 ldapscripts,                # LDAP acessory scripts
 
 inkscape,                   # SVG habilities
+ubuntu-restricted-addons,   # Install this third-party software (skipped on Ubuntu installation)
 
 EOM
 #===========================
