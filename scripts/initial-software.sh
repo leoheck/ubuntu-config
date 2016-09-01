@@ -22,6 +22,7 @@ nfs-common,                 # Mount NFS filesystems, (instalation problem?)
 smbclient,                  # SMB conectivity tools
 winbind,                    # Resolve user and group information from Windows NT servers
 lsb-base,                   # Linux standard base
+lsb-core, 
 debconf-utils,              # Required for salt
 salt-minion,                # Remote host configuration management
 libnss-myhostname,          # Required plugin for the GNU Name Service Switch (NSS)
