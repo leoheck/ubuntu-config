@@ -16,13 +16,20 @@ install_scripts()
 	SCRIPTDIR=$1
 	echo "  - Installing user scripts"
 	cp -f "$SCRIPTDIR"/bin/upgrade-gaph-host /usr/bin
+	cp -f "$SCRIPTDIR"/bin/debug-gaph-host /usr/bin
+
+	# Nomes alternativas
 	ln -sf /usr/bin/upgrade-gaph-host /usr/bin/gaph-host-upgrade
+	ln -sf /usr/bin/debug-gaph-host   /usr/bin/gaph-host-debug
 }
 
 remove_scripts()
 {
 	echo "  - Removing user scripts"
 	rm -rf /usr/bin/upgrade-gaph-host
+	rm -rf /usr/bin/gaph-host-upgrade
+	rm -rf /usr/bin/debug-gaph-host
+	rm -rf /usr/bin/gaph-host-debug
 }
 
 case $key in
