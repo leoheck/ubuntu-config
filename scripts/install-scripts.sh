@@ -18,9 +18,14 @@ install_scripts()
 	cp -f "$SCRIPTDIR"/bin/upgrade-gaph-host /usr/bin
 	cp -f "$SCRIPTDIR"/bin/debug-gaph-host /usr/bin
 
-	# Nomes alternativas
+	# Nomes alternativos
 	ln -sf /usr/bin/upgrade-gaph-host /usr/bin/gaph-host-upgrade
 	ln -sf /usr/bin/debug-gaph-host   /usr/bin/gaph-host-debug
+
+	# SSH Info
+	cp -f "$SCRIPTDIR"/etc/update-motd.d/99-gaph-banner.sh /etc/update-motd.d/
+	echo "/etc/update-motd.d/99-gaph-banner.sh" >> /etc/update-motd.d/00-header
+
 }
 
 remove_scripts()
@@ -30,6 +35,10 @@ remove_scripts()
 	rm -rf /usr/bin/gaph-host-upgrade
 	rm -rf /usr/bin/debug-gaph-host
 	rm -rf /usr/bin/gaph-host-debug
+
+	# SSH Info
+	rm -rf /etc/update-motd.d/99-gaph-banner.sh
+	sed '/99-gaph-banner.sh/d' /etc/update-motd.d/00-header
 }
 
 case $key in
