@@ -24,15 +24,15 @@ NORMAL="\e[0m"
 # tput cols
 
 
-echo -e "
-${BOLD}  Welcome to:
-${BOLD}${GREEN}  _______  _______  _______  __   __   ${NORMAL}${BOLD} __   __  _______  _______  _______
-${BOLD}${GREEN} |       ||   _   ||       ||  | |  |  ${NORMAL}${BOLD}|  | |  ||       ||       ||       |
-${BOLD}${GREEN} |    ___||  |_|  ||    _  ||  |_|  |  ${NORMAL}${BOLD}|  |_|  ||   _   ||  _____||_     _|
-${BOLD}${GREEN} |   | __ |       ||   |_| ||       |  ${NORMAL}${BOLD}|       ||  | |  || |_____   |   |
-${BOLD}${GREEN} |   ||  ||       ||    ___||       |  ${NORMAL}${BOLD}|       ||  |_|  ||_____  |  |   |
-${BOLD}${GREEN} |   |_| ||   _   ||   |    |   _   |  ${NORMAL}${BOLD}|   _   ||       | _____| |  |   |
-${BOLD}${GREEN} |_______||__| |__||___|    |__| |__|  ${NORMAL}${BOLD}|__| |__||_______||_______|  |___|"
+#echo -e "
+#${BOLD}  Welcome to:
+#${BOLD}${GREEN}  _______  _______  _______  __   __   ${NORMAL}${BOLD} __   __  _______  _______  _______
+#${BOLD}${GREEN} |       ||   _   ||       ||  | |  |  ${NORMAL}${BOLD}|  | |  ||       ||       ||       |
+#${BOLD}${GREEN} |    ___||  |_|  ||    _  ||  |_|  |  ${NORMAL}${BOLD}|  |_|  ||   _   ||  _____||_     _|
+#${BOLD}${GREEN} |   | __ |       ||   |_| ||       |  ${NORMAL}${BOLD}|       ||  | |  || |_____   |   |
+#${BOLD}${GREEN} |   ||  ||       ||    ___||       |  ${NORMAL}${BOLD}|       ||  |_|  ||_____  |  |   |
+#${BOLD}${GREEN} |   |_| ||   _   ||   |    |   _   |  ${NORMAL}${BOLD}|   _   ||       | _____| |  |   |
+#${BOLD}${GREEN} |_______||__| |__||___|    |__| |__|  ${NORMAL}${BOLD}|__| |__||_______||_______|  |___|"
 
 # echo -ne "\033[0m"
 # tput sgr0
