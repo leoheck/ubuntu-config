@@ -42,15 +42,35 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'    # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
-# New aliases
+# Safe aliases
 alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
 alias diff='colordiff'
 
-# MODULES ENVIRONMENT
-if [ -f /soft64/Modules/default/init/bash ]; then
-	source /soft64/Modules/default/init/bash
+check_mount()
+{
+    mountpoint='$1'
+    mount | grep "$mountpoint" > /dev/null
+    STATUS=$?
+    echo "Status: $STATUS"
+    if [[ $STATUS != 0 ]]; then
+        echo "$1 not mounted"
+    else
+        echo "$1 mounted"
+    fi
+}
+
+mount | grep "soft64" > /dev/null
+if [[ $? != 0 ]]; then
+    echo
+    echo "INFO: /soft64 não está montado"
+    echo "Ferramenta de módulos não estará disponível"
+else
+    # MODULES ENVIRONMENT
+    if [ -f /soft64/Modules/default/init/bash ]; then
+        source /soft64/Modules/default/init/bash
+    fi
 fi
 
 # USER CUSTOM MODULES CAN BE ADDED TO MODULEPATH
