@@ -55,7 +55,7 @@ ${BLUE}${BOLD}   Host: ${NORMAL}${Host}
 ${BLUE}${BOLD} Owener: ${NORMAL}${Owner}
 ${BLUE}${BOLD}     OS: ${NORMAL}${OS}
 ${BLUE}${BOLD} Kernel: ${NORMAL}${Kernel}
-${BLUE}${BOLD}    CPU: ${NORMAL}${CPU}, Procs=${procs}, Cores=${ores}
+${BLUE}${BOLD}    CPU: ${NORMAL}${CPU}, Procs=${procs}, Cores=${cores}
 ${BLUE}${BOLD} Memory: ${NORMAL}${Memory}
 ${BLUE}${BOLD} Uptime: ${NORMAL}${Uptime}
 ${BLUE}${BOLD} GAPHOS: ${NORMAL}${UpgradeDate}
@@ -67,4 +67,4 @@ ${BLUE}${BOLD} GAPHOS: ${NORMAL}${UpgradeDate}
 #${YELLOW}${BOLD} Problems can be reported at:
 #${RED}${BOLD}    https://github.com/leoheck/gaph-host-config/issues
 #${NORMAL}
-"
+#"
