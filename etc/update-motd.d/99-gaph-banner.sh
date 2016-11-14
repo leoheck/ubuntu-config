@@ -38,28 +38,30 @@ NORMAL="\e[0m"
 # tput sgr0
 
 Host=$(hostname)
-User=$(whoami)
+Owner=$(grep 1000 /etc/passwd | cut -d: -f5 | cut -d, -f1 | sed -r 's/\<./\U&/g')
 Uptime=$(uptime -p)
 Users=$(users | tr ' ' '\n' | sort | uniq)
 OS=$(lsb_release -s -d)
 Kernel=$(uname -r)
-CPU=$(lscpu | grep 'Model name:' | cut -d: -f2 |awk '{print $0}' | sed -e 's/^[ \t]*//' | sed 's/[ \t]\+/ /g')
-Memory="$(echo "scale=1; $(cat /proc/meminfo | grep MemTotal |  sed 's/[\t ]\+/ /' | cut -d' ' -f 2) / (1024*1024)" | bc) GB"
+#CPU=$(lscpu | grep 'Model name:' | cut -d: -f2 |awk '{print $0}' | sed -e 's/^[ \t]*//' | sed 's/[ \t]\+/ /g')
+procs=$(($(grep processor /proc/cpuinfo | tail -1 | cut -d: -f2 | sed 's/\s//g')+1))
+cores=$(grep -m 1 cores /proc/cpuinfo | cut -d: -f2 | sed 's/\s//g')
+CPU=$(cat /proc/cpuinfo | grep -i "model name" | sed 's/\s\+/ /g' | cut -d: -f2 | sed 's/^ //g' | head -1)
+Memory="$(echo "scale=1; $(cat /proc/meminfo | grep MemTotal |  sed 's/[\t ]\+/ /' | cut -d' ' -f 2) / (1000*1000)" | bc) GB"
 
 echo -e "
 ${BLUE}${BOLD}   Host: ${NORMAL}${Host}
-${BLUE}${BOLD}   User: ${NORMAL}${User}
-${BLUE}${BOLD} Uptime: ${NORMAL}${Uptime}
-${BLUE}${BOLD}  Users: ${NORMAL}${Users}
+${BLUE}${BOLD} Owener: ${NORMAL}${Owner}
 ${BLUE}${BOLD}     OS: ${NORMAL}${OS}
 ${BLUE}${BOLD} Kernel: ${NORMAL}${Kernel}
-${BLUE}${BOLD}    CPU: ${NORMAL}${CPU}
-${BLUE}${BOLD} Memory: ${NORMAL}${Memory}"
+${BLUE}${BOLD}    CPU: ${NORMAL}${CPU}, Procs=${procs}, Cores=${ores}
+${BLUE}${BOLD} Memory: ${NORMAL}${Memory}
+${BLUE}${BOLD} Uptime: ${NORMAL}${Uptime}"
 
 # echo -e "${NORMAL}${BOLD} Last Update: ${NORMAL} TODO"
 
-echo -e "
-${YELLOW}${BOLD} Problems can be reported at:
-${RED}${BOLD}    https://github.com/leoheck/gaph-host-config/issues
-${NORMAL}
+#echo -e "
+#${YELLOW}${BOLD} Problems can be reported at:
+#${RED}${BOLD}    https://github.com/leoheck/gaph-host-config/issues
+#${NORMAL}
 "
