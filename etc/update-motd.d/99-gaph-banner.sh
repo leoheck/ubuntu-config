@@ -48,6 +48,7 @@ procs=$(($(grep processor /proc/cpuinfo | tail -1 | cut -d: -f2 | sed 's/\s//g')
 cores=$(grep -m 1 cores /proc/cpuinfo | cut -d: -f2 | sed 's/\s//g')
 CPU=$(cat /proc/cpuinfo | grep -i "model name" | sed 's/\s\+/ /g' | cut -d: -f2 | sed 's/^ //g' | head -1)
 Memory="$(echo "scale=1; $(cat /proc/meminfo | grep MemTotal |  sed 's/[\t ]\+/ /' | cut -d' ' -f 2) / (1000*1000)" | bc) GB"
+UpgradeDate=$(cat /var/log/gaph/install-configs.done)
 
 echo -e "
 ${BLUE}${BOLD}   Host: ${NORMAL}${Host}
@@ -56,7 +57,9 @@ ${BLUE}${BOLD}     OS: ${NORMAL}${OS}
 ${BLUE}${BOLD} Kernel: ${NORMAL}${Kernel}
 ${BLUE}${BOLD}    CPU: ${NORMAL}${CPU}, Procs=${procs}, Cores=${ores}
 ${BLUE}${BOLD} Memory: ${NORMAL}${Memory}
-${BLUE}${BOLD} Uptime: ${NORMAL}${Uptime}"
+${BLUE}${BOLD} Uptime: ${NORMAL}${Uptime}
+${BLUE}${BOLD} GAPHOS: ${NORMAL}${UpgradeDate}
+"
 
 # echo -e "${NORMAL}${BOLD} Last Update: ${NORMAL} TODO"
 
