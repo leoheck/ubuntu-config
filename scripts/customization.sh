@@ -68,15 +68,14 @@ install_cmd()
 	# TODO: Pra melhor customização, colocar isso num arquivo separado.
 	# Ver: /etc/update-motd.d/ para executar scripts. Muito melhor.
 	#===========================
-	read -r -d '' SSHBANNER <<-EOM
-	 _____  _____  _____  _____           _____  _____  _____  _____
-	|   __||  _  ||  _  ||  |  |   ___   |  |  ||     ||   __||_   _|
-	|  |  ||     ||   __||     |  |___|  |     ||  |  ||__   |  | |
-	|_____||__|__||__|   |__|__|         |__|__||_____||_____|  |_|
-	EOM
+	#read -r -d '' SSHBANNER <<-EOM
+	# _____  _____  _____  _____           _____  _____  _____  _____
+	#|   __||  _  ||  _  ||  |  |   ___   |  |  ||     ||   __||_   _|
+	#|  |  ||     ||   __||     |  |___|  |     ||  |  ||__   |  | |
+	#|_____||__|__||__|   |__|__|         |__|__||_____||_____|  |_|
+	#EOM
 	#===========================
-
-	echo -e "\n\n$GAPHCONF\n\n" >> /etc/ssh/sshd-banner
+	#echo -e "\n\n$GAPHCONF\n\n" >> /etc/ssh/sshd-banner
 
 }
 
