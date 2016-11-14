@@ -41,6 +41,7 @@ read -r -d '' APPSCSV <<-EOM
 wdiff,
 
 # Administrator tools
+htop,
 bleachbit,
 y-ppa-manager,
 ppa-purge,
