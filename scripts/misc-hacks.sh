@@ -22,6 +22,8 @@ ln -sf /usr/lib/x86_64-linux-gnu/libdl.so      /lib/libdl.so
 ln -sf /usr/lib/x86_64-linux-gnu/libdl.a       /lib/libdl.a
 ln -sf /usr/lib/x86_64-linux-gnu/libjpeg.so.8  /lib/libjpeg.so.62
 ln -sf /lib/x86_64-linux-gnu/libncurses.so.5.9 /lib/libtermcap.so.2
+ln -sf /lib/x86_64-linux-gnu/libreadline.so.6  /lib/x86_64-linux-gnu/libreadline.so.5
+ln -sf /lib/x86_64-linux-gnu/libhistory.so.6   /lib/x86_64-linux-gnu/libhistory.so.5
 
 # WORKAROUND for missing libxp6 library in Ubuntu 16.04
 # Use libxp6 from Ubuntu 14.04 repositories
