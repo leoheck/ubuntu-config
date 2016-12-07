@@ -25,7 +25,6 @@ rm -rf ~/Templates
 rm -rf ~/Podcasts
 rm -rf ~/Audiobooks
 
-
 FILE=/etc/skel/.bashrc
 #==============================================================================
 cat >> ${FILE} << END_OF_FILE
@@ -50,19 +49,19 @@ alias diff='colordiff'
 
 check_mount()
 {
-    mountpoint='$1'
-    mount | grep "$mountpoint" > /dev/null
-    STATUS=$?
-    echo "Status: $STATUS"
-    if [[ $STATUS != 0 ]]; then
-        echo "$1 not mounted"
+    mountpoint='\$1'
+    mount | grep "\$mountpoint" > /dev/null
+    STATUS=\$?
+    echo "Status: \$STATUS"
+    if [[ \$STATUS != 0 ]]; then
+        echo "\$1 not mounted"
     else
-        echo "$1 mounted"
+        echo "\$1 mounted"
     fi
 }
 
 mount | grep "soft64" > /dev/null
-if [[ $? != 0 ]]; then
+if [[ \$? != 0 ]]; then
     echo
     echo "INFO: /soft64 não está montado"
     echo "Ferramenta de módulos não estará disponível"
