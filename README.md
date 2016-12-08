@@ -6,7 +6,7 @@ Modificado para homogeneizar as máquinas do laboratório com **Ubuntu 16.04**.
 
 <img src="https://rawgit.com/leoheck/gaph-os-scripts/master/images/menus.png" width="600px">
 
-## Pendrive Bootabel
+## Pendrive Bootable
 
 Instruções para criar uma pendrive botavel com Ubuntu: no 
 [Ubuntu](http://www.ubuntu.com/download/desktop/create-a-usb-stick-on-ubuntu), 
