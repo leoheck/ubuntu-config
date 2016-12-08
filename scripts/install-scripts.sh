@@ -22,10 +22,10 @@ install_scripts()
 	ln -sf /usr/bin/upgrade-gaph-host /usr/bin/gaph-host-upgrade
 	ln -sf /usr/bin/debug-gaph-host   /usr/bin/gaph-host-debug
 
-	# SSH Info
+	# SSH login info
 	cp -f "$SCRIPTDIR"/etc/update-motd.d/99-gaph-banner.sh /etc/update-motd.d/
+	sed '/99-gaph-banner.sh/' /etc/update-motd.d/00-header
 	echo "/etc/update-motd.d/99-gaph-banner.sh" >> /etc/update-motd.d/00-header
-
 }
 
 remove_scripts()

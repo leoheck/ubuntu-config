@@ -25,9 +25,16 @@ rm -rf ~/Templates
 rm -rf ~/Podcasts
 rm -rf ~/Audiobooks
 
-FILE=/etc/skel/.bashrc
-#==============================================================================
-cat >> ${FILE} << END_OF_FILE
+
+# BACKUP
+if [ ! -f /etc/skel/.bashrc.bkp ]; then
+	cp /etc/skel/.bashrc /etc/skel/.bashrc.bkp
+else
+	cp /etc/skel/.bashrc.bkp /etc/skel/.bashrc
+fi
+
+#===========================
+read -r -d '' BASHRC_CONF <<-EOM
 
 # Habilita 256 cores no terminal
 export TERM=xterm-256color
@@ -49,19 +56,19 @@ alias diff='colordiff'
 
 check_mount()
 {
-    mountpoint='\$1'
-    mount | grep "\$mountpoint" > /dev/null
-    STATUS=\$?
-    echo "Status: \$STATUS"
-    if [[ \$STATUS != 0 ]]; then
-        echo "\$1 not mounted"
+    mountpoint='$1'
+    mount | grep "$mountpoint" > /dev/null
+    STATUS=$?
+    echo "Status: $STATUS"
+    if [[ $STATUS != 0 ]]; then
+        echo "$1 not mounted"
     else
-        echo "\$1 mounted"
+        echo "$1 mounted"
     fi
 }
 
 mount | grep "soft64" > /dev/null
-if [[ \$? != 0 ]]; then
+if [[ $? != 0 ]]; then
     echo
     echo "INFO: /soft64 não está montado"
     echo "Ferramenta de módulos não estará disponível"
@@ -78,14 +85,27 @@ fi
 # How to load module automatically
 #module load hemps &> /dev/null
 
-END_OF_FILE
-#==============================================================================
+EOM
+#============================
+echo "$BASHRC_CONF" >> /etc/skel/.bashrc
 cp -f /etc/skel/.bashrc $HOME
 
 
-FILE=/etc/skel/.cshrc
+
+# BACKUP
+if [ ! -f /etc/skel/.cshrc.bkp ]; then
+	cp /etc/skel/.cshrc /etc/skel/.cshrc.bkp
+else
+	cp /etc/skel/.cshrc.bkp /etc/skel/.cshrc
+fi
+
 #==============================================================================
-cat >> ${FILE} << END_OF_FILE
+read -r -d '' CSHRC_CONF <<-EOM
+
+# Enhance completion
+#set autolist
+set correct=cmd
+set complete=enhance
 
 if ($?tcsh && $?prompt) then
 
@@ -108,15 +128,17 @@ source /soft64/Modules/default/init/csh
 # How to load module automatically
 #module load hemps &> /dev/null
 
-END_OF_FILE
-#==============================================================================
+EOM
+#============================
+echo "$CSHRC_CONF" >> /etc/skel/.cshrc
 cp -f /etc/skel/.cshrc $HOME
+
 
 
 
 FILE=/etc/skel/.inputrc
 #==============================================================================
-cat >> ${FILE} << END_OF_FILE
+read -r -d '' INPUTRC_CONF <<-EOM
 
 # History search
 "\e[A": history-search-backward
@@ -132,6 +154,7 @@ cat >> ${FILE} << END_OF_FILE
 "\e\e[C": forward-word
 "\e\e[D": backward-word
 
-END_OF_FILE
-#==============================================================================
+EOM
+#============================
+echo "$INPUTRC_CONF" > /etc/skel/.inputrc
 cp -f /etc/skel/.inputrc $HOME

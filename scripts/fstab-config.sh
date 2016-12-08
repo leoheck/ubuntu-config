@@ -40,7 +40,6 @@ install_cmd()
 
 	EOM
 	#============================
-
 	echo "$FSTAB" >> /etc/fstab
 
 	# Mounta se der.. (espero que sempre de, coloquei isso pra testar o processo)
