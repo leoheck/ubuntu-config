@@ -156,7 +156,7 @@ main()
 
 install_base_software()
 {
-	echo "  - Instaling base apps"
+	echo "  - Installing base apps"
 	echo "${GREEN}    - THIS CAN TAKE SOME MINUTES.${NORMAL}"
 
 	xhost +si:localuser:$(whoami) &> /dev/null && {
@@ -180,7 +180,7 @@ install_base_software()
 
 install_extra_software()
 {
-	echo "  - Instaling extra apps ..."
+	echo "  - Installing extra apps ..."
 	echo "${GREEN}    - THIS CAN TAKE HOURS. Go take a coffe :)${NORMAL}"
 
 	xhost +si:localuser:$(whoami) &> /dev/null && {
