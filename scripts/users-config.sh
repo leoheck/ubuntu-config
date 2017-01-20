@@ -94,7 +94,9 @@ cp -f /etc/skel/.bashrc $HOME
 
 # BACKUP
 if [ ! -f /etc/skel/.cshrc.bkp ]; then
-	cp /etc/skel/.cshrc /etc/skel/.cshrc.bkp
+	if [ -f /etc/skel/.cshrc ]; then
+		cp /etc/skel/.cshrc /etc/skel/.cshrc.bkp
+	fi
 else
 	cp /etc/skel/.cshrc.bkp /etc/skel/.cshrc
 fi
