@@ -91,7 +91,7 @@ main()
 		fi
 
 		if [ -d $PROJECTDIR ]; then
-			printf "%s  Removing $PROJECTDIR ...%s\n" "${BLUE}" "${NORMAL}"
+			printf "%s  Removing $PROJECTDIR folder ...%s\n" "${BLUE}" "${NORMAL}"
 			rm -rf $PROJECTDIR
 		fi
 
