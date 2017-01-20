@@ -86,12 +86,12 @@ main()
 	if [ ! "$skip_donwload" = "1" ];
 	then
 		if [ -f /tmp/$LOCAL_PKG ]; then
-			printf "%s  Removing previews package ...%s\n" "${BLUE}" "${NORMAL}"
+			printf "%s  Removing previous package ...%s\n" "${BLUE}" "${NORMAL}"
 			rm -rf /tmp/$LOCAL_PKG
 		fi
 
 		if [ -d $PROJECTDIR ]; then
-			printf "%s  Removing $PROJECTDIR folder ...%s\n" "${BLUE}" "${NORMAL}"
+			#printf "%s  Removing $PROJECTDIR folder ...%s\n" "${BLUE}" "${NORMAL}"
 			rm -rf $PROJECTDIR
 		fi
 
