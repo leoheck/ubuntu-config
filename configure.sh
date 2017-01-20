@@ -264,6 +264,7 @@ revert_configurations()
 	# users-config.sh
 	customization.sh -r
 	rm -f /var/log/gaph/install-configs.done
+	echo
 }
 
 # OPTION 1
