@@ -272,7 +272,6 @@ configure_gaph_host()
 	echo
 	echo "${YELLOW}  Configuring GAPH host... ${NORMAL}"
 	apply_and_upgrade_configs
-	install_extra_software
 	reboot_host
 }
 
