@@ -90,7 +90,7 @@ main()
 			rm -rf /tmp/$LOCAL_PKG
 		fi
 
-		printf "%s  Donwloading an updated $LOCAL_PKG from github in /tmp ...%s\n" "${BLUE}" "${NORMAL}"
+		printf "%s  Donwloading the last $LOCAL_PKG from github in /tmp ...%s\n" "${BLUE}" "${NORMAL}"
 		wget $GITHUB/$PKG -O /tmp/$LOCAL_PKG 2> /dev/null
 		chmod 777 /tmp/$LOCAL_PKG
 
@@ -114,8 +114,9 @@ main()
 	echo "                                                                     ${NORMAL}${GREEN}"
 	echo "  ~ HOST CONFIGURATION SCRIPT MADE FOR UBUNTU 16.04 ~${NORMAL}"
 	echo
-	echo "  ${BOLD}[1] INSTALL IN A GAPH HOST${NORMAL}"
-	echo "  ${BOLD}[2] Turn machine into a GAPH-COMPATIBLE host (install programs only)${NORMAL}"
+	echo "  ${BOLD}[1] CONFIGURE A GAPHL HOST${NORMAL}"
+	echo "  [2] Configure a GAPHL-COMPATIBLE host (install programs only)"
+	echo "  --- "
 	echo "  [3] Apply/upgrade configurations only"
 	echo "  [4] Remove configurations"
 	echo
