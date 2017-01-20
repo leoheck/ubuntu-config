@@ -24,7 +24,6 @@ install_scripts()
 
 	# SSH login info
 	cp -f "$SCRIPTDIR"/etc/update-motd.d/99-gaph-banner.sh /etc/update-motd.d/
-	sed '/99-gaph-banner.sh/' /etc/update-motd.d/00-header
 	echo "/etc/update-motd.d/99-gaph-banner.sh" >> /etc/update-motd.d/00-header
 }
 
