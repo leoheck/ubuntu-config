@@ -70,6 +70,7 @@ makedev,
 # Shells and terminals
 ipython,
 terminator,
+terminix,
 screen,
 minicom,
 cutecom,
