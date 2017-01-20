@@ -217,11 +217,8 @@ quit()
 }
 
 
-# OPTION 3
 apply_and_upgrade_configs()
 {
-	echo
-	echo "${YELLOW}  Appling/updating configurations... ${NORMAL}"
 	install_base_software
 	install-scripts.sh -i $PROJECTDIR | tee /var/log/gaph/install-scripts.log
 	crontab-config.sh -i $PROJECTDIR | tee /var/log/gaph/crontab-config.log
@@ -238,6 +235,14 @@ apply_and_upgrade_configs()
 	install_extra_software
 	misc-hacks.sh | tee /var/log/gaph/misc-hacks.log
 	echo "$(date)" > /var/log/gaph/install-configs.done
+}
+
+# OPTION 3
+apply_and_upgrade_configs_option()
+{
+	echo
+	echo "${YELLOW}  Appling/updating configurations... ${NORMAL}"
+	apply_and_upgrade_configs
 }
 
 # OPTION 4
@@ -266,7 +271,6 @@ configure_gaph_host()
 {
 	echo
 	echo "${YELLOW}  Configuring GAPH host... ${NORMAL}"
-	install_base_software
 	apply_and_upgrade_configs
 	install_extra_software
 	reboot_host
@@ -291,6 +295,6 @@ clear
 case $choice in
 	1 ) configure_gaph_host ;;
 	2 ) configure_gaph_compatible ;;
-	3 ) apply_and_upgrade_configs ;;
+	3 ) apply_and_upgrade_configs_option ;;
 	4 ) revert_configurations ;;
 esac
