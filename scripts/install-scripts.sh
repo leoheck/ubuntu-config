@@ -37,7 +37,7 @@ remove_scripts()
 
 	# SSH Info
 	rm -rf /etc/update-motd.d/99-gaph-banner.sh
-	sed '/99-gaph-banner.sh/d' /etc/update-motd.d/00-header
+	sed -i '/99-gaph-banner.sh/d' /etc/update-motd.d/00-header
 }
 
 case $key in
