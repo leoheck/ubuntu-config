@@ -1,6 +1,6 @@
 # Configuração das Máquinas do GAPH
 
-Modificado para homogeneizar as máquinas do laboratório com **Ubuntu 16.04**.
+Padronizar as máquinas do laboratório com **Ubuntu 16.04**.
 
 **Pode ser usado pelos alunos em seus computadores pessoais**.
 
