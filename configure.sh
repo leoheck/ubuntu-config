@@ -86,11 +86,11 @@ main()
 	if [ ! "$skip_donwload" = "1" ];
 	then
 		if [ -f /tmp/$LOCAL_PKG ]; then
-			printf "%s  Removing preview /tmp/$LOCAL_PKG ...%s\n" "${BLUE}" "${NORMAL}"
+			printf "%s  Removing previews version /tmp/$LOCAL_PKG ...%s\n" "${BLUE}" "${NORMAL}"
 			rm -rf /tmp/$LOCAL_PKG
 		fi
 
-		printf "%s  Donwloading the last $LOCAL_PKG from github in /tmp ...%s\n" "${BLUE}" "${NORMAL}"
+		printf "%s  Donwloading latest $LOCAL_PKG in /tmp ...%s\n" "${BLUE}" "${NORMAL}"
 		wget $GITHUB/$PKG -O /tmp/$LOCAL_PKG 2> /dev/null
 		chmod 777 /tmp/$LOCAL_PKG
 
@@ -99,7 +99,7 @@ main()
 			rm -rf $PROJECTDIR
 		fi
 
-		printf "%s  Unpacking /tmp/$LOCAL_PKG into $PROJECTDIR ...%s\n" "${BLUE}" "${NORMAL}"
+		printf "%s  Unpacking /tmp/$LOCAL_PKG ...%s\n" "${BLUE}" "${NORMAL}"
 		unzip -qq /tmp/$LOCAL_PKG -d /tmp > /dev/null
 		chmod 777 /tmp/$REPO-$BRANCH -R
 	else
