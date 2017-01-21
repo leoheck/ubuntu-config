@@ -42,9 +42,10 @@ before_script:
   - curl -L "http://downloads.sourceforge.net/shunit2/shunit2-2.0.3.tgz" | tar zx
 
 script:
-  - shellcheck your-script.sh
-  - bashate your-script.sh
-  - bash equality_test.sh
+  - echo "running my scripts..."
+  # - shellcheck your-script.sh
+  # - bashate your-script.sh
+  # - bash equality_test.sh
 
 after_success:
   - echo "TODO after_success"
