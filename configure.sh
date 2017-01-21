@@ -125,9 +125,10 @@ main()
 
 	while :;
 	do
-	  read -p '  #> ' choice
+	  read -r -p '  #> ' choice
 	  case $choice in
 		[1-4] ) break ;;
+		q|Q ) exit ;;
 		* )
 			tput cuu1
 			tput el1
@@ -137,10 +138,10 @@ main()
 	done
 }
 
-
+# OLD ROUTINE TO SELECT BETWEEN GUI/CLI EXECUTIONS.
 # install_software()
 # {
-# 	xhost +si:localuser:$(whoami) &> /dev/null && {
+# 	xhost +si:localuser:"$(whoami)" &> /dev/null && {
 # 		echo "${BLUE}    - Running GUI, please wait...${NORMAL}"
 # 		xterm \
 # 			-title 'Installing BASE Software' \
@@ -159,18 +160,14 @@ install_base_software()
 	echo "  - Installing base apps"
 	echo "${GREEN}    - THIS CAN TAKE SOME MINUTES.${NORMAL}"
 
-	xhost +si:localuser:$(whoami) &> /dev/null && {
-		echo "${BLUE}    - Running GUI, please wait...${NORMAL}"
-		xterm \
-			-title 'Installing BASE Software' \
-			-fa 'Ubuntu Mono' -fs 12 \
-			-bg 'black' -fg 'white' \
-			-e "bash -c 'initial-software.sh | tee /var/log/gaph/install-base.log'"
-			tput cuu1;
-			tput el;
-	} || {
-		bash -c "initial-software.sh | tee /var/log/gaph/install-base.log"
-	}
+	echo "${BLUE}    - Running GUI, please wait...${NORMAL}"
+	xterm \
+		-title 'Installing BASE Software' \
+		-fa 'Ubuntu Mono' -fs 12 \
+		-bg 'black' -fg 'white' \
+		-e "bash -c 'initial-software.sh | tee /var/log/gaph/install-base.log'"
+		tput cuu1;
+		tput el;
 
 	tput cuu1;
 	tput el;
@@ -183,22 +180,18 @@ install_extra_software()
 	echo "  - Installing extra apps ..."
 	echo "${GREEN}    - THIS CAN TAKE HOURS. Go take a coffe :)${NORMAL}"
 
-	xhost +si:localuser:$(whoami) &> /dev/null && {
-		echo "${BLUE}    - Loading the GUI, please wait...${NORMAL}"
-		xterm \
-			-title 'Installing EXTRA Software' \
-			-fa 'Ubuntu Mono' -fs 12 \
-			-bg 'black' -fg 'white' \
-			-e "bash -c 'extra-software.sh | tee /var/log/gaph/install-extra.log'"
-			tput cuu1;
-			tput el;
-	} || {
-		bash -c "extra-software.sh | tee /var/log/gaph/install-extra.log"
-	}
+	echo "${BLUE}    - Loading the GUI, please wait...${NORMAL}"
+	xterm \
+		-title 'Installing EXTRA Software' \
+		-fa 'Ubuntu Mono' -fs 12 \
+		-bg 'black' -fg 'white' \
+		-e "bash -c 'extra-software.sh | tee /var/log/gaph/install-extra.log'"
+		tput cuu1;
+		tput el;
 
 	tput cuu1;
 	tput el;
-	echo "$(date)" > /var/log/gaph/install-extra.done
+	date > /var/log/gaph/install-extra.done
 	echo "    - See logs in /var/log/gaph/install-extra.log"
 }
 
@@ -235,7 +228,7 @@ apply_and_upgrade_configs()
 	customization.sh -i $PROJECTDIR | tee /var/log/gaph/customization.log
 	install_extra_software
 	misc-hacks.sh | tee /var/log/gaph/misc-hacks.log
-	echo "$(date)" > /var/log/gaph/install-configs.done
+	date > /var/log/gaph/install-configs.done
 }
 
 # OPTION 3
