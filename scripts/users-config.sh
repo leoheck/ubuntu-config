@@ -57,7 +57,7 @@ alias diff='colordiff'
 check_mount()
 {
     mountpoint='\$1'
-    mount | grep "$mountpoint" > /dev/null
+    mount | grep "\$mountpoint" > /dev/null
     STATUS=\$?
     echo "Status: $STATUS"
     if [[ \$STATUS != 0 ]]; then
@@ -88,7 +88,7 @@ fi
 EOM
 #============================
 echo "$BASHRC_CONF" >> /etc/skel/.bashrc
-cp -f /etc/skel/.bashrc $HOME
+cp -f /etc/skel/.bashrc "$HOME"
 
 
 
@@ -133,12 +133,10 @@ source /soft64/Modules/default/init/csh
 EOM
 #============================
 echo "$CSHRC_CONF" >> /etc/skel/.cshrc
-cp -f /etc/skel/.cshrc $HOME
+cp -f /etc/skel/.cshrc "$HOME"
 
 
 
-
-FILE=/etc/skel/.inputrc
 #==============================================================================
 read -r -d '' INPUTRC_CONF <<-EOM
 
@@ -157,6 +155,6 @@ read -r -d '' INPUTRC_CONF <<-EOM
 "\e\e[D": backward-word
 
 EOM
-#============================
-echo "$INPUTRC_CONF" > /etc/skel/.inputrc
-cp -f /etc/skel/.inputrc $HOME
+#==========================
+echo "$INPUTRC_CONF" >> /etc/skel/.inputrc
+cp -f /etc/skel/.inputrc "$HOME"
