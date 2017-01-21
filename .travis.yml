@@ -47,55 +47,55 @@ before_script:
 
 script:
   - shellcheck ./configure.sh
-  - bashate -i E002,E003 ./configure.sh
+  - bashate -i E002,E003,E006 ./configure.sh
 
   - shellcheck ./scripts/users-config.sh
-  - bashate -i E002,E003 ./scripts/users-config.sh
+  - bashate -i E002,E003,E006 ./scripts/users-config.sh
 
   - shellcheck ./scripts/lightdm-config.sh
-  - bashate -i E002,E003 ./scripts/lightdm-config.sh
+  - bashate -i E002,E003,E006 ./scripts/lightdm-config.sh
   
   - shellcheck ./scripts/saltstack-config.sh
-  - bashate -i E002,E003 ./scripts/saltstack-config.sh
+  - bashate -i E002,E003,E006 ./scripts/saltstack-config.sh
   
   - shellcheck ./scripts/hosts-config.sh
-  - bashate -i E002,E003 ./scripts/hosts-config.sh
+  - bashate -i E002,E003,E006 ./scripts/hosts-config.sh
   
   - shellcheck ./scripts/initial-software.sh
-  - bashate -i E002,E003 ./scripts/initial-software.sh
+  - bashate -i E002,E003,E006 ./scripts/initial-software.sh
   
   - shellcheck ./scripts/extra-software.sh
-  - bashate -i E002,E003 ./scripts/extra-software.sh
+  - bashate -i E002,E003,E006 ./scripts/extra-software.sh
   
   - shellcheck ./scripts/customization.sh
-  - bashate -i E002,E003 ./scripts/customization.sh
+  - bashate -i E002,E003,E006 ./scripts/customization.sh
   
   - shellcheck ./scripts/misc-hacks.sh
-  - bashate -i E002,E003 ./scripts/misc-hacks.sh
+  - bashate -i E002,E003,E006 ./scripts/misc-hacks.sh
   
   - shellcheck ./scripts/config-printers.sh
-  - bashate -i E002,E003 ./scripts/config-printers.sh
+  - bashate -i E002,E003,E006 ./scripts/config-printers.sh
   
   - shellcheck ./scripts/admin-config.sh
-  - bashate -i E002,E003 ./scripts/admin-config.sh
+  - bashate -i E002,E003,E006 ./scripts/admin-config.sh
   
   - shellcheck ./scripts/nsswitch-config.sh
-  - bashate -i E002,E003 ./scripts/nsswitch-config.sh
+  - bashate -i E002,E003,E006 ./scripts/nsswitch-config.sh
   
   - shellcheck ./scripts/crontab-config.sh
-  - bashate -i E002,E003 ./scripts/crontab-config.sh
+  - bashate -i E002,E003,E006 ./scripts/crontab-config.sh
   
   - shellcheck ./scripts/fstab-config.sh
-  - bashate -i E002,E003 ./scripts/fstab-config.sh
+  - bashate -i E002,E003,E006 ./scripts/fstab-config.sh
   
   - shellcheck ./scripts/install-scripts.sh
-  - bashate -i E002,E003 ./scripts/install-scripts.sh
+  - bashate -i E002,E003,E006 ./scripts/install-scripts.sh
   
   - shellcheck ./scripts/nslcd-config.sh
-  - bashate -i E002,E003 ./scripts/nslcd-config.sh
+  - bashate -i E002,E003,E006 ./scripts/nslcd-config.sh
   
   - shellcheck ./etc/update-motd.d/99-gaph-banner.sh
-  - bashate -i E002,E003 ./etc/update-motd.d/99-gaph-banner.sh
+  - bashate -i E002,E003,E006 ./etc/update-motd.d/99-gaph-banner.sh
 
   # - bash tests/myscript_shunit2_tests.sh
 
