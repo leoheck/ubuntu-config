@@ -32,7 +32,7 @@ install_cmd()
 	sed -i "s/^base.*/base dc=gaph,dc=inf,dc=pucrs,dc=br/" /etc/nslcd.conf
 
 	echo -e '\n# Change default home mountpoint' >> /etc/nslcd.conf
-	echo -e '\nmap passwd homedirectory "/users/$uid"\n' >> /etc/nslcd.conf
+	echo -e "\nmap passwd homedirectory \"/users/\$uid\"\n" >> /etc/nslcd.conf
 
 	service nslcd start &> /dev/null
 }
