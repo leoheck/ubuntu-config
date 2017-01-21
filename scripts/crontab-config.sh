@@ -103,7 +103,7 @@ case $key in
 
 	-i|--install)
 	SCRIPTDIR="$2"
-	install_cmd $SCRIPTDIR
+	install_cmd "$SCRIPTDIR"
 	exit 0
 	;;
 

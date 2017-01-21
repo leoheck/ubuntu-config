@@ -69,7 +69,7 @@ EOM
 
 for APP in $BLACKLISTS;
 do
-	cat > /etc/apt/preferences.d/$APP <<-EOF
+	cat > "/etc/apt/preferences.d/$APP" <<-EOF
 	Package: $APP
 	Pin: release *
 	Pin-Priority: -1
@@ -94,8 +94,8 @@ apt-get install -f -y
 # Install apps individually
 for APP in $APPS;
 do
-	dpkg -s $APP &> /dev/null
+	dpkg -s "$APP" &> /dev/null
 	if [ ! $? -eq 0 ]; then
-		DEBIAN_FRONTEND=noninteractive apt-get install -y $APP
+		DEBIAN_FRONTEND=noninteractive apt-get install -y "$APP"
 	fi
 done

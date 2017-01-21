@@ -12,9 +12,9 @@ clear
 # BOLD="$(tput bold)"
 # NORMAL="$(tput sgr0)"
 
-RED="\e[1;31m"
-GREEN="\e[1;32m"
-YELLOW="\e[1;33m"
+# RED="\e[1;31m"
+# GREEN="\e[1;32m"
+# YELLOW="\e[1;33m"
 BLUE="\e[1;34m"
 BOLD="\e[1m"
 NORMAL="\e[0m"
@@ -40,14 +40,14 @@ NORMAL="\e[0m"
 Host=$(hostname)
 Owner=$(grep 1000 /etc/passwd | cut -d: -f5 | cut -d, -f1 | sed -r 's/\<./\U&/g')
 Uptime=$(uptime -p)
-Users=$(users | tr ' ' '\n' | sort | uniq)
+# Users=$(users | tr ' ' '\n' | sort | uniq)
 OS=$(lsb_release -s -d)
 Kernel=$(uname -r)
 #CPU=$(lscpu | grep 'Model name:' | cut -d: -f2 |awk '{print $0}' | sed -e 's/^[ \t]*//' | sed 's/[ \t]\+/ /g')
 procs=$(($(grep processor /proc/cpuinfo | tail -1 | cut -d: -f2 | sed 's/\s//g')+1))
 cores=$(grep -m 1 cores /proc/cpuinfo | cut -d: -f2 | sed 's/\s//g')
-CPU=$(cat /proc/cpuinfo | grep -i "model name" | sed 's/\s\+/ /g' | cut -d: -f2 | sed 's/^ //g' | head -1)
-Memory="$(echo "scale=1; $(cat /proc/meminfo | grep MemTotal |  sed 's/[\t ]\+/ /' | cut -d' ' -f 2) / (1000*1000)" | bc) GB"
+CPU=$(grep -i "model name" /proc/cpuinfo | sed 's/\s\+/ /g' | cut -d: -f2 | sed 's/^ //g' | head -1)
+Memory="$(echo "scale=1; $(grep MemTotal /proc/meminfo |  sed 's/[\t ]\+/ /' | cut -d' ' -f 2) / (1000*1000)" | bc) GB"
 UpgradeDate=$(cat /var/log/gaph/install-configs.done)
 
 echo -e "

@@ -28,8 +28,8 @@ ppas="\
 # ppa:tualatrix/ppa
 
 # Add extra repositories
-for ppa in ${ppas}; do
-	apt-add-repository -y ${ppa}
+for ppa in $ppas; do
+	apt-add-repository -y "$ppa"
 done
 
 # EXTRA SOFTWARE (organized in groups)
@@ -292,8 +292,8 @@ apt-get install -f -y
 # Install apps individually
 for APP in $APPS;
 do
-	dpkg -s $APP &> /dev/null
+	dpkg -s "$APP" &> /dev/null
 	if [ ! $? -eq 0 ]; then
-		DEBIAN_FRONTEND=noninteractive apt-get install -y $APP
+		DEBIAN_FRONTEND=noninteractive apt-get install -y "$APP"
 	fi
 done
