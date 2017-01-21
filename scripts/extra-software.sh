@@ -66,6 +66,7 @@ gparted,
 preload,
 strace,
 makedev,
+pdfgrep,
 
 # Shells and terminals
 ipython,
