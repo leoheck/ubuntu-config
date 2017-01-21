@@ -22,7 +22,7 @@ nfs-common,                 # Mount NFS filesystems, (instalation problem?)
 smbclient,                  # SMB conectivity tools
 winbind,                    # Resolve user and group information from Windows NT servers
 lsb-base,                   # Linux standard base
-lsb-core, 
+lsb-core,
 debconf-utils,              # Required for salt
 salt-minion,                # Remote host configuration management
 libnss-myhostname,          # Required plugin for the GNU Name Service Switch (NSS)
@@ -67,8 +67,7 @@ ubuntu-mate-desktop
 EOM
 #===========================
 
-for APP in $BLACKLISTS;
-do
+for APP in $BLACKLISTS; do
 	cat > "/etc/apt/preferences.d/$APP" <<-EOF
 	Package: $APP
 	Pin: release *
@@ -92,8 +91,7 @@ apt-get update
 apt-get install -f -y
 
 # Install apps individually
-for APP in $APPS;
-do
+for APP in $APPS; do
 	dpkg -s "$APP" &> /dev/null
 	if [ ! $? -eq 0 ]; then
 		DEBIAN_FRONTEND=noninteractive apt-get install -y "$APP"
