@@ -36,7 +36,7 @@ before_install:
   - sudo apt-add-repository "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted universe multiverse"
   - sudo apt-get -qq update
   - sudo apt-get -t trusty-backports install shellcheck
-  - sudo pip install bashate
+  - sudo -H pip install bashate
 
 # install:
   # - echo "TODO INSTALL"
@@ -81,7 +81,7 @@ script:
   # - bashate ./scripts/nslcd-config.sh
   # - bashate ./etc/update-motd.d/99-gaph-banner.sh
   # - bash tests/myscript_shunit2_tests.sh
-  
+
 # after_success:
   # - echo "TODO after_success"
 
