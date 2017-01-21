@@ -46,6 +46,7 @@ before_script:
   - ln -s shunit2-2.1.3 shunit2
 
 script:
+
   - shellcheck ./configure.sh
   - bashate -i E002,E003,E006 ./configure.sh
 
