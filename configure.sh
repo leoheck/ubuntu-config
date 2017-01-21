@@ -83,8 +83,8 @@ fi
 
 main()
 {
-	if [ ! "$skip_donwload" = "1" ];
-	then
+	if [ ! "$skip_donwload" = "1" ]; then
+
 		if [ -f /tmp/$LOCAL_PKG ]; then
 			printf "%s  Removing previous package ...%s\n" "${BLUE}" "${NORMAL}"
 			rm -rf /tmp/$LOCAL_PKG
@@ -123,8 +123,7 @@ main()
 	echo "${BLUE}  Hit CTRL+C to exit${NORMAL}"
 	echo
 
-	while :;
-	do
+	while :; do
 	  read -r -p '  #> ' choice
 	  case $choice in
 		[1-4] ) break ;;
