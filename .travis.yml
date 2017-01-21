@@ -1,0 +1,60 @@
+
+# http://blog.tgrrtt.com/exploring-the-travisci-configuration-file
+# https://docs.travis-ci.com/user/customizing-the-build
+# https://www.sysorchestra.com/2016/07/18/introduction-on-how-to-use-shellcheck-and-bashate-with-travis-ci/
+# sudo pip install --upgrade pip
+
+# I. With Travis-CI, the typical build process has the following steps:
+# 1. before_install
+# 2. install
+# 3. before_script
+# 4. script
+# 5. after_success / after_failure
+# 6. after_script
+#
+# II. If specified, these take place after the the after_script has run.
+# 1. before_deploy
+# 2. deploy
+# 3. after_deploy
+
+dist: trusty
+sudo: required
+
+language: bash
+
+# addons:
+#   apt:
+#     sources:
+#       - debian-sid    # Grab ShellCheck from the Debian repo
+#     packages:
+#       - shellcheck
+
+before_install:
+  - sudo apt-add-repository "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted universe multiverse"
+  - sudo apt-get -qq update
+  - sudo apt-get -t trusty-backports install shellcheck
+  - sudo pip install bashate
+
+install:
+  - echo "TODO INSTALL"
+
+before_script:
+  - curl -L "http://downloads.sourceforge.net/shunit2/shunit2-2.0.3.tgz" | tar zx
+
+script:
+  - shellcheck your-script.sh
+  - bashate your-script.sh
+  - bash equality_test.sh
+
+after_success:
+  - echo "TODO after_success"
+after_failure:
+  - echo "TODO after_failure"
+after_script:
+  - echo "TODO after_script"
+
+after_script: # here's a build step block
+  - echo "We can put normal shell commands here"
+  - echo "more shell commands here"
+
+
