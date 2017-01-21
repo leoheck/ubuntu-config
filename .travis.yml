@@ -1,7 +1,10 @@
 
+# MY TUTORIALS
 # http://blog.tgrrtt.com/exploring-the-travisci-configuration-file
 # https://docs.travis-ci.com/user/customizing-the-build
 # https://www.sysorchestra.com/2016/07/18/introduction-on-how-to-use-shellcheck-and-bashate-with-travis-ci/
+# https://www.sysorchestra.com/2014/10/12/travisshunit2/
+
 # sudo pip install --upgrade pip
 
 # I. With Travis-CI, the typical build process has the following steps:
@@ -30,32 +33,65 @@ language: bash
 #       - shellcheck
 
 before_install:
-  - sudo apt-add-repository "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted universe multiverse"
-  - sudo apt-get -qq update
-  - sudo apt-get -t trusty-backports install shellcheck
+  # - sudo apt-add-repository "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted universe multiverse"
+  # - sudo apt-get -qq update
+  # - sudo apt-get -t trusty-backports install shellcheck
   - sudo pip install bashate
 
-install:
-  - echo "TODO INSTALL"
+# install:
+  # - echo "TODO INSTALL"
 
 before_script:
-  - curl -L "http://downloads.sourceforge.net/shunit2/shunit2-2.0.3.tgz" | tar zx
+  - curl -L "http://downloads.sourceforge.net/shunit2/shunit2-2.1.3.tgz" | tar zx
+  - ln -s shunit2-2.1.3 shunit2
 
 script:
-  - echo "running my scripts..."
-  # - shellcheck your-script.sh
-  # - bashate your-script.sh
-  # - bash equality_test.sh
+  - shellcheck ./configure.sh
+  - shellcheck ./scripts/users-config.sh
+  - shellcheck ./scripts/lightdm-config.sh
+  - shellcheck ./scripts/saltstack-config.sh
+  - shellcheck ./scripts/hosts-config.sh
+  - shellcheck ./scripts/initial-software.sh
+  - shellcheck ./scripts/extra-software.sh
+  - shellcheck ./scripts/customization.sh
+  - shellcheck ./scripts/misc-hacks.sh
+  - shellcheck ./scripts/config-printers.sh
+  - shellcheck ./scripts/admin-config.sh
+  - shellcheck ./scripts/nsswitch-config.sh
+  - shellcheck ./scripts/crontab-config.sh
+  - shellcheck ./scripts/fstab-config.sh
+  - shellcheck ./scripts/install-scripts.sh
+  - shellcheck ./scripts/nslcd-config.sh
+  - shellcheck ./etc/update-motd.d/99-gaph-banner.sh
+  # - bashate ./configure.sh
+  # - bashate ./scripts/users-config.sh
+  # - bashate ./scripts/lightdm-config.sh
+  # - bashate ./scripts/saltstack-config.sh
+  # - bashate ./scripts/hosts-config.sh
+  # - bashate ./scripts/initial-software.sh
+  # - bashate ./scripts/extra-software.sh
+  # - bashate ./scripts/customization.sh
+  # - bashate ./scripts/misc-hacks.sh
+  # - bashate ./scripts/config-printers.sh
+  # - bashate ./scripts/admin-config.sh
+  # - bashate ./scripts/nsswitch-config.sh
+  # - bashate ./scripts/crontab-config.sh
+  # - bashate ./scripts/fstab-config.sh
+  # - bashate ./scripts/install-scripts.sh
+  # - bashate ./scripts/nslcd-config.sh
+  # - bashate ./etc/update-motd.d/99-gaph-banner.sh
+  # - bash tests/myscript_shunit2_tests.sh
+  
+# after_success:
+  # - echo "TODO after_success"
 
-after_success:
-  - echo "TODO after_success"
-after_failure:
-  - echo "TODO after_failure"
-after_script:
-  - echo "TODO after_script"
+# after_failure:
+  # - echo "TODO after_failure"
 
-after_script: # here's a build step block
-  - echo "We can put normal shell commands here"
-  - echo "more shell commands here"
+# after_script:
+  # - echo "TODO after_script"
 
-
+# here's a build step block
+# after_script: 
+  # - echo "We can put normal shell commands here"
+  # - echo "more shell commands here"
