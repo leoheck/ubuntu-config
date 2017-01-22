@@ -10,8 +10,8 @@
 # BASH UNIT TESTERS
 # shellcheck
 # bashate
-# shunit2
-# https://github.com/sstephenson/bats
+# shunit2 http://ssb.stsci.edu/testing/shunit2/shunit2.html
+# bats https://github.com/sstephenson/bats
 
 
 dist: trusty
@@ -24,13 +24,14 @@ before_install:
   - sudo apt-get -qq update
   - sudo apt-get -t trusty-backports install shellcheck
   - sudo -H pip install bashate
+  - sudo apt-get -t trusty-backports install shunit2
 
 # install:
   # - echo "TODO INSTALL"
 
 before_script:
-  - curl -L "http://downloads.sourceforge.net/shunit2/shunit2-2.1.3.tgz" | tar zx
-  - ln -s shunit2-2.1.3 shunit2
+  #- curl -L "http://downloads.sourceforge.net/shunit2/shunit2-2.1.3.tgz" | tar zx
+  #- ln -s shunit2-2.1.3 shunit2
   - bashate_color(){ RED="$(tput setaf 1)"; YEL="$(tput setaf 3)"; NOR="$(tput sgr0)"; bashate -i E002,E003,E006 $@ | sed "s/\(\[E\].*:.*:\)/$RED\1$NOR/g" | sed "s/\(\[W\].*:.*:\)/$YEL\1$NOR/g"; }       
 
 script:
@@ -88,14 +89,19 @@ script:
 
   # - bash tests/myscript_shunit2_tests.sh
 
-  # Testes completos de instalacao devem ser feitos em outro servico. 
+  # Provavelmente testes completos de instalacao devem ser feitos em outro servico 
   # - curl https://raw.githubusercontent.com/leoheck/gaph-host-config/master/configure.sh | sudo bash -s -- -c1 -a
   # - curl https://raw.githubusercontent.com/leoheck/gaph-host-config/master/configure.sh | sudo bash -s -- -c2 -a
   # - curl https://raw.githubusercontent.com/leoheck/gaph-host-config/master/configure.sh | sudo bash -s -- -c3
   # - curl https://raw.githubusercontent.com/leoheck/gaph-host-config/master/configure.sh | sudo bash -s -- -c4
 
-# after_success:
-  # - echo "TODO after_success"
+#https://docs.travis-ci.com/user/deployment/custom/
+#after_success:
+  #- eval "$(ssh-agent -s)" #start the ssh agent
+  #- chmod 600 .travis/deploy_key.pem # this key should have push access
+  #- ssh-add .travis/deploy_key.pem
+  #- git remote add deploy DEPLOY_REPO_URI_GOES_HERE
+  #- git push deploy
 
 # after_failure:
   # - echo "TODO after_failure"
@@ -107,3 +113,4 @@ script:
 # after_script: 
   # - echo "We can put normal shell commands here"
   # - echo "more shell commands here"
+ 
