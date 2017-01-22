@@ -1,11 +1,12 @@
+
 FROM python:3.5
 MAINTAINER Leandro Heck <leoheck@gmail.com>
 
 # Provavelmente testes completos de instalacao devem ser feitos em outro servico 
-# curl https://raw.githubusercontent.com/leoheck/gaph-host-config/master/configure.sh | sudo bash -s -- -c1 -a
-# curl https://raw.githubusercontent.com/leoheck/gaph-host-config/master/configure.sh | sudo bash -s -- -c2 -a
-curl https://raw.githubusercontent.com/leoheck/gaph-host-config/master/configure.sh | sudo bash -s -- -c3
-# curl https://raw.githubusercontent.com/leoheck/gaph-host-config/master/configure.sh | sudo bash -s -- -c4
+# RUN curl https://raw.githubusercontent.com/leoheck/gaph-host-config/master/configure.sh | sudo bash -s -- -c1 -a
+# RUN curl https://raw.githubusercontent.com/leoheck/gaph-host-config/master/configure.sh | sudo bash -s -- -c2 -a
+RUN curl https://raw.githubusercontent.com/leoheck/gaph-host-config/master/configure.sh | sudo bash -s -- -c3
+# RUN curl https://raw.githubusercontent.com/leoheck/gaph-host-config/master/configure.sh | sudo bash -s -- -c4
 
 
 # Install dependencies
