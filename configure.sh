@@ -174,7 +174,7 @@ main()
 	echo "${BLUE}  Hit CTRL+C to exit${NORMAL}"
 	echo
 
-	if [ ! $choice ]; then
+	if [ ! "$choice" ]; then
 		while :; do
 		  read -r -p '  #> ' choice
 		  case $choice in
