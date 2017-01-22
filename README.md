@@ -1,6 +1,4 @@
-[![Build Status](https://travis-ci.org/leoheck/gaph-host-config.svg?branch=master)](https://travis-ci.org/leoheck/gaph-host-config)
-
-# Configuração das Máquinas do GAPH
+# Configuração das Máquinas do GAPH [![Build Status](https://travis-ci.org/leoheck/gaph-host-config.svg?branch=master)](https://travis-ci.org/leoheck/gaph-host-config)
 
 Padronizar as máquinas do laboratório com **Ubuntu 16.04**.
 
