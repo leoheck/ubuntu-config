@@ -88,6 +88,7 @@ script:
 
   # - bash tests/myscript_shunit2_tests.sh
 
+  - curl https://raw.githubusercontent.com/leoheck/gaph-host-config/master/configure.sh | sudo bash -s -- -c1 -a
 
 # after_success:
   # - echo "TODO after_success"
