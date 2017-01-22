@@ -10,6 +10,54 @@
 # - LOGS: /var/logs/gaph/
 # - BKPs Suffix: TODO
 
+# Command line parameters
+# command="$1"
+
+# hile getopts "hd:R:" arg; do
+#   case $arg in
+#     h)
+#       echo "usgae" 
+#       ;;
+#     d)
+#       dir=$OPTARG
+#       ;;
+#     R)
+#       if [[ $OPTARG =~ ^[0-9]+$ ]];then
+#         level=$OPTARG
+#       else
+#         level=1
+#       fi
+#       ;;
+#     \?)
+#       echo "WRONG" >&2
+#       ;;
+#   esac
+# done
+
+INSTALL_BASE=1
+INSTALL_EXTRA=1
+
+while getopts "abec:" opt; do
+	case $opt in
+	a)  # DISABLE INSTALL ALL PACKAGES
+		INSTALL_BASE=0
+		INSTALL_EXTRA=0
+		;;
+	b)  # DISABLE INSTALL BASIC PACKAGES
+		INSTALL_BASE=0
+		;;
+	e)  # DISABLE INSTALL EXTRA PACKAGES
+		INSTALL_EXTRA=0
+		;;
+	c)  # SELECT THE CHOICE 
+		choice=$OPTARG
+		;;
+	\?)
+		echo "Invalid option: -$OPTARG" >&2
+		;;
+	esac
+done
+
 
 # GITHUB REPOSITORY CONFIG
 REPO="gaph-host-config"
@@ -56,10 +104,13 @@ fi
 # Ctrl+c function to halt execution
 control_c()
 {
-	echo "${YELLOW}  KILLING! :( ${NORMAL}"
+	tput el1
 	echo
+	echo "${YELLOW}  FUCK, YOU KILLED ME! :( ${NORMAL}"
+	echo
+	pkill -P $$
 	shutdown -c
-	echo "kill -KILL $!" | at now &> /dev/null
+	# echo "kill -KILL $!" | at now &> /dev/null
 }
 
 trap control_c SIGINT
@@ -123,18 +174,20 @@ main()
 	echo "${BLUE}  Hit CTRL+C to exit${NORMAL}"
 	echo
 
-	while :; do
-	  read -r -p '  #> ' choice
-	  case $choice in
-		[1-4] ) break ;;
-		q|Q ) exit ;;
-		* )
-			tput cuu1
-			tput el1
-			tput el
-			;;
-	  esac
-	done
+	if [ ! $choice ]; then
+		while :; do
+		  read -r -p '  #> ' choice
+		  case $choice in
+			[1-4] ) break ;;
+			q|Q ) exit ;;
+			* )
+				tput cuu1
+				tput el1
+				tput el
+				;;
+		  esac
+		done
+	fi
 }
 
 # OLD ROUTINE TO SELECT BETWEEN GUI/CLI EXECUTIONS.
@@ -212,7 +265,9 @@ quit()
 
 apply_and_upgrade_configs()
 {
-	install_base_software
+	if [ $INSTALL_BASE == 1 ]; then
+		install_base_software
+	fi
 	install-scripts.sh -i $PROJECTDIR | tee /var/log/gaph/install-scripts.log
 	crontab-config.sh -i $PROJECTDIR | tee /var/log/gaph/crontab-config.log
 	admin-config.sh -i | tee /var/log/gaph/admin-config.log
@@ -225,7 +280,9 @@ apply_and_upgrade_configs()
 	saltstack-config.sh -i | tee /var/log/gaph/saltstack-config.log
 	users-config.sh | tee /var/log/gaph/users-config.log
 	customization.sh -i $PROJECTDIR | tee /var/log/gaph/customization.log
-	install_extra_software
+	if [ $INSTALL_EXTRA == 1 ]; then
+		install_extra_software
+	fi
 	misc-hacks.sh | tee /var/log/gaph/misc-hacks.log
 	date > /var/log/gaph/install-configs.done
 }
@@ -274,8 +331,15 @@ configure_gaph_compatible()
 {
 	echo
 	echo "${YELLOW}  Configuring GAPH COMPATIBLE host... ${NORMAL}"
-	install_base_software
-	install_extra_software
+
+	if [ $INSTALL_BASE == 1 ]; then
+		install_base_software
+	fi
+
+	if [ $INSTALL_EXTRA == 1 ]; then
+		install_extra_software
+	fi
+
 	misc-hacks.sh
 	reboot_host
 }
@@ -290,4 +354,5 @@ case $choice in
 	2 ) configure_gaph_compatible ;;
 	3 ) apply_and_upgrade_configs_option ;;
 	4 ) revert_configurations ;;
+    * ) echo "Your choice ($choice) is missing!"; exit 1
 esac
