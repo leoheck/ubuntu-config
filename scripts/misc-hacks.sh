@@ -31,6 +31,11 @@ wget "http://mirrors.kernel.org/ubuntu/pool/main/libx/libxp/libxp6_1.0.2-1ubuntu
 dpkg -i libxp6_1.0.2-1ubuntu1_amd64.deb > /dev/null
 rm -f libxp6_1.0.2-1ubuntu1_amd64.deb
 
+# ttf-mscorefonts-installer fix
+apt purge -y ttf-mscorefonts-installer
+wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb -P /tmp
+apt install /tmp/ttf-mscorefonts-installer_3.6_all.deb
+
 # Fix some names
 ln -sf /lib/x86_64-linux-gnu/libm.so.6 /lib/x86_64-linux-gnu/libm.so
 
