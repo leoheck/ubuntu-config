@@ -19,16 +19,16 @@ before_install:
   - sudo apt-get -t trusty-backports install bats
   # - sudo travis/lxd/before_install.sh
 
-# install:
+install:
 
-# before_script:
+before_script:
 
 script:
   # - sudo travis/lxd/script.sh
   - ./travis/tests/shellcheck-tests.sh
   - ./travis/tests/bashate-tests.sh
   # - ./travis/tests/functional-tests.sh
-  ./trevis/tests/shunit2-tests.sh
+  - ./trevis/tests/shunit2-tests.sh
   - bats --tap ./travis/tests/bats-tests.bats
   - bats ./travis/tests/bats-tests.bats
 
