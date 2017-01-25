@@ -16,7 +16,7 @@ before_install:
   - sudo apt-get -t trusty-backports install shellcheck
   - sudo pip install bashate
   - sudo apt-get -t trusty-backports install shunit2
-  - sudo apt-get -t trusty-backports install bats
+  # - sudo apt-get -t trusty-backports install bats
   # - sudo travis/lxd/before_install.sh
 
 install:
