@@ -77,6 +77,9 @@ minicom,
 cutecom,
 gtkterm,
 shellcheck,
+python-bashate,
+shunit2,
+bats,
 
 # Window managers and tweak tools
 compizconfig-settings-manager,
