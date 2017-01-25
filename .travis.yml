@@ -28,7 +28,7 @@ script:
   - ./travis/tests/shellcheck-tests.sh
   - ./travis/tests/bashate-tests.sh
   - ./trevis/tests/shunit2-tests.sh
-  - bats ./travis/tests/bats-tests.bats
+  - bats --tap ./travis/tests/bats-tests.bats
 
 
 # Como funciona isso? Precisa? Tinha no exemplo de integração do LXD
