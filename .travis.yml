@@ -1,18 +1,9 @@
 
-# MY TUTORIALS
-# http://blog.tgrrtt.com/exploring-the-travisci-configuration-file
-# https://docs.travis-ci.com/user/customizing-the-build
-# https://www.sysorchestra.com/2016/07/18/introduction-on-how-to-use-shellcheck-and-bashate-with-travis-ci/
-# https://www.sysorchestra.com/2014/10/12/travisshunit2/
-
-# sudo pip install --upgrade pip
-
-# BASH UNIT TESTERS
-# shellcheck
-# bashate
-# shunit2 http://ssb.stsci.edu/testing/shunit2/shunit2.html
-# bats https://github.com/sstephenson/bats
-
+# BASH UNITY TESTERS
+# http://ssb.stsci.edu/testing/shunit2/shunit2.html
+# https://github.com/sstephenson/bats
+# Syntax: shellcheck | bashate
+# Function: shunit2 | bats 
 
 dist: trusty
 sudo: required
@@ -25,86 +16,26 @@ before_install:
   - sudo apt-get -t trusty-backports install shellcheck
   - sudo -H pip install bashate
   - sudo apt-get -t trusty-backports install shunit2
-
   - sudo travis/lxd/before_install.sh
 
-# install:
-  # - echo "TODO INSTALL"
+install:
 
 before_script:
-  - bashate_color(){ RED="$(tput setaf 1)"; YEL="$(tput setaf 3)"; NOR="$(tput sgr0)"; bashate -i E002,E003,E006 $@ | sed "s/\(\[E\].*:.*:\)/$RED\1$NOR/g" | sed "s/\(\[W\].*:.*:\)/$YEL\1$NOR/g"; }       
-
 
 script:
-
   - sudo travis/lxd/script.sh
-
-  - shellcheck ./configure.sh
-  - bashate_color ./configure.sh
-
-  - shellcheck ./scripts/users-config.sh
-  - bashate_color ./scripts/users-config.sh
-
-  - shellcheck ./scripts/lightdm-config.sh
-  - bashate_color ./scripts/lightdm-config.sh
-  
-  - shellcheck ./scripts/saltstack-config.sh
-  - bashate_color ./scripts/saltstack-config.sh
-  
-  - shellcheck ./scripts/hosts-config.sh
-  - bashate_color ./scripts/hosts-config.sh
-  
-  - shellcheck ./scripts/initial-software.sh
-  - bashate_color ./scripts/initial-software.sh
-  
-  - shellcheck ./scripts/extra-software.sh
-  - bashate_color ./scripts/extra-software.sh
-  
-  - shellcheck ./scripts/customization.sh
-  - bashate_color ./scripts/customization.sh
-  
-  - shellcheck ./scripts/misc-hacks.sh
-  - bashate_color ./scripts/misc-hacks.sh
-  
-  - shellcheck ./scripts/config-printers.sh
-  - bashate_color ./scripts/config-printers.sh
-  
-  - shellcheck ./scripts/admin-config.sh
-  - bashate_color ./scripts/admin-config.sh
-  
-  - shellcheck ./scripts/nsswitch-config.sh
-  - bashate_color ./scripts/nsswitch-config.sh
-  
-  - shellcheck ./scripts/crontab-config.sh
-  - bashate_color ./scripts/crontab-config.sh
-  
-  - shellcheck ./scripts/fstab-config.sh
-  - bashate_color ./scripts/fstab-config.sh
-  
-  - shellcheck ./scripts/install-scripts.sh
-  - bashate_color ./scripts/install-scripts.sh
-  
-  - shellcheck ./scripts/nslcd-config.sh
-  - bashate_color ./scripts/nslcd-config.sh
-  
-  - shellcheck ./etc/update-motd.d/99-gaph-banner.sh
-  - bashate_color ./etc/update-motd.d/99-gaph-banner.sh
-
-  # - bash tests/myscript_shunit2_tests.sh
-
-  # Provavelmente testes completos de instalacao devem ser feitos em outro servico 
-  # - curl https://raw.githubusercontent.com/leoheck/gaph-host-config/master/configure.sh | sudo bash -s -- -c1 -a
-  # - curl https://raw.githubusercontent.com/leoheck/gaph-host-config/master/configure.sh | sudo bash -s -- -c2 -a
-  # - curl https://raw.githubusercontent.com/leoheck/gaph-host-config/master/configure.sh | sudo bash -s -- -c3
-  # - curl https://raw.githubusercontent.com/leoheck/gaph-host-config/master/configure.sh | sudo bash -s -- -c4
+  - ./travis/tests/shellcheck-tests.sh
+  - ./travis/tests/bashate-tests.sh
+  - ./travis/tests/functional-tests.sh
 
 
-notifications:
-  pushover:
-    api_key:
-      secure: fDVX79tWv/qRBF4gTiEaCJ2Pnvm8WCmmUjtKIEjonoMQxCsOZXgncRSOcNPTT1XLyML9EAC/BB7H0CSjKiJcjDKyZIJKhblUJmpdiw7cqIGMNKirrDwD/9RWORG7jIfI9YoeLJkzXZQ+pP1+LoSjLtaYf1ff6wB4aNS+2AQhzKbwzXWVbQ9rNv9LkryT6mUU3Cfd6avatWHEr6P9bSF7UdZst+r21rB5biNaKHk0PQpX5Q5TzEOGpz47tSZbE4Hdcu3L0vNPOPC6c4KBRCmWfBNjczZbZQ3Ud8uTuEuaGBZGGnAdn+Ul8UmTsEKC9vXyGx9u5spjr1ViMtuHw8+3HdMBg1TVbJOUkAx3kmhQTDtikVCMSCvCS74CSywtOtjXtyDkrXeRJnESbXClCR/mH+SNc2nLtnAl232U186letJmcHv3AiMS5nwTIrVvbQCXq9pZUKrJpSCgNBbekKJCxAj7sOiplc6FKCypBLkLrbx2cf974NqtFmdjwAK+bKVQlCMl8a51gMILUzehYPwNrjSVnb28Uo35Pgbk+rBaoBBV/2NY1rJRJsZPgonzu72g5Q1GrLZZc0WWUKtYhEu5Q9qrpiaNZPcGqU1qSbCQWd8Dtw2w7hC0ErEnws8WtHGp6/aE2RqlcGOzzNoFW6aFA2MuRBp0MQiY8OrBH6DYM+o=
-    users:
-      secure: RT5Rg8K8gbJl11UaJoI8H20/JL221HHNKVnekka98B5iMKrh1uAhgfB4LIJx6XN+sPU/+23/K9K8X54CcUPverO2lTCirWosktsViYUmlxufWxH2Yfw4WFg1S4YLB7EcU398Q9ruZN2SdV4pituksIvOCTxlj1NqzKYyryIUPWEQEUPEGwgpw0D18h6A7z1Ptuohxx5jJJfFtjXD4lpt7l9az7iLIxx/Onfl7WEhCfYRCAWyE1rA3VCE5FsPIeQLIWDRVcIYpbm2AOqZ0J613mHutu0kxmG13H+NfohcSqcagVYyYIqKOW2oaV0/RzkFZ41QogIIkXTV09fBHZeaqYDGv1cn1uR7RE+WWsm5T7QzVkFq8T3HTU2SpN2fso9bHMpDn8tkTNPhnPVKlmRXMnylZwp11e25s9EiK4uz92AmUo3WY14JmVMFf4PH8EBzS/YMSK4604pMDSKZammCmx9HEHGqRvlj3+xsWhnbwOIi5ETZQlN20UJlRdphcGNds7VTUk33nU3CpTW60QKsgtT58ak7Omo4PPDkX76Nhu3RvyYsB/clSpgUXZvdkaddNxybfKKiokkhXJnBN5xSRzpgQBL9W2j4md3LEnM+rkKMn1on1yfV8DR3ftj3hCZwv+CgkSV/rnXmj1D7Azy6na08F54jSAipsYii2DTa4dE=
+# Como funciona isso? Precisa? Tinha no exemplo de integração do LXD
+# notifications:
+#   pushover:
+#     api_key:
+#       secure: fDVX79tWv/qRBF4gTiEaCJ2Pnvm8WCmmUjtKIEjonoMQxCsOZXgncRSOcNPTT1XLyML9EAC/BB7H0CSjKiJcjDKyZIJKhblUJmpdiw7cqIGMNKirrDwD/9RWORG7jIfI9YoeLJkzXZQ+pP1+LoSjLtaYf1ff6wB4aNS+2AQhzKbwzXWVbQ9rNv9LkryT6mUU3Cfd6avatWHEr6P9bSF7UdZst+r21rB5biNaKHk0PQpX5Q5TzEOGpz47tSZbE4Hdcu3L0vNPOPC6c4KBRCmWfBNjczZbZQ3Ud8uTuEuaGBZGGnAdn+Ul8UmTsEKC9vXyGx9u5spjr1ViMtuHw8+3HdMBg1TVbJOUkAx3kmhQTDtikVCMSCvCS74CSywtOtjXtyDkrXeRJnESbXClCR/mH+SNc2nLtnAl232U186letJmcHv3AiMS5nwTIrVvbQCXq9pZUKrJpSCgNBbekKJCxAj7sOiplc6FKCypBLkLrbx2cf974NqtFmdjwAK+bKVQlCMl8a51gMILUzehYPwNrjSVnb28Uo35Pgbk+rBaoBBV/2NY1rJRJsZPgonzu72g5Q1GrLZZc0WWUKtYhEu5Q9qrpiaNZPcGqU1qSbCQWd8Dtw2w7hC0ErEnws8WtHGp6/aE2RqlcGOzzNoFW6aFA2MuRBp0MQiY8OrBH6DYM+o=
+#     users:
+#       secure: RT5Rg8K8gbJl11UaJoI8H20/JL221HHNKVnekka98B5iMKrh1uAhgfB4LIJx6XN+sPU/+23/K9K8X54CcUPverO2lTCirWosktsViYUmlxufWxH2Yfw4WFg1S4YLB7EcU398Q9ruZN2SdV4pituksIvOCTxlj1NqzKYyryIUPWEQEUPEGwgpw0D18h6A7z1Ptuohxx5jJJfFtjXD4lpt7l9az7iLIxx/Onfl7WEhCfYRCAWyE1rA3VCE5FsPIeQLIWDRVcIYpbm2AOqZ0J613mHutu0kxmG13H+NfohcSqcagVYyYIqKOW2oaV0/RzkFZ41QogIIkXTV09fBHZeaqYDGv1cn1uR7RE+WWsm5T7QzVkFq8T3HTU2SpN2fso9bHMpDn8tkTNPhnPVKlmRXMnylZwp11e25s9EiK4uz92AmUo3WY14JmVMFf4PH8EBzS/YMSK4604pMDSKZammCmx9HEHGqRvlj3+xsWhnbwOIi5ETZQlN20UJlRdphcGNds7VTUk33nU3CpTW60QKsgtT58ak7Omo4PPDkX76Nhu3RvyYsB/clSpgUXZvdkaddNxybfKKiokkhXJnBN5xSRzpgQBL9W2j4md3LEnM+rkKMn1on1yfV8DR3ftj3hCZwv+CgkSV/rnXmj1D7Azy6na08F54jSAipsYii2DTa4dE=
 
 
 

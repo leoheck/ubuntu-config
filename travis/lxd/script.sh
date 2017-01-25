@@ -17,7 +17,8 @@ lxc network list
 # lxc exec fedora -- bash -c 'cat /etc/hosts'
 # lxc exec fedora -- bash -c 'uptime'
 
- lxc exec fedora -- bash -c 'sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/leoheck/gaph-host-config/master/configure.sh)"'
+# Isso ainda nao ta funcionando
+# lxc exec fedora -- bash -c 'sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/leoheck/gaph-host-config/master/configure.sh)"'
 
 echo
 echo "LHECK TESTS DONE =====================>>>>"
