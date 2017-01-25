@@ -15,6 +15,10 @@ apt-get -y install lxd htop tmux jq
 #newgrp lxd
 lxd init --auto --storage-backend=dir || true
 
+
+if [ -d travis/lxd/ssh_keys/insecure ]; then echo FILE EXISTS; else echo FILE DO NOT EXISTS; fi
+pwd
+ls -lsa
 test -f travis/lxd/ssh_keys/insecure || ssh-keygen -N "" -f travis/lxd/ssh_keys/insecure
 
 lxc list -c n | grep -q fedora || lxc launch images:fedora/23/amd64 fedora
