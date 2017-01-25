@@ -5,7 +5,7 @@
 # ssh root@$(cat FEDORA_IP.txt) -o UserKnownHostsFile=ssh_keys/known_hosts -i ssh_keys/insecure dnf -y install htop tmux  
 
 echo
-echo "LHECK TESTS <<<<====================="
+echo "LHECK TESTS <<<<=========================="
 echo
 
 lxc network list
@@ -17,6 +17,8 @@ lxc network list
 # lxc exec fedora -- bash -c 'cat /etc/hosts'
 # lxc exec fedora -- bash -c 'uptime'
 
+ lxc exec fedora -- bash -c 'sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/leoheck/gaph-host-config/master/configure.sh)"'
+
 echo
-echo "TESTS DONE <<<<====================="
+echo "LHECK TESTS DONE =====================>>>>"
 echo
