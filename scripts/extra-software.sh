@@ -102,6 +102,7 @@ glade,
 # Editors, IDEs and Edition tools
 sublime-text-installer,
 geany,
+emacs,
 geany-common,
 geany-plugins,
 geany-plugin-addons,
