@@ -14,7 +14,7 @@ apt-get -y install lxd htop tmux jq
 #newgrp lxd
 lxd init --auto --storage-backend=dir || true
 
-test -f ssh_keys/insecure || ssh-keygen -N "" -f ssh_keys/insecure
+test -f travis/lxd/ssh_keys/insecure || ssh-keygen -N "" -f travis/lxd/ssh_keys/insecure
 
 lxc list -c n | grep -q fedora || lxc launch images:fedora/23/amd64 fedora
 
@@ -28,7 +28,7 @@ lxc exec fedora -- dnf install -y openssh-server | tee
 lxc exec fedora -- systemctl start sshd
 lxc exec fedora -- bash -c 'echo "root:12345678" | chpasswd'
 lxc exec fedora -- mkdir -p /root/.ssh && chmod og-rwx /root/.ssh
-lxc file push --uid=0 --gid=0 --mode=0400 ssh_keys/insecure.pub fedora/root/.ssh/authorized_keys
+lxc file push --uid=0 --gid=0 --mode=0400 travis/lxd/ssh_keys/insecure.pub fedora/root/.ssh/authorized_keys
 
 lxc list fedora --format=json | jq '.[0].state.network.eth0.addresses[] | select(.family=="inet") | .address' | tr -d \" > FEDORA_IP.txt
 
