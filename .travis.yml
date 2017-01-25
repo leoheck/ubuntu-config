@@ -26,7 +26,7 @@ before_install:
   - sudo -H pip install bashate
   - sudo apt-get -t trusty-backports install shunit2
 
-  - travis/lxd/before_install.sh
+  - sudo travis/lxd/before_install.sh
 
 # install:
   # - echo "TODO INSTALL"
@@ -36,7 +36,7 @@ before_script:
 
 script:
 
-  - travis/lxd/script.sh
+  - sudo travis/lxd/script.sh
 
   - shellcheck ./configure.sh
   - bashate_color ./configure.sh
