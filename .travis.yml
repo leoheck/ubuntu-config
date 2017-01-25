@@ -14,19 +14,23 @@ before_install:
   - sudo apt-add-repository "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted universe multiverse"
   - sudo apt-get -qq update
   - sudo apt-get -t trusty-backports install shellcheck
-  - sudo -H pip install bashate
+  - sudo apt-get -t trusty-backports install python-bashate
   - sudo apt-get -t trusty-backports install shunit2
-  - sudo travis/lxd/before_install.sh
+  - sudo apt-get -t trusty-backports install bats
+  # - sudo travis/lxd/before_install.sh
 
 install:
 
 before_script:
 
 script:
-  - sudo travis/lxd/script.sh
+  # - sudo travis/lxd/script.sh
   - ./travis/tests/shellcheck-tests.sh
   - ./travis/tests/bashate-tests.sh
-  - ./travis/tests/functional-tests.sh
+  # - ./travis/tests/functional-tests.sh
+  ./trevis/tests/shunit2-tests.sh
+  - bats --tap ./travis/tests/bats-tests.bats
+  - bats ./travis/tests/bats-tests.bats
 
 
 # Como funciona isso? Precisa? Tinha no exemplo de integração do LXD
