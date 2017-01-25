@@ -1,0 +1,34 @@
+# -*-ruby-*-
+
+VAGRANTFILE_API_VERSION = "2"
+Vagrant.require_version ">= 1.8"
+
+$script = <<SCRIPT
+
+set -e -x
+
+cd /vagrant
+sudo ./before_install.sh
+sudo ./script.sh
+SCRIPT
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+    config.vm.provider 'virtualbox' do |v|
+        v.linked_clone = true 
+        v.cpus = 2
+    end
+    
+    config.vm.network "private_network", type: "dhcp"
+    config.vm.box = "ubuntu/trusty64" 
+    config.vm.box_check_update = true
+    config.vm.synced_folder "..", "/vagrant"
+
+    # https://github.com/mitchellh/vagrant/issues/1673
+     config.vm.provision "fix-no-tty", type: "shell" do |s|
+        s.privileged = false
+        s.inline = "sudo sed -i '/tty/!s/mesg n/tty -s \\&\\& mesg n/' /root/.profile"
+    end
+
+    config.vm.provision "shell", inline: $script
+end
+
