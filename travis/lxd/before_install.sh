@@ -25,12 +25,12 @@ sleep 30
 lxc exec fedora -- bash -c 'while [ -f /var/cache/dnf/metadata_lock.pid ]; do sleep 1; done'
 # https://bugzilla.redhat.com/show_bug.cgi?id=1224908
 lxc exec fedora -- dnf install -y openssh-server | tee
-lxc exec fedora -- systemctl start sshd
-lxc exec fedora -- bash -c 'echo "root:12345678" | chpasswd'
-lxc exec fedora -- mkdir -p /root/.ssh && chmod og-rwx /root/.ssh
-lxc file push --uid=0 --gid=0 --mode=0400 travis/lxd/ssh_keys/insecure.pub fedora/root/.ssh/authorized_keys
+# lxc exec fedora -- systemctl start sshd
+# lxc exec fedora -- bash -c 'echo "root:12345678" | chpasswd'
+# lxc exec fedora -- mkdir -p /root/.ssh && chmod og-rwx /root/.ssh
+# lxc file push --uid=0 --gid=0 --mode=0400 travis/lxd/ssh_keys/insecure.pub fedora/root/.ssh/authorized_keys
 
-lxc list fedora --format=json | jq '.[0].state.network.eth0.addresses[] | select(.family=="inet") | .address' | tr -d \" > FEDORA_IP.txt
+# lxc list fedora --format=json | jq '.[0].state.network.eth0.addresses[] | select(.family=="inet") | .address' | tr -d \" > FEDORA_IP.txt
 
 touch ~/.ssh/known_hosts
-ssh-keyscan -H -t dsa,ecdsa,ed25519,rsa $(cat FEDORA_IP.txt) >> ssh_keys/known_hosts
+# ssh-keyscan -H -t dsa,ecdsa,ed25519,rsa $(cat FEDORA_IP.txt) >> ssh_keys/known_hosts
