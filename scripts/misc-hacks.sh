@@ -7,9 +7,8 @@
 echo "  - Applying MISC hacks"
 
 # Faking a RedHat/Centos
-read -d '' os_release <<-EOF
-# Faking a RedHat/Centos
-CentOS release 5.11 (Final)
+read -r -d '' os_release <<-EOF
+CentOS release 5.11 (Final) [faking]
 EOF
 echo "$os_release" > /etc/redhat-release
 
