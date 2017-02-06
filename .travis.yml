@@ -19,7 +19,7 @@ before_install:
   # - sudo apt-get -t trusty-backports install bats
   # - sudo travis/lxd/before_install.sh
 
-install:
+# install:
 
 before_script:
 
