@@ -212,7 +212,12 @@ install_base_software()
 	echo "  - Installing base apps"
 	echo "${GREEN}    - THIS CAN TAKE SOME MINUTES.${NORMAL}"
 
-	echo "${BLUE}    - Running GUI, please wait...${NORMAL}"
+# 	which xterm 2>&1 > /dev/null
+# 	if [[ $? != 0 ]]; then
+# 		apt install xterm
+# 	fi
+
+	echo "${BLUE}    - Using a second terminal for installation...${NORMAL}"
 	xterm \
 		-title 'Installing BASE Software' \
 		-fa 'Ubuntu Mono' -fs 12 \
@@ -232,7 +237,7 @@ install_extra_software()
 	echo "  - Installing extra apps ..."
 	echo "${GREEN}    - THIS CAN TAKE HOURS. Go take a coffe :)${NORMAL}"
 
-	echo "${BLUE}    - Loading the GUI, please wait...${NORMAL}"
+	echo "${BLUE}    - Using a second terminal for installation...${NORMAL}"
 	xterm \
 		-title 'Installing EXTRA Software' \
 		-fa 'Ubuntu Mono' -fs 12 \
