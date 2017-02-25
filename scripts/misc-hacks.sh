@@ -26,14 +26,15 @@ ln -sf /lib/x86_64-linux-gnu/libhistory.so.6   /lib/x86_64-linux-gnu/libhistory.
 
 # WORKAROUND for missing libxp6 library in Ubuntu 16.04
 # Use libxp6 from Ubuntu 14.04 repositories
-wget "http://mirrors.kernel.org/ubuntu/pool/main/libx/libxp/libxp6_1.0.2-1ubuntu1_amd64.deb" > /dev/null 2>&1
-dpkg -i libxp6_1.0.2-1ubuntu1_amd64.deb > /dev/null
-rm -f libxp6_1.0.2-1ubuntu1_amd64.deb
+wget "http://mirrors.kernel.org/ubuntu/pool/main/libx/libxp/libxp6_1.0.2-1ubuntu1_amd64.deb" -P /tmp > /dev/null 2>&1
+dpkg -i /tmp/libxp6_1.0.2-1ubuntu1_amd64.deb > /dev/null
+rm -f /tmp/libxp6_1.0.2-1ubuntu1_amd64.deb
 
 # ttf-mscorefonts-installer fix
-apt purge -y ttf-mscorefonts-installer
-wget http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb -P /tmp
-apt install /tmp/ttf-mscorefonts-installer_3.6_all.deb
+apt-get purge -y ttf-mscorefonts-installer > /dev/null
+wget "http://ftp.de.debian.org/debian/pool/contrib/m/msttcorefonts/ttf-mscorefonts-installer_3.6_all.deb" -P /tmp > /dev/null 2>&1
+dpkg -i /tmp/ttf-mscorefonts-installer_3.6_all.deb > /dev/null
+rm -f /tmp/libxp6_1.0.2-1ubuntu1_amd64.deb
 
 # Fix some names
 ln -sf /lib/x86_64-linux-gnu/libm.so.6 /lib/x86_64-linux-gnu/libm.so
