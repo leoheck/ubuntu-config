@@ -13,27 +13,6 @@
 # Command line parameters
 # command="$1"
 
-# hile getopts "hd:R:" arg; do
-#   case $arg in
-#     h)
-#       echo "usgae" 
-#       ;;
-#     d)
-#       dir=$OPTARG
-#       ;;
-#     R)
-#       if [[ $OPTARG =~ ^[0-9]+$ ]];then
-#         level=$OPTARG
-#       else
-#         level=1
-#       fi
-#       ;;
-#     \?)
-#       echo "WRONG" >&2
-#       ;;
-#   esac
-# done
-
 INSTALL_BASE=1
 INSTALL_EXTRA=1
 
@@ -49,7 +28,7 @@ while getopts "abec:" opt; do
 	e)  # DISABLE INSTALL EXTRA PACKAGES
 		INSTALL_EXTRA=0
 		;;
-	c)  # SELECT THE CHOICE 
+	c)  # SELECT THE CHOICE
 		choice=$OPTARG
 		;;
 	\?)
@@ -270,7 +249,7 @@ quit()
 
 apply_and_upgrade_configs()
 {
-	if [ $INSTALL_BASE == 1 ]; then
+	if [[ $INSTALL_BASE == 1 ]]; then
 		install_base_software
 	fi
 	install-scripts.sh -i $PROJECTDIR | tee /var/log/gaph/install-scripts.log
@@ -337,11 +316,11 @@ configure_gaph_compatible()
 	echo
 	echo "${YELLOW}  Configuring GAPH COMPATIBLE host... ${NORMAL}"
 
-	if [ $INSTALL_BASE == 1 ]; then
+	if [[ $INSTALL_BASE == 1 ]]; then
 		install_base_software
 	fi
 
-	if [ $INSTALL_EXTRA == 1 ]; then
+	if [[ $INSTALL_EXTRA == 1 ]]; then
 		install_extra_software
 	fi
 
