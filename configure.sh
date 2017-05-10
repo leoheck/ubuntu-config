@@ -15,8 +15,9 @@
 
 INSTALL_BASE=1
 INSTALL_EXTRA=1
+USE_LOCAL_FILES=0
 
-while getopts "abec:" opt; do
+while getopts "abec:l" opt; do
 	case $opt in
 	a)  # DISABLE INSTALL ALL PACKAGES
 		INSTALL_BASE=0
@@ -31,8 +32,12 @@ while getopts "abec:" opt; do
 	c)  # SELECT THE CHOICE
 		choice=$OPTARG
 		;;
+	l)
+		USE_LOCAL_FILES="1"
+		;;
 	\?)
 		echo "Invalid option: -$OPTARG" >&2
+		exit 1
 		;;
 	esac
 done
@@ -53,7 +58,7 @@ export PATH=$PROJECTDIR/scripts:$PATH
 
 mkdir -p /var/log/gaph/
 
-if [ "$1" == "-l" ]; then
+if [ "$USE_LOCAL_FILES" == 1 ]; then
 	skip_donwload=1
 	PROJECTDIR=./
 	export PATH=./scripts:$PATH
@@ -113,7 +118,7 @@ fi
 
 main()
 {
-	if [ ! "$skip_donwload" = "1" ]; then
+	if [ "$skip_donwload" != "1" ]; then
 
 		if [ -f /tmp/$LOCAL_PKG ]; then
 			printf "%s  Removing previous package ...%s\n" "${BLUE}" "${NORMAL}"
@@ -125,7 +130,7 @@ main()
 			rm -rf $PROJECTDIR
 		fi
 
-		printf "%s  Donwloading $LOCAL_PKG in /tmp ...%s\n" "${BLUE}" "${NORMAL}"
+		printf "%s  Downloading $LOCAL_PKG in /tmp ...%s\n" "${BLUE}" "${NORMAL}"
 		wget $GITHUB/$PKG -O /tmp/$LOCAL_PKG 2> /dev/null
 		chmod 777 /tmp/$LOCAL_PKG
 
@@ -133,7 +138,7 @@ main()
 		unzip -qq /tmp/$LOCAL_PKG -d /tmp > /dev/null
 		chmod 777 /tmp/$REPO-$BRANCH -R
 	else
-		printf "%s  Using local files%s\n" "${YELLOW}" "${NORMAL}"
+		printf "%s  Using local files%s" "${YELLOW}" "${NORMAL}"
 	fi
 
 	echo "${BLUE}${BOLD}"
@@ -192,7 +197,7 @@ install_base_software()
 	echo "${GREEN}    - THIS CAN TAKE SOME MINUTES.${NORMAL}"
 
 # 	which xterm 2>&1 > /dev/null
-# 	if [[ $? != 0 ]]; then
+# 	if [ "$?" != "0" ]; then
 # 		apt install xterm
 # 	fi
 
@@ -249,7 +254,7 @@ quit()
 
 apply_and_upgrade_configs()
 {
-	if [[ $INSTALL_BASE == 1 ]]; then
+	if [ "$INSTALL_BASE" == "1" ]; then
 		install_base_software
 	fi
 	install-scripts.sh -i $PROJECTDIR | tee /var/log/gaph/install-scripts.log
@@ -264,7 +269,7 @@ apply_and_upgrade_configs()
 	saltstack-config.sh -i | tee /var/log/gaph/saltstack-config.log
 	users-config.sh | tee /var/log/gaph/users-config.log
 	customization.sh -i $PROJECTDIR | tee /var/log/gaph/customization.log
-	if [ $INSTALL_EXTRA == 1 ]; then
+	if [ "$INSTALL_EXTRA" == "1" ]; then
 		install_extra_software
 	fi
 	misc-hacks.sh | tee /var/log/gaph/misc-hacks.log
@@ -275,7 +280,7 @@ apply_and_upgrade_configs()
 apply_and_upgrade_configs_option()
 {
 	echo
-	echo "${YELLOW}  Appling/updating configurations... ${NORMAL}"
+	echo "${YELLOW}  Applying/updating configurations... ${NORMAL}"
 	apply_and_upgrade_configs
 }
 
@@ -316,11 +321,11 @@ configure_gaph_compatible()
 	echo
 	echo "${YELLOW}  Configuring GAPH COMPATIBLE host... ${NORMAL}"
 
-	if [[ $INSTALL_BASE == 1 ]]; then
+	if [ "$INSTALL_BASE" == "1" ]; then
 		install_base_software
 	fi
 
-	if [[ $INSTALL_EXTRA == 1 ]]; then
+	if [ "$INSTALL_EXTRA" == "1" ]; then
 		install_extra_software
 	fi
 
