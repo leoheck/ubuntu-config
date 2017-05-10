@@ -201,7 +201,7 @@ install_base_software()
 # 		apt install xterm
 # 	fi
 
-	echo "${BLUE}    - Using a second terminal for installation...${NORMAL}"
+	echo "${BLUE}    - Using an external terminal for installation...${NORMAL}"
 	xterm \
 		-title 'Installing BASE Software' \
 		-fa 'Ubuntu Mono' -fs 12 \
@@ -219,9 +219,9 @@ install_base_software()
 install_extra_software()
 {
 	echo "  - Installing extra apps ..."
-	echo "${GREEN}    - THIS CAN TAKE HOURS. Go take a coffe :)${NORMAL}"
+	echo "${GREEN}    - THIS CAN TAKE HOURS. Go take a coffee :)${NORMAL}"
 
-	echo "${BLUE}    - Using a second terminal for installation...${NORMAL}"
+	echo "${BLUE}    - Using an external terminal for installation...${NORMAL}"
 	xterm \
 		-title 'Installing EXTRA Software' \
 		-fa 'Ubuntu Mono' -fs 12 \
