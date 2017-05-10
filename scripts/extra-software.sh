@@ -17,9 +17,8 @@ ppas="\
 	ppa:shutter/ppa \
 	ppa:webupd8team/java \
 	ppa:webupd8team/sublime-text-3 \
-	ppa:webupd8team/y-ppa-manager"
-
-
+	ppa:webupd8team/y-ppa-manager \
+	ppa:webupd8team/terminix"
 
 # Removed
 # ppa:pgavin/ghdl \
@@ -71,7 +70,7 @@ pdfgrep,
 # Shells and terminals
 ipython,
 terminator,
-terminix,
+tilix,
 screen,
 minicom,
 cutecom,
@@ -181,6 +180,9 @@ opencv,
 indicator-multiload,
 
 # Python related
+jupyter-notebook,
+pyro,
+pyro-gui,
 python-all,
 python-all-dev,
 python-dev,
@@ -188,8 +190,8 @@ python-drmaa,
 python-glade2,
 python-matplotlib,
 python-mysqldb,
-python-naturalsort,
 python-natsort,
+python-naturalsort,
 python-networkx,
 python-numpy,
 python-opencv,
@@ -210,9 +212,8 @@ python-sphinx,
 python-spyderlib,
 python-subversion,
 python-tables,
+python-termcolor,
 python-webkit,
-pyro,
-pyro-gui,
 
 # Extra scripts
 tcl,
