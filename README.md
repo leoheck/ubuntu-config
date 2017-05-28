@@ -1,7 +1,7 @@
 
 # Ubuntu configs [![Build Status](https://travis-ci.org/leoheck/gaph-host-config.svg?branch=master)](https://travis-ci.org/leoheck/gaph-host-config)
 
-<img src="https://rawgit.com/leoheck/gaph-os-scripts/master/images/menus.png" width="600px">
+<img src="https://rawgit.com/leoheck/ubuntu-config/master/images/menus.png" width="600px">
 
 ## Creating Bootable Pendrive
 
