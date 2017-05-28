@@ -45,7 +45,7 @@ done
 
 # GITHUB REPOSITORY CONFIG
 REPO="ubuntu-config"
-BRANCH="master"
+BRANCH="gaph-pucrs"
 
 # TODO: MUDAR O NOME DO ZIP BAIXADO PRA $REPO-$BRANCH.zip
 GITHUB="https://github.com/leoheck/$REPO/archive/"

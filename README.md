@@ -1,10 +1,10 @@
-# Configuração das Máquinas do GAPH [![Build Status](https://travis-ci.org/leoheck/ubuntu-config.svg?branch=master)](https://travis-ci.org/leoheck/ubuntu-config)
+# Configuração das Máquinas do GAPH [![Build Status](https://travis-ci.org/leoheck/ubuntu-config.svg?branch=gaph-pucrs)](https://travis-ci.org/leoheck/ubuntu-config)
 
 Padronizar as máquinas do laboratório com **Ubuntu 16.04**.
 
 **Pode ser usado pelos alunos em seus computadores pessoais**.
 
-<img src="https://rawgit.com/leoheck/gaph-os-scripts/master/images/menus.png" width="600px">
+<img src="https://rawgit.com/leoheck/gaph-os-scripts/gaph-pucrs/images/menus.png" width="600px">
 
 ## Pendrive Bootable
 
@@ -21,6 +21,6 @@ Instale o Ubuntu 16.04.
 
 Cole em um terminal o comando:
 ```
-sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/leoheck/ubuntu-config/master/configure.sh)"
+sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/leoheck/ubuntu-config/gaph-pucrs/configure.sh)"
 ```
 Escolha a opção de instalação desejada. **No GAPH, use a opção [1]**.

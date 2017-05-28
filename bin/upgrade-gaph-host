@@ -6,7 +6,7 @@
 
 # GITHUB REPOSITORY CONFIG
 REPO="ubuntu-config"
-BRANCH="master"
+BRANCH="gaph-pucrs"
 
 OPT=3
 URL="https://raw.githubusercontent.com/leoheck/${REPO}/${BRANCH}/configure.sh"

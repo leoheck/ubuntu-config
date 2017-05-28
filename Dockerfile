@@ -3,10 +3,10 @@ FROM python:3.5
 MAINTAINER Leandro Heck <leoheck@gmail.com>
 
 # Provavelmente testes completos de instalacao devem ser feitos em outro servico 
-# RUN curl https://raw.githubusercontent.com/leoheck/ubuntu-config/master/configure.sh | sudo bash -s -- -c1 -a
-# RUN curl https://raw.githubusercontent.com/leoheck/ubuntu-config/master/configure.sh | sudo bash -s -- -c2 -a
-RUN curl https://raw.githubusercontent.com/leoheck/ubuntu-config/master/configure.sh | sudo bash -s -- -c3
-# RUN curl https://raw.githubusercontent.com/leoheck/ubuntu-config/master/configure.sh | sudo bash -s -- -c4
+# RUN curl https://raw.githubusercontent.com/leoheck/ubuntu-config/gaph-pucrs/configure.sh | sudo bash -s -- -c1 -a
+# RUN curl https://raw.githubusercontent.com/leoheck/ubuntu-config/gaph-pucrs/configure.sh | sudo bash -s -- -c2 -a
+RUN curl https://raw.githubusercontent.com/leoheck/ubuntu-config/gaph-pucrs/configure.sh | sudo bash -s -- -c3
+# RUN curl https://raw.githubusercontent.com/leoheck/ubuntu-config/gaph-pucrs/configure.sh | sudo bash -s -- -c4
 
 
 # Install dependencies
