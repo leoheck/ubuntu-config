@@ -6,7 +6,7 @@
 
 # GITHUB REPOSITORY CONFIG
 REPO="gaph-host-config"
-BRANCH="master"
+BRANCH="clean-release"
 
 OPT=3
 URL="https://raw.githubusercontent.com/leoheck/${REPO}/${BRANCH}/configure.sh"

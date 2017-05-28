@@ -45,7 +45,7 @@ done
 
 # GITHUB REPOSITORY CONFIG
 REPO="gaph-host-config"
-BRANCH="master"
+BRANCH="clean-release"
 
 # TODO: MUDAR O NOME DO ZIP BAIXADO PRA $REPO-$BRANCH.zip
 GITHUB="https://github.com/leoheck/$REPO/archive/"
