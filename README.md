@@ -4,7 +4,7 @@ Padronizar as máquinas do laboratório com **Ubuntu 16.04**.
 
 **Pode ser usado pelos alunos em seus computadores pessoais**.
 
-<img src="https://rawgit.com/leoheck/gaph-os-scripts/master/images/menus.png" width="600px">
+<img src="https://rawgit.com/leoheck/ubuntu-config/master/images/menus.png" width="600px">
 
 ## Pendrive Bootable
 
