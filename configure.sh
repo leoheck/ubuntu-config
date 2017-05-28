@@ -141,19 +141,20 @@ main()
 		printf "%s  Using local files%s" "${YELLOW}" "${NORMAL}"
 	fi
 
+
+
+	# http://patorjk.com/software/taag/#p=display&f=Modular&t=HOST%20CONFIG
+	# Font: Small
 	echo "${BLUE}${BOLD}"
-	echo "   _____  _____  _____  _____           _____  _____  _____  _____   "
-	echo "  |   __||  _  ||  _  ||  |  |   ___   |  |  ||     ||   __||_   _|  "
-	echo "  |  |  ||     ||   __||     |  |___|  |     ||  |  ||__   |  | |    "
-	echo "  |_____||__|__||__|   |__|__|         |__|__||_____||_____|  |_|    "
-	echo "                                                                     ${NORMAL}${GREEN}"
-	echo "  ~ HOST CONFIGURATION SCRIPT MADE FOR UBUNTU 16.04 ~${NORMAL}"
+	echo '   _  _  ___  ___ _____    ___ ___  _  _ ___ ___ ___    '
+	echo '  | || |/ _ \/ __|_   _|  / __/ _ \| \| | __|_ _/ __|   '
+	echo '  | __ | (_) \__ \ | |   | (_| (_) | .` | _| | | (_ |   '
+	echo '  |_||_|\___/|___/ |_|    \___\___/|_|\_|_| |___\___|   '
+	echo "${NORMAL}${GREEN}"
+	echo "  ~ CONFIGURATION SCRIPT FOR UBUNTU 17.04 ~${NORMAL}"
 	echo
-	echo "  ${BOLD}[1] CONFIGURE A GAPHL HOST${NORMAL}"
-	echo "  [2] Configure a GAPHL-COMPATIBLE host (install programs only)"
-	echo "  --- "
-	echo "  [3] Apply/upgrade configurations only"
-	echo "  [4] Remove configurations"
+	echo "  [1] Apply config"
+	echo "  [2] Revert config"
 	echo
 	echo "${BLUE}  Hit CTRL+C to exit${NORMAL}"
 	echo
@@ -251,41 +252,14 @@ quit()
 	echo
 }
 
-
-apply_and_upgrade_configs()
-{
-	if [ "$INSTALL_BASE" == "1" ]; then
-		install_base_software
-	fi
-	install-scripts.sh -i $PROJECTDIR | tee /var/log/gaph/install-scripts.log
-	crontab-config.sh -i $PROJECTDIR | tee /var/log/gaph/crontab-config.log
-	admin-config.sh -i | tee /var/log/gaph/admin-config.log
-	config-printers.sh -i $PROJECTDIR | tee /var/log/gaph/config-printers.log
-	fstab-config.sh -i | tee /var/log/gaph/fstab-config.log
-	hosts-config.sh -i | tee /var/log/gaph/hosts-config.log
-	lightdm-config.sh -i | tee /var/log/gaph/lightdm-config.log
-	nslcd-config.sh -i | tee /var/log/gaph/nslcd-config.log
-	nsswitch-config.sh -i | tee /var/log/gaph/nsswitch-config.log
-	saltstack-config.sh -i | tee /var/log/gaph/saltstack-config.log
-	users-config.sh | tee /var/log/gaph/users-config.log
-	customization.sh -i $PROJECTDIR | tee /var/log/gaph/customization.log
-	if [ "$INSTALL_EXTRA" == "1" ]; then
-		install_extra_software
-	fi
-	misc-hacks.sh | tee /var/log/gaph/misc-hacks.log
-	date > /var/log/gaph/install-configs.done
-}
-
-# OPTION 3
-apply_and_upgrade_configs_option()
+apply_configs()
 {
 	echo
 	echo "${YELLOW}  Applying/updating configurations... ${NORMAL}"
 	apply_and_upgrade_configs
 }
 
-# OPTION 4
-revert_configurations()
+revert_configs()
 {
 	echo
 	echo "${YELLOW}  Removing configurations... ${NORMAL}"
@@ -304,15 +278,6 @@ revert_configurations()
 	customization.sh -r
 	rm -f /var/log/gaph/install-configs.done
 	echo
-}
-
-# OPTION 1
-configure_gaph_host()
-{
-	echo
-	echo "${YELLOW}  Configuring GAPH host... ${NORMAL}"
-	apply_and_upgrade_configs
-	reboot_host
 }
 
 # OPTION 2
@@ -339,9 +304,7 @@ main
 clear
 
 case $choice in
-	1 ) configure_gaph_host ;;
-	2 ) configure_gaph_compatible ;;
-	3 ) apply_and_upgrade_configs_option ;;
-	4 ) revert_configurations ;;
+	1 ) apply_configs ;;
+	2 ) revert_configs ;;
     * ) echo "Your choice ($choice) is missing!"; exit 1
 esac
