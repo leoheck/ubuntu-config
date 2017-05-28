@@ -44,7 +44,7 @@ done
 
 
 # GITHUB REPOSITORY CONFIG
-REPO="gaph-host-config"
+REPO="ubuntu-config"
 BRANCH="master"
 
 # TODO: MUDAR O NOME DO ZIP BAIXADO PRA $REPO-$BRANCH.zip

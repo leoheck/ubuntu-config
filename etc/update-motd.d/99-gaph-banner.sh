@@ -65,6 +65,6 @@ ${BLUE}${BOLD} GAPHOS: ${NORMAL}${UpgradeDate}
 
 #echo -e "
 #${YELLOW}${BOLD} Problems can be reported at:
-#${RED}${BOLD}    https://github.com/leoheck/gaph-host-config/issues
+#${RED}${BOLD}    https://github.com/leoheck/ubuntu-config/issues
 #${NORMAL}
 #"
