@@ -98,7 +98,7 @@ if [ "$(id -u)" != "0" ]; then
 	exit 1
 fi
 
-main()
+download_configs()
 {
 	if [ "$skip_donwload" != "1" ]; then
 
@@ -122,8 +122,11 @@ main()
 	else
 		printf "%s  Using local files%s" "${YELLOW}" "${NORMAL}"
 	fi
+}
 
-
+main()
+{
+	download_configs
 
 	# http://patorjk.com/software/taag/#p=display&f=Modular&t=HOST%20CONFIG
 	# Font: Small
@@ -157,13 +160,13 @@ main()
 	fi
 }
 
-install_base_software()
+install_software()
 {
-	echo "  - Installing base apps"
-	echo "${GREEN}    - THIS CAN TAKE SOME MINUTES.${NORMAL}"
+	echo "  - Installing apps"
+	echo "${GREEN}    - THIS CAN TAKE MANY MINUTES.${NORMAL}"
 	echo "${BLUE}    - Using an external terminal for installation...${NORMAL}"
 	xterm \
-		-title 'Installing BASE Software' \
+		-title 'Installing apps' \
 		-fa 'Ubuntu Mono' -fs 12 \
 		-bg 'black' -fg 'white' \
 		-e "bash -c 'initial-software.sh | tee /var/log/ubuntu-config/install-base.log'"
@@ -176,52 +179,33 @@ install_base_software()
 	echo "    - See logs in /var/log/ubuntu-config/install-base.log"
 }
 
-install_extra_software()
-{
-	echo "  - Installing extra apps ..."
-	echo "${GREEN}    - THIS CAN TAKE HOURS. Go take a coffee :)${NORMAL}"
-
-	echo "${BLUE}    - Using an external terminal for installation...${NORMAL}"
-	xterm \
-		-title 'Installing EXTRA Software' \
-		-fa 'Ubuntu Mono' -fs 12 \
-		-bg 'black' -fg 'white' \
-		-e "bash -c 'extra-software.sh | tee /var/log/ubuntu-config/install-extra.log'"
-		tput cuu1;
-		tput el;
-
-	tput cuu1;
-	tput el;
-	date > /var/log/ubuntu-config/install-extra.done
-	echo "    - See logs in /var/log/ubuntu-config/install-extra.log"
-}
-
 reboot_host()
 {
 	echo
-	echo "${RED}  HEY YO, SYSTEM WILL REBOOT IN 3 MINUTES! ${NORMAL}"
+	echo "${RED}  HEY YO, THE SYSTEM WILL REBOOT IN 5 MINUTES! ${NORMAL}"
 	echo "  Cancel this with: shutdown -c "
 	echo
-	shutdown -r +3 2> /dev/null
-}
-
-quit()
-{
-	echo "${YELLOW}  DONE! Bye :) ${NORMAL}"
-	echo
+	shutdown -r +5 2> /dev/null
 }
 
 apply_configs()
 {
 	echo
-	echo "${YELLOW}  Applying/updating configurations... ${NORMAL}"
-	apply_and_upgrade_configs
+	echo "${YELLOW}  Applying configuration... ${NORMAL}"
+	install_software
+	admin-config.sh
+	check_python_pkgs.sh
+	check_tests.sh
+	crontab-config.sh
+	misc-hacks.sh
+	users-config.sh
+	reboot_host
 }
 
 revert_configs()
 {
 	echo
-	echo "${YELLOW}  Removing configurations... ${NORMAL}"
+	echo "${YELLOW}  Reverting configuration... ${NORMAL}"
 	install-scripts.sh -r
 	crontab-config.sh -r
 	admin-config.sh -r
@@ -238,23 +222,6 @@ revert_configs()
 	echo
 }
 
-configure_host()
-{
-	echo
-	echo "${YELLOW}  Configuring host... ${NORMAL}"
-
-	if [ "$INSTALL_BASE" == "1" ]; then
-		install_base_software
-	fi
-
-	if [ "$INSTALL_EXTRA" == "1" ]; then
-		install_extra_software
-	fi
-
-	misc-hacks.sh
-	reboot_host
-}
-
 clear
 echo
 main
@@ -263,5 +230,5 @@ clear
 case $choice in
 	1 ) apply_configs ;;
 	2 ) revert_configs ;;
-    * ) echo "Your choice ($choice) is missing!"; exit 1
+	* ) echo "Your choice ($choice) is missing!"; exit 1
 esac
