@@ -208,7 +208,7 @@ revert_configs()
 	echo "${YELLOW}  Reverting configuration... ${NORMAL}"
 	crontab-config.sh -r
 	admin-config.sh -r
-	# misc-hacks.sh
+	# misc-hacks.sh  # revert hacks?
 	rm -f /var/log/ubuntu-config/install-configs.done
 	echo
 }
