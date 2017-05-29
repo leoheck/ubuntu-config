@@ -43,8 +43,8 @@ for app in $apps; do
 	fi
 done
 
-
-#================
+# PYTHON PACKAGES
+#=================================
 
 apps_csv="$(cat PYTHON_PACKAGES.csv)"
 
@@ -54,11 +54,15 @@ apps=$(echo $apps | sort | uniq)
 echo "$apps" > pkgs_python_all.log
 echo > pkgs_python_missing.log
 
+#===
+echo "${BLUE}# Python 2${NORMAL}"
+pip2 install --upgrade pip
+
 for app in $apps; do
-	dpkg -s "$app" &> /dev/null
+	pip show "$app" >/dev/null 2>&1
 	if [ ! $? -eq 0 ]; then
 		echo "${YELLOW}Installing $app${NORMAL} ..."
-		pip install $app >/dev/null 2>&1
+		pip2 install --upgrade $app >/dev/null 2>&1
 		install_status=$?
 		if [ ! "$install_status" -eq 0 ]; then
 			echo "Missing $app" >> pkgs_python_missing.log
@@ -68,3 +72,23 @@ for app in $apps; do
 		echo "Already installed $app"
 	fi
 done
+
+#===
+echo "${BLUE}# Python 3${NORMAL}"
+pip3 install --upgrade pip
+
+for app in $apps; do
+	pip3 show "$app" >/dev/null 2>&1
+	if [ ! $? -eq 0 ]; then
+		echo "${YELLOW}Installing $app${NORMAL} ..."
+		pip3 install --upgrade $app >/dev/null 2>&1
+		install_status=$?
+		if [ ! "$install_status" -eq 0 ]; then
+			echo "Missing $app" >> pkgs_python_missing.log
+			echo "${RED}Found problems during $app installation${NORMAL}"
+		fi
+	else
+		echo "Already installed $app"
+	fi
+done
+
