@@ -29,7 +29,7 @@ while getopts "abec:l" opt; do
 	esac
 done
 
-REPO="gaph-host-config"
+REPO="ubuntu-config"
 BRANCH="clean-release"
 
 GITHUB="https://github.com/leoheck/$REPO/archive/"

@@ -1,5 +1,5 @@
 
-# Ubuntu configs [![Build Status](https://travis-ci.org/leoheck/gaph-host-config.svg?branch=clean-release)](https://travis-ci.org/leoheck/gaph-host-config)
+# Ubuntu configs [![Build Status](https://travis-ci.org/leoheck/ubuntu-config.svg?branch=clean-release)](https://travis-ci.org/leoheck/ubuntu-config)
 
 <img src="https://rawgit.com/leoheck/ubuntu-config/clean-release/images/menus.png" width="600px">
 
@@ -14,6 +14,5 @@ Instructions for:
 
 **To apply, just paste the command in terminal:**
 ```
-sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/leoheck/gaph-host-config/clean-release/configure.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/leoheck/ubuntu-config/clean-release/configure.sh)"
 ```
-

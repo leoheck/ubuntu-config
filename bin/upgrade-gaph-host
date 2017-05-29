@@ -5,7 +5,7 @@
 # Script to upgrade configs
 
 # GITHUB REPOSITORY CONFIG
-REPO="gaph-host-config"
+REPO="ubuntu-config"
 BRANCH="clean-release"
 
 OPT=3
