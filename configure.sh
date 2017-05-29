@@ -1,18 +1,5 @@
 #!/bin/bash
 
-# Leandro Sehnem Heck (leoheck@gmail.com)
-
-# MAIN SCRIPT TO CONFIGURE INSTALL GAPH CONFIGS
-
-# TODO: APPLICAR ESSAS DEFINICOES GLOBALMENTE
-# DEFINICOES:
-# - DONWLOAD: /tmp
-# - LOGS: /var/logs/gaph/
-# - BKPs Suffix: TODO
-
-# Command line parameters
-# command="$1"
-
 INSTALL_BASE=1
 INSTALL_EXTRA=1
 USE_LOCAL_FILES=0
@@ -42,12 +29,9 @@ while getopts "abec:l" opt; do
 	esac
 done
 
-
-# GITHUB REPOSITORY CONFIG
 REPO="gaph-host-config"
 BRANCH="clean-release"
 
-# TODO: MUDAR O NOME DO ZIP BAIXADO PRA $REPO-$BRANCH.zip
 GITHUB="https://github.com/leoheck/$REPO/archive/"
 PKG=$BRANCH.zip
 LOCAL_PKG=$REPO-$BRANCH.zip
@@ -94,7 +78,6 @@ control_c()
 	echo
 	pkill -P $$
 	shutdown -c
-	# echo "kill -KILL $!" | at now &> /dev/null
 }
 
 trap control_c SIGINT
@@ -111,10 +94,10 @@ set -e
 umask g-w,o-w
 
 # Check for super power
-if [ "$(id -u)" != "0" ]; then
-	echo -e "\nHey kid, you ${BOLD}need superior power${NORMAL}. Go call your father.${NORMAL}\n"
-	exit 1
-fi
+# if [ "$(id -u)" != "0" ]; then
+# 	echo -e "\nHey kid, you ${BOLD}need superior power${NORMAL}. Go call your father.${NORMAL}\n"
+# 	exit 1
+# fi
 
 main()
 {
@@ -274,13 +257,11 @@ revert_configs()
 	nsswitch-config.sh -r
 	saltstack-config.sh -r
 	# misc-hacks.sh
-	# users-config.sh
 	customization.sh -r
 	rm -f /var/log/gaph/install-configs.done
 	echo
 }
 
-# OPTION 2
 configure_gaph_compatible()
 {
 	echo
@@ -302,6 +283,9 @@ clear
 echo
 main
 clear
+
+# change to root
+sudo su 
 
 case $choice in
 	1 ) apply_configs ;;
