@@ -1,0 +1,300 @@
+
+# REQUIRED
+linux-headers-generic,      # Generic Kernel Headers
+build-essential,            # C compiler and build tools
+dkms,                       # Dynamic Kernel Module Support
+openssh-server,             # SSH conctivity tools
+sshfs,                      # Mount SSH filesystems
+ntfs-3g,                    # Mount NTFS filesystems
+cifs-utils,                 # Mount CIFS/SMB filesystems
+nfs-common,                 # Mount NFS filesystems, (instalation problem?)
+smbclient,                  # SMB conectivity tools
+winbind,                    # Resolve user and group information from Windows NT servers
+lsb-base,                   # Linux standard base
+lsb-core,
+debconf-utils,              # Required for salt
+libnss-myhostname,          # Required plugin for the GNU Name Service Switch (NSS)
+
+# Shells
+zsh,
+tcsh,
+csh,
+ksh,
+
+dconf-tools,                # Commandline configurations
+gcc-multilib,               # 32 bits libraries and multilib
+g++-multilib,
+python-software-properties, # Required for salt
+
+inkscape,                   # SVG habilities
+ubuntu-restricted-addons,   # Install this third-party software (skipped on Ubuntu installation)
+
+# Texttools
+wdiff,
+
+# Administrator tools
+htop,
+bleachbit,
+y-ppa-manager,
+ppa-purge,
+gufw,
+x11vnc,
+vnc4server,
+gvncviewer,
+tigervnc-viewer,
+xtightvncviewer,
+xvnc4viewer,
+remmina,
+remmina-plugin-nx,
+remmina-plugin-rdp,
+remmina-plugin-vnc,
+remmina-plugin-gnome,
+nmap,
+tree,
+dos2unix,
+curl,
+tcpdump,
+gparted,
+preload,
+strace,
+makedev,
+pdfgrep,
+
+# Shells and terminals
+ipython,
+terminator,
+tilix,
+screen,
+minicom,
+cutecom,
+gtkterm,
+shellcheck,
+python-bashate,
+shunit2,
+bats,
+
+# Window managers and tweak tools
+compizconfig-settings-manager,
+unity-tweak-tool,
+sushi,
+
+# Develop tools
+valgrind,
+flex,
+bison,
+autoconf,
+automake,
+cmake,
+subversion,
+mercurial,
+git,
+doxygen,
+glade,
+pkg-config,
+libglib2.0-dev,
+libboost-all-dev,
+libboost-python-dev,
+libboost-thread-dev,
+libbluetooth-dev,
+libxp6,
+
+# Editors, IDEs and Edition tools
+sublime-text-installer,
+emacs,
+gedit-plugins,
+vim,
+meld,
+colordiff,
+arduino,
+
+# Internet and communication
+google-chrome-stable,
+skype,
+
+# Image edition
+gimp,
+inkscape,
+shutter,
+
+# Audio and Video
+adobe-flashplugin,
+ubuntu-restricted-extras,
+vlc,
+cheese,
+
+# Eletronics
+kicad
+
+# Android
+go-mtpfs,
+mtpfs,
+
+# Required for others
+libelf-dev,
+libelf1,
+libxss1,
+ureadahead,
+
+# Math tools
+gnuplot,
+octave,
+scilab,
+lp-solve,
+
+# Hardware tools
+iverilog
+ghdl
+
+# Misc
+oracle-java8-installer,
+oracle-java8-set-default,
+nautilus-dropbox,
+virtualbox,
+gtkwave,
+eagle,
+graphviz,
+p7zip-full,
+p7zip-rar,
+pdftk,
+cups-pdf,
+xpdf,
+gv,
+ghostscript,
+
+# Indicators
+indicator-multiload,
+
+# Python related
+jupyter-notebook,
+pyro,
+pyro-gui,
+
+python-virtualenv,
+python-all,
+python-all-dev,
+python-dev,
+python-drmaa,
+python-future,
+python-glade2,
+python-h5py,
+python-lasagne,
+python-matplotlib,
+python-mysqldb,
+python-natsort,
+python-naturalsort,
+python-networkx,
+python-numpy,
+python-pandas,
+python-pip,
+python-pydot,
+python-pygraphviz,
+python-qt4,
+python-scikits-learn,
+python-scikits.statsmodels,
+python-scipy,
+python-scipy,
+python-scitools,
+python-serial,
+python-setuptools,
+python-simplejson,
+python-sip,
+python-sklearn,
+python-sphinx,
+python-spyderlib,
+python-subversion,
+python-tables,
+python-tensorflow,
+python-termcolor,
+python-webkit,
+python-natsort,
+python-naturalsort,
+python-scikits-learn,
+python-scipy,
+
+python3-scikits-learn,
+python3-scipy,
+python3-natsort,
+python3-virtualenv,
+python3-all,
+python3-pip,
+python3-all-dev,
+python3-dev,
+python3-future,
+python3-h5py,
+python3-lasagne,
+python3-matplotlib,
+python3-mysqldb,
+python3-natsort,
+python3-naturalsort,
+python3-networkx,
+python3-numpy,
+python3-pandas,
+python3-pip,
+python3-pydot,
+python3-pygraphviz,
+python3-scikits-learn,
+python3-scikits.statsmodels,
+python3-scipy,
+python3-scipy,
+python3-scitools,
+python3-serial,
+python3-setuptools,
+python3-simplejson,
+python3-sip,
+python3-sklearn,
+python3-sphinx,
+python3-spyderlib,
+python3-subversion,
+python3-tables,
+python3-tensorflow,
+python3-termcolor,
+python3-webkit,
+
+# Extra scripts
+tcl8.6,
+tcl8.6-dev,
+tk8.6,
+tk8.6-dev,
+ruby-full,
+lua5.2,
+perl,
+guile-2.0,
+golang,
+golang-1.8,
+
+# Extra fonts
+gsfonts-x11,
+texlive-fonts-extra,
+ttf-mscorefonts-installer,
+xfonts-100dpi,
+xfonts-100dpi-transcoded,
+xfonts-75dpi,
+xfonts-75dpi-transcoded,
+xfonts-base,
+xfonts-scalable,
+
+# Language packs, dictionaries, helps and related tools
+hyphen-en-us,
+hunspell,
+hunspell-tools,
+hunspell-en-us,
+myspell-pt-br,
+ispell,
+iamerican-insane,
+ibrazilian,
+wamerican-huge,
+wbrazilian,
+wbritish,
+libreoffice-templates,
+libreoffice-voikko,
+libreoffice-l10n-en-us,
+libreoffice-l10n-pt-br,
+
+# [SYNOPSYS TOOLS] Some required 32 bit libs
+libncurses5:i386,
+libxss1:i386,
+libsm6:i386,
+libxft2:i386,
+libjpeg62:i386,
+libtiff5:i386,
+libmng2:i386,
