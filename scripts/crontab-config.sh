@@ -17,23 +17,6 @@
 
 key="$1"
 
-
-# Test (1x/min)
-# * * * * * touch /tmp/gaph-upgrade-\$(date +\%Y-\%m-\%d:\%H:\%M)
-
-# Upgrade gaph config from github (1x/week)
-# 0 0 * * 0 /usr/bin/upgrade-gaph-host
-
-# Remove files older than n-days in /sim folder (1x/day)
-#0 2 * * * root find /sim/ -mtime +25 -exec rm {} \;
-
-# Backup main local user (UID=1000) files
-# 0 2 * * * root rsync /home/.$USER-bkp (incremental..only diffs..)
-
-
-# Verifying if init script works
-# init-checkconf /etc/init/gaph.conf
-
 install_cmd()
 {
 	SCRIPTDIR=$1
@@ -41,8 +24,8 @@ install_cmd()
 	echo "  - Installing cronjobs"
 
 	# BACKUP
-	if [ ! -f /var/log/gaph/cron.bkp ]; then
-		crontab -l > /var/log/gaph/cron.bkp 2> /dev/null
+	if [ ! -f /var/log/ubuntu-config/cron.bkp ]; then
+		crontab -l > /var/log/ubuntu-config/cron.bkp 2> /dev/null
 	fi
 
 	#===========================
@@ -51,34 +34,21 @@ install_cmd()
 	# [WARNING] THE ROOT Crontab is updated automatically.
 	# Put your cronjobs in the **user** crontab.
 
-	# TESTING (1x/day)
-	0 0 * * * root /usr/bin/upgrade-gaph-host 2>&1 /var/log/gaph/upgrade-gaph-host
-
-	# Keep /etc/salt/minion updated and running (1x/day)
-	0 2 * * * echo "$(hostname)" > /etc/salt/minion_id; sed -i "s/^[#]*master:.*/master: rodos/g" /etc/salt/minion; service salt-minion restart
-
-	# Update /etc/hosts file (4x/day)
-	30 7,12,18,23 * * * /soft64/admin/scripts/update-hosts.sh
-
-	# Keep SGE running (1x/hour)
-	0 * * * * root /etc/init.d/sgeexecd-ubuntu start > /dev/null 2>&1
-
 	EOM
 	#===========================
 
 	echo "$CRONCONF" | crontab -
 
-
 	# Cria um ponto de restauracao do crontab
-	mkdir -p /etc/gaph/
-	echo "$CRONCONF" > /etc/gaph/crontab
+	mkdir -p /etc/ubuntu-config/
+	echo "$CRONCONF" > /etc/ubuntu-config/crontab
 
 	echo "  - Installing upstart script"
-	cp -f "$SCRIPTDIR/init/gaph.conf" /etc/init/gaph.conf
+	cp -f "$SCRIPTDIR/init/ubuntu-config.conf" /etc/init/ubuntu-config.conf
 
 	if [ -f /bin/systemctl ]; then
 		echo "  - Installing systemd script"
-		cp -f "$SCRIPTDIR/systemd/gaph.service" /lib/systemd/system/gaph.service
+		cp -f "$SCRIPTDIR/systemd/ubuntu-config.service" /lib/systemd/system/ubuntu-config.service
 		/bin/systemctl daemon-reload
 	fi
 }
@@ -88,15 +58,15 @@ remove_crontab()
 	echo "  - Removing cronjobs"
 
 	# Restore backup
-	if [ -f /var/log/gaph/cron.bkp ]; then
-		cat /var/log/gaph/cron.bkp > crontab
+	if [ -f /var/log/ubuntu-config/cron.bkp ]; then
+		cat /var/log/ubuntu-config/cron.bkp > crontab
 	else
 		crontab -r
 	fi
 
 	# Remove init script
-	rm -rf /etc/init/gaph.conf
-	rm -rf /lib/systemd/system/gaph.service
+	rm -rf /etc/init/ubuntu-config.conf
+	rm -rf /lib/systemd/system/ubuntu-config.service
 }
 
 case $key in

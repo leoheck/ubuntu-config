@@ -40,7 +40,7 @@ skip_donwload=0
 PROJECTDIR=/tmp/$REPO-$BRANCH
 export PATH=$PROJECTDIR/scripts:$PATH
 
-mkdir -p /var/log/gaph/
+mkdir -p /var/log/ubuntu-config/
 
 if [ "$USE_LOCAL_FILES" == 1 ]; then
 	skip_donwload=1
@@ -166,14 +166,14 @@ install_base_software()
 		-title 'Installing BASE Software' \
 		-fa 'Ubuntu Mono' -fs 12 \
 		-bg 'black' -fg 'white' \
-		-e "bash -c 'initial-software.sh | tee /var/log/gaph/install-base.log'"
+		-e "bash -c 'initial-software.sh | tee /var/log/ubuntu-config/install-base.log'"
 		tput cuu1;
 		tput el;
 
 	tput cuu1;
 	tput el;
 
-	echo "    - See logs in /var/log/gaph/install-base.log"
+	echo "    - See logs in /var/log/ubuntu-config/install-base.log"
 }
 
 install_extra_software()
@@ -186,14 +186,14 @@ install_extra_software()
 		-title 'Installing EXTRA Software' \
 		-fa 'Ubuntu Mono' -fs 12 \
 		-bg 'black' -fg 'white' \
-		-e "bash -c 'extra-software.sh | tee /var/log/gaph/install-extra.log'"
+		-e "bash -c 'extra-software.sh | tee /var/log/ubuntu-config/install-extra.log'"
 		tput cuu1;
 		tput el;
 
 	tput cuu1;
 	tput el;
-	date > /var/log/gaph/install-extra.done
-	echo "    - See logs in /var/log/gaph/install-extra.log"
+	date > /var/log/ubuntu-config/install-extra.done
+	echo "    - See logs in /var/log/ubuntu-config/install-extra.log"
 }
 
 reboot_host()
@@ -234,14 +234,14 @@ revert_configs()
 	saltstack-config.sh -r
 	# misc-hacks.sh
 	customization.sh -r
-	rm -f /var/log/gaph/install-configs.done
+	rm -f /var/log/ubuntu-config/install-configs.done
 	echo
 }
 
-configure_gaph_compatible()
+configure_host()
 {
 	echo
-	echo "${YELLOW}  Configuring GAPH COMPATIBLE host... ${NORMAL}"
+	echo "${YELLOW}  Configuring host... ${NORMAL}"
 
 	if [ "$INSTALL_BASE" == "1" ]; then
 		install_base_software
