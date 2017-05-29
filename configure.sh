@@ -74,7 +74,7 @@ control_c()
 {
 	tput el1
 	echo
-	echo "${YELLOW}  FUCK, YOU KILLED ME! :( ${NORMAL}"
+	echo "${YELLOW}  Bye! :D ${NORMAL}"
 	echo
 	pkill -P $$
 	shutdown -c
