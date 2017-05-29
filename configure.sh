@@ -161,7 +161,6 @@ install_base_software()
 {
 	echo "  - Installing base apps"
 	echo "${GREEN}    - THIS CAN TAKE SOME MINUTES.${NORMAL}"
-
 	echo "${BLUE}    - Using an external terminal for installation...${NORMAL}"
 	xterm \
 		-title 'Installing BASE Software' \
