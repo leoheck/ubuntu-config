@@ -206,18 +206,9 @@ revert_configs()
 {
 	echo
 	echo "${YELLOW}  Reverting configuration... ${NORMAL}"
-	install-scripts.sh -r
 	crontab-config.sh -r
 	admin-config.sh -r
-	config-printers.sh -r
-	fstab-config.sh -r
-	hosts-config.sh -r
-	lightdm-config.sh -r
-	nslcd-config.sh -r
-	nsswitch-config.sh -r
-	saltstack-config.sh -r
 	# misc-hacks.sh
-	customization.sh -r
 	rm -f /var/log/ubuntu-config/install-configs.done
 	echo
 }
