@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Check for super power
+if [ "$(id -u)" != "0" ]; then
+	echo -e "\n${BOLD}You need superpowers to install apps${NORMAL}.\n"
+	# exit 1
+fi
+
 if which tput >/dev/null 2>&1; then
 	ncolors=$(tput colors)
 fi
@@ -31,7 +37,7 @@ echo > pkgs_missing.log
 for app in $apps; do
 	dpkg -s "$app" &> /dev/null
 	if [ ! $? -eq 0 ]; then
-		echo "${YELLOW}Installing $app${NORMAL} ..."
+		echo "${YELLOW}Installing ...$app${NORMAL}"
 		DEBIAN_FRONTEND=noninteractive apt-get install -y "$app" >/dev/null 2>&1
 		install_status=$?
 		if [ ! "$install_status" -eq 0 ]; then
@@ -61,12 +67,12 @@ pip2 install --upgrade pip
 for app in $apps; do
 	pip show "$app" >/dev/null 2>&1
 	if [ ! $? -eq 0 ]; then
-		echo "${YELLOW}Installing $app${NORMAL} ..."
+		echo "${YELLOW}Installing ...$app${NORMAL}"
 		pip2 install --upgrade $app >/dev/null 2>&1
 		install_status=$?
 		if [ ! "$install_status" -eq 0 ]; then
 			echo "Missing $app" >> pkgs_python_missing.log
-			echo "${RED}Found problems during $app installation${NORMAL}"
+			echo "${RED}> Found problems during $app installation${NORMAL}"
 		fi
 	else
 		echo "Already installed $app"
