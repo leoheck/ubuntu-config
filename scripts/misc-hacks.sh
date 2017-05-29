@@ -77,4 +77,4 @@ hg clone https://bitbucket.org/arthurcburigo/pygattlib
 cd pygattlib
 make
 sudo make install
-rm pygattlib
+rm -rf pygattlib
