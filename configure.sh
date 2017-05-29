@@ -169,7 +169,7 @@ install_software()
 		-title 'Installing apps' \
 		-fa 'Ubuntu Mono' -fs 12 \
 		-bg 'black' -fg 'white' \
-		-e "bash -c 'initial-software.sh | tee /var/log/ubuntu-config/install-base.log'"
+		-e "bash -c 'install-software.sh | tee /var/log/ubuntu-config/install-base.log'"
 		tput cuu1;
 		tput el;
 
