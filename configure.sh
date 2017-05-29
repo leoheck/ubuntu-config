@@ -48,7 +48,6 @@ if [ "$USE_LOCAL_FILES" == 1 ]; then
 	export PATH=./scripts:$PATH
 fi
 
-# Use colors only if connected to a terminal which supports them
 if which tput >/dev/null 2>&1; then
 	ncolors=$(tput colors)
 fi
@@ -94,10 +93,10 @@ set -e
 umask g-w,o-w
 
 # Check for super power
-# if [ "$(id -u)" != "0" ]; then
-# 	echo -e "\nHey kid, you ${BOLD}need superior power${NORMAL}. Go call your father.${NORMAL}\n"
-# 	exit 1
-# fi
+if [ "$(id -u)" != "0" ]; then
+	echo -e "\nHey kid, you ${BOLD}need superior power${NORMAL}. Go call your father.${NORMAL}\n"
+	exit 1
+fi
 
 main()
 {
@@ -158,32 +157,10 @@ main()
 	fi
 }
 
-# OLD ROUTINE TO SELECT BETWEEN GUI/CLI EXECUTIONS.
-# install_software()
-# {
-# 	xhost +si:localuser:"$(whoami)" &> /dev/null && {
-# 		echo "${BLUE}    - Running GUI, please wait...${NORMAL}"
-# 		xterm \
-# 			-title 'Installing BASE Software' \
-# 			-fa 'Ubuntu Mono' -fs 12 \
-# 			-bg 'black' -fg 'white' \
-# 			-e "bash -c 'initial-software.sh | tee /var/log/gaph/install-base.log'"
-# 			tput cuu1;
-# 			tput el;
-# 	} || {
-# 		bash -c "initial-software.sh | tee /var/log/gaph/install-base.log"
-# 	}
-# }
-
 install_base_software()
 {
 	echo "  - Installing base apps"
 	echo "${GREEN}    - THIS CAN TAKE SOME MINUTES.${NORMAL}"
-
-# 	which xterm 2>&1 > /dev/null
-# 	if [ "$?" != "0" ]; then
-# 		apt install xterm
-# 	fi
 
 	echo "${BLUE}    - Using an external terminal for installation...${NORMAL}"
 	xterm \
@@ -283,9 +260,6 @@ clear
 echo
 main
 clear
-
-# change to root
-sudo su 
 
 case $choice in
 	1 ) apply_configs ;;
