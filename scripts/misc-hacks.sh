@@ -69,3 +69,12 @@ sed -i 's/enabled=1/enabled=0/p' /etc/default/apport
 # Hack for dropbox inodes
 echo "fs.inotify.max_user_watches = 99999999999" >> /etc/sysctl.d/20-dropbox-inotify.conf
 sysctl -p /etc/sysctl.d/20-dropbox-inotify.conf > /dev/null
+
+
+
+# Install custom pygattlib
+hg clone https://bitbucket.org/arthurcburigo/pygattlib
+cd pygattlib
+make
+sudo make install
+rm pygattlib
