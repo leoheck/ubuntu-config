@@ -1,21 +1,9 @@
 #!/bin/bash
 
-INSTALL_BASE=1
-INSTALL_EXTRA=1
 USE_LOCAL_FILES=0
 
-while getopts "abec:l" opt; do
+while getopts "c:l" opt; do
 	case $opt in
-	a)  # DISABLE INSTALL ALL PACKAGES
-		INSTALL_BASE=0
-		INSTALL_EXTRA=0
-		;;
-	b)  # DISABLE INSTALL BASIC PACKAGES
-		INSTALL_BASE=0
-		;;
-	e)  # DISABLE INSTALL EXTRA PACKAGES
-		INSTALL_EXTRA=0
-		;;
 	c)  # SELECT THE CHOICE
 		choice=$OPTARG
 		;;
