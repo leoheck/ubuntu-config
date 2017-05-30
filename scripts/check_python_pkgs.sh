@@ -65,4 +65,3 @@ for app in $apps; do
 		echo "Already installed $app"
 	fi
 done
-

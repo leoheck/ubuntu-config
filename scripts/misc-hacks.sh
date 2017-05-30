@@ -78,3 +78,23 @@ cd pygattlib
 make
 sudo make install
 rm -rf pygattlib
+
+# Install hub
+latest_hub=$(curl -s  https://github.com/github/hub/releases | grep "linux-amd64.*.tgz" | head -1 | cut -d\" -f2)
+wget https://github.com/$latest_hub
+hub_tarball=$(basename $latest_hub)
+tar xvzf $hub_tarball
+hub_folder=${hub_tarball%.*}
+cd $hub_folder
+sudo ./install 
+cd -
+rm -rf run-linux*
+
+# Envirnoment modules (tcl or c)
+# http://modules.sourceforge.net/
+git clone https://git.code.sf.net/p/modules/modules-tcl modules-tcl
+cd modules-tcl
+make -C doc all
+make install
+cd ..
+rm -rf modules-tcl
