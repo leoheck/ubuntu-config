@@ -72,10 +72,14 @@ sysctl -p /etc/sysctl.d/20-dropbox-inotify.conf > /dev/null
 
 
 
-# Install custom pygattlib
+# Install misc tools.....
+
+# Install custom pygattlib (python 2.7)
 hg clone https://bitbucket.org/arthurcburigo/pygattlib
 cd pygattlib
 make
+sudo make install
+make PYTHON_VER=3
 sudo make install
 rm -rf pygattlib
 
@@ -86,7 +90,7 @@ hub_tarball=$(basename $latest_hub)
 tar xvzf $hub_tarball
 hub_folder=${hub_tarball%.*}
 cd $hub_folder
-sudo ./install 
+sudo ./install
 cd -
 rm -rf run-linux*
 

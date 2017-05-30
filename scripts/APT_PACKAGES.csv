@@ -15,6 +15,10 @@ lsb-core,
 debconf-utils,              # Required for salt
 libnss-myhostname,          # Required plugin for the GNU Name Service Switch (NSS)
 
+# Windows compatibility
+wine-staging,
+winetricks,
+
 # Shells
 zsh,
 tcsh,
@@ -33,6 +37,8 @@ wdiff,
 
 # Administrator tools
 htop,
+atop,
+powertop,
 bleachbit,
 y-ppa-manager,
 ppa-purge,
@@ -147,6 +153,7 @@ oracle-java8-installer,
 oracle-java8-set-default,
 nautilus-dropbox,
 virtualbox,
+virtualbox-ext-pack,
 gtkwave,
 graphviz,
 p7zip-full,

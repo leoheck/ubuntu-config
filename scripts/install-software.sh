@@ -36,7 +36,9 @@ ppas="\
 	ppa:webupd8team/java \
 	ppa:webupd8team/sublime-text-3 \
 	ppa:webupd8team/terminix \
-	ppa:webupd8team/y-ppa-manager"
+	ppa:webupd8team/y-ppa-manager \
+	ppa:wine/wine-builds"
+
 
 # Removed
 # ppa:pgavin/ghdl
@@ -71,7 +73,7 @@ for app in $apps; do
 	dpkg -s "$app" &> /dev/null
 	if [ ! $? -eq 0 ]; then
 		echo "${YELLOW}Installing $app${NORMAL} ..."
-		DEBIAN_FRONTEND=noninteractive apt-get install -y "$app" >/dev/null 2>&1
+		DEBIAN_FRONTEND=noninteractive apt-get install -y --install-recommends "$app" >/dev/null 2>&1
 		install_status=$?
 		if [ ! "$install_status" -eq 0 ]; then
 			echo "Missing $app" >> pkgs_missing.log
