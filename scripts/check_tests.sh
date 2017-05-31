@@ -45,25 +45,28 @@ nof_apps=$(echo "$apps" | wc -w)
 echo "$apps" > pkgs_all.log
 echo > pkgs_missing.log
 
-cont=0 
+cont=0
 for app in $apps; do
-	cont=$((cont+1)) 
+	cont=$((cont+1))
 	dpkg -s "$app" &> /dev/null
 	if [ ! $? -eq 0 ]; then
-		printf "%s%4d/%d Installing %s...%s\n" ${YELLOW} ${cont} ${nof_apps} $app ${NORMAL}
+		printf "%4d/%d %s%sInstalling %s...%s\n" $cont $nof_apps $BOLD $YELLOW $app $NORMAL
 		tput sc
 		DEBIAN_FRONTEND=noninteractive apt-get install -y $app >/dev/null 2>&1
 		install_status=$?
 		if [ ! "$install_status" -eq 0 ]; then
 			echo "${cont}/${nof_apps} Missing $app" >> pkgs_missing.log
-			printf "%s- Error installing %s%s\n" ${RED} $app {NORMAL}
+			tput cuu1
+			tput el1
+			tput el
+			printf "%4d/%d %s%s%s was not installed%s\n" $cont $nof_apps $BOLD $RED $app $NORMAL
 		else
 			tput cuu1
 			tput el1
 			tput el
-			printf "%s%4d/%d %s installed%s\n" ${BLUE} ${cont} ${nof_apps} $app ${NORMAL}
+			printf "%4d/%d %s%s%s installed%s\n" $cont $nof_apps $BOLD $BLUE $app $NORMAL
 		fi
 	else
-		printf "%s%4d/%d %s already installed%s\n" ${NORMAL} ${cont} ${nof_apps} $app ${NORMAL}
+		printf "%s%4d/%d %s already installed%s\n" $NORMAL $cont $nof_apps $app $NORMAL
 	fi
 done
