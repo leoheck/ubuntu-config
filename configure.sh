@@ -182,8 +182,8 @@ apply_configs()
 	echo "${YELLOW}  Applying configuration... ${NORMAL}"
 	# install_software
 	prepare-pkg-sources.sh
-	install-packages.sh /tmp/$REPO-$BRANCH/
-	install-python-modules.sh /tmp/$REPO-$BRANCH/
+	install-packages.sh /tmp/$REPO-$BRANCH/scripts
+	install-python-modules.sh /tmp/$REPO-$BRANCH/scripts
 	crontab-config.sh -i
 	admin-config.sh -i
 	users-config.sh
