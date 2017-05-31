@@ -127,7 +127,7 @@ main()
 	echo "  ~ CONFIGURATION SCRIPT FOR UBUNTU 17.04 ~${NORMAL}"
 	echo
 	echo "  [1] Apply config"
-	echo "  [2] Revert config"
+	# echo "  [2] Revert config"
 	echo
 	echo "${BLUE}  Hit CTRL+C to exit${NORMAL}"
 	echo
@@ -136,7 +136,7 @@ main()
 		while :; do
 		  read -r -p '  #> ' choice
 		  case $choice in
-			[1-4] ) break ;;
+			[1-2] ) break ;;
 			q|Q ) exit ;;
 			* )
 				tput cuu1
@@ -180,14 +180,14 @@ apply_configs()
 {
 	echo
 	echo "${YELLOW}  Applying configuration... ${NORMAL}"
-	install_software
-	admin-config.sh
+	# install_software
 	prepare-pkg-sources.sh
 	install-packages.sh /tmp/$REPO-$BRANCH/
 	install-python-modules.sh /tmp/$REPO-$BRANCH/
-	crontab-config.sh
-	misc-hacks.sh
+	crontab-config.sh -i
+	admin-config.sh -i
 	users-config.sh
+	misc-hacks.sh
 	reboot_host
 }
 

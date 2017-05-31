@@ -15,11 +15,7 @@ install_cmd()
 	echo "  - Configuring admins accesss"
 
 	# To generate the cripto password: openssl passwd
-	echo "root:VLuxY7G/MDMO2" | chpasswd -e
-
-	# Increase the LDAP domain admins powers
-	echo -e '\n# LDAP Domain Admins' >> /etc/sudoers
-	echo -e '%Domain\ Admins ALL=(ALL) ALL\n\n' >> /etc/sudoers
+	# echo "root:VLuxY7G/MDMO2" | chpasswd -e
 }
 
 remove_cmd()
@@ -28,10 +24,6 @@ remove_cmd()
 
 	# /etc/shadow
 	# root:!:16927:0:99999:7:::
-
-	# Increase the LDAP domain admins powers
-	sed -i '/# LDAP Domain Admins/d' /etc/sudoers
-	sed -i '/%Domain\ Admins ALL=(ALL) ALL\n\n/d' /etc/sudoers
 }
 
 case $key in
