@@ -6,7 +6,6 @@ if [ ! -f ${apps_csv_path:-apps_csv_path}/APT_PACKAGES.csv ]; then
 	exit 1
 fi
 
-# Check for super power
 if [ "$(id -u)" != "0" ]; then
 	echo -e "\n${BOLD}You need superpowers to install apps${NORMAL}.\n"
 	exit 1
@@ -32,17 +31,6 @@ else
 	NORMAL=""
 fi
 
-COLUMNS=`tput cols`
-LINES=`tput lines`
-line=`expr $LINES / 2`
-column=`expr \( $COLUMNS - 6 \) / 2`
-tput sc
-tput cup $line $column
-tput rev
-echo 'Hello, World'
-tput sgr0
-tput rc
-
 apps_csv="$(cat ${apps_csv_path}/APT_PACKAGES.csv)"
 apps=$(echo "$apps_csv" | sed '/^\s*\#.*$/d' | cut -d, -f1 | sed '/^\s*$/d')
 apps=$(echo $apps | sort | uniq)
@@ -63,16 +51,18 @@ for app in $apps; do
 		if [ ! "$install_status" -eq 0 ]; then
 			echo "${cont}/${nof_apps} Missing $app" >> pkgs_missing.log
 			tput cuu1
-			tput el1
 			tput el
-			printf "%4d/%d %s%s%s was not installed%s\n" $cont $nof_apps $BOLD $RED $app $NORMAL
+			tput el1
+			printf "%4d/%d %s%s%s was not installed!%s\n" $cont $nof_apps $BOLD $RED $app $NORMAL
 		else
 			tput cuu1
-			tput el1
 			tput el
-			printf "%4d/%d %s%s%s installed%s\n" $cont $nof_apps $BOLD $BLUE $app $NORMAL
+			tput el1
+			printf "%4d/%d %s%s%s was installed.%s\n" $cont $nof_apps $BOLD $BLUE $app $NORMAL
 		fi
 	else
-		printf "%s%4d/%d %s already installed%s\n" $NORMAL $cont $nof_apps $app $NORMAL
+		printf "%s%4d/%d %s was already installed.%s\n" $NORMAL $cont $nof_apps $app $NORMAL
 	fi
 done
+
+apt-get autoclean

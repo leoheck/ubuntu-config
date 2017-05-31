@@ -99,7 +99,7 @@ libboost-all-dev,
 libboost-python-dev,
 libboost-thread-dev,
 libbluetooth-dev,
-libxp6,
+#libxp6,                   # needed for some Cadence CAD, missing on ubuntu
 
 # Editors, IDEs and Edition tools
 sublime-text-installer,
@@ -112,7 +112,6 @@ arduino,
 
 # Internet and communication
 google-chrome-stable,
-skype,
 
 # Image edition
 gimp,
@@ -120,7 +119,7 @@ inkscape,
 shutter,
 
 # Audio and Video
-adobe-flashplugin,
+flashplugin-installer,
 ubuntu-restricted-extras,
 vlc,
 cheese,
