@@ -1,5 +1,17 @@
 #!/bin/bash
 
+apps_csv_path=$1
+if [ ! -f ${apps_csv_path:-apps_csv_path}/APT_PACKAGES.csv ]; then
+	printf "Missing %s file\n" ${apps_csv_path:-apps_csv_path}
+	exit 1
+fi
+
+# Check for super power
+if [ "$(id -u)" != "0" ]; then
+	echo -e "\n${BOLD}You need superpowers to install apps${NORMAL}.\n"
+	exit 1
+fi
+
 if which tput >/dev/null 2>&1; then
 	ncolors=$(tput colors)
 fi
@@ -20,7 +32,7 @@ else
 	NORMAL=""
 fi
 
-apps_csv="$(cat PYTHON_PACKAGES.csv)"
+apps_csv="$(cat ${apps_csv_path}/PYTHON_PACKAGES.csv)"
 
 apps=$(echo "$apps_csv" | sed '/^\s*\#.*$/d' | cut -d, -f1 | sed '/^\s*$/d')
 apps=$(echo $apps | sort | uniq)

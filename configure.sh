@@ -182,23 +182,13 @@ apply_configs()
 	echo "${YELLOW}  Applying configuration... ${NORMAL}"
 	install_software
 	admin-config.sh
-	check_python_pkgs.sh
-	check_tests.sh
+	prepare-pkg-sources.sh
+	install-packages.sh /tmp/$REPO-$BRANCH/
+	install-python-modules.sh /tmp/$REPO-$BRANCH/
 	crontab-config.sh
 	misc-hacks.sh
 	users-config.sh
 	reboot_host
-}
-
-revert_configs()
-{
-	echo
-	echo "${YELLOW}  Reverting configuration... ${NORMAL}"
-	crontab-config.sh -r
-	admin-config.sh -r
-	# misc-hacks.sh  # revert hacks?
-	rm -f /var/log/ubuntu-config/install-configs.done
-	echo
 }
 
 clear
@@ -208,6 +198,6 @@ clear
 
 case $choice in
 	1 ) apply_configs ;;
-	2 ) revert_configs ;;
+	# 2 ) revert_configs ;;
 	* ) echo "Your choice ($choice) is missing!"; exit 1
 esac

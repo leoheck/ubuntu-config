@@ -1,5 +1,11 @@
 #!/bin/bash
 
+apps_csv_path=$1
+if [ ! -f ${apps_csv_path:-apps_csv_path}/APT_PACKAGES.csv ]; then
+	printf "Missing %s file\n" ${apps_csv_path:-apps_csv_path}
+	exit 1
+fi
+
 # Check for super power
 if [ "$(id -u)" != "0" ]; then
 	echo -e "\n${BOLD}You need superpowers to install apps${NORMAL}.\n"
@@ -37,7 +43,7 @@ echo 'Hello, World'
 tput sgr0
 tput rc
 
-apps_csv="$(cat APT_PACKAGES.csv)"
+apps_csv="$(cat ${apps_csv_path}/APT_PACKAGES.csv)"
 apps=$(echo "$apps_csv" | sed '/^\s*\#.*$/d' | cut -d, -f1 | sed '/^\s*$/d')
 apps=$(echo $apps | sort | uniq)
 nof_apps=$(echo "$apps" | wc -w)
@@ -52,7 +58,7 @@ for app in $apps; do
 	if [ ! $? -eq 0 ]; then
 		printf "%4d/%d %s%sInstalling %s...%s\n" $cont $nof_apps $BOLD $YELLOW $app $NORMAL
 		tput sc
-		DEBIAN_FRONTEND=noninteractive apt-get install -y $app >/dev/null 2>&1
+		DEBIAN_FRONTEND=noninteractive apt-get install -y --install-recommends $app >/dev/null 2>&1
 		install_status=$?
 		if [ ! "$install_status" -eq 0 ]; then
 			echo "${cont}/${nof_apps} Missing $app" >> pkgs_missing.log
