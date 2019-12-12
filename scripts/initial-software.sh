@@ -34,10 +34,10 @@ csh,                        # Shell
 ksh,                        # Shell
 
 # Basic tools
-curl
-net-tools
-nfs-common
-xterm
+curl,
+net-tools,
+nfs-common,
+xterm,
 
 dconf-tools,                # Commandline configurations
 gcc-multilib,               # 32 bits libraries and multilib
