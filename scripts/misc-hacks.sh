@@ -47,6 +47,11 @@ ln -sf /usr/lib/x86_64-linux-gnu/libmng.so.2.0.2 /usr/lib/x86_64-linux-gnu/libmn
 ln -sf /usr/lib/i386-linux-gnu/libtiff.so.5 /usr/lib/i386-linux-gnu/libtiff.so.3 2> /dev/null
 ln -sf /usr/lib/i386-linux-gnu/libmng.so.2.0.2 /usr/lib/i386-linux-gnu/libmng.so.1 2> /dev/null
 
+# Fix Missing libpng12-0
+sudo add-apt-repository ppa:linuxuprising/libpng12
+sudo apt update
+sudo apt install -y libpng12-0
+
 # Hack some shells
 rm -rf /bin/sh
 ln -sf /bin/bash /bin/sh
