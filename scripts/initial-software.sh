@@ -27,11 +27,17 @@ debconf-utils,              # Required for salt
 salt-minion,                # Remote host configuration management
 libnss-myhostname,          # Required plugin for the GNU Name Service Switch (NSS)
 
-# TERMINALS
+# Shells
 zsh,                        # Shell
 tcsh,                       # Shell
 csh,                        # Shell
 ksh,                        # Shell
+
+# Basic tools
+curl
+net-tools
+nfs-common
+xterm
 
 dconf-tools,                # Commandline configurations
 gcc-multilib,               # 32 bits libraries and multilib
