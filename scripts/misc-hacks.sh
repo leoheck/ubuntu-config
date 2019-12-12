@@ -47,9 +47,13 @@ ln -sf /usr/lib/x86_64-linux-gnu/libmng.so.2.0.2 /usr/lib/x86_64-linux-gnu/libmn
 ln -sf /usr/lib/i386-linux-gnu/libtiff.so.5 /usr/lib/i386-linux-gnu/libtiff.so.3 2> /dev/null
 ln -sf /usr/lib/i386-linux-gnu/libmng.so.2.0.2 /usr/lib/i386-linux-gnu/libmng.so.1 2> /dev/null
 
-# Fix Missing libpng12-0
+# Fix missing libpng12-0
 wget http://archive.ubuntu.com/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.54-1ubuntu1_amd64.deb -O /tmp/libpng12-0.deb
 dpkg -i /tmp/libpng12-0.deb
+
+# Fix missing libjpeg62
+wget http://security.ubuntu.com/ubuntu/pool/universe/libj/libjpeg6b/libjpeg62_6b2-3_amd64.deb -O /tmp/libjpeg62.deb
+dpkg -i /tmp/libjpeg62.deb
 
 # Hack some shells
 rm -rf /bin/sh
