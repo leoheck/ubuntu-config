@@ -12,9 +12,14 @@ testEquality() {
 # 	assertEquals "It's not 1999 :-(" '1999' "${year}"
 # }
 
-testPartyLikeItIs2017() {
+#testPartyLikeItIs2017() {
+#	year=$(date '+%Y')
+#	assertEquals "It's not 2017 :-(" '2017' "${year}"
+#}
+
+testPartyLikeItIs2019() {
 	year=$(date '+%Y')
-	assertEquals "It's not 2017 :-(" '2017' "${year}"
+	assertEquals "It's not 2019 :-(" '2019' "${year}"
 }
 
 

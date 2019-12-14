@@ -21,12 +21,12 @@ install_cmd()
 
 	# Plymouth on Ubuntu >= 16.04
 	if [ -d /usr/share/plymouth/themes/ubuntu-logo/ ]; then
-		cp -f "$SCRIPTDIR/images/plymouth/ubuntu-logo.png /usr/share/plymouth/themes/ubuntu-logo/"
+		cp -f "$SCRIPTDIR/images/plymouth/ubuntu-logo.png" /usr/share/plymouth/themes/ubuntu-logo/
 	fi
 
 	# Plymouth on Ubuntu 14.04
 	if [ -d /lib/plymouth/themes/ubuntu-logo/ ]; then
-		cp -f "$SCRIPTDIR/images/plymouth/ubuntu-logo.png /lib/plymouth/themes/ubuntu-logo/"
+		cp -f "$SCRIPTDIR/images/plymouth/ubuntu-logo.png" /lib/plymouth/themes/ubuntu-logo/
 	fi
 
 	# UNITY-GREETER BACKUP
@@ -38,7 +38,7 @@ install_cmd()
 	# convert -background none $SCRIPTDIR/images/unity-greeter/logo.svg $SCRIPTDIR/images/unity-greeter/logo.svg
 	#/usr/bin/inkscape --without-gui --export-png=/usr/share/unity-greeter/logo.png $SCRIPTDIR/images/unity-greeter/logo.svg > /dev/null
 	if [ -d /usr/share/unity-greeter/ ]; then
-		cp -f "$SCRIPTDIR/images/unity-greeter/logo.png /usr/share/unity-greeter/"
+		cp -f "$SCRIPTDIR/images/unity-greeter/logo.png" /usr/share/unity-greeter/
 	fi
 
 	# BACKUP

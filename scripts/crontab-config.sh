@@ -89,7 +89,7 @@ remove_crontab()
 
 	# Restore backup
 	if [ -f /var/log/gaph/cron.bkp ]; then
-		cat /var/log/gaph/cron.bkp > crontab
+		crontab - < /var/log/gaph/cron.bkp
 	else
 		crontab -r
 	fi
