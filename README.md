@@ -1,8 +1,8 @@
 # Configuração das Máquinas do GAPH [![Build Status](https://travis-ci.org/leoheck/ubuntu-config.svg?branch=master)](https://travis-ci.org/leoheck/ubuntu-config)
 
-Padronizar as máquinas do laboratório com **Ubuntu 18.04**.
+Scripts para padronizar as máquinas do laboratório com **Ubuntu 18.04**.
 
-**Pode ser usado pelos alunos em seus computadores pessoais**.
+**Tambẽm pode ser usado pelos alunos em seus computadores pessoais**.
 
 <img src="https://rawgit.com/leoheck/ubuntu-config/master/images/menus.png" width="600px">
 
