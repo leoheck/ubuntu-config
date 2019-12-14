@@ -296,8 +296,7 @@ apt-get install -f -y
 
 # Install apps individually
 for APP in $APPS; do
-	dpkg -s "$APP" &> /dev/null
-	if [ ! $? -eq 0 ]; then
+	if dpkg -s "$APP" &> /dev/null; then
 		DEBIAN_FRONTEND=noninteractive apt-get install -y "$APP"
 	fi
 done

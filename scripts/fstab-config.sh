@@ -43,8 +43,7 @@ install_cmd()
 	echo "$FSTAB" >> /etc/fstab
 
 	# Mounta se der.. (espero que sempre de, coloquei isso pra testar o processo)
-	ping -c 1 10.32.162.114 > /dev/null
-	if [ "$?" -eq 0 ] ; then
+	if ping -c 1 10.32.162.114 > /dev/null; then
 		mount -a
 	fi
 }
