@@ -52,7 +52,7 @@ UpgradeDate=$(cat /var/log/gaph/install-configs.done)
 
 echo -e "
 ${BLUE}${BOLD}   Host: ${NORMAL}${Host}
-${BLUE}${BOLD} Owener: ${NORMAL}${Owner}
+${BLUE}${BOLD}  Owner: ${NORMAL}${Owner}
 ${BLUE}${BOLD}     OS: ${NORMAL}${OS}
 ${BLUE}${BOLD} Kernel: ${NORMAL}${Kernel}
 ${BLUE}${BOLD}    CPU: ${NORMAL}${CPU}, Procs=${procs}, Cores=${cores}
