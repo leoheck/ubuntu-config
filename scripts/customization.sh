@@ -19,7 +19,7 @@ install_cmd()
 		fi
 	fi
 
-	# Plymouth on Ubuntu 16.04
+	# Plymouth on Ubuntu >= 16.04
 	if [ -d /usr/share/plymouth/themes/ubuntu-logo/ ]; then
 		cp -f "$SCRIPTDIR/images/plymouth/ubuntu-logo.png /usr/share/plymouth/themes/ubuntu-logo/"
 	fi

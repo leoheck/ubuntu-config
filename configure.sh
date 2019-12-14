@@ -147,7 +147,7 @@ main()
 	echo "  |  |  ||     ||   __||     |  |___|  |     ||  |  ||__   |  | |    "
 	echo "  |_____||__|__||__|   |__|__|         |__|__||_____||_____|  |_|    "
 	echo "                                                                     ${NORMAL}${GREEN}"
-	echo "  ~ HOST CONFIGURATION SCRIPT MADE FOR UBUNTU 16.04 ~${NORMAL}"
+	echo "  ~ HOST CONFIGURATION SCRIPT MADE FOR UBUNTU 18.04 ~${NORMAL}"
 	echo
 	echo "  ${BOLD}[1] CONFIGURE A GAPHL HOST${NORMAL}"
 	echo "  [2] Configure a GAPHL-COMPATIBLE host (install programs only)"

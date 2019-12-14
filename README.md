@@ -1,6 +1,6 @@
 # Configuração das Máquinas do GAPH [![Build Status](https://travis-ci.org/leoheck/ubuntu-config.svg?branch=master)](https://travis-ci.org/leoheck/ubuntu-config)
 
-Padronizar as máquinas do laboratório com **Ubuntu 16.04**.
+Padronizar as máquinas do laboratório com **Ubuntu 18.04**.
 
 **Pode ser usado pelos alunos em seus computadores pessoais**.
 
@@ -15,7 +15,7 @@ Instruções para criar uma pendrive botavel com Ubuntu: no
 
 ## Instalação
 
-Instale o Ubuntu 16.04.
+Instale o Ubuntu 18.04.
 > Para máquinas do GAPH, siga instruções de [Instalação e Configuração do Ubuntu](https://github.com/leoheck/ubuntu-config/wiki/Instala%C3%A7%C3%A3o-e-Configura%C3%A7%C3%A3o-do-Ubuntu).
 
 
